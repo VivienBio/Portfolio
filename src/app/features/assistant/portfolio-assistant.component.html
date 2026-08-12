@@ -43,7 +43,10 @@
     aria-controls="portfolio-assistant-panel"
     [attr.aria-label]="copy().restore"
   >
-    <span aria-hidden="true">+</span>
+    <span class="assistant-restore-avatar" aria-hidden="true">
+      <img ngSrc="/vivien-billot-character-cutout-v1.png" width="1024" height="1536" alt="" />
+    </span>
+    <strong>{{ copy().restore }}</strong>
   </button>
 }
 

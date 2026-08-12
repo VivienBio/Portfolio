@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  color-scheme: light;
+  --bg: #f5f3ee;
+  --surface: #ebe8e1;
+  --ink: #17201d;
+  --muted: #59625e;
+  --accent: #b83b1f;
+  --accent-contrast: #fff;
+  --line: #d5d1c8;
+  --deep: #173e35;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #111816;
+  --surface: #1a2421;
+  --ink: #f5f3ee;
+  --muted: #aab2ae;
+  --accent: #f07855;
+  --accent-contrast: #111816;
+  --line: #34413d;
+  --deep: #7fc0aa;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  overflow-x: clip;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, Avenir, 'Segoe UI', sans-serif;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+button,
+a {
+  font: inherit;
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}

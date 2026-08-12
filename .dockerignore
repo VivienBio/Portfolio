@@ -1,0 +1,13 @@
+.angular
+.codex
+.firebase
+.git
+.github
+.gemini
+.vscode
+coverage
+dist
+node_modules
+screenshots
+*.log
+gha-creds-*.json

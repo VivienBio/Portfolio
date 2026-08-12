@@ -1,0 +1,142 @@
+:host {
+  display: block;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 24rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  border: 1px solid var(--line);
+  transition:
+    transform 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+article::after {
+  position: absolute;
+  right: -3rem;
+  bottom: -4.5rem;
+  width: 12rem;
+  height: 12rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+  border-radius: 50%;
+  content: '';
+}
+
+article:hover {
+  z-index: 1;
+  border-color: var(--accent);
+  box-shadow: 0 24px 55px color-mix(in srgb, var(--ink) 10%, transparent);
+  transform: translateY(-6px);
+}
+
+.project-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--accent);
+  font: 800 0.65rem/1 monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-topline span {
+  color: var(--muted);
+  font-size: 1.8rem;
+  letter-spacing: -0.08em;
+}
+
+h3 {
+  max-width: 27rem;
+  margin: 2.6rem 0 1rem;
+  font:
+    700 clamp(1.7rem, 3vw, 2.4rem) / 1.15 Inter,
+    Avenir,
+    'Segoe UI',
+    sans-serif;
+  letter-spacing: -0.04em;
+}
+
+article > p {
+  max-width: 34rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+blockquote {
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--ink);
+  border-left: 3px solid var(--accent);
+  font-size: 0.83rem;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: auto 0 1.5rem;
+  list-style: none;
+}
+
+li {
+  padding: 0.3rem 0.5rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  font-size: 0.62rem;
+  font-weight: 750;
+}
+
+a {
+  position: relative;
+  z-index: 1;
+  align-self: flex-start;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3rem;
+}
+
+a span {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+a:hover span {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  article {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  article,
+  a span {
+    transition: none;
+  }
+}

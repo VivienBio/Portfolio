@@ -5,11 +5,24 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "cv:generate": "node scripts/generate-cv.mjs",
+    "check": "npm run format:check && npm run typecheck && npm run test:ci && npm run build",
+    "check:full": "npm run cv:generate && npm run check && npm run test:e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check src/app src/server.ts src/index.html src/styles.scss e2e playwright.config.ts .github docs README.md package.json angular.json",
+    "security:audit": "npm audit --omit=dev --audit-level=high",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "test:ci": "ng test --watch=false",
+    "test:e2e": "playwright test",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:Portfolio": "node dist/Portfolio/server/server.mjs"
   },
   "private": true,
+  "engines": {
+    "node": ">=24.15.0 <25",
+    "npm": ">=11 <13"
+  },
   "packageManager": "npm@12.0.2",
   "dependencies": {
     "@angular/common": "^22.1.0",
@@ -23,6 +36,7 @@
     "@ngx-translate/core": "^18.0.0",
     "@ngx-translate/http-loader": "^18.0.0",
     "express": "^5.1.0",
+    "openai": "^7.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -30,13 +44,15 @@
     "@angular/build": "^22.1.3",
     "@angular/cli": "^22.1.3",
     "@angular/compiler-cli": "^22.1.0",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "autoprefixer": "^10.5.4",
     "jsdom": "^28.0.0",
     "postcss": "^8.5.26",
     "prettier": "^3.8.1",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^3.4.19",
     "typescript": "~6.0.2",
     "vitest": "^4.0.8"
   }

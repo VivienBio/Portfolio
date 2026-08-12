@@ -1,0 +1,384 @@
+<a class="skip-link" href="#contenu">{{ copy.skipToContent }}</a>
+<header class="site-header">
+  <div class="scroll-progress" aria-hidden="true" [style.width.%]="scrollProgress()"></div>
+  <a class="brand" href="#accueil" [attr.aria-label]="copy.homeLabel">
+    <span class="brand-photo" aria-hidden="true">
+      <img ngSrc="/vivien-billot-linkedin.jpg" width="200" height="200" alt="" priority />
+    </span>
+    <span class="brand-identity">
+      <strong>{{ identityName }}</strong>
+      <small>{{ identityMeta }}</small>
+      <span class="brand-headline">{{ copy.hero.eyebrow }}</span>
+    </span>
+  </a>
+  <nav [attr.aria-label]="copy.navigationLabel">
+    <a href="#expertise">{{ copy.navigation[0] }}</a
+    ><a href="#impact">{{ copy.navigation[1] }}</a
+    ><a href="#parcours">{{ copy.navigation[2] }}</a
+    ><a href="#projets">{{ copy.navigation[3] }}</a
+    ><a href="#contact">{{ copy.navigation[4] }}</a>
+  </nav>
+  <span class="availability"><i aria-hidden="true"></i> {{ copy.availability }}</span>
+  <div class="header-actions" [attr.aria-label]="copy.headerActionsLabel">
+    <a
+      class="language-switch"
+      [href]="copy.language.href"
+      [attr.aria-label]="copy.language.ariaLabel"
+    >
+      <span class="language-current">{{ copy.language.current }}</span>
+      <span aria-hidden="true">→</span>
+      <strong>{{ copy.language.target }}</strong>
+    </a>
+    <a
+      class="cv-download"
+      [href]="copy.cv.href"
+      [attr.download]="copy.cv.fileName"
+      [attr.aria-label]="copy.cv.ariaLabel"
+      ><span aria-hidden="true">↓</span>{{ copy.cv.label }}</a
+    >
+    <button
+      class="theme-button"
+      type="button"
+      (click)="preferences.toggleTheme()"
+      [attr.aria-label]="themeLabel()"
+      [title]="themeLabel()"
+    >
+      <span aria-hidden="true">{{ preferences.theme() === 'dark' ? '☀' : '◐' }}</span>
+    </button>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="hero" id="accueil" aria-labelledby="hero-title">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="eyebrow reveal reveal-1">
+        <span></span><b>{{ copy.hero.eyebrow }}</b>
+      </p>
+      <h1 id="hero-title" class="reveal reveal-2">
+        <span>{{ copy.hero.title }}</span
+        ><em>{{ copy.hero.accent }}</em>
+      </h1>
+      <p class="lead reveal reveal-3">{{ copy.hero.lead }}</p>
+      <div class="actions reveal reveal-4">
+        <a class="primary" href="#parcours"
+          ><span>{{ copy.hero.primaryAction }}</span
+          ><b aria-hidden="true">↓</b></a
+        ><a class="secondary" href="#contact"
+          >{{ copy.hero.secondaryAction }} <span aria-hidden="true">→</span></a
+        >
+      </div>
+      <div class="hero-proof reveal reveal-4">
+        @for (proof of copy.hero.proof; track proof) {
+          <span>{{ proof }}</span>
+        }
+      </div>
+    </div>
+    <aside class="signal-card reveal reveal-3" [attr.aria-label]="copy.hero.profileLabel">
+      <div class="card-top">
+        <p>{{ copy.hero.profileLabel }}</p>
+        <span>15+ ANS</span>
+      </div>
+      <div class="profile-snapshot">
+        <p>{{ copy.hero.profileTitle }}</p>
+        <ul>
+          @for (point of copy.hero.profilePoints; track point; let index = $index) {
+            <li>
+              <b>0{{ index + 1 }}</b
+              ><span>{{ point }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="card-bottom">
+        @for (item of copy.hero.profileFooter; track item) {
+          <p>{{ item }}</p>
+        }
+      </div>
+    </aside>
+  </section>
+
+  <section class="metrics" [attr.aria-label]="copy.metricsLabel">
+    @for (metric of copy.metrics; track metric.value; let index = $index) {
+      <div>
+        <small>0{{ index + 1 }}</small
+        ><strong>{{ metric.value }}</strong
+        ><span>{{ metric.label }}</span>
+      </div>
+    }
+  </section>
+
+  <section class="manifesto" aria-label="Vision">
+    @for (item of copy.manifesto; track item; let last = $last) {
+      <span>{{ item }}</span>
+      @if (!last) {
+        <i aria-hidden="true">·</i>
+      }
+    }
+  </section>
+
+  <section class="section" id="expertise" aria-labelledby="expertise-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ copy.expertise.eyebrow }}</p>
+        <h2 id="expertise-title">
+          {{ copy.expertise.title }}<br /><em>{{ copy.expertise.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.expertise.intro }}</p>
+    </div>
+    <div class="expertise-grid">
+      @for (item of portfolio.expertises; track item.title) {
+        <article>
+          <div class="card-index">
+            <span>{{ item.index }}</span
+            ><i aria-hidden="true">↗</i>
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <ul [attr.aria-label]="copy.expertise.technologies">
+            @for (technology of item.technologies; track technology) {
+              <li>{{ technology }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section working-style" id="approche" aria-labelledby="working-style-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ copy.workingStyle.eyebrow }}</p>
+        <h2 id="working-style-title">
+          {{ copy.workingStyle.title }}<br /><em>{{ copy.workingStyle.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.workingStyle.intro }}</p>
+    </div>
+    <div class="working-style-grid">
+      @for (item of portfolio.workingStyle; track item.index) {
+        <article [class.is-vigilance]="item.kind === 'vigilance'">
+          <div class="working-style-meta">
+            <span>{{
+              item.kind === 'strength' ? copy.workingStyle.strength : copy.workingStyle.vigilance
+            }}</span>
+            <b>{{ item.index }}</b>
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <p class="working-style-practice">
+            <strong>{{ copy.workingStyle.safeguard }}</strong
+            >{{ item.practice }}
+          </p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section impact" id="impact" aria-labelledby="impact-title">
+    <div class="section-heading inverse">
+      <div>
+        <p class="eyebrow">{{ copy.impact.eyebrow }}</p>
+        <h2 id="impact-title">
+          {{ copy.impact.title }}<br /><em>{{ copy.impact.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.impact.intro }}</p>
+    </div>
+    <div class="impact-matrix">
+      @for (caseStudy of copy.impact.cases; track caseStudy.company) {
+        <article class="impact-row">
+          <div class="impact-context">
+            <div class="case-meta">
+              <span>{{ caseStudy.company }}</span
+              ><span>{{ caseStudy.scope }}</span>
+            </div>
+            <h3>{{ caseStudy.title }}</h3>
+            <p>{{ caseStudy.description }}</p>
+          </div>
+
+          <div class="impact-cell">
+            <p class="matrix-label">{{ copy.impact.matrix.contribution }}</p>
+            <ul class="impact-list">
+              @for (contribution of caseStudy.contributions; track contribution) {
+                <li>{{ contribution }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="impact-cell">
+            <p class="matrix-label">{{ copy.impact.matrix.outcomes }}</p>
+            <ul class="impact-list">
+              @for (outcome of caseStudy.outcomes; track outcome) {
+                <li>{{ outcome }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="impact-cell">
+            <p class="matrix-label">{{ copy.impact.matrix.stack }}</p>
+            <ul class="impact-tags">
+              @for (tag of caseStudy.tags; track tag) {
+                <li>{{ tag }}</li>
+              }
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="quote" [attr.aria-label]="copy.quote.label">
+    <div class="quote-mark" aria-hidden="true">“</div>
+    <blockquote>{{ copy.quote.text }}</blockquote>
+    <p>
+      <a
+        href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ copy.quote.action }} <span aria-hidden="true">↗</span></a
+      >
+    </p>
+  </section>
+
+  <section class="section journey" id="parcours" aria-labelledby="journey-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ copy.journey.eyebrow }}</p>
+        <h2 id="journey-title">
+          {{ copy.journey.title }}<br /><em>{{ copy.journey.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.journey.intro }}</p>
+    </div>
+    <div class="timeline">
+      @for (experience of portfolio.experiences; track experience.company; let index = $index) {
+        <article>
+          <div class="period">
+            <span>0{{ index + 1 }}</span
+            >{{ experience.period }}
+          </div>
+          <div class="experience">
+            <p class="company">{{ experience.company }}</p>
+            <h3>{{ experience.role }}</h3>
+            <p>{{ experience.summary }}</p>
+            <ul>
+              @for (achievement of experience.achievements; track achievement) {
+                <li>{{ achievement }}</li>
+              }
+            </ul>
+            <div class="tags">
+              @for (technology of experience.technologies; track technology) {
+                <span>{{ technology }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section learning" id="formation" aria-labelledby="learning-title">
+    <div>
+      <p class="eyebrow">{{ copy.learning.eyebrow }}</p>
+      <h2 id="learning-title">
+        {{ copy.learning.title }}<br /><em>{{ copy.learning.accent }}</em>
+      </h2>
+      <p>{{ copy.learning.description }}</p>
+      <a
+        href="https://www.codingame.com/profile/534d2045d7dc0057e6d53d29336657fe6190191"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ copy.learning.action }} <span aria-hidden="true">↗</span></a
+      >
+    </div>
+    <ul>
+      @for (certification of portfolio.certifications; track certification; let index = $index) {
+        <li>
+          <span>0{{ index + 1 }}</span
+          >{{ certification }}
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="section projects" id="projets" aria-labelledby="projects-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ copy.projects.eyebrow }}</p>
+        <h2 id="projects-title">
+          {{ copy.projects.title }}<br /><em>{{ copy.projects.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.projects.intro }}</p>
+    </div>
+    <app-projects-grid [projects]="portfolio.projects" />
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-panel">
+      <div class="contact-copy">
+        <p class="eyebrow">{{ copy.contact.eyebrow }}</p>
+        <h2 id="contact-title">
+          {{ copy.contact.title }}<br /><em>{{ copy.contact.accent }}</em>
+        </h2>
+        <p>{{ copy.footer.description }}</p>
+        <span class="footer-status"><i aria-hidden="true"></i>{{ copy.footer.availability }}</span>
+      </div>
+
+      <div class="contact-directory" [attr.aria-label]="copy.footer.directoryLabel">
+        <a
+          class="primary light contact-main-action"
+          href="mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot"
+          ><span>{{ copy.contact.emailAction }}</span
+          ><b aria-hidden="true">↗</b></a
+        >
+        <a
+          class="contact-link"
+          href="mailto:billot.vivien@gmail.com"
+          [attr.aria-label]="copy.contact.emailAction"
+          >billot.vivien@gmail.com</a
+        >
+        <a class="contact-link" href="tel:+33623857732" [attr.aria-label]="copy.contact.phoneAction"
+          >06 23 85 77 32</a
+        >
+        <a
+          class="contact-link"
+          href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn ↗</a
+        >
+        <a
+          class="contact-link"
+          href="https://github.com/VivienBio"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub ↗</a
+        >
+        <a
+          class="contact-link contact-cv"
+          href="/assets/CV-Vivien-Billot-FR.pdf"
+          download="CV-Vivien-Billot-FR.pdf"
+          [attr.aria-label]="copy.footer.cvFrAriaLabel"
+          >{{ copy.footer.cvFr }} ↓</a
+        >
+        <a
+          class="contact-link contact-cv"
+          href="/assets/CV-Vivien-Billot-EN.pdf"
+          download="CV-Vivien-Billot-EN.pdf"
+          [attr.aria-label]="copy.footer.cvEnAriaLabel"
+          >{{ copy.footer.cvEn }} ↓</a
+        >
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-bottom">
+    <small>© {{ year }} · Vivien Billot · {{ copy.footer.rights }}</small>
+    <a href="#accueil">{{ copy.footer.top }} ↑</a>
+  </div>
+</footer>
+<app-portfolio-assistant [locale]="locale" />

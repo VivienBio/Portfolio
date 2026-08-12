@@ -127,8 +127,13 @@ describe('PortfolioAssistantComponent', () => {
 
     expect(element.querySelector('.assistant-dock')).toBeNull();
     expect(element.querySelector<HTMLButtonElement>('.assistant-restore')?.textContent).toContain(
-      '+',
+      'Afficher Vivien',
     );
+    expect(
+      element
+        .querySelector<HTMLImageElement>('.assistant-restore-avatar img')
+        ?.getAttribute('ngsrc'),
+    ).toBe('/vivien-billot-character-cutout-v1.png');
 
     element.querySelector<HTMLButtonElement>('.assistant-restore')?.click();
     fixture.detectChanges();

@@ -1,0 +1,195 @@
+name: Deploy to GCP
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_contact_smoke_test:
+        description: Send one real test message through the contact form after deployment
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+env:
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  REGION: ${{ vars.GCP_REGION }}
+  REPOSITORY: ${{ vars.GCP_ARTIFACT_REPOSITORY }}
+  SERVICE: ${{ vars.GCP_CLOUD_RUN_SERVICE }}
+  DEPLOY_SERVICE_ACCOUNT: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+  RUNTIME_SERVICE_ACCOUNT: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+  WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+  OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.6-terra' }}
+
+jobs:
+  verify:
+    name: Verify release
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install browser for E2E checks
+        run: npx playwright install --with-deps chromium
+      - name: Audit production dependencies
+        run: npm run security:audit
+      - name: Generate CV PDFs
+        run: npm run cv:generate
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm run test:ci
+      - name: Production build
+        run: npm run build
+      - name: Browser, responsive and accessibility tests
+        run: npm run test:e2e
+      - name: Upload generated CV PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-cv-pdfs
+          path: public/assets/CV-Vivien-Billot-*.pdf
+          if-no-files-found: error
+
+  deploy:
+    name: Build and deploy immutable image
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download generated CV PDFs
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-cv-pdfs
+          path: public/assets
+
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          required=(
+            PROJECT_ID
+            REGION
+            REPOSITORY
+            SERVICE
+            DEPLOY_SERVICE_ACCOUNT
+            RUNTIME_SERVICE_ACCOUNT
+            WORKLOAD_IDENTITY_PROVIDER
+          )
+          for variable in "${required[@]}"; do
+            if [[ -z "${!variable}" ]]; then
+              echo "::error::GitHub variable ${variable} is missing"
+              exit 1
+            fi
+          done
+
+      - name: Authenticate to Google Cloud without a key
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.DEPLOY_SERVICE_ACCOUNT }}
+
+      - name: Setup Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Configure Artifact Registry authentication
+        run: gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/portfolio:${{ github.sha }}
+            ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/portfolio:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          provenance: mode=max
+          sbom: true
+
+      - name: Deploy immutable revision to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v3
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          region: ${{ env.REGION }}
+          service: ${{ env.SERVICE }}
+          image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/portfolio:${{ github.sha }}
+          flags: >-
+            --allow-unauthenticated
+            --cpu=1
+            --memory=512Mi
+            --min-instances=0
+            --max-instances=1
+            --concurrency=80
+            --port=8080
+            --timeout=30s
+            --ingress=all
+            --service-account=${{ env.RUNTIME_SERVICE_ACCOUNT }}
+            --set-secrets=OPENAI_API_KEY=openai-api-key:latest,CONTACT_FORM_ENDPOINT=contact-form-endpoint:latest
+            --set-env-vars=OPENAI_MODEL=${{ env.OPENAI_MODEL }}
+
+      - name: Smoke test deployed revision
+        env:
+          SERVICE_URL: ${{ steps.deploy.outputs.url }}
+          RUN_CONTACT_SMOKE_TEST: ${{ github.event.inputs.run_contact_smoke_test || 'false' }}
+        shell: bash
+        run: |
+          for attempt in {1..6}; do
+            if curl --fail --silent --show-error --max-time 15 "${SERVICE_URL}/healthz"; then
+              break
+            fi
+            if [[ "${attempt}" == "6" ]]; then
+              echo "::error::Cloud Run health check failed"
+              exit 1
+            fi
+            sleep 5
+          done
+
+          for cv_path in /assets/CV-Vivien-Billot-FR.pdf /assets/CV-Vivien-Billot-EN.pdf; do
+            output="/tmp/$(basename "${cv_path}")"
+            curl --fail --silent --show-error --location --max-time 15 \
+              --output "${output}" \
+              "${SERVICE_URL}${cv_path}"
+            if ! head -c 5 "${output}" | grep --quiet '%PDF-'; then
+              echo "::error::${cv_path} is not a valid PDF"
+              exit 1
+            fi
+          done
+
+          assistant_response="$(curl --fail --silent --show-error --max-time 30 \
+            --header 'Content-Type: application/json' \
+            --data '{"locale":"fr","messages":[{"role":"user","content":"Qui est Vivien Billot ? Réponds en une phrase."}]}' \
+            "${SERVICE_URL}/api/assistant")"
+          ASSISTANT_RESPONSE="${assistant_response}" node -e "const body = JSON.parse(process.env.ASSISTANT_RESPONSE || '{}'); if (typeof body.answer !== 'string' || body.answer.length < 20) throw new Error('Assistant smoke test returned an invalid answer');"
+
+          if [[ "${RUN_CONTACT_SMOKE_TEST}" == "true" ]]; then
+            curl --fail --silent --show-error --max-time 30 \
+              --header 'Content-Type: application/json' \
+              --data '{"name":"Smoke Test","email":"smoke-test@example.com","message":"Message automatique de validation du formulaire contact apres deploiement Cloud Run.","confirmed":true,"website":""}' \
+              "${SERVICE_URL}/api/contact" > /dev/null
+          fi

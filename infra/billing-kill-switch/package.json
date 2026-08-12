@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-billing-kill-switch",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Cloud Run function that disables project billing when the portfolio budget is reached.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@google-cloud/billing": "^4.0.0",
+    "@google-cloud/functions-framework": "^3.4.0"
+  },
+  "scripts": {
+    "start": "functions-framework --target=stopBilling --signature-type=cloudevent"
+  }
+}
