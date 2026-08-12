@@ -1,0 +1,145 @@
+@if (!isHidden() && !isOpen()) {
+  <div class="assistant-dock">
+    <button
+      #launcher
+      class="assistant-launcher"
+      type="button"
+      (click)="toggle()"
+      aria-expanded="false"
+      aria-controls="portfolio-assistant-panel"
+      aria-haspopup="dialog"
+      [attr.aria-label]="copy().launcherLabel"
+    >
+      <span class="assistant-bubble" aria-hidden="true">
+        <strong>{{ copy().launcherTitle }}</strong>
+      </span>
+      <span class="assistant-persona" aria-hidden="true">
+        <img
+          ngSrc="/vivien-billot-character-cutout-v1.png"
+          width="1024"
+          height="1536"
+          alt=""
+          priority
+        />
+      </span>
+    </button>
+    <button
+      class="assistant-hide"
+      type="button"
+      (click)="hideAssistant()"
+      [attr.aria-label]="copy().hide"
+    >
+      <span aria-hidden="true">−</span>
+    </button>
+  </div>
+}
+
+@if (isHidden()) {
+  <button
+    #restoreButton
+    class="assistant-restore"
+    type="button"
+    (click)="restoreAssistant()"
+    aria-controls="portfolio-assistant-panel"
+    [attr.aria-label]="copy().restore"
+  >
+    <span aria-hidden="true">+</span>
+  </button>
+}
+
+@if (isOpen()) {
+  <button
+    class="assistant-backdrop"
+    type="button"
+    tabindex="-1"
+    [attr.aria-label]="copy().close"
+    (click)="close()"
+  ></button>
+
+  <div class="assistant-sidekick" aria-hidden="true">
+    <span class="assistant-persona assistant-persona-side">
+      <img
+        ngSrc="/vivien-billot-character-cutout-v1.png"
+        width="1024"
+        height="1536"
+        alt=""
+        priority
+      />
+    </span>
+  </div>
+
+  <section
+    #assistantPanel
+    class="assistant-panel"
+    id="portfolio-assistant-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="assistant-title"
+    (keydown.escape)="close()"
+    (keydown)="onDialogKeydown($event)"
+  >
+    <h2 id="assistant-title" class="assistant-dialog-title">{{ copy().title }}</h2>
+    <button class="assistant-close" type="button" (click)="close()" [attr.aria-label]="copy().close">
+      <span aria-hidden="true">×</span>
+    </button>
+
+    <div
+      #conversation
+      class="assistant-conversation"
+      role="log"
+      tabindex="0"
+      aria-live="polite"
+      [attr.aria-label]="copy().conversationLabel"
+      [attr.aria-busy]="isSending()"
+    >
+      @for (message of messages(); track $index) {
+        <p class="message" [class.message-user]="message.role === 'user'">
+          <span>{{ message.role === 'user' ? copy().visitor : copy().assistantName }}</span
+          >{{ message.content }}
+        </p>
+      }
+      @if (isSending()) {
+        <p class="message typing">
+          <span>{{ copy().assistantName }}</span
+          ><i></i><i></i><i></i>
+        </p>
+      }
+    </div>
+
+    @if (messages().length === 1) {
+      <div class="quick-questions" [attr.aria-label]="copy().suggestedQuestions">
+        @for (quickQuestion of quickQuestions(); track quickQuestion) {
+          <button type="button" (click)="sendQuestion(quickQuestion)">
+            {{ quickQuestion }}
+          </button>
+        }
+      </div>
+    }
+
+    <form class="assistant-composer" (submit)="$event.preventDefault(); sendQuestion()">
+      <label for="assistant-question">{{ copy().questionLabel }}</label>
+      <div>
+        <textarea
+          #questionField
+          id="assistant-question"
+          rows="1"
+          maxlength="1200"
+          (keydown)="onQuestionKeydown($event)"
+          [formControl]="question"
+          [placeholder]="copy().questionPlaceholder"
+        ></textarea>
+        <button
+          type="submit"
+          [disabled]="question.invalid || isSending()"
+          [attr.aria-label]="copy().sendQuestion"
+        >
+          ↑
+        </button>
+      </div>
+    </form>
+
+    @if (error()) {
+      <p class="assistant-error" role="alert">{{ error() }}</p>
+    }
+  </section>
+}
