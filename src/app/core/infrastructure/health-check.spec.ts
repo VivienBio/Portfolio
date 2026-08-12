@@ -11,11 +11,14 @@ describe('registerHealthCheck', () => {
     try {
       await new Promise<void>((resolve) => server.once('listening', resolve));
       const { port } = server.address() as AddressInfo;
-      const response = await fetch(`http://127.0.0.1:${port}/healthz`);
+      const paths = ['/healthz', '/api/healthz'];
 
-      expect(response.status).toBe(200);
-      expect(response.headers.get('content-type')).toContain('application/json');
-      await expect(response.json()).resolves.toEqual({ status: 'ok' });
+      for (const path of paths) {
+        const response = await fetch(`http://127.0.0.1:${port}${path}`);
+        expect(response.status).toBe(200);
+        expect(response.headers.get('content-type')).toContain('application/json');
+        await expect(response.json()).resolves.toEqual({ status: 'ok' });
+      }
     } finally {
       await new Promise<void>((resolve, reject) =>
         server.close((error) => (error ? reject(error) : resolve())),

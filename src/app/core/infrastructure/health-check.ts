@@ -5,7 +5,10 @@ export interface HealthCheckRouter {
 }
 
 export function registerHealthCheck(router: HealthCheckRouter): void {
-  router.get('/healthz', (_request, response) => {
+  const handler = (_request: Request, response: Response) => {
     response.status(200).json({ status: 'ok' });
-  });
+  };
+
+  router.get('/healthz', handler);
+  router.get('/api/healthz', handler);
 }

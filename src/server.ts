@@ -15,6 +15,7 @@ import {
   buildPortfolioKnowledge,
   PortfolioAssistant,
 } from './app/core/application/portfolio-assistant';
+import { AssistantGateway } from './app/core/application/assistant.gateway';
 import { OpenAiResponsesGateway } from './app/core/infrastructure/openai-responses.gateway';
 import { FormspreeContactGateway } from './app/core/infrastructure/formspree-contact.gateway';
 import { ProfileFallbackGateway } from './app/core/infrastructure/profile-fallback.gateway';
@@ -94,12 +95,16 @@ function createAssistant(
 ): PortfolioAssistant {
   const apiKey = configuration.openAiApiKey;
   const portfolio = new LocalPortfolioRepository().getPortfolio(locale);
+  const fallbackGateway = new ProfileFallbackGateway(locale);
   const gateway = apiKey
-    ? new OpenAiResponsesGateway({
-        apiKey,
-        model: configuration.openAiModel,
-      })
-    : new ProfileFallbackGateway(locale);
+    ? createResilientAssistantGateway(
+        new OpenAiResponsesGateway({
+          apiKey,
+          model: configuration.openAiModel,
+        }),
+        fallbackGateway,
+      )
+    : fallbackGateway;
 
   return new PortfolioAssistant(gateway, buildPortfolioKnowledge(portfolio), locale);
 }
@@ -110,4 +115,22 @@ function createContactGateway(
   return configuration.contactFormEndpoint
     ? new FormspreeContactGateway(configuration.contactFormEndpoint)
     : undefined;
+}
+function createResilientAssistantGateway(
+  primary: AssistantGateway,
+  fallback: AssistantGateway,
+): AssistantGateway {
+  return {
+    async answer(request) {
+      try {
+        return await primary.answer(request);
+      } catch (error: unknown) {
+        const errorName = error instanceof Error ? error.name : 'UnknownError';
+        console.error(
+          JSON.stringify({ severity: 'WARNING', code: 'assistant_primary_failed', errorName }),
+        );
+        return fallback.answer(request);
+      }
+    },
+  };
 }
