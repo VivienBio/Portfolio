@@ -57,7 +57,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     {
       company: 'Betclic Group',
       role: 'Senior Software Engineer / Tech Lead',
-      period: 'Depuis 2026',
+      period: 'Depuis le 6 octobre 2025',
       summary:
         'Je contribue à une chaîne de pricing sportif propriétaire : générer nos probabilités propriétaires afin de proposer rapidement des cotes maîtrisées aux parieurs, avec davantage d’autonomie qu’une dépendance exclusive à des providers externes.',
       achievements: [
@@ -81,7 +81,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     {
       company: 'Groupe TF1',
       role: 'Tech Lead / Architecte',
-      period: 'Mars 2022 — 2026',
+      period: 'Mars 2022 — 6 octobre 2025',
       summary:
         'Référent technique de deux équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
       achievements: [
@@ -320,7 +320,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
   experiences: [
     {
       ...FRENCH_PORTFOLIO.experiences[0]!,
-      period: 'Since 2026',
+      period: 'Since Oct 6, 2025',
       summary:
         'I contribute to a proprietary sports-pricing chain: generating our own probabilities to offer bettors controlled odds faster, with greater autonomy than relying exclusively on external providers.',
       achievements: [
@@ -344,7 +344,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     {
       ...FRENCH_PORTFOLIO.experiences[1]!,
       role: 'Tech Lead / Software Architect',
-      period: 'Mar 2022 — 2026',
+      period: 'Mar 2022 — Oct 6, 2025',
       summary:
         'As the technical reference for two multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
       achievements: [

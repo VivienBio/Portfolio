@@ -56,7 +56,7 @@ export interface CaseStudyCopy {
 
 const EN_BETCLIC: CaseStudyCopy = {
   slug: 'betclic',
-  kicker: 'Case study · Betclic Group · Since 2026',
+  kicker: 'Case study · Betclic Group · Since Oct 6, 2025',
   title: 'Real-time sports odds,',
   accent: 'priced in-house.',
   roleLine: 'Senior Software Engineer / Tech Lead — Quant & sports pricing · C#/.NET · AWS',
@@ -168,13 +168,13 @@ const EN_BETCLIC: CaseStudyCopy = {
 
 const EN_TF1: CaseStudyCopy = {
   slug: 'tf1',
-  kicker: 'Case study · TF1 Group · 2022–2026',
+  kicker: 'Case study · TF1 Group · Mar 2022–Oct 6, 2025',
   title: 'Modernizing the ad platform',
   accent: 'without stopping it.',
   roleLine: 'Tech Lead / Software Architect — two cross-functional teams',
   metaTitle: "Modernizing TF1's advertising platform — case study · Vivien Billot",
   metaDescription:
-    "Tech Lead of two teams on TF1's advertising platform from 2022 to 2026: VB6 legacy to .NET 6/8 and AKS, 11 projects shipped to production, delivery without interruption.",
+    "Tech Lead of two teams on TF1's advertising platform from March 2022 to Oct 6, 2025: VB6 legacy to .NET 6/8 and AKS, 11 projects shipped to production, delivery without interruption.",
   context: {
     heading: 'Context',
     paragraphs: [
@@ -286,7 +286,7 @@ const EN_TF1: CaseStudyCopy = {
 
 const FR_BETCLIC: CaseStudyCopy = {
   slug: 'betclic',
-  kicker: 'Étude de cas · Betclic Group · Depuis 2026',
+  kicker: 'Étude de cas · Betclic Group · Depuis le 6 octobre 2025',
   title: 'Des cotes sportives temps réel,',
   accent: 'produites en interne.',
   roleLine: 'Senior Software Engineer / Tech Lead — Quant & pricing sportif · C#/.NET · AWS',
@@ -401,13 +401,13 @@ const FR_BETCLIC: CaseStudyCopy = {
 
 const FR_TF1: CaseStudyCopy = {
   slug: 'tf1',
-  kicker: 'Étude de cas · Groupe TF1 · 2022–2026',
+  kicker: 'Étude de cas · Groupe TF1 · Mars 2022–6 octobre 2025',
   title: 'Moderniser le SI publicitaire',
   accent: 'sans l’arrêter.',
   roleLine: 'Tech Lead / Architecte — deux équipes pluridisciplinaires',
   metaTitle: 'Moderniser le SI publicitaire de TF1 — étude de cas · Vivien Billot',
   metaDescription:
-    'Tech Lead de deux équipes sur le SI publicitaire de TF1 de 2022 à 2026 : du legacy VB6 vers .NET 6/8 et AKS, 11 projets mis en production, sans interrompre le métier.',
+    'Tech Lead de deux équipes sur le SI publicitaire de TF1 de mars 2022 au 6 octobre 2025 : du legacy VB6 vers .NET 6/8 et AKS, 11 projets mis en production, sans interrompre le métier.',
   context: {
     heading: 'Contexte',
     paragraphs: [
@@ -466,7 +466,7 @@ const FR_TF1: CaseStudyCopy = {
       decision:
         'Incrémental. Chaque domaine basculait quand son remplaçant avait fait ses preuves en production.',
       tradeOff:
-        'Nous avons accepté de faire tourner l’ancien et le nouveau en parallèle — double coût d’exploitation et complexité des frontières — en échange du respect de chaque engagement métier de 2022 à 2026.',
+        'Nous avons accepté de faire tourner l’ancien et le nouveau en parallèle — double coût d’exploitation et complexité des frontières — en échange du respect de chaque engagement métier de mars 2022 au 6 octobre 2025.',
     },
     {
       title: 'Faire de la qualité l’accélérateur du delivery, pas sa taxe.',

@@ -6,7 +6,7 @@ import { PortfolioAssistantComponent } from './portfolio-assistant.component';
 describe('PortfolioAssistantComponent', () => {
   let fixture: ComponentFixture<PortfolioAssistantComponent>;
   const api = {
-    ask: vi.fn().mockResolvedValue({ answer: 'Je travaille chez Betclic depuis 2026.' }),
+    ask: vi.fn().mockResolvedValue({ answer: 'Je travaille chez Betclic depuis le 6 octobre 2025.' }),
   };
 
   beforeEach(async () => {
@@ -58,7 +58,7 @@ describe('PortfolioAssistantComponent', () => {
 
     expect(api.ask).toHaveBeenCalledOnce();
     expect(api.ask).toHaveBeenLastCalledWith(expect.any(Array), 'en');
-    expect(dialog?.textContent).toContain('Je travaille chez Betclic depuis 2026.');
+    expect(dialog?.textContent).toContain('Je travaille chez Betclic depuis le 6 octobre 2025.');
   });
 
   it('exposes a discrete internal close control while dialog is open', () => {

@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
           >
             <span
               class="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider"
-              >Depuis 2026</span
+              >Depuis le 6 octobre 2025</span
             >
             <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-2">
               Betclic Group - Senior Software Engineer / Tech Lead
@@ -31,7 +31,7 @@ import { CommonModule } from '@angular/common';
           >
             <span
               class="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider"
-              >2022 � 2026</span
+              >Mars 2022 � 6 octobre 2025</span
             >
             <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-2">
               TF1 PUB - Tech Lead Full Stack
