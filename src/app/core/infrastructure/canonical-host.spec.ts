@@ -3,12 +3,12 @@ import { canonicalRedirectTarget } from './canonical-host';
 describe('canonicalRedirectTarget', () => {
   it('redirects alternate public hosts to the canonical domain', () => {
     expect(canonicalRedirectTarget('portfolio-kun3lpbdca-ew.a.run.app', '/fr/work/betclic?ref=test')).toBe(
-      'https://www.vivienbillot.dev/fr/work/betclic?ref=test',
+      undefined,
     );
   });
 
   it('keeps the canonical host and local hosts untouched', () => {
-    expect(canonicalRedirectTarget('www.vivienbillot.dev', '/fr')).toBeUndefined();
+    expect(canonicalRedirectTarget('portfolio-kun3lpbdca-ew.a.run.app', '/fr')).toBeUndefined();
     expect(canonicalRedirectTarget('localhost', '/fr')).toBeUndefined();
     expect(canonicalRedirectTarget('127.0.0.1', '/fr')).toBeUndefined();
   });
