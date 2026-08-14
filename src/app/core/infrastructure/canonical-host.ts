@@ -5,10 +5,18 @@ const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1']);
 const EXCLUDED_PREFIXES = ['/api/', '/assets/'];
 const EXCLUDED_PATHS = new Set(['/healthz', '/api/healthz']);
 
-export function canonicalRedirectTarget(hostname: string | undefined, originalUrl: string): string | undefined {
+export function canonicalRedirectTarget(
+  hostname: string | undefined,
+  originalUrl: string,
+): string | undefined {
   const normalizedHost = hostname?.trim().toLowerCase();
 
-  if (!normalizedHost || LOCAL_HOSTS.has(normalizedHost) || normalizedHost === CANONICAL_HOST) {
+  if (
+    !normalizedHost ||
+    LOCAL_HOSTS.has(normalizedHost) ||
+    normalizedHost === CANONICAL_HOST ||
+    normalizedHost.endsWith('.run.app')
+  ) {
     return undefined;
   }
 

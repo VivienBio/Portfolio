@@ -64,7 +64,10 @@ $RequiredApis = @(
   'artifactregistry.googleapis.com',
   'iamcredentials.googleapis.com',
   'sts.googleapis.com',
-  'secretmanager.googleapis.com'
+  'secretmanager.googleapis.com',
+  'firebase.googleapis.com',
+  'firebasehosting.googleapis.com',
+  'firebaserules.googleapis.com'
 )
 $EnableApiArguments = @('services', 'enable') + $RequiredApis + @("--project=$ProjectId")
 Invoke-Gcloud -Arguments $EnableApiArguments
@@ -125,6 +128,12 @@ Invoke-Gcloud -Arguments @(
   'projects', 'add-iam-policy-binding', $ProjectId,
   '--member', "serviceAccount:$DeployEmail",
   '--role', 'roles/run.admin'
+)
+
+Invoke-Gcloud -Arguments @(
+  'projects', 'add-iam-policy-binding', $ProjectId,
+  '--member', "serviceAccount:$DeployEmail",
+  '--role', 'roles/firebasehosting.admin'
 )
 
 Invoke-Gcloud -Arguments @(

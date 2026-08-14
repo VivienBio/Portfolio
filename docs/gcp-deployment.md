@@ -129,27 +129,25 @@ Un push sur `main`, ou un lancement manuel du workflow **Deploy to GCP**, décle
 7. Build Docker avec provenance et SBOM.
 8. Push Artifact Registry.
 9. Déploiement Cloud Run avec `OPENAI_API_KEY` depuis Secret Manager.
-10. Smoke tests `/healthz`, CV FR, CV EN, et assistant IA.
+10. Publication du proxy Firebase Hosting vers Cloud Run.
+11. Smoke tests `/healthz`, page publique, CV FR, CV EN et assistant IA via Firebase Hosting.
 
 Pour tester aussi l’envoi email réel, lancer le workflow manuellement avec `run_contact_smoke_test=true`. Cela envoie un message de test via le formulaire contact.
 
-## 5. Belle URL
+## 5. URL publique
 
-Pour une URL propre, commencer simple avec un mapping Cloud Run direct :
+L'URL publique canonique est `https://vivien-billot.web.app`. Firebase Hosting termine HTTPS et
+transmet toutes les routes à `portfolio` sur Cloud Run en `europe-west1`, selon `firebase.json`.
 
-```powershell
-.\scripts\map-cloud-run-domain.ps1 `
-  -ProjectId "portfolio-505218" `
-  -Region "europe-west1" `
-  -Service "portfolio" `
-  -Domain "www.vivienbillot.dev"
-```
+La pipeline publie cette configuration avec `scripts/deploy-firebase-hosting.mjs` via l'API REST
+Firebase Hosting. Elle réutilise le jeton court émis par Workload Identity Federation : aucune clé de
+service account ni aucun `FIREBASE_TOKEN` persistant n'est nécessaire.
 
-Le script vérifie que le service Cloud Run existe, lance la vérification de propriété du domaine si nécessaire, crée le mapping et affiche les enregistrements DNS à ajouter chez le registrar.
+L'URL Cloud Run reste accessible pour les diagnostics et les contrôles de santé, mais les métadonnées
+SEO, `robots.txt` et `sitemap.xml` désignent uniquement l'URL Firebase.
 
-Cloud Run émet ensuite un certificat HTTPS managé. La propagation DNS prend généralement quelques minutes, parfois plusieurs heures.
-
-Pour un setup plus avancé, Google recommande un Load Balancer global. Pour un portfolio personnel, le mapping direct Cloud Run en `europe-west1` est le chemin le plus simple à opérer.
+Si un domaine personnalisé est acheté plus tard, le connecter en priorité à Firebase Hosting, valider
+son certificat puis basculer les références canoniques dans un second déploiement.
 
 ## 6. Sécurité
 

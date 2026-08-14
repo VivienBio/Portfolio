@@ -10,6 +10,7 @@
 # Node
 /node_modules
 npm-debug.log
+firebase-debug.log
 yarn-error.log
 
 # IDEs and editors
@@ -32,6 +33,7 @@ yarn-error.log
 
 # Miscellaneous
 /.angular/cache
+/.firebase/
 .env*
 !.env.example
 .sass-cache/

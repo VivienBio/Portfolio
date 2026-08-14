@@ -1,6 +1,6 @@
 import { PortfolioLocale } from '../domain/portfolio.models';
 
-export const SITE_URL = 'https://portfolio-kun3lpbdca-ew.a.run.app';
+export const SITE_URL = 'https://vivien-billot.web.app';
 
 export interface SeoAlternate {
   readonly hreflang: string;

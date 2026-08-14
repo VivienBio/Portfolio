@@ -1,4 +1,10 @@
-const DEFAULT_ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*.run.app'] as const;
+const DEFAULT_ALLOWED_HOSTS = [
+  'localhost',
+  '127.0.0.1',
+  '*.run.app',
+  'vivien-billot.web.app',
+  'vivien-billot.firebaseapp.com',
+] as const;
 
 export function resolveAllowedHosts(configuredHosts?: string): string[] {
   const customHosts = configuredHosts

@@ -47,7 +47,7 @@ test('exposes the SEO contract: canonical, hreflang, OpenGraph, JSON-LD, robots,
 }) => {
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    'https://www.vivienbillot.dev/',
+    'https://vivien-billot.web.app/',
   );
   expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBeGreaterThanOrEqual(3);
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
@@ -62,10 +62,10 @@ test('exposes the SEO contract: canonical, hreflang, OpenGraph, JSON-LD, robots,
 
   const robots = await request.get(`${baseURL}/robots.txt`);
   expect(robots.status()).toBe(200);
-  expect(await robots.text()).toContain('Sitemap: https://www.vivienbillot.dev/sitemap.xml');
+  expect(await robots.text()).toContain('Sitemap: https://vivien-billot.web.app/sitemap.xml');
   const sitemap = await request.get(`${baseURL}/sitemap.xml`);
   expect(sitemap.status()).toBe(200);
-  expect(await sitemap.text()).toContain('https://www.vivienbillot.dev/work/betclic');
+  expect(await sitemap.text()).toContain('https://vivien-billot.web.app/work/betclic');
 });
 
 test('redirects the legacy /en URLs and returns 404 for unknown pages', async ({

@@ -28,6 +28,8 @@ env:
   RUNTIME_SERVICE_ACCOUNT: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
   WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
   OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.6-terra' }}
+  FIREBASE_SITE: vivien-billot
+  PUBLIC_URL: https://vivien-billot.web.app
 
 jobs:
   verify:
@@ -72,7 +74,7 @@ jobs:
     timeout-minutes: 20
     environment:
       name: production
-      url: ${{ steps.deploy.outputs.url }}
+      url: https://vivien-billot.web.app
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -153,6 +155,9 @@ jobs:
             --set-secrets=OPENAI_API_KEY=openai-api-key:latest,CONTACT_FORM_ENDPOINT=contact-form-endpoint:latest
             --set-env-vars=OPENAI_MODEL=${{ env.OPENAI_MODEL }}
 
+      - name: Deploy Firebase Hosting proxy
+        run: node --use-system-ca scripts/deploy-firebase-hosting.mjs
+
       - name: Smoke test deployed revision
         env:
           SERVICE_URL: ${{ steps.deploy.outputs.url }}
@@ -160,6 +165,7 @@ jobs:
         shell: bash
         run: |
           SERVICE_BASE_URL="${SERVICE_URL%/}"
+          PUBLIC_BASE_URL="${PUBLIC_URL%/}"
 
           for attempt in {1..18}; do
             if curl --fail --silent --show-error --location --max-time 15 "${SERVICE_BASE_URL}/healthz"; then
@@ -182,22 +188,30 @@ jobs:
             output="/tmp/$(basename "${cv_path}")"
             curl --fail --silent --show-error --location --max-time 15 \
               --output "${output}" \
-              "${SERVICE_BASE_URL}${cv_path}"
+              "${PUBLIC_BASE_URL}${cv_path}"
             if ! head -c 5 "${output}" | grep --quiet '%PDF-'; then
               echo "::error::${cv_path} is not a valid PDF"
               exit 1
             fi
           done
 
+          curl --fail --silent --show-error --location --max-time 30 \
+            --output /tmp/portfolio-home.html \
+            "${PUBLIC_BASE_URL}/"
+          if ! grep --quiet '<app-root' /tmp/portfolio-home.html; then
+            echo "::error::The public home page did not return the Angular application"
+            exit 1
+          fi
+
           assistant_response="$(curl --fail --silent --show-error --max-time 30 \
             --header 'Content-Type: application/json' \
             --data '{"locale":"fr","messages":[{"role":"user","content":"Qui est Vivien Billot ? Réponds en une phrase."}]}' \
-            "${SERVICE_BASE_URL}/api/assistant")"
+            "${PUBLIC_BASE_URL}/api/assistant")"
           ASSISTANT_RESPONSE="${assistant_response}" node -e "const body = JSON.parse(process.env.ASSISTANT_RESPONSE || '{}'); if (typeof body.answer !== 'string' || body.answer.length < 20) throw new Error('Assistant smoke test returned an invalid answer');"
 
           if [[ "${RUN_CONTACT_SMOKE_TEST}" == "true" ]]; then
             curl --fail --silent --show-error --max-time 30 \
               --header 'Content-Type: application/json' \
               --data '{"name":"Smoke Test","email":"smoke-test@example.com","message":"Message automatique de validation du formulaire contact apres deploiement Cloud Run.","confirmed":true,"website":""}' \
-              "${SERVICE_BASE_URL}/api/contact" > /dev/null
+              "${PUBLIC_BASE_URL}/api/contact" > /dev/null
           fi
