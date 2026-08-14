@@ -196,17 +196,17 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       openCase: 'Read the case study',
       flagships: [
         {
-          kicker: 'Betclic Group · Since Oct 6, 2025',
+          kicker: 'Betclic Group · Since Oct 2025',
           title: 'Real-time sports odds, priced in-house',
           summary:
             'Working on the pricing chain that turns Monte Carlo simulations into live betting odds — where every market decision hits the P&L directly.',
           path: '/work/betclic',
         },
         {
-          kicker: 'TF1 Group · Mar 2022–Oct 6, 2025 · Tech Lead of two teams',
+          kicker: 'TF1 Group · Mar 2022–Oct 2025 · Tech Lead of two teams',
           title: 'Modernizing a broadcaster’s ad platform without stopping it',
           summary:
-            'Leading the redesign of TF1’s advertising platform from March 2022 to Oct 6, 2025: 11 projects shipped to production, a VB6-era stack retired step by step, and two teams that got stronger along the way.',
+            'Leading the redesign of TF1’s advertising platform from March 2022 to October 2025: 11 projects shipped to production, a VB6-era stack retired step by step, and two teams that got stronger along the way.',
           path: '/work/tf1',
         },
       ],
@@ -403,17 +403,17 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       openCase: 'Lire l’étude de cas',
       flagships: [
         {
-          kicker: 'Betclic Group · Depuis le 6 octobre 2025',
+          kicker: 'Betclic Group · Depuis octobre 2025',
           title: 'Des cotes sportives temps réel, produites en interne',
           summary:
             'Contribuer à la chaîne de pricing qui transforme des simulations Monte-Carlo en cotes live — où chaque décision de marché impacte directement le P&L.',
           path: '/fr/work/betclic',
         },
         {
-          kicker: 'Groupe TF1 · Mars 2022–6 octobre 2025 · Tech Lead de deux équipes',
+          kicker: 'Groupe TF1 · Mars 2022–octobre 2025 · Tech Lead de deux équipes',
           title: 'Moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
           summary:
-            'Piloter la refonte du SI publicitaire de TF1 de mars 2022 au 6 octobre 2025 : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et deux équipes qui en sont sorties plus fortes.',
+            'Piloter la refonte du SI publicitaire de TF1 de mars 2022 à octobre 2025 : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et deux équipes qui en sont sorties plus fortes.',
           path: '/fr/work/tf1',
         },
       ],
