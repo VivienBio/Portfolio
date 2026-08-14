@@ -153,7 +153,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     },
     theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     hero: {
-      eyebrow: 'Senior Software Engineer / Tech Lead · C# / .NET · Distributed systems',
+      eyebrow: 'Senior Software Engineer · C# / .NET · Distributed systems',
       title: 'Systems where wrong answers',
       accent: 'are expensive.',
       lead: 'For 15+ years I’ve designed, built, and modernized software where correctness is the business: real-time sports pricing at Betclic, the ad platform at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. I work end to end — business, architecture, code, production — and leave systems clearer and teams more autonomous than I found them.',
@@ -317,7 +317,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'A system to modernize,',
       accent: 'or a team to lead?',
       description:
-        'Freelance Senior Tech Lead, currently on contract with Betclic Group. If you’re facing a system that must not fail, a legacy that has to move, or a team that needs to speed up — I’d like to hear about it.',
+        'Freelance Senior Software Engineer, currently on contract with Betclic Group. If you’re facing a system that must not fail, a legacy that has to move, or a team that needs to speed up — I’d like to hear about it.',
       emailAction: 'Email Vivien',
       cvAction: 'Download resume',
       phoneAction: 'Call Vivien Billot at +33 6 23 85 77 32',
@@ -326,7 +326,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     footer: {
       description:
         'Architecture, modernization, real-time systems, technical debt, or team performance: if the topic matters, I prefer to frame it quickly and concretely.',
-      role: 'Senior Software Engineer / Tech Lead · Paris region',
+      role: 'Senior Software Engineer · Paris region',
       availability: 'Open to discussing what’s next',
       directoryLabel: 'Contact details and useful links',
       cvFr: 'French resume',
@@ -337,9 +337,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       rights: 'All rights reserved',
     },
     seo: {
-      title: 'Vivien Billot — Senior Software Engineer / Tech Lead · C#/.NET, Distributed Systems',
+      title: 'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems',
       description:
-        'Senior Tech Lead with 15+ years on high-stakes systems: real-time sports pricing at Betclic, advertising platform modernization at TF1, regulated medical software. C#/.NET, AWS, Azure, distributed systems, team leadership.',
+        'Senior Software Engineer with 15+ years on high-stakes systems: real-time sports pricing at Betclic, advertising platform modernization at TF1, regulated medical software. C#/.NET, AWS, Azure, distributed systems, team leadership.',
     },
   },
   fr: {
@@ -363,7 +363,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     },
     theme: { light: 'Activer le thème clair', dark: 'Activer le thème sombre' },
     hero: {
-      eyebrow: 'Senior Software Engineer / Tech Lead · C# / .NET · Systèmes distribués',
+      eyebrow: 'Senior Software Engineer · C# / .NET · Systèmes distribués',
       title: 'Des systèmes où l’erreur',
       accent: 'coûte cher.',
       lead: 'Depuis 15+ ans, je conçois, construis et modernise des logiciels où la justesse est le métier : pricing sportif temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Je travaille de bout en bout — métier, architecture, code, production — et je laisse les systèmes plus lisibles et les équipes plus autonomes que je ne les ai trouvés.',
@@ -525,7 +525,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Un système à moderniser,',
       accent: 'ou une équipe à faire grandir ?',
       description:
-        'Tech Lead senior freelance, actuellement en mission chez Betclic Group. Un système qui ne doit pas tomber, un legacy qui doit bouger, une équipe qui doit accélérer — j’aimerais en entendre parler.',
+        'Senior Software Engineer freelance, actuellement en mission chez Betclic Group. Un système qui ne doit pas tomber, un legacy qui doit bouger, une équipe qui doit accélérer — j’aimerais en entendre parler.',
       emailAction: 'Envoyer un email',
       cvAction: 'Télécharger le CV',
       phoneAction: 'Appeler Vivien Billot au 06 23 85 77 32',
@@ -534,7 +534,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     footer: {
       description:
         'Architecture, modernisation, systèmes temps réel, dette technique ou performance d’équipe : si le sujet compte, je préfère le cadrer vite et concrètement.',
-      role: 'Senior Software Engineer / Tech Lead · Île-de-France',
+      role: 'Senior Software Engineer · Île-de-France',
       availability: 'Ouvert à la discussion',
       directoryLabel: 'Coordonnées et liens utiles',
       cvFr: 'CV français',
@@ -545,9 +545,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       rights: 'Tous droits réservés',
     },
     seo: {
-      title: 'Vivien Billot — Senior Software Engineer / Tech Lead · C#/.NET, systèmes distribués',
+      title: 'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués',
       description:
-        'Tech Lead senior, 15+ ans sur des systèmes à fort enjeu : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1, logiciel médical réglementé. C#/.NET, AWS, Azure, leadership d’équipe.',
+        'Senior Software Engineer, 15+ ans sur des systèmes à fort enjeu : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1, logiciel médical réglementé. C#/.NET, AWS, Azure, leadership d’équipe.',
     },
   },
 };

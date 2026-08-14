@@ -71,7 +71,7 @@ export class SeoService {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Vivien Billot',
-      jobTitle: 'Senior Software Engineer / Tech Lead',
+      jobTitle: 'Senior Software Engineer',
       url: absoluteUrl(page.locale === 'fr' ? '/fr' : '/'),
       image: `${SITE_URL}/vivien-billot-linkedin.jpg`,
       worksFor: { '@type': 'Organization', name: 'Betclic Group' },

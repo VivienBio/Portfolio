@@ -18,7 +18,7 @@ const ANSWERS = {
         'parcours',
       ],
       answer:
-        'Je suis Senior Software Engineer / Tech Lead, avec un fil conducteur dans mon parcours : rendre des domaines complexes plus lisibles, plus fiables et plus rapides à faire évoluer.\n\nJ’ai construit cette approche dans des contextes exigeants : le médical réglementé chez Stago, la transformation digitale d’un réseau de plus de 500 agences chez Rent A Car, la refonte du SI publicitaire chez TF1 avec deux équipes pluridisciplinaires, puis aujourd’hui le pricing sportif propriétaire chez Betclic, où les probabilités internes, les simulations Monte-Carlo et les décisions de marché ont un impact direct sur le risque et le ROI.\n\nCe qui me caractérise, c’est cette capacité à relier le métier, l’architecture, la qualité, le delivery et la progression des équipes. Je ne cherche pas seulement à livrer une feature : je veux laisser un système plus compréhensible et une équipe plus autonome.',
+        'Je suis Senior Software Engineer, avec un fil conducteur dans mon parcours : rendre des domaines complexes plus lisibles, plus fiables et plus rapides à faire évoluer.\n\nJ’ai construit cette approche dans des contextes exigeants : le médical réglementé chez Stago, la transformation digitale d’un réseau de plus de 500 agences chez Rent A Car, la refonte du SI publicitaire chez TF1 avec deux équipes pluridisciplinaires, puis aujourd’hui le pricing sportif propriétaire chez Betclic, où les probabilités internes, les simulations Monte-Carlo et les décisions de marché ont un impact direct sur le risque et le ROI.\n\nCe qui me caractérise, c’est cette capacité à relier le métier, l’architecture, la qualité, le delivery et la progression des équipes. Je ne cherche pas seulement à livrer une feature : je veux laisser un système plus compréhensible et une équipe plus autonome.',
     },
     {
       terms: [
@@ -172,7 +172,7 @@ const ANSWERS = {
         'background',
       ],
       answer:
-        'I am a Senior Software Engineer / Tech Lead, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with two multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
+        'I am a Senior Software Engineer, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with two multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
     },
     {
       terms: [

@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
 const EN_HOME_TITLE =
-  'Vivien Billot — Senior Software Engineer / Tech Lead · C#/.NET, Distributed Systems';
+  'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems';
 const FR_HOME_TITLE =
-  'Vivien Billot — Senior Software Engineer / Tech Lead · C#/.NET, systèmes distribués';
+  'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués';
 
 export const routes: Routes = [
   {

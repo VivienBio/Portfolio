@@ -32,7 +32,7 @@ export class PortfolioPageComponent {
   protected readonly copy = PORTFOLIO_PAGE_COPY[this.locale];
   protected readonly portfolio = this.repository.getPortfolio(this.locale);
   readonly identityName = PORTFOLIO_PUBLIC_IDENTITY.name;
-  readonly identityMeta = 'Senior Software Engineer / Tech Lead · Freelance';
+  readonly identityMeta = 'Senior Software Engineer · Freelance';
   protected readonly themeLabel = computed(() =>
     this.preferences.theme() === 'dark' ? this.copy.theme.light : this.copy.theme.dark,
   );

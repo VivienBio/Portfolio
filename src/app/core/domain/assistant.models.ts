@@ -25,7 +25,7 @@ export const PORTFOLIO_CONTACT = Object.freeze({
 
 export const PORTFOLIO_PUBLIC_IDENTITY = Object.freeze({
   name: 'Vivien Billot',
-  headline: 'Senior Software Engineer / Tech Lead Full Stack · architecte logiciel · freelance',
+  headline: 'Senior Software Engineer · architecte logiciel · freelance',
   location: 'Île-de-France',
   birthDateIso: '1988-03-05',
 });
