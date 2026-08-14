@@ -137,6 +137,12 @@ Invoke-Gcloud -Arguments @(
 )
 
 Invoke-Gcloud -Arguments @(
+  'projects', 'add-iam-policy-binding', $ProjectId,
+  '--member', "serviceAccount:$DeployEmail",
+  '--role', 'roles/serviceusage.serviceUsageConsumer'
+)
+
+Invoke-Gcloud -Arguments @(
   'iam', 'service-accounts', 'add-iam-policy-binding', $RuntimeEmail,
   '--member', "serviceAccount:$DeployEmail",
   '--role', 'roles/iam.serviceAccountUser',
