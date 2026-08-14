@@ -159,8 +159,10 @@ jobs:
           RUN_CONTACT_SMOKE_TEST: ${{ github.event.inputs.run_contact_smoke_test || 'false' }}
         shell: bash
         run: |
+          SERVICE_BASE_URL="${SERVICE_URL%/}"
+
           for attempt in {1..6}; do
-            if curl --fail --silent --show-error --max-time 15 "${SERVICE_URL}/healthz"; then
+            if curl --fail --silent --show-error --max-time 15 "${SERVICE_BASE_URL}/healthz"; then
               break
             fi
             if [[ "${attempt}" == "6" ]]; then
@@ -174,7 +176,7 @@ jobs:
             output="/tmp/$(basename "${cv_path}")"
             curl --fail --silent --show-error --location --max-time 15 \
               --output "${output}" \
-              "${SERVICE_URL}${cv_path}"
+              "${SERVICE_BASE_URL}${cv_path}"
             if ! head -c 5 "${output}" | grep --quiet '%PDF-'; then
               echo "::error::${cv_path} is not a valid PDF"
               exit 1
@@ -184,12 +186,12 @@ jobs:
           assistant_response="$(curl --fail --silent --show-error --max-time 30 \
             --header 'Content-Type: application/json' \
             --data '{"locale":"fr","messages":[{"role":"user","content":"Qui est Vivien Billot ? Réponds en une phrase."}]}' \
-            "${SERVICE_URL}/api/assistant")"
+            "${SERVICE_BASE_URL}/api/assistant")"
           ASSISTANT_RESPONSE="${assistant_response}" node -e "const body = JSON.parse(process.env.ASSISTANT_RESPONSE || '{}'); if (typeof body.answer !== 'string' || body.answer.length < 20) throw new Error('Assistant smoke test returned an invalid answer');"
 
           if [[ "${RUN_CONTACT_SMOKE_TEST}" == "true" ]]; then
             curl --fail --silent --show-error --max-time 30 \
               --header 'Content-Type: application/json' \
               --data '{"name":"Smoke Test","email":"smoke-test@example.com","message":"Message automatique de validation du formulaire contact apres deploiement Cloud Run.","confirmed":true,"website":""}' \
-              "${SERVICE_URL}/api/contact" > /dev/null
+              "${SERVICE_BASE_URL}/api/contact" > /dev/null
           fi
