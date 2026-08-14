@@ -3,7 +3,7 @@ import { AssistantGateway } from './assistant.gateway';
 import { buildPortfolioKnowledge, PortfolioAssistant } from './portfolio-assistant';
 import { LocalPortfolioRepository } from '../infrastructure/local-portfolio.repository';
 
-function createAssistant(answer = 'Je suis Tech Lead chez Betclic.') {
+function createAssistant(answer = 'Je suis Senior Software Engineer chez Betclic.') {
   const gateway: AssistantGateway = { answer: vi.fn().mockResolvedValue(answer) };
   const knowledge = buildPortfolioKnowledge(new LocalPortfolioRepository().getPortfolio());
 

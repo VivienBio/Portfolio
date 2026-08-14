@@ -144,7 +144,7 @@ describe('PortfolioPageComponent', () => {
     render();
 
     expect(document.title).toContain('Vivien Billot');
-    expect(document.title).toContain('Tech Lead');
+    expect(document.title).toContain('Senior Software Engineer');
     expect(document.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       'https://www.vivienbillot.dev/',
     );
