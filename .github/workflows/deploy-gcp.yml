@@ -161,15 +161,21 @@ jobs:
         run: |
           SERVICE_BASE_URL="${SERVICE_URL%/}"
 
-          for attempt in {1..6}; do
-            if curl --fail --silent --show-error --max-time 15 "${SERVICE_BASE_URL}/healthz"; then
+          for attempt in {1..18}; do
+            if curl --fail --silent --show-error --location --max-time 15 "${SERVICE_BASE_URL}/healthz"; then
               break
             fi
-            if [[ "${attempt}" == "6" ]]; then
+
+            if curl --fail --silent --show-error --location --max-time 15 "${SERVICE_BASE_URL}/api/healthz"; then
+              break
+            fi
+
+            if [[ "${attempt}" == "18" ]]; then
               echo "::error::Cloud Run health check failed"
               exit 1
             fi
-            sleep 5
+
+            sleep 10
           done
 
           for cv_path in /assets/CV-Vivien-Billot-FR.pdf /assets/CV-Vivien-Billot-EN.pdf; do
