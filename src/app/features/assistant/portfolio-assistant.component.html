@@ -14,13 +14,7 @@
         <strong>{{ copy().launcherTitle }}</strong>
       </span>
       <span class="assistant-persona" aria-hidden="true">
-        <img
-          ngSrc="/vivien-billot-character-cutout-v1.png"
-          width="1024"
-          height="1536"
-          alt=""
-          priority
-        />
+        <img ngSrc="/vivien-billot-character-cutout-v2.png" width="480" height="720" alt="" />
       </span>
     </button>
     <button
@@ -44,7 +38,7 @@
     [attr.aria-label]="copy().restore"
   >
     <span class="assistant-restore-avatar" aria-hidden="true">
-      <img ngSrc="/vivien-billot-character-cutout-v1.png" width="1024" height="1536" alt="" />
+      <img ngSrc="/vivien-billot-character-cutout-v2.png" width="480" height="720" alt="" />
     </span>
     <strong>{{ copy().restore }}</strong>
   </button>
@@ -61,13 +55,7 @@
 
   <div class="assistant-sidekick" aria-hidden="true">
     <span class="assistant-persona assistant-persona-side">
-      <img
-        ngSrc="/vivien-billot-character-cutout-v1.png"
-        width="1024"
-        height="1536"
-        alt=""
-        priority
-      />
+      <img ngSrc="/vivien-billot-character-cutout-v2.png" width="480" height="720" alt="" />
     </span>
   </div>
 
@@ -82,7 +70,12 @@
     (keydown)="onDialogKeydown($event)"
   >
     <h2 id="assistant-title" class="assistant-dialog-title">{{ copy().title }}</h2>
-    <button class="assistant-close" type="button" (click)="close()" [attr.aria-label]="copy().close">
+    <button
+      class="assistant-close"
+      type="button"
+      (click)="close()"
+      [attr.aria-label]="copy().close"
+    >
       <span aria-hidden="true">×</span>
     </button>
 

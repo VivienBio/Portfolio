@@ -6,7 +6,7 @@ describe('LocalPortfolioRepository', () => {
   it('exposes a complete portfolio aggregate', () => {
     const portfolio = repository.getPortfolio();
 
-    expect(portfolio.expertises).toHaveLength(4);
+    expect(portfolio.expertises).toHaveLength(6);
     expect(portfolio.experiences).toHaveLength(6);
     expect(portfolio.projects).toHaveLength(5);
     expect(portfolio.workingStyle).toHaveLength(6);

@@ -1,0 +1,167 @@
+<header class="case-header">
+  <a class="case-back" [routerLink]="chrome.homePath">{{ chrome.back }}</a>
+  <a class="case-brand" [routerLink]="chrome.homePath" aria-label="Vivien Billot">
+    <span class="case-brand-photo" aria-hidden="true">
+      <img ngSrc="/vivien-billot-linkedin.jpg" width="200" height="200" alt="" priority />
+    </span>
+    <strong>Vivien Billot</strong>
+  </a>
+  <div class="case-actions">
+    <a class="case-language" [routerLink]="alternatePath" [attr.aria-label]="chrome.languageLabel">
+      {{ chrome.languageTarget }}
+    </a>
+    <a
+      class="case-cv"
+      [href]="chrome.cvHref"
+      [attr.download]="chrome.cvFileName"
+      [attr.aria-label]="chrome.cvLabel"
+      >↓ {{ chrome.cvLabel }}</a
+    >
+    <button
+      class="case-theme"
+      type="button"
+      (click)="preferences.toggleTheme()"
+      [attr.aria-label]="themeLabel()"
+      [title]="themeLabel()"
+    >
+      <span aria-hidden="true">{{ preferences.theme() === 'dark' ? '☀' : '◐' }}</span>
+    </button>
+  </div>
+</header>
+
+<main class="case" id="contenu">
+  <article>
+    <header class="case-hero">
+      <p class="eyebrow">{{ copy.kicker }}</p>
+      <h1>
+        <span>{{ copy.title }}</span
+        ><em>{{ copy.accent }}</em>
+      </h1>
+      <p class="case-role">{{ copy.roleLine }}</p>
+    </header>
+
+    <section class="case-section" [attr.aria-label]="copy.context.heading">
+      <h2>{{ copy.context.heading }}</h2>
+      @for (paragraph of copy.context.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.challenge.heading">
+      <h2>{{ copy.challenge.heading }}</h2>
+      @for (paragraph of copy.challenge.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.role.heading">
+      <h2>{{ copy.role.heading }}</h2>
+      @for (paragraph of copy.role.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.constraintsHeading">
+      <h2>{{ copy.constraintsHeading }}</h2>
+      <ul class="case-constraints">
+        @for (constraint of copy.constraints; track constraint) {
+          <li>{{ constraint }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.architecture.heading">
+      <h2>{{ copy.architecture.heading }}</h2>
+      @for (paragraph of copy.architecture.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+      <figure class="case-diagram">
+        <figcaption>{{ copy.diagram.label }}</figcaption>
+        <ol class="diagram-flow">
+          @for (stage of copy.diagram.stages; track stage.name; let last = $last) {
+            <li>
+              <strong>{{ stage.name }}</strong>
+              <span>{{ stage.detail }}</span>
+              @if (!last) {
+                <i aria-hidden="true">→</i>
+              }
+            </li>
+          }
+        </ol>
+        <p class="diagram-loop"><i aria-hidden="true">⟲</i>{{ copy.diagram.loop }}</p>
+      </figure>
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.decisionsHeading">
+      <h2>{{ copy.decisionsHeading }}</h2>
+      @if (copy.decisionsIntro) {
+        <p class="decisions-intro">{{ copy.decisionsIntro }}</p>
+      }
+      <div class="decisions">
+        @for (decision of copy.decisions; track decision.title; let index = $index) {
+          <article class="decision">
+            <h3>
+              <b aria-hidden="true">0{{ index + 1 }}</b
+              >{{ decision.title }}
+            </h3>
+            <dl>
+              <div>
+                <dt>{{ copy.decisionLabels.problem }}</dt>
+                <dd>{{ decision.problem }}</dd>
+              </div>
+              <div>
+                <dt>{{ copy.decisionLabels.options }}</dt>
+                <dd>{{ decision.options }}</dd>
+              </div>
+              <div>
+                <dt>{{ copy.decisionLabels.decision }}</dt>
+                <dd>{{ decision.decision }}</dd>
+              </div>
+              <div class="decision-tradeoff">
+                <dt>{{ copy.decisionLabels.tradeOff }}</dt>
+                <dd>{{ decision.tradeOff }}</dd>
+              </div>
+            </dl>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.outcomesHeading">
+      <h2>{{ copy.outcomesHeading }}</h2>
+      <ul class="case-outcomes">
+        @for (outcome of copy.outcomes; track outcome) {
+          <li>{{ outcome }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.learnedHeading">
+      <h2>{{ copy.learnedHeading }}</h2>
+      @for (lesson of copy.learned; track lesson) {
+        <p class="case-lesson">{{ lesson }}</p>
+      }
+    </section>
+
+    <section class="case-section" [attr.aria-label]="copy.stackHeading">
+      <h2>{{ copy.stackHeading }}</h2>
+      <ul class="case-stack">
+        @for (item of copy.stack; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </section>
+  </article>
+
+  <aside class="case-cta">
+    <p>{{ copy.contactCta.title }}</p>
+    <div class="case-cta-actions">
+      <a class="case-cta-primary" [href]="copy.contactCta.href">{{ copy.contactCta.action }}</a>
+      <a class="case-cta-next" [routerLink]="copy.otherCase.path">{{ copy.otherCase.label }}</a>
+    </div>
+  </aside>
+
+  <nav class="case-footer" aria-label="Case study navigation">
+    <a [routerLink]="chrome.homePath">{{ copy.backToHome }}</a>
+  </nav>
+</main>

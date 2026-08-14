@@ -6,31 +6,51 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
   expertises: [
     {
       index: '01',
-      title: 'Architecture',
+      title: 'Ingénierie logicielle',
       description:
-        'Je rends le métier lisible dans le code : un domaine protégé, des cas d’usage explicites et des dépendances qui ne dictent pas la solution.',
-      technologies: ['DDD', 'Hexagonal', 'CQRS', 'SOLID'],
+        'Rendre les domaines complexes explicites, testables et sûrs à faire évoluer : un domaine protégé, des cas d’usage clairs, des dépendances qui ne dictent pas la solution.',
+      technologies: ['C#', '.NET / ASP.NET Core', 'DDD', 'Hexagonale', 'CQRS', 'TDD'],
     },
     {
       index: '02',
-      title: 'Full Stack',
+      title: 'Systèmes distribués & messaging',
       description:
-        'De l’API au parcours Angular, je transforme une intention produit en logiciel fiable, observable et agréable à faire évoluer.',
-      technologies: ['C#', '.NET', 'Angular', 'SQL'],
+        'Concevoir des services qui restent justes quand tout devient asynchrone : frontières nettes, résilience et flux d’événements maîtrisés.',
+      technologies: ['Microservices', 'Kafka', 'Messaging', 'Résilience'],
     },
     {
       index: '03',
-      title: 'Cloud, Kubernetes & DevOps',
+      title: 'Cloud & plateforme',
       description:
-        'Je traite la plateforme comme un produit : Cloud, Kubernetes, sécurité applicative, déploiements reproductibles et signaux de production réellement actionnables.',
-      technologies: ['Azure / AWS', 'Kubernetes / AKS', 'Docker', 'CI/CD'],
+        'Traiter la plateforme comme un produit : reproductible, sécurisée, observable — et des signaux de production réellement actionnables.',
+      technologies: [
+        'AWS (ECS/Fargate)',
+        'Azure (AKS)',
+        'Docker',
+        'Terraform / Terragrunt',
+        'Datadog',
+      ],
     },
     {
       index: '04',
-      title: 'Leadership',
+      title: 'Delivery & qualité',
       description:
-        'Je relie roadmap, priorisation, coaching et standards d’ingénierie pour tenir les engagements tout en augmentant l’autonomie du collectif.',
-      technologies: ['Roadmaps', 'Delivery', 'Mentorat', 'Recrutement'],
+        'Raccourcir le chemin de la décision à la production sans rogner sur la qualité : pipelines, quality gates et sécurité intégrée.',
+      technologies: ['GitHub Actions', 'CI/CD', 'Dagger', 'SonarQube', 'Checkmarx / Snyk'],
+    },
+    {
+      index: '05',
+      title: 'Full stack & frontend',
+      description:
+        'Des interfaces qui respectent l’utilisateur et le modèle métier derrière : de l’API au parcours Angular, fiable et accessible.',
+      technologies: ['Angular', 'TypeScript', 'SQL / NoSQL', 'Accessibilité', 'SSR'],
+    },
+    {
+      index: '06',
+      title: 'Leadership technique',
+      description:
+        'Faire monter le niveau de l’équipe, pas seulement celui du code : cap commun, décisions explicites et autonomie durable.',
+      technologies: ['Roadmaps', 'Revues d’architecture', 'Mentorat', 'Recrutement', 'Standards'],
     },
   ],
   experiences: [
@@ -67,17 +87,10 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       achievements: [
         'Donner un cap commun aux équipes : architecture, roadmap, priorisation, coaching, recrutement et respect des délais',
         'Réduire le lead time et traiter plus de 80 incidents avec les pratiques Accelerate, les tests et l’observabilité',
-        'Moderniser du legacy VB6 vers .NET 6/8, Angular, Azure, AWS et Kubernetes, avec gouvernance API et sécurité applicative',
+        'Moderniser du legacy VB6 vers .NET 6/8, Angular, Azure et AKS, avec gouvernance API et sécurité applicative',
         'Explorer des usages IA ciblés : assistance Copilot et validation éditoriale automatisée de vidéos',
       ],
-      technologies: [
-        '.NET 6/8',
-        'Angular',
-        'Azure / AWS / Kubernetes',
-        'APIGEE',
-        'Datadog',
-        'Checkmarx / Snyk',
-      ],
+      technologies: ['.NET 6/8', 'Angular', 'Azure / AKS', 'Apigee', 'Datadog', 'Checkmarx / Snyk'],
     },
     {
       company: 'Rent A Car',
@@ -246,7 +259,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     'Management — EFE',
     'SAFe Release Train Engineer 6.0',
     'Sécurité applicative',
-    'Azure, AWS & Kubernetes',
+    'Azure & DevOps',
     'Datadog & observabilité',
     'Recrutement tech — Mobiskill',
   ],
@@ -257,27 +270,51 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
   expertises: [
     {
       ...FRENCH_PORTFOLIO.expertises[0]!,
-      title: 'Architecture',
+      title: 'Software engineering',
       description:
-        'I keep business concepts clear in code: a protected domain, explicit use cases, and dependencies that do not dictate the solution.',
+        'Making complex domains explicit, tested, and safe to change: a protected domain, clear use cases, and dependencies that do not dictate the solution.',
+      technologies: ['C#', '.NET / ASP.NET Core', 'DDD', 'Hexagonal', 'CQRS', 'TDD'],
     },
     {
       ...FRENCH_PORTFOLIO.expertises[1]!,
-      title: 'Full Stack',
+      title: 'Distributed systems & messaging',
       description:
-        'From API to Angular experience, I turn a product intent into software that is reliable, observable, and easy to evolve.',
+        'Designing services that stay correct when everything is asynchronous: clean boundaries, resilience, and event flows under control.',
+      technologies: ['Microservices', 'Kafka', 'Messaging', 'Resilience'],
     },
     {
       ...FRENCH_PORTFOLIO.expertises[2]!,
-      title: 'Cloud, Kubernetes & DevOps',
+      title: 'Cloud & platform',
       description:
-        'I treat delivery as a product: testing, security, repeatable deployments, and production signals that lead to action.',
+        'Treating the platform as a product: reproducible, secure, observable — with production signals that lead to action.',
+      technologies: [
+        'AWS (ECS/Fargate)',
+        'Azure (AKS)',
+        'Docker',
+        'Terraform / Terragrunt',
+        'Datadog',
+      ],
     },
     {
       ...FRENCH_PORTFOLIO.expertises[3]!,
-      title: 'Technical Leadership',
+      title: 'Delivery & quality',
       description:
-        'I establish shared practices — code review, mentoring, feedback, and standards — so that a team can move forward without relying on a single hero.',
+        'Shortening the path from decision to production without cutting corners: pipelines, quality gates, and security built in.',
+      technologies: ['GitHub Actions', 'CI/CD', 'Dagger', 'SonarQube', 'Checkmarx / Snyk'],
+    },
+    {
+      ...FRENCH_PORTFOLIO.expertises[4]!,
+      title: 'Full stack & frontend',
+      description:
+        'Interfaces that respect both the user and the domain model behind them: from API to Angular experience, reliable and accessible.',
+      technologies: ['Angular', 'TypeScript', 'SQL / NoSQL', 'Accessibility', 'SSR'],
+    },
+    {
+      ...FRENCH_PORTFOLIO.expertises[5]!,
+      title: 'Technical leadership',
+      description:
+        'Raising the level of the team, not just the code: shared direction, explicit decisions, and lasting autonomy.',
+      technologies: ['Roadmaps', 'Architecture reviews', 'Mentoring', 'Hiring', 'Standards'],
     },
   ],
   experiences: [
@@ -290,9 +327,9 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
         'Simulating match outcomes with Monte Carlo methods across numerous sports and competitions to estimate probabilities',
         'Turning those probabilities into internally controlled odds to improve speed, control, and independence',
         'Handling complex market-lifecycle rules, including deciding when a market must be suspended or reopened',
-        'Assessing compute acceleration through a GPU proof of concept and industrialising delivery on AWS with Dagger and GitHub Actions',
-        'Building a replay, tracing, and analysis back office to reproduce events, understand algorithmic decisions, and fix issues safely',
-        'Industrialising Claude Code and Cursor through reusable skills, commands, agents, routines, workflows, and AI loops',
+        'Assessing compute acceleration through a GPU proof of concept and automating delivery on AWS with Dagger and GitHub Actions',
+        'Building a replay, tracing, and analysis console to reproduce events, understand algorithmic decisions, and fix issues safely',
+        'Building Claude Code and Cursor into the team’s workflow through reusable skills, commands, agents, routines, and AI loops',
       ],
       technologies: [
         'C# / .NET',
@@ -311,9 +348,9 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
       summary:
         'As the technical reference for two multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
       achievements: [
-        'Giving teams a shared direction through architecture, roadmaps, prioritisation, coaching, hiring, and delivery discipline',
+        'Giving teams a shared direction through architecture, roadmaps, prioritization, coaching, hiring, and delivery discipline',
         'Reducing lead time and resolving over 80 incidents through Accelerate practices, testing, and observability',
-        'Modernising VB6 legacy towards .NET 6/8, Angular, Azure, and AKS with API governance and application security',
+        'Modernizing VB6-era legacy toward .NET 6/8, Angular, Azure, and AKS with API governance and application security',
         'Exploring focused AI use cases: Copilot-assisted development and automated editorial validation of videos',
       ],
     },
@@ -324,18 +361,18 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
       summary:
         'I progressed from senior developer to technical manager of a nine-person team, contributing to the digital transformation of a network of over 500 branches.',
       achievements: [
-        'Launching Easy Péage, presented as Europe’s first in-vehicle toll-payment service for rental cars',
-        'Digitising the journey through check-in, Yousign e-signature, WeProov inspections, and high-traffic e-commerce',
-        'Building microservices, dynamic pricing, an ANTAI interface, and a GDPR-compliant customer master',
-        'Industrialising CI/CD, Docker, AWS, and ELK while hiring and growing the engineering team',
+        'Launching Easy Péage, announced as Europe’s first in-vehicle toll-payment service for rental cars',
+        'Digitizing the journey through check-in, Yousign e-signature, WeProov inspections, and high-traffic e-commerce',
+        'Building microservices, dynamic pricing, an ANTAI interface, and a GDPR-compliant customer data platform',
+        'Automating CI/CD, Docker, AWS, and ELK delivery while hiring and growing the engineering team',
       ],
     },
     {
       ...FRENCH_PORTFOLIO.experiences[3]!,
-      role: 'R&D Study Lead → R&D Team Lead',
+      role: 'R&D Project Lead → R&D Team Lead',
       period: 'Dec 2012 — Nov 2017',
       summary:
-        'I progressed from study lead to manager of an eight-person R&D team working on a new range of in-vitro diagnostic instruments.',
+        'I progressed from project lead to manager of an eight-person R&D team working on a new range of in-vitro diagnostic instruments.',
       achievements: [
         'Designing the C# patient-results calculation framework in a regulated medical environment',
         'Refactoring critical modules with TDD, SOLID, MVVM, and TeamCity continuous integration',
@@ -345,10 +382,10 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       ...FRENCH_PORTFOLIO.experiences[4]!,
-      role: 'C++ / C# Software Engineer Intern',
+      role: 'Junior Software Engineer',
       period: 'Apr — Nov 2012',
       summary:
-        'My first engineering role in civil-engineering applications: completing a business framework and building tools that safeguard design data.',
+        'My first role in civil-engineering software: completing a business framework and building tools that safeguard design data.',
       achievements: [
         'Developing an interactive parametric-expression editor',
         'Building tools to validate and repair data integrity',
@@ -361,7 +398,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
       summary:
         'I built tools for monitoring hydrocarbon-transport audits across Africa and the Middle East, connecting data with operational safety.',
       achievements: [
-        'Designing an Access database and VB.NET / Excel interfaces to centralise audit information',
+        'Designing an Access database and VB.NET / Excel interfaces to centralize audit information',
         'Automating dashboards to reduce reporting errors and improve traceability',
       ],
     },

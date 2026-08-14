@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.vivienbillot.dev/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.vivienbillot.dev/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.vivienbillot.dev/fr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vivienbillot.dev/" />
+  </url>
+  <url>
+    <loc>https://www.vivienbillot.dev/fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.vivienbillot.dev/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.vivienbillot.dev/fr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vivienbillot.dev/" />
+  </url>
+  <url>
+    <loc>https://www.vivienbillot.dev/work/betclic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.vivienbillot.dev/work/betclic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.vivienbillot.dev/fr/work/betclic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vivienbillot.dev/work/betclic" />
+  </url>
+  <url>
+    <loc>https://www.vivienbillot.dev/fr/work/betclic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.vivienbillot.dev/work/betclic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.vivienbillot.dev/fr/work/betclic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vivienbillot.dev/work/betclic" />
+  </url>
+  <url>
+    <loc>https://www.vivienbillot.dev/work/tf1</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.vivienbillot.dev/work/tf1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.vivienbillot.dev/fr/work/tf1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vivienbillot.dev/work/tf1" />
+  </url>
+  <url>
+    <loc>https://www.vivienbillot.dev/fr/work/tf1</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.vivienbillot.dev/work/tf1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.vivienbillot.dev/fr/work/tf1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.vivienbillot.dev/work/tf1" />
+  </url>
+</urlset>

@@ -27,11 +27,11 @@ describe('PortfolioAssistantComponent', () => {
     expect(launcher?.getAttribute('aria-controls')).toBe('portfolio-assistant-panel');
     expect(
       launcher?.querySelector<HTMLImageElement>('.assistant-persona img')?.getAttribute('ngsrc'),
-    ).toBe('/vivien-billot-character-cutout-v1.png');
+    ).toBe('/vivien-billot-character-cutout-v2.png');
     expect(launcher?.querySelector('.assistant-persona i')).toBeNull();
     expect(element.querySelector('.assistant-hide')).toBeTruthy();
     expect(launcher?.querySelector('.assistant-expand-indicator')).toBeNull();
-    expect(launcher?.textContent).toContain('On discute ?');
+    expect(launcher?.textContent).toContain('Let’s talk?');
     expect(launcher?.textContent).not.toContain('Betclic · TF1');
     expect(element.querySelector('[role="dialog"]')).toBeNull();
   });
@@ -57,7 +57,7 @@ describe('PortfolioAssistantComponent', () => {
     fixture.detectChanges();
 
     expect(api.ask).toHaveBeenCalledOnce();
-    expect(api.ask).toHaveBeenLastCalledWith(expect.any(Array), 'fr');
+    expect(api.ask).toHaveBeenLastCalledWith(expect.any(Array), 'en');
     expect(dialog?.textContent).toContain('Je travaille chez Betclic depuis 2026.');
   });
 
@@ -71,18 +71,18 @@ describe('PortfolioAssistantComponent', () => {
     expect(element.querySelector('.assistant-minimize')).toBeNull();
   });
 
-  it('uses English copy and sends the English locale to the API', async () => {
-    fixture.componentRef.setInput('locale', 'en');
+  it('uses French copy and sends the French locale to the API', async () => {
+    fixture.componentRef.setInput('locale', 'fr');
     fixture.detectChanges();
     const element = fixture.nativeElement as HTMLElement;
 
-    expect(element.textContent).toContain('Let’s talk?');
+    expect(element.textContent).toContain('On discute ?');
     element.querySelector<HTMLButtonElement>('.assistant-launcher')?.click();
     fixture.detectChanges();
     element.querySelector<HTMLButtonElement>('.quick-questions button')?.click();
     await fixture.whenStable();
 
-    expect(api.ask).toHaveBeenLastCalledWith(expect.any(Array), 'en');
+    expect(api.ask).toHaveBeenLastCalledWith(expect.any(Array), 'fr');
   });
 
   it('sends the typed question when the user presses Enter', async () => {
@@ -105,7 +105,7 @@ describe('PortfolioAssistantComponent', () => {
       expect.arrayContaining([
         expect.objectContaining({ role: 'user', content: 'je suis gentil ?' }),
       ]),
-      'fr',
+      'en',
     );
   });
 
@@ -127,13 +127,13 @@ describe('PortfolioAssistantComponent', () => {
 
     expect(element.querySelector('.assistant-dock')).toBeNull();
     expect(element.querySelector<HTMLButtonElement>('.assistant-restore')?.textContent).toContain(
-      'Afficher Vivien',
+      'Show Vivien',
     );
     expect(
       element
         .querySelector<HTMLImageElement>('.assistant-restore-avatar img')
         ?.getAttribute('ngsrc'),
-    ).toBe('/vivien-billot-character-cutout-v1.png');
+    ).toBe('/vivien-billot-character-cutout-v2.png');
 
     element.querySelector<HTMLButtonElement>('.assistant-restore')?.click();
     fixture.detectChanges();

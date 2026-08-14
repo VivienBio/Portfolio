@@ -123,7 +123,7 @@ const MAX_QUESTION_LENGTH = 1200;
   styleUrl: './portfolio-assistant.component.scss',
 })
 export class PortfolioAssistantComponent {
-  readonly locale = input<PortfolioLocale>('fr');
+  readonly locale = input<PortfolioLocale>('en');
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly api = inject(PortfolioAssistantApiService);

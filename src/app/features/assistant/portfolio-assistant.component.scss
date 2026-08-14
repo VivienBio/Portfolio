@@ -140,8 +140,8 @@ textarea {
 .assistant-persona {
   position: relative;
   display: block;
-  width: clamp(8rem, 11vw, 10.5rem);
-  height: clamp(12rem, 16.5vw, 15.5rem);
+  width: clamp(7rem, 9.5vw, 9rem);
+  height: clamp(10.5rem, 14.25vw, 13.5rem);
   filter: drop-shadow(0 1.5rem 1.9rem #06100d99);
   transform-origin: center bottom;
   transition:
@@ -182,14 +182,14 @@ textarea {
 
 .assistant-bubble {
   position: absolute;
-  top: 0;
+  top: -0.2rem;
   left: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  max-width: min(5rem, 18vw);
-  padding: 0.24rem 0.42rem;
+  width: max-content;
+  max-width: calc(100vw - 4rem);
+  padding: 0.32rem 0.55rem;
   margin-bottom: 0;
   color: #f8faf9;
   background: color-mix(in srgb, #102c26 92%, #183b33 8%);
@@ -205,7 +205,8 @@ textarea {
 
 .assistant-bubble::after {
   position: absolute;
-  bottom: -0.34rem;
+  z-index: -1;
+  bottom: -0.32rem;
   left: 0.72rem;
   width: 0.62rem;
   height: 0.62rem;
@@ -218,7 +219,7 @@ textarea {
 }
 
 .assistant-bubble strong {
-  font-size: clamp(0.52rem, 0.78vw, 0.62rem);
+  font-size: clamp(0.62rem, 0.9vw, 0.7rem);
   font-weight: 720;
   line-height: 1;
   letter-spacing: 0.01em;
@@ -252,23 +253,23 @@ textarea {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
   padding: 0;
-  color: color-mix(in srgb, var(--ink) 70%, transparent);
-  background: color-mix(in srgb, var(--bg) 70%, transparent);
-  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
   border-radius: 999px;
   cursor: pointer;
 }
 
 .assistant-close:hover {
   color: var(--ink);
-  border-color: color-mix(in srgb, var(--ink) 28%, transparent);
+  border-color: color-mix(in srgb, var(--ink) 36%, transparent);
 }
 
 .assistant-close span {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
@@ -279,123 +280,6 @@ textarea {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-.assistant-header {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  min-height: 4.15rem;
-  padding: 0.72rem 0.9rem 0.72rem 1rem;
-  color: #f4f7f6;
-  background: #102c26;
-  border-bottom: 1px solid #ffffff20;
-}
-
-.assistant-identity {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
-}
-
-.assistant-avatar {
-  position: relative;
-  display: block;
-  flex: 0 0 auto;
-  width: 2.75rem;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: #0b1a16;
-  border: 2px solid #8de9bd;
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 0.28rem #8de9bd1f,
-    0 0.8rem 1.8rem #06100d45;
-}
-
-.assistant-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.assistant-identity h2 {
-  margin: 0;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-}
-
-.assistant-identity p {
-  margin: 0.2rem 0 0;
-  color: #b9cbc5;
-  font-size: 0.72rem;
-  line-height: 1.25;
-}
-
-.assistant-identity small {
-  display: block;
-  max-width: 35rem;
-  margin-top: 0.18rem;
-  overflow: hidden;
-  color: #8fa49e;
-  font-size: 0.62rem;
-  line-height: 1.25;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.assistant-header-actions {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.assistant-minimize {
-  min-height: 2.35rem;
-  padding: 0 0.78rem;
-  color: #dce9e5;
-  background: #ffffff0a;
-  border: 1px solid #ffffff24;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition:
-    color 0.2s,
-    background 0.2s,
-    border-color 0.2s;
-}
-
-.assistant-minimize:hover {
-  color: #102c26;
-  background: #8de9bd;
-  border-color: #8de9bd;
-}
-
-.assistant-minimize {
-  background: transparent;
-}
-
-.assistant-close {
-  display: grid;
-  place-items: center;
-  width: 2.4rem;
-  aspect-ratio: 1;
-  color: #e8efed;
-  background: transparent;
-  border: 1px solid #ffffff29;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.4rem;
-  line-height: 1;
 }
 
 .assistant-conversation {
@@ -546,7 +430,7 @@ textarea {
   background: transparent;
   border: 0;
   outline: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.48;
   overflow-y: auto;
 }
@@ -754,30 +638,29 @@ textarea {
     bottom: -0.35rem;
   }
 
+  .assistant-hide {
+    margin-bottom: 0.55rem;
+  }
+
   .assistant-persona {
-    width: 7rem;
-    height: 10.5rem;
+    width: 6rem;
+    height: 9rem;
   }
 
   .assistant-sidekick {
-    right: 0.55rem;
-    bottom: 0.1rem;
-  }
-
-  .assistant-persona-side {
-    width: 4.4rem;
-    height: 6.6rem;
+    display: none;
   }
 
   .assistant-bubble {
-    top: 0.05rem;
-    left: 0.05rem;
-    max-width: min(4.55rem, calc(100vw - 5.9rem));
-    padding: 0.22rem 0.35rem;
+    top: -0.35rem;
+    right: 0;
+    left: auto;
+    max-width: calc(100vw - 3rem);
+    padding: 0.3rem 0.5rem;
   }
 
   .assistant-bubble strong {
-    font-size: 0.49rem;
+    font-size: 0.62rem;
   }
 
   .assistant-panel {
@@ -812,20 +695,25 @@ textarea {
     bottom: -0.95rem;
   }
 
+  .assistant-hide {
+    margin-bottom: 1.15rem;
+  }
+
   .assistant-persona {
-    width: 5.6rem;
-    height: 8.4rem;
+    width: 4.6rem;
+    height: 6.9rem;
   }
 
   .assistant-bubble {
-    top: -0.05rem;
-    left: 0;
-    max-width: min(3.95rem, calc(100vw - 4.8rem));
-    padding: 0.18rem 0.28rem;
+    top: -0.55rem;
+    right: 0;
+    left: auto;
+    max-width: calc(100vw - 2rem);
+    padding: 0.28rem 0.48rem;
   }
 
   .assistant-bubble strong {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
   }
 
   .assistant-restore {
@@ -874,7 +762,7 @@ textarea {
   .assistant-composer textarea {
     min-height: 1.95rem;
     max-height: 3.8rem;
-    font-size: 0.86rem;
+    font-size: 1rem;
   }
 
   .assistant-composer button {

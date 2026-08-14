@@ -8,12 +8,11 @@
     <span class="brand-identity">
       <strong>{{ identityName }}</strong>
       <small>{{ identityMeta }}</small>
-      <span class="brand-headline">{{ copy.hero.eyebrow }}</span>
     </span>
   </a>
   <nav [attr.aria-label]="copy.navigationLabel">
-    <a href="#expertise">{{ copy.navigation[0] }}</a
-    ><a href="#impact">{{ copy.navigation[1] }}</a
+    <a href="#work">{{ copy.navigation[0] }}</a
+    ><a href="#expertise">{{ copy.navigation[1] }}</a
     ><a href="#parcours">{{ copy.navigation[2] }}</a
     ><a href="#projets">{{ copy.navigation[3] }}</a
     ><a href="#contact">{{ copy.navigation[4] }}</a>
@@ -61,7 +60,7 @@
       </h1>
       <p class="lead reveal reveal-3">{{ copy.hero.lead }}</p>
       <div class="actions reveal reveal-4">
-        <a class="primary" href="#parcours"
+        <a class="primary" href="#work"
           ><span>{{ copy.hero.primaryAction }}</span
           ><b aria-hidden="true">↓</b></a
         ><a class="secondary" href="#contact"
@@ -77,7 +76,7 @@
     <aside class="signal-card reveal reveal-3" [attr.aria-label]="copy.hero.profileLabel">
       <div class="card-top">
         <p>{{ copy.hero.profileLabel }}</p>
-        <span>15+ ANS</span>
+        <span>15+</span>
       </div>
       <div class="profile-snapshot">
         <p>{{ copy.hero.profileTitle }}</p>
@@ -115,6 +114,68 @@
         <i aria-hidden="true">·</i>
       }
     }
+  </section>
+
+  <section class="section work" id="work" aria-labelledby="work-title">
+    <div class="section-heading inverse">
+      <div>
+        <p class="eyebrow">{{ copy.work.eyebrow }}</p>
+        <h2 id="work-title">
+          {{ copy.work.title }}<br /><em>{{ copy.work.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.work.intro }}</p>
+    </div>
+
+    <div class="work-flagships">
+      @for (flagship of copy.work.flagships; track flagship.path) {
+        <a class="work-card" [routerLink]="flagship.path">
+          <p class="work-kicker">{{ flagship.kicker }}</p>
+          <h3>{{ flagship.title }}</h3>
+          <p class="work-summary">{{ flagship.summary }}</p>
+          <span class="work-cta">{{ copy.work.openCase }} <b aria-hidden="true">→</b></span>
+        </a>
+      }
+    </div>
+
+    <div class="work-compact">
+      @for (row of copy.work.compact; track row.company) {
+        <article class="work-row">
+          <div class="work-row-meta">
+            <span>{{ row.company }}</span
+            ><span>{{ row.period }}</span>
+          </div>
+          <p class="work-row-role">{{ row.role }}</p>
+          <p class="work-row-summary">{{ row.summary }}</p>
+          <ul class="work-tags" [attr.aria-label]="copy.expertise.technologies">
+            @for (tag of row.tags; track tag) {
+              <li>{{ tag }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section principles" id="principes" aria-labelledby="principles-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ copy.principles.eyebrow }}</p>
+        <h2 id="principles-title">
+          {{ copy.principles.title }}<br /><em>{{ copy.principles.accent }}</em>
+        </h2>
+      </div>
+      <p>{{ copy.principles.intro }}</p>
+    </div>
+    <div class="principles-grid">
+      @for (principle of copy.principles.items; track principle.title; let index = $index) {
+        <article>
+          <b aria-hidden="true">0{{ index + 1 }}</b>
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.description }}</p>
+        </article>
+      }
+    </div>
   </section>
 
   <section class="section" id="expertise" aria-labelledby="expertise-title">
@@ -174,72 +235,6 @@
         </article>
       }
     </div>
-  </section>
-
-  <section class="section impact" id="impact" aria-labelledby="impact-title">
-    <div class="section-heading inverse">
-      <div>
-        <p class="eyebrow">{{ copy.impact.eyebrow }}</p>
-        <h2 id="impact-title">
-          {{ copy.impact.title }}<br /><em>{{ copy.impact.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.impact.intro }}</p>
-    </div>
-    <div class="impact-matrix">
-      @for (caseStudy of copy.impact.cases; track caseStudy.company) {
-        <article class="impact-row">
-          <div class="impact-context">
-            <div class="case-meta">
-              <span>{{ caseStudy.company }}</span
-              ><span>{{ caseStudy.scope }}</span>
-            </div>
-            <h3>{{ caseStudy.title }}</h3>
-            <p>{{ caseStudy.description }}</p>
-          </div>
-
-          <div class="impact-cell">
-            <p class="matrix-label">{{ copy.impact.matrix.contribution }}</p>
-            <ul class="impact-list">
-              @for (contribution of caseStudy.contributions; track contribution) {
-                <li>{{ contribution }}</li>
-              }
-            </ul>
-          </div>
-
-          <div class="impact-cell">
-            <p class="matrix-label">{{ copy.impact.matrix.outcomes }}</p>
-            <ul class="impact-list">
-              @for (outcome of caseStudy.outcomes; track outcome) {
-                <li>{{ outcome }}</li>
-              }
-            </ul>
-          </div>
-
-          <div class="impact-cell">
-            <p class="matrix-label">{{ copy.impact.matrix.stack }}</p>
-            <ul class="impact-tags">
-              @for (tag of caseStudy.tags; track tag) {
-                <li>{{ tag }}</li>
-              }
-            </ul>
-          </div>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section class="quote" [attr.aria-label]="copy.quote.label">
-    <div class="quote-mark" aria-hidden="true">“</div>
-    <blockquote>{{ copy.quote.text }}</blockquote>
-    <p>
-      <a
-        href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ copy.quote.action }} <span aria-hidden="true">↗</span></a
-      >
-    </p>
   </section>
 
   <section class="section journey" id="parcours" aria-labelledby="journey-title">
@@ -313,7 +308,20 @@
       </div>
       <p>{{ copy.projects.intro }}</p>
     </div>
-    <app-projects-grid [projects]="portfolio.projects" />
+    <app-projects-grid [projects]="portfolio.projects" [locale]="locale" />
+  </section>
+
+  <section class="quote" [attr.aria-label]="copy.quote.label">
+    <div class="quote-mark" aria-hidden="true">“</div>
+    <blockquote>{{ copy.quote.text }}</blockquote>
+    <p>
+      <a
+        href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ copy.quote.action }} <span aria-hidden="true">↗</span></a
+      >
+    </p>
   </section>
 
   <section class="contact" id="contact" aria-labelledby="contact-title">
@@ -323,7 +331,7 @@
         <h2 id="contact-title">
           {{ copy.contact.title }}<br /><em>{{ copy.contact.accent }}</em>
         </h2>
-        <p>{{ copy.footer.description }}</p>
+        <p>{{ copy.contact.description }}</p>
         <span class="footer-status"><i aria-hidden="true"></i>{{ copy.footer.availability }}</span>
       </div>
 

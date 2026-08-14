@@ -1,12 +1,9 @@
 import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { SeoService } from '../../core/services/seo.service';
 import { PORTFOLIO_REPOSITORY } from '../../core/application/portfolio.repository';
-import {
-  PORTFOLIO_PUBLIC_IDENTITY,
-  calculatePublicAge,
-  formatPublicBirthDate,
-} from '../../core/domain/assistant.models';
+import { PORTFOLIO_PUBLIC_IDENTITY } from '../../core/domain/assistant.models';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { LocalPortfolioRepository } from '../../core/infrastructure/local-portfolio.repository';
 import { PreferencesService } from '../../core/services/preferences.service';
@@ -16,7 +13,7 @@ import { PORTFOLIO_PAGE_COPY } from './portfolio-page.copy';
 
 @Component({
   selector: 'app-portfolio-page',
-  imports: [NgOptimizedImage, PortfolioAssistantComponent, ProjectsGridComponent],
+  imports: [NgOptimizedImage, PortfolioAssistantComponent, ProjectsGridComponent, RouterLink],
   host: {
     '(window:scroll)': 'updateScrollProgress()',
   },
@@ -29,23 +26,13 @@ export class PortfolioPageComponent {
   private readonly document = inject(DOCUMENT);
   private readonly route = inject(ActivatedRoute, { optional: true });
   protected readonly preferences = inject(PreferencesService);
+  private readonly seo = inject(SeoService);
   protected readonly locale: PortfolioLocale =
-    this.route?.snapshot.data['locale'] === 'en' ? 'en' : 'fr';
+    this.route?.snapshot.data['locale'] === 'fr' ? 'fr' : 'en';
   protected readonly copy = PORTFOLIO_PAGE_COPY[this.locale];
   protected readonly portfolio = this.repository.getPortfolio(this.locale);
   readonly identityName = PORTFOLIO_PUBLIC_IDENTITY.name;
-  readonly identityMeta = (() => {
-    const age = calculatePublicAge();
-    const birthDate = formatPublicBirthDate(this.locale);
-
-    if (age === undefined || !birthDate) {
-      return '';
-    }
-
-    return this.locale === 'en'
-      ? `${age} years · ${birthDate} · Freelance`
-      : `${age} ans · ${birthDate} · Freelance`;
-  })();
+  readonly identityMeta = 'Senior Software Engineer / Tech Lead · Freelance';
   protected readonly themeLabel = computed(() =>
     this.preferences.theme() === 'dark' ? this.copy.theme.light : this.copy.theme.dark,
   );
@@ -54,6 +41,19 @@ export class PortfolioPageComponent {
 
   constructor() {
     this.document.documentElement.lang = this.locale;
+    const path = this.locale === 'fr' ? '/fr' : '/';
+    this.seo.apply({
+      title: this.copy.seo.title,
+      description: this.copy.seo.description,
+      path,
+      locale: this.locale,
+      ogType: 'profile',
+      alternates: [
+        { hreflang: 'en', path: '/' },
+        { hreflang: 'fr', path: '/fr' },
+        { hreflang: 'x-default', path: '/' },
+      ],
+    });
   }
 
   protected updateScrollProgress(): void {

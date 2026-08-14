@@ -24,9 +24,20 @@ describe('App', () => {
     expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 
-  it('lazy-loads the portfolio and redirects unknown URLs', () => {
+  it('lazy-loads every page and renders a not-found route for unknown URLs', () => {
     expect(routes[0]?.path).toBe('');
-    expect(routes[0]?.loadComponent).toBeTypeOf('function');
-    expect(routes.at(-1)).toMatchObject({ path: '**', redirectTo: '' });
+    expect(routes[0]?.data).toMatchObject({ locale: 'en' });
+    expect(routes.map(({ path }) => path)).toEqual([
+      '',
+      'fr',
+      'work/betclic',
+      'work/tf1',
+      'fr/work/betclic',
+      'fr/work/tf1',
+      '**',
+    ]);
+    for (const route of routes) {
+      expect(route.loadComponent).toBeTypeOf('function');
+    }
   });
 });

@@ -157,20 +157,22 @@ const ANSWERS = {
   ],
   en: [
     {
+      terms: ['im friendly', 'friendly', 'nice', 'how are you'],
+      answer:
+        'Yes, you sound friendly. If you want, I can mainly answer about Vivien, his background, projects, or way of working.',
+    },
+    {
       terms: [
-        'im friendly',
-        'friendly',
-        'nice',
-        'how are you',
         'walk me through',
         'career path',
+        'career',
         'tell me about your path',
         'tell me about yourself',
         'who are you',
         'background',
       ],
       answer:
-        'Yes, you sound friendly. If you want, I can mainly answer about Vivien, his background, projects, or way of working.',
+        'I am a Senior Software Engineer / Tech Lead, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with two multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
     },
     {
       terms: [

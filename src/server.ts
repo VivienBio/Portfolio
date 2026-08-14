@@ -4,10 +4,16 @@ import {
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
+import compression from 'compression';
 import express from 'express';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { registerHealthCheck } from './app/core/infrastructure/health-check';
-import { securityHeaders } from './app/core/infrastructure/security-headers';
+import {
+  buildSecurityHeaders,
+  extractInlineScriptHashes,
+} from './app/core/infrastructure/security-headers';
 import { resolveAllowedHosts } from './app/core/infrastructure/allowed-hosts';
 import { registerPortfolioApi } from './app/core/infrastructure/portfolio-api';
 import { LocalPortfolioRepository } from './app/core/infrastructure/local-portfolio.repository';
@@ -35,7 +41,15 @@ const angularApp = new AngularNodeAppEngine({
   allowedHosts: resolveAllowedHosts(process.env['NG_ALLOWED_HOSTS']),
 });
 
-app.use(securityHeaders);
+app.use(buildSecurityHeaders(readPrerenderedScriptHashes()));
+app.use(compression());
+app.use((req, res, next) => {
+  if (req.path === '/en' || req.path.startsWith('/en/')) {
+    res.redirect(301, req.originalUrl.slice('/en'.length) || '/');
+    return;
+  }
+  next();
+});
 registerHealthCheck(app);
 const assistants = {
   fr: createAssistant('fr', runtimeConfiguration),
@@ -51,21 +65,55 @@ registerPortfolioApi(app, {
 /**
  * Serve static files from /browser
  */
+const HASHED_ASSET_PATTERN = /-[A-Z0-9]{8}\.\w+$/;
+
 app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
     index: false,
     redirect: false,
+    setHeaders: (res, filePath) => {
+      if (filePath.includes('/fonts/')) {
+        res.setHeader('Cache-Control', 'public, max-age=2592000');
+      } else if (!HASHED_ASSET_PATTERN.test(filePath)) {
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+      }
+    },
   }),
 );
 
 /**
  * Handle all other requests by rendering the Angular application.
+ * Unknown paths render the not-found page with a real 404 status.
  */
+const PAGE_PATHS = new Set([
+  '/',
+  '/fr',
+  '/work/betclic',
+  '/work/tf1',
+  '/fr/work/betclic',
+  '/fr/work/tf1',
+]);
+
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
+    .then((response) => {
+      if (!response) {
+        next();
+        return;
+      }
+
+      const path = req.path.length > 1 ? req.path.replace(/\/+$/, '') : req.path;
+      const status = PAGE_PATHS.has(path) ? response.status : 404;
+      const headers = new Headers(response.headers);
+      headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+
+      return writeResponseToNodeResponse(
+        new Response(response.body, { status, headers, statusText: response.statusText }),
+        res,
+      );
+    })
     .catch(next);
 });
 
@@ -81,7 +129,14 @@ if (isMainModule(import.meta.url) || process.env['pm_id']) {
     }
 
     console.log(`Node Express server listening on http://localhost:${port}`);
+    warmUpPrerenderedPages(Number(port));
   });
+}
+
+function warmUpPrerenderedPages(port: number): void {
+  for (const path of PAGE_PATHS) {
+    fetch(`http://localhost:${port}${path}`).catch(() => {});
+  }
 }
 
 /**
@@ -107,6 +162,17 @@ function createAssistant(
     : fallbackGateway;
 
   return new PortfolioAssistant(gateway, buildPortfolioKnowledge(portfolio), locale);
+}
+
+function readPrerenderedScriptHashes(): string[] {
+  try {
+    const html = readFileSync(join(browserDistFolder, 'index.html'), 'utf8');
+    return extractInlineScriptHashes(html, (content) =>
+      createHash('sha256').update(content, 'utf8').digest('base64'),
+    );
+  } catch {
+    return [];
+  }
 }
 
 function createContactGateway(
