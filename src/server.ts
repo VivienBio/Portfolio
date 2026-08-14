@@ -30,6 +30,7 @@ import {
   RuntimeConfiguration,
 } from './app/core/infrastructure/runtime-configuration';
 import { PortfolioLocale } from './app/core/domain/portfolio.models';
+import { canonicalRedirectTarget } from './app/core/infrastructure/canonical-host';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 const runtimeConfiguration = readRuntimeConfiguration(process.env);
@@ -43,6 +44,15 @@ const angularApp = new AngularNodeAppEngine({
 
 app.use(buildSecurityHeaders(readPrerenderedScriptHashes()));
 app.use(compression());
+app.use((req, res, next) => {
+  const redirectTarget = canonicalRedirectTarget(req.hostname, req.originalUrl);
+  if (redirectTarget) {
+    res.redirect(301, redirectTarget);
+    return;
+  }
+
+  next();
+});
 app.use((req, res, next) => {
   if (req.path === '/en' || req.path.startsWith('/en/')) {
     res.redirect(301, req.originalUrl.slice('/en'.length) || '/');
