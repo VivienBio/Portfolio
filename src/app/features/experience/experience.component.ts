@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
               >Depuis le 6 octobre 2025</span
             >
             <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-2">
-              Betclic Group - Senior Software Engineer / Tech Lead
+                Betclic Group - Senior Software Engineer
             </h3>
             <p class="text-slate-600 dark:text-slate-400 mt-3 text-lg">
               D�veloppement de solutions logicielles critiques en C#/.NET. Int�gration de l'IA pour

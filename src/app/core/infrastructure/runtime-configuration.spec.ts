@@ -23,9 +23,11 @@ describe('readRuntimeConfiguration', () => {
     });
   });
 
-  it('fails production startup when required runtime variables are missing', () => {
-    expect(() => readRuntimeConfiguration({ NODE_ENV: 'production' })).toThrow(
-      'Missing production runtime configuration: OPENAI_API_KEY, CONTACT_FORM_ENDPOINT',
-    );
+  it('keeps production startup available when optional runtime values are missing', () => {
+    const configuration = readRuntimeConfiguration({ NODE_ENV: 'production' });
+
+    expect(configuration.openAiApiKey).toBeUndefined();
+    expect(configuration.contactFormEndpoint).toBeUndefined();
+    expect(configuration.openAiModel).toBe('gpt-5.6-terra');
   });
 });

@@ -7,26 +7,11 @@ export interface RuntimeConfiguration {
 }
 
 export function readRuntimeConfiguration(env: NodeJS.ProcessEnv): RuntimeConfiguration {
-  const configuration = {
+  return {
     openAiApiKey: readOptionalEnvironmentValue(env, 'OPENAI_API_KEY'),
     openAiModel: readOptionalEnvironmentValue(env, 'OPENAI_MODEL') ?? DEFAULT_OPENAI_MODEL,
     contactFormEndpoint: readOptionalEnvironmentValue(env, 'CONTACT_FORM_ENDPOINT'),
   };
-
-  if (env['NODE_ENV'] === 'production') {
-    const missingVariables = [
-      ['OPENAI_API_KEY', configuration.openAiApiKey],
-      ['CONTACT_FORM_ENDPOINT', configuration.contactFormEndpoint],
-    ]
-      .filter(([, value]) => !value)
-      .map(([name]) => name);
-
-    if (missingVariables.length > 0) {
-      throw new Error(`Missing production runtime configuration: ${missingVariables.join(', ')}`);
-    }
-  }
-
-  return configuration;
 }
 
 function readOptionalEnvironmentValue(

@@ -59,7 +59,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   kicker: 'Case study · Betclic Group · Since Oct 6, 2025',
   title: 'Real-time sports odds,',
   accent: 'priced in-house.',
-  roleLine: 'Senior Software Engineer / Tech Lead — Quant & sports pricing · C#/.NET · AWS',
+  roleLine: 'Senior Software Engineer — Quant & sports pricing · C#/.NET · AWS',
   metaTitle: 'Real-time sports pricing at Betclic — case study · Vivien Billot',
   metaDescription:
     'Working on a proprietary sports-pricing chain that turns Monte Carlo simulations into live odds: market lifecycle, replay tooling, and automated delivery on AWS.',
@@ -78,7 +78,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   role: {
     heading: 'My role',
     paragraphs: [
-      'Senior Software Engineer / Tech Lead on the Quant side, in C#/.NET on AWS. I contribute to the simulation-to-odds chain — including the market-lifecycle rules that decide when a market must be suspended or reopened — and I own the replay and tracing console, delivery automation, and the team’s AI-assisted engineering practice.',
+      'Senior Software Engineer on the Quant side, in C#/.NET on AWS. I contribute to the simulation-to-odds chain — including the market-lifecycle rules that decide when a market must be suspended or reopened — and I own the replay and tracing console, delivery automation, and the team’s AI-assisted engineering practice.',
     ],
   },
   constraintsHeading: 'Constraints',
@@ -289,7 +289,7 @@ const FR_BETCLIC: CaseStudyCopy = {
   kicker: 'Étude de cas · Betclic Group · Depuis le 6 octobre 2025',
   title: 'Des cotes sportives temps réel,',
   accent: 'produites en interne.',
-  roleLine: 'Senior Software Engineer / Tech Lead — Quant & pricing sportif · C#/.NET · AWS',
+  roleLine: 'Senior Software Engineer — Quant & pricing sportif · C#/.NET · AWS',
   metaTitle: 'Pricing sportif temps réel chez Betclic — étude de cas · Vivien Billot',
   metaDescription:
     'Contribuer à une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : cycle de vie des marchés, outillage de replay, delivery automatisé sur AWS.',
@@ -308,7 +308,7 @@ const FR_BETCLIC: CaseStudyCopy = {
   role: {
     heading: 'Mon rôle',
     paragraphs: [
-      'Senior Software Engineer / Tech Lead côté Quant, en C#/.NET sur AWS. Je contribue à la chaîne simulation → cotes — y compris les règles de cycle de vie qui décident quand un marché doit être suspendu ou rouvert — et je porte le back-office de replay et de traçage, l’automatisation du delivery et la pratique d’ingénierie assistée par IA de l’équipe.',
+      'Senior Software Engineer côté Quant, en C#/.NET sur AWS. Je contribue à la chaîne simulation → cotes — y compris les règles de cycle de vie qui décident quand un marché doit être suspendu ou rouvert — et je porte le back-office de replay et de traçage, l’automatisation du delivery et la pratique d’ingénierie assistée par IA de l’équipe.',
     ],
   },
   constraintsHeading: 'Contraintes',

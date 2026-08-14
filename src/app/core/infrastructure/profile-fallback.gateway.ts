@@ -311,8 +311,8 @@ const ANSWERS = {
 } as const;
 
 const DEFAULT_ANSWERS: Record<PortfolioLocale, string> = {
-  fr: 'Je suis Senior Software Engineer / Tech Lead. Chez Betclic, je contribue à un pricing sportif propriétaire fondé sur des probabilités internes, des algorithmes et des simulations Monte-Carlo multi-sports. Mon parcours combine aussi architecture .NET / Angular, modernisation de SI et leadership d’équipes chez Groupe TF1, Rent A Car et Stago.',
-  en: 'I am a Senior Software Engineer / Tech Lead. At Betclic, I contribute to proprietary sports pricing powered by internally generated probabilities, algorithms, and multi-sport Monte Carlo simulations. My background also combines .NET / Angular architecture, information-system modernisation, and team leadership at TF1 Group, Rent A Car, and Stago.',
+  fr: 'Je suis Senior Software Engineer. Chez Betclic, je contribue à un pricing sportif propriétaire fondé sur des probabilités internes, des algorithmes et des simulations Monte-Carlo multi-sports. Mon parcours combine aussi architecture .NET / Angular, modernisation de SI et leadership d’équipes chez Groupe TF1, Rent A Car et Stago.',
+  en: 'I am a Senior Software Engineer. At Betclic, I contribute to proprietary sports pricing powered by internally generated probabilities, algorithms, and multi-sport Monte Carlo simulations. My background also combines .NET / Angular architecture, information-system modernisation, and team leadership at TF1 Group, Rent A Car, and Stago.',
 };
 
 export class ProfileFallbackGateway implements AssistantGateway {

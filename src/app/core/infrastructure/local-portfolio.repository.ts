@@ -56,7 +56,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
   experiences: [
     {
       company: 'Betclic Group',
-      role: 'Senior Software Engineer / Tech Lead',
+      role: 'Senior Software Engineer',
       period: 'Depuis le 6 octobre 2025',
       summary:
         'Je contribue à une chaîne de pricing sportif propriétaire : générer nos probabilités propriétaires afin de proposer rapidement des cotes maîtrisées aux parieurs, avec davantage d’autonomie qu’une dépendance exclusive à des providers externes.',
