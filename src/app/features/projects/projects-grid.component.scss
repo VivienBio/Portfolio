@@ -13,6 +13,7 @@ article {
   display: flex;
   flex-direction: column;
   min-height: 24rem;
+  min-width: 0;
   padding: clamp(1.5rem, 3vw, 2.4rem);
   overflow: hidden;
   background: color-mix(in srgb, var(--surface) 72%, transparent);
@@ -32,6 +33,7 @@ article::after {
   border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
   border-radius: 50%;
   content: '';
+  pointer-events: none;
 }
 
 article:hover {
@@ -39,6 +41,10 @@ article:hover {
   border-color: var(--accent);
   box-shadow: 0 24px 55px color-mix(in srgb, var(--ink) 10%, transparent);
   transform: translateY(-6px);
+}
+
+article:focus-within {
+  border-color: var(--accent);
 }
 
 .project-topline {
@@ -50,6 +56,12 @@ article:hover {
   font: 800 0.65rem/1 monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.project-topline small {
+  text-align: right;
+  font-size: 0.7rem;
 }
 
 .project-topline span {
@@ -67,6 +79,8 @@ h3 {
     'Segoe UI',
     sans-serif;
   letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 article > p {
@@ -98,7 +112,7 @@ li {
   padding: 0.3rem 0.5rem;
   color: var(--muted);
   border: 1px solid var(--line);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 750;
 }
 
@@ -106,6 +120,10 @@ a {
   position: relative;
   z-index: 1;
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 800;
@@ -131,6 +149,17 @@ a:hover span {
 @media (max-width: 900px) {
   article {
     min-height: 0;
+  }
+
+  h3 {
+    margin-top: 1.75rem;
+  }
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  article:hover,
+  a:hover span {
+    transform: none;
   }
 }
 

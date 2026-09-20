@@ -17,6 +17,26 @@ npm run build
 npm run check
 ```
 
+Pour la recette complète (PDF, formatage, TypeScript, tests, compilation et navigateurs) :
+
+```bash
+npx playwright install chromium
+npm run check:full
+```
+
+Les tests navigateur lancent leur propre serveur de production sur le port 4300
+(`PLAYWRIGHT_PORT` permet de le changer), sans clé IA ni envoi de contact externe. Ils couvrent
+Chromium sur ordinateur et l'émulation tactile Android Pixel 7.
+Sous Windows, Chromium utilise Microsoft Edge installé sur la machine.
+La recette Android physique reste distincte de cette émulation.
+
+Une suite Firefox responsive complémentaire est disponible avec `npx playwright install firefox`
+puis `npm run test:e2e:firefox` (ou `npm run test:e2e:all` pour les trois profils). Sur le poste de
+recette Windows, Firefox Playwright n'a pas pu démarrer : erreur système SideBySide/mozglue,
+inchangée après réinstallation. Aucun résultat de conformité Firefox n'est donc revendiqué.
+
+Le détail des corrections et des preuves figure dans [la recette du 20 septembre 2026](docs/recette-android-2026-09-20.md).
+
 La suite couvre le domaine, le contrat des données, l'immutabilité profonde, la persistance du thème, le rendu sémantique, les invariants d'accessibilité, la sécurité des liens, les routes lazy, les garde-fous IA et le health check Cloud Run.
 
 | Niveau        | Preuves automatisées                                         |

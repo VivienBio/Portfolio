@@ -12,7 +12,7 @@ textarea {
 .assistant-dock {
   position: fixed;
   right: clamp(0.85rem, 2.4vw, 1.7rem);
-  bottom: clamp(0.05rem, 0.55vw, 0.4rem);
+  bottom: max(0.4rem, env(safe-area-inset-bottom));
   z-index: 214;
   display: flex;
   flex-direction: column;
@@ -45,8 +45,8 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.95rem;
-  height: 1.95rem;
+  width: 3rem;
+  height: 3rem;
   padding: 0;
   color: #f8faf9;
   background: #081410b8;
@@ -76,27 +76,29 @@ textarea {
   inset: 0;
   z-index: 210;
   padding: 0;
-  background: transparent;
+  background: #06100d33;
   border: 0;
   cursor: default;
+  touch-action: none;
 }
 
 .assistant-sidekick {
   position: fixed;
   right: clamp(0.75rem, 2vw, 1.2rem);
-  bottom: clamp(0.05rem, 0.55vw, 0.4rem);
+  bottom: max(0.4rem, env(safe-area-inset-bottom));
   z-index: 213;
 }
 
 .assistant-restore {
   position: fixed;
   right: clamp(0.75rem, 2vw, 1.2rem);
-  bottom: clamp(0.05rem, 0.55vw, 0.4rem);
+  bottom: max(0.4rem, env(safe-area-inset-bottom));
   z-index: 214;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  min-height: 2.65rem;
+  min-width: 3rem;
+  min-height: 3rem;
   padding: 0.38rem 0.68rem 0.38rem 0.42rem;
   color: #f8faf9;
   background: #102c26f2;
@@ -227,10 +229,11 @@ textarea {
 }
 
 .assistant-panel {
+  --panel-inset: max(0.75rem, env(safe-area-inset-top), env(safe-area-inset-bottom));
   position: fixed;
-  top: clamp(0.75rem, 2.8svh, 1.35rem);
+  top: calc(var(--assistant-viewport-top, 0px) + var(--panel-inset));
   right: clamp(7.15rem, 11.5vw, 11.5rem);
-  bottom: clamp(0.75rem, 2.2svh, 1.2rem);
+  height: calc(var(--assistant-viewport-height, 100dvh) - 2 * var(--panel-inset));
   z-index: 212;
   display: flex;
   flex-direction: column;
@@ -253,8 +256,8 @@ textarea {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 3rem;
+  height: 3rem;
   padding: 0;
   color: color-mix(in srgb, var(--ink) 78%, transparent);
   background: color-mix(in srgb, var(--bg) 82%, transparent);
@@ -274,12 +277,12 @@ textarea {
 }
 
 .assistant-dialog-title {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+  flex: 0 0 auto;
+  min-height: 4.25rem;
+  padding: 1.3rem 4.4rem 1rem 1.25rem;
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
 }
 
 .assistant-conversation {
@@ -335,7 +338,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 0.28rem;
-  width: 4.5rem;
+  min-width: 8rem;
 }
 
 .typing span {
@@ -369,6 +372,7 @@ textarea {
 
 .quick-questions button {
   min-width: 0;
+  min-height: 3rem;
   padding: 0.58rem 0.68rem;
   color: var(--ink);
   background: transparent;
@@ -420,6 +424,17 @@ textarea {
   border-radius: 999px;
 }
 
+.assistant-composer > div:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+.assistant-conversation:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .assistant-composer textarea {
   width: 100%;
   min-height: 2.15rem;
@@ -436,8 +451,8 @@ textarea {
 }
 
 .assistant-composer button {
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 3rem;
+  height: 3rem;
   color: var(--accent-contrast);
   background: var(--accent);
   border: 0;
@@ -509,6 +524,10 @@ textarea {
 
 .field-error,
 .assistant-error {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.75rem;
   color: #b42318;
   font-size: 0.68rem;
 }
@@ -616,6 +635,22 @@ textarea {
   margin: 0;
   background: color-mix(in srgb, #b42318 8%, var(--bg));
   border-top: 1px solid color-mix(in srgb, #b42318 25%, var(--line));
+  font-size: 0.8rem;
+}
+
+.assistant-error p {
+  flex: 1;
+  margin: 0;
+}
+
+.assistant-error button {
+  min-height: 3rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 @keyframes assistant-enter {
@@ -635,11 +670,6 @@ textarea {
 @media (max-width: 760px) {
   .assistant-dock {
     right: 0.75rem;
-    bottom: -0.35rem;
-  }
-
-  .assistant-hide {
-    margin-bottom: 0.55rem;
   }
 
   .assistant-persona {
@@ -664,9 +694,7 @@ textarea {
   }
 
   .assistant-panel {
-    top: 0.75rem;
     right: 0.65rem;
-    bottom: 0.75rem;
     left: 0.65rem;
     width: auto;
     border-radius: 1rem;
@@ -692,28 +720,49 @@ textarea {
 @media (max-width: 520px) {
   .assistant-dock {
     right: 0.4rem;
-    bottom: -0.95rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
   }
 
-  .assistant-hide {
-    margin-bottom: 1.15rem;
+  .assistant-launcher {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3.5rem;
+    padding: 0.2rem 0.8rem 0.2rem 0.4rem;
+    background: #102c26f2;
+    border: 1px solid #ffffff2e;
+    border-radius: 999px;
+    box-shadow: 0 0.5rem 1.5rem #06100d40;
+    backdrop-filter: blur(18px);
   }
 
   .assistant-persona {
-    width: 4.6rem;
-    height: 6.9rem;
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 3rem;
+    filter: none;
+  }
+
+  .assistant-persona::before,
+  .assistant-bubble::after {
+    display: none;
   }
 
   .assistant-bubble {
-    top: -0.55rem;
-    right: 0;
-    left: auto;
-    max-width: calc(100vw - 2rem);
-    padding: 0.28rem 0.48rem;
+    position: static;
+    max-width: none;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
   }
 
   .assistant-bubble strong {
-    font-size: 0.6rem;
+    font-size: 0.78rem;
+    line-height: 1.25;
   }
 
   .assistant-restore {
@@ -731,8 +780,7 @@ textarea {
 
 @media (max-height: 680px) {
   .assistant-panel {
-    top: 0.55rem;
-    bottom: 0.55rem;
+    --panel-inset: max(0.55rem, env(safe-area-inset-top), env(safe-area-inset-bottom));
   }
 
   .assistant-conversation {
@@ -766,8 +814,6 @@ textarea {
   }
 
   .assistant-composer button {
-    width: 2.1rem;
-    height: 2.1rem;
     font-size: 1.1rem;
   }
 }

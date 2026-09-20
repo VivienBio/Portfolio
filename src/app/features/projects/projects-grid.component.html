@@ -13,7 +13,11 @@
           <li>{{ technology }}</li>
         }
       </ul>
-      <a [href]="project.url" target="_blank" rel="noopener noreferrer"
+      <a
+        [href]="project.url"
+        [attr.aria-label]="copy().open + ' — ' + project.title"
+        target="_blank"
+        rel="noopener noreferrer"
         >{{ copy().open }} <span aria-hidden="true">↗</span></a
       >
     </article>

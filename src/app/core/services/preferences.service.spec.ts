@@ -11,7 +11,31 @@ describe('PreferencesService', () => {
     delete document.documentElement.dataset['theme'];
   });
 
-  afterEach(() => TestBed.resetTestingModule());
+  afterEach(() => {
+    vi.restoreAllMocks();
+    TestBed.resetTestingModule();
+  });
+
+  it('keeps the page usable when reading browser storage is denied', () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new DOMException('Storage blocked', 'SecurityError');
+    });
+
+    expect(TestBed.inject(PreferencesService).theme()).toBe('light');
+  });
+
+  it('still switches the theme when persisting it fails', () => {
+    const service = TestBed.inject(PreferencesService);
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new DOMException('Storage full', 'QuotaExceededError');
+    });
+
+    expect(() => service.toggleTheme()).not.toThrow();
+    expect(service.theme()).toBe('dark');
+    expect(document.documentElement.dataset['theme']).toBe('dark');
+    expect(() => service.toggleTheme()).not.toThrow();
+    expect(service.theme()).toBe('light');
+  });
 
   it('uses and applies the light theme by default', () => {
     const service = TestBed.inject(PreferencesService);

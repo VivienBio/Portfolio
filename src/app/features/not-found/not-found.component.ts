@@ -1,5 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { Component, computed, effect, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+
+const COPY = {
+  fr: {
+    title: 'Page introuvable · Vivien Billot',
+    heading: 'Cette page n’existe pas.',
+    hint: 'Le lien a peut-être changé. Retrouvez mon parcours depuis le portfolio.',
+    navigation: 'Navigation de la page introuvable',
+    home: 'Retour au portfolio',
+    homePath: '/fr',
+    alternate: 'English version',
+    alternatePath: '/',
+  },
+  en: {
+    title: 'Page not found · Vivien Billot',
+    heading: 'This page does not exist.',
+    hint: 'The link may have changed. Explore my background from the portfolio.',
+    navigation: 'Not found navigation',
+    home: 'Back to the portfolio',
+    homePath: '/',
+    alternate: 'Version française',
+    alternatePath: '/fr',
+  },
+} as const;
 
 @Component({
   selector: 'app-not-found',
@@ -7,11 +33,11 @@ import { RouterLink } from '@angular/router';
   template: `
     <main class="not-found">
       <p class="code" aria-hidden="true">404</p>
-      <h1>This page does not exist.</h1>
-      <p class="hint">Cette page n'existe pas.</p>
-      <nav aria-label="Not found navigation">
-        <a routerLink="/">Back to the portfolio</a>
-        <a routerLink="/fr">Version française</a>
+      <h1>{{ copy().heading }}</h1>
+      <p class="hint">{{ copy().hint }}</p>
+      <nav [attr.aria-label]="copy().navigation">
+        <a [routerLink]="copy().homePath">{{ copy().home }}</a>
+        <a [routerLink]="copy().alternatePath">{{ copy().alternate }}</a>
       </nav>
     </main>
   `,
@@ -47,11 +73,15 @@ import { RouterLink } from '@angular/router';
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       gap: 1.6rem;
       margin-top: 1.4rem;
     }
 
     a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
       color: var(--ink);
       border-bottom: 1px solid var(--accent);
       font-weight: 700;
@@ -60,4 +90,20 @@ import { RouterLink } from '@angular/router';
     }
   `,
 })
-export class NotFoundComponent {}
+export class NotFoundComponent {
+  private readonly route = inject(ActivatedRoute);
+  private readonly segments = toSignal(this.route.url, { initialValue: this.route.snapshot.url });
+  private readonly locale = computed(() => (this.segments()[0]?.path === 'fr' ? 'fr' : 'en'));
+  protected readonly copy = computed(() => COPY[this.locale()]);
+
+  constructor() {
+    const document = inject(DOCUMENT);
+    const title = inject(Title);
+    const meta = inject(Meta);
+    effect(() => {
+      document.documentElement.lang = this.locale();
+      title.setTitle(this.copy().title);
+      meta.updateTag({ name: 'robots', content: 'noindex' });
+    });
+  }
+}

@@ -108,9 +108,9 @@ describe('PortfolioPageComponent', () => {
     expect(element.querySelector('main#contenu')).toBeTruthy();
     expect(element.querySelector('footer')).toBeTruthy();
     expect(element.querySelector('nav')?.getAttribute('aria-label')).toBe('Primary navigation');
-    expect(element.querySelector('a[href="#work"]')?.textContent).toContain('Work');
-    expect(element.querySelector('a[href="#contact"]')?.textContent).toContain('Contact');
-    expect(element.querySelector('.skip-link')?.getAttribute('href')).toBe('#contenu');
+    expect(element.querySelector('a[href="/#work"]')?.textContent).toContain('Work');
+    expect(element.querySelector('a[href="/#contact"]')?.textContent).toContain('Contact');
+    expect(element.querySelector('.skip-link')?.getAttribute('href')).toBe('/#contenu');
     expect(element.querySelector('section#contact')?.getAttribute('aria-labelledby')).toBe(
       'contact-title',
     );

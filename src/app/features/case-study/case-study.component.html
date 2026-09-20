@@ -1,3 +1,6 @@
+<a class="skip-link" [routerLink]="[]" fragment="contenu">{{
+  locale === 'fr' ? 'Aller au contenu' : 'Skip to content'
+}}</a>
 <header class="case-header">
   <a class="case-back" [routerLink]="chrome.homePath">{{ chrome.back }}</a>
   <a class="case-brand" [routerLink]="chrome.homePath" aria-label="Vivien Billot">
@@ -7,7 +10,13 @@
     <strong>Vivien Billot</strong>
   </a>
   <div class="case-actions">
-    <a class="case-language" [routerLink]="alternatePath" [attr.aria-label]="chrome.languageLabel">
+    <a
+      class="case-language"
+      [routerLink]="alternatePath"
+      [attr.aria-label]="chrome.languageLabel"
+      [attr.lang]="chrome.languageTarget.toLowerCase()"
+      [attr.hreflang]="chrome.languageTarget.toLowerCase()"
+    >
       {{ chrome.languageTarget }}
     </a>
     <a
@@ -29,7 +38,7 @@
   </div>
 </header>
 
-<main class="case" id="contenu">
+<main class="case" id="contenu" tabindex="-1">
   <article>
     <header class="case-hero">
       <p class="eyebrow">{{ copy.kicker }}</p>
@@ -161,7 +170,10 @@
     </div>
   </aside>
 
-  <nav class="case-footer" aria-label="Case study navigation">
+  <nav
+    class="case-footer"
+    [attr.aria-label]="locale === 'fr' ? 'Navigation des études de cas' : 'Case study navigation'"
+  >
     <a [routerLink]="chrome.homePath">{{ copy.backToHome }}</a>
   </nav>
 </main>

@@ -1,7 +1,14 @@
-<a class="skip-link" href="#contenu">{{ copy.skipToContent }}</a>
+<a class="skip-link" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contenu">{{
+  copy.skipToContent
+}}</a>
 <header class="site-header">
   <div class="scroll-progress" aria-hidden="true" [style.width.%]="scrollProgress()"></div>
-  <a class="brand" href="#accueil" [attr.aria-label]="copy.homeLabel">
+  <a
+    class="brand"
+    [routerLink]="locale === 'fr' ? '/fr' : '/'"
+    fragment="accueil"
+    [attr.aria-label]="copy.homeLabel"
+  >
     <span class="brand-photo" aria-hidden="true">
       <img ngSrc="/vivien-billot-linkedin.jpg" width="200" height="200" alt="" priority />
     </span>
@@ -11,17 +18,20 @@
     </span>
   </a>
   <nav [attr.aria-label]="copy.navigationLabel">
-    <a href="#work">{{ copy.navigation[0] }}</a
-    ><a href="#expertise">{{ copy.navigation[1] }}</a
-    ><a href="#parcours">{{ copy.navigation[2] }}</a
-    ><a href="#projets">{{ copy.navigation[3] }}</a
-    ><a href="#contact">{{ copy.navigation[4] }}</a>
+    <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="work">{{ copy.navigation[0] }}</a
+    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="expertise">{{
+      copy.navigation[1]
+    }}</a
+    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="parcours">{{ copy.navigation[2] }}</a
+    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="projets">{{ copy.navigation[3] }}</a
+    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contact">{{ copy.navigation[4] }}</a>
   </nav>
   <span class="availability"><i aria-hidden="true"></i> {{ copy.availability }}</span>
   <div class="header-actions" [attr.aria-label]="copy.headerActionsLabel">
     <a
       class="language-switch"
-      [href]="copy.language.href"
+      [routerLink]="copy.language.href"
+      [attr.hreflang]="copy.language.target.toLowerCase()"
       [attr.aria-label]="copy.language.ariaLabel"
     >
       <span class="language-current">{{ copy.language.current }}</span>
@@ -33,7 +43,8 @@
       [href]="copy.cv.href"
       [attr.download]="copy.cv.fileName"
       [attr.aria-label]="copy.cv.ariaLabel"
-      ><span aria-hidden="true">↓</span>{{ copy.cv.label }}</a
+      ><span aria-hidden="true">↓</span><span class="cv-label">{{ copy.cv.label }}</span
+      ><span class="cv-label-compact" aria-hidden="true">CV</span></a
     >
     <button
       class="theme-button"
@@ -47,8 +58,8 @@
   </div>
 </header>
 
-<main id="contenu">
-  <section class="hero" id="accueil" aria-labelledby="hero-title">
+<main id="contenu" tabindex="-1">
+  <section class="hero" id="accueil" tabindex="-1" aria-labelledby="hero-title">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-copy">
       <p class="eyebrow reveal reveal-1">
@@ -60,10 +71,10 @@
       </h1>
       <p class="lead reveal reveal-3">{{ copy.hero.lead }}</p>
       <div class="actions reveal reveal-4">
-        <a class="primary" href="#work"
+        <a class="primary" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="work"
           ><span>{{ copy.hero.primaryAction }}</span
           ><b aria-hidden="true">↓</b></a
-        ><a class="secondary" href="#contact"
+        ><a class="secondary" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contact"
           >{{ copy.hero.secondaryAction }} <span aria-hidden="true">→</span></a
         >
       </div>
@@ -116,7 +127,7 @@
     }
   </section>
 
-  <section class="section work" id="work" aria-labelledby="work-title">
+  <section class="section work" id="work" tabindex="-1" aria-labelledby="work-title">
     <div class="section-heading inverse">
       <div>
         <p class="eyebrow">{{ copy.work.eyebrow }}</p>
@@ -157,7 +168,12 @@
     </div>
   </section>
 
-  <section class="section principles" id="principes" aria-labelledby="principles-title">
+  <section
+    class="section principles"
+    id="principes"
+    tabindex="-1"
+    aria-labelledby="principles-title"
+  >
     <div class="section-heading">
       <div>
         <p class="eyebrow">{{ copy.principles.eyebrow }}</p>
@@ -178,7 +194,7 @@
     </div>
   </section>
 
-  <section class="section" id="expertise" aria-labelledby="expertise-title">
+  <section class="section" id="expertise" tabindex="-1" aria-labelledby="expertise-title">
     <div class="section-heading">
       <div>
         <p class="eyebrow">{{ copy.expertise.eyebrow }}</p>
@@ -207,7 +223,12 @@
     </div>
   </section>
 
-  <section class="section working-style" id="approche" aria-labelledby="working-style-title">
+  <section
+    class="section working-style"
+    id="approche"
+    tabindex="-1"
+    aria-labelledby="working-style-title"
+  >
     <div class="section-heading">
       <div>
         <p class="eyebrow">{{ copy.workingStyle.eyebrow }}</p>
@@ -237,7 +258,7 @@
     </div>
   </section>
 
-  <section class="section journey" id="parcours" aria-labelledby="journey-title">
+  <section class="section journey" id="parcours" tabindex="-1" aria-labelledby="journey-title">
     <div class="section-heading">
       <div>
         <p class="eyebrow">{{ copy.journey.eyebrow }}</p>
@@ -274,7 +295,7 @@
     </div>
   </section>
 
-  <section class="section learning" id="formation" aria-labelledby="learning-title">
+  <section class="section learning" id="formation" tabindex="-1" aria-labelledby="learning-title">
     <div>
       <p class="eyebrow">{{ copy.learning.eyebrow }}</p>
       <h2 id="learning-title">
@@ -298,7 +319,7 @@
     </ul>
   </section>
 
-  <section class="section projects" id="projets" aria-labelledby="projects-title">
+  <section class="section projects" id="projets" tabindex="-1" aria-labelledby="projects-title">
     <div class="section-heading">
       <div>
         <p class="eyebrow">{{ copy.projects.eyebrow }}</p>
@@ -324,7 +345,7 @@
     </p>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="contact-title">
+  <section class="contact" id="contact" tabindex="-1" aria-labelledby="contact-title">
     <div class="contact-panel">
       <div class="contact-copy">
         <p class="eyebrow">{{ copy.contact.eyebrow }}</p>
@@ -386,7 +407,7 @@
 <footer>
   <div class="footer-bottom">
     <small>© {{ year }} · Vivien Billot · {{ copy.footer.rights }}</small>
-    <a href="#accueil">{{ copy.footer.top }} ↑</a>
+    <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="accueil">{{ copy.footer.top }} ↑</a>
   </div>
 </footer>
 <app-portfolio-assistant [locale]="locale" />

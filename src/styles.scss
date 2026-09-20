@@ -50,8 +50,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
   overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   html {
     scroll-padding-top: 7.5rem;
   }
@@ -63,13 +64,20 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: Inter, Avenir, 'Segoe UI', sans-serif;
+  line-height: 1.5;
   transition:
     background 0.2s,
     color 0.2s;
 }
 button,
-a {
+a,
+input,
+textarea {
   font: inherit;
+}
+button,
+a {
+  touch-action: manipulation;
 }
 a {
   color: inherit;
@@ -81,4 +89,19 @@ a {
 ::selection {
   background: var(--accent);
   color: var(--accent-contrast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

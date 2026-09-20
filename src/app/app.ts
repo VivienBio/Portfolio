@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -6,4 +7,12 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   template: '<router-outlet />',
 })
-export class App {}
+export class App {
+  constructor() {
+    const document = inject(DOCUMENT);
+    inject(ViewportScroller).setOffset(() => [
+      0,
+      (document.querySelector('header')?.getBoundingClientRect().height ?? 0) + 16,
+    ]);
+  }
+}

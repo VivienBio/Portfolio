@@ -12,6 +12,7 @@ export class SeoService {
   private readonly title = inject(Title);
 
   apply(page: SeoPage): void {
+    this.meta.removeTag('name="robots"');
     this.title.setTitle(page.title);
     this.meta.updateTag({ name: 'description', content: page.description });
 
