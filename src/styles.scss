@@ -59,6 +59,7 @@ html {
 }
 body {
   margin: 0;
+  padding-bottom: var(--analytics-consent-height, 0px);
   min-width: 320px;
   overflow-x: clip;
   background: var(--bg);
@@ -81,6 +82,20 @@ a {
 }
 a {
   color: inherit;
+}
+.privacy-settings {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  cursor: pointer;
 }
 :focus-visible {
   outline: 3px solid var(--accent);

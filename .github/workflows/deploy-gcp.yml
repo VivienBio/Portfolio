@@ -28,6 +28,7 @@ env:
   RUNTIME_SERVICE_ACCOUNT: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
   WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
   OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.6-terra' }}
+  GA4_MEASUREMENT_ID: ${{ vars.GA4_MEASUREMENT_ID }}
   FIREBASE_SITE: vivien-billot
   PUBLIC_URL: https://vivien-billot.web.app
 
@@ -103,6 +104,10 @@ jobs:
               exit 1
             fi
           done
+          if [[ -n "${GA4_MEASUREMENT_ID}" && ! "${GA4_MEASUREMENT_ID}" =~ ^G-[A-Z0-9]{6,20}$ ]]; then
+            echo "::error::GA4_MEASUREMENT_ID must be a Google Analytics 4 web measurement ID"
+            exit 1
+          fi
 
       - name: Authenticate to Google Cloud without a key
         uses: google-github-actions/auth@v3
@@ -153,7 +158,7 @@ jobs:
             --ingress=all
             --service-account=${{ env.RUNTIME_SERVICE_ACCOUNT }}
             --set-secrets=OPENAI_API_KEY=openai-api-key:latest,CONTACT_FORM_ENDPOINT=contact-form-endpoint:latest
-            --set-env-vars=OPENAI_MODEL=${{ env.OPENAI_MODEL }}
+            --set-env-vars=OPENAI_MODEL=${{ env.OPENAI_MODEL }},GA4_MEASUREMENT_ID=${{ env.GA4_MEASUREMENT_ID }}
 
       - name: Route production traffic to the deployed revision
         run: >-

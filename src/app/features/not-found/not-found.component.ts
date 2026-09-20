@@ -3,6 +3,7 @@ import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { AnalyticsService } from '../../core/services/analytics.service';
 
 const COPY = {
   fr: {
@@ -14,6 +15,7 @@ const COPY = {
     homePath: '/fr',
     alternate: 'English version',
     alternatePath: '/',
+    privacy: 'Confidentialité',
   },
   en: {
     title: 'Page not found · Vivien Billot',
@@ -24,6 +26,7 @@ const COPY = {
     homePath: '/',
     alternate: 'Version française',
     alternatePath: '/fr',
+    privacy: 'Privacy',
   },
 } as const;
 
@@ -39,6 +42,11 @@ const COPY = {
         <a [routerLink]="copy().homePath">{{ copy().home }}</a>
         <a [routerLink]="copy().alternatePath">{{ copy().alternate }}</a>
       </nav>
+      @if (analytics.available()) {
+        <button class="privacy-settings" type="button" (click)="analytics.openPreferences()">
+          {{ copy().privacy }}
+        </button>
+      }
     </main>
   `,
   styles: `
@@ -91,6 +99,7 @@ const COPY = {
   `,
 })
 export class NotFoundComponent {
+  protected readonly analytics = inject(AnalyticsService);
   private readonly route = inject(ActivatedRoute);
   private readonly segments = toSignal(this.route.url, { initialValue: this.route.snapshot.url });
   private readonly locale = computed(() => (this.segments()[0]?.path === 'fr' ? 'fr' : 'en'));

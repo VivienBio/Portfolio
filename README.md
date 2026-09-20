@@ -71,6 +71,12 @@ Commandes principales après activation du billing GCP :
 
 Le projet sépare le domaine, les ports applicatifs, les cas d’usage, les adaptateurs d'infrastructure et les composants de présentation. La page principale est chargée paresseusement et rendue côté serveur. Les appels OpenAI et contact restent côté serveur ; aucune clé ni endpoint sensible n’est exposé dans Angular.
 
+## Audience et KPI avec Google Analytics 4
+
+Le suivi utilise la balise officielle GA4, chargée après acceptation du visiteur. Les rapports restent privés dans Google Analytics : utilisateurs, sessions, acquisition, appareils, pages, engagement et événements du portfolio (CV, contacts et assistant). Aucun texte de conversation ni coordonnée saisie n'est transmis par les événements du site.
+
+Le [guide GA4 pour débuter](docs/analytics-ga4.md) explique la création du compte, les rapports à consulter, les limites des chiffres et la configuration des événements. Renseigner la variable GitHub publique `GA4_MEASUREMENT_ID` avant le prochain déploiement autorisé. Sans identifiant valide, aucun tag ni bandeau n'est activé. Les aperçus Cloud Run et localhost ne collectent pas d'audience.
+
 ---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
@@ -119,13 +125,14 @@ ng test
 
 ## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
+For desktop and Android emulation checks, build the app and run:
 
 ```bash
-ng e2e
+npm run build
+npm run test:e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Playwright starts an isolated local SSR server. Analytics tests use an intercepted test tag and never send events to Google.
 
 ## Additional Resources
 

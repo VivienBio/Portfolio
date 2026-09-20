@@ -89,5 +89,32 @@ Après publication, vérifier sur téléphone :
 6. Télécharger les deux CV et vérifier leur ouverture dans le lecteur PDF Android.
 7. Vérifier TalkBack, taille de police agrandie et zoom système.
 
-L'API IA de production, l'envoi externe de contact, la CI GitHub hébergée et le déploiement
-n'ont pas été exécutés. Le site public ne change pas tant que cette version n'est pas publiée.
+L'API IA de production, l'envoi externe de contact et le déploiement n'ont pas été exécutés.
+Le push des corrections initiales a passé la [CI GitHub hébergée](https://github.com/VivienBio/Portfolio/actions/runs/35539233002).
+Le site public ne change pas tant que cette version n'est pas publiée.
+
+## Complément GA4 et recette finale
+
+Le suivi utilise Google Analytics 4 après consentement, avec refus et retrait accessibles en FR/EN.
+Il couvre les pages, études de cas, défilement à 90 %, clics CV, contacts email/LinkedIn,
+interactions avec l'assistant, changements de langue et de thème. Les visites, appareils,
+sources et durées d'engagement utilisent les métriques natives de GA4. Aucun moteur de
+statistiques ni tableau de bord propriétaire n'a été ajouté.
+
+La navigation conserve un référent interne correct et ne compte pas une nouvelle page lors
+d'un changement de thème, de dialogue ou d'ancre. Les événements excluent les textes saisis,
+les paramètres d'URL arbitraires et les chemins inconnus. Les aperçus et localhost sont exclus.
+
+Résultats sur la version finale locale :
+
+- Formatage, TypeScript, **150 tests unitaires/intégration dans 23 fichiers**, build : réussis.
+- **63 scénarios navigateur réussis**, 9 exclusions de profils attendues, aucun échec.
+- Parmi eux, 17 scénarios GA4 : consentement, retrait, pages vues, référents, CV et contrôle des données.
+- AXE et affichage du consentement : 320 × 568, 390 × 844 et 844 × 390 ; revue complémentaire à 320 × 740 et 667 × 375, clair/sombre.
+- Bundle initial : **310,42 kB**, transfert estimé **86,12 kB**, aucune alerte de budget.
+- Audit des dépendances de production : **0 vulnérabilité**.
+
+Les tests GA4 interceptent le script et les requêtes Google : ils ne créent pas de fausses
+visites dans une propriété réelle. Le [guide GA4](analytics-ga4.md) explique comment créer
+le flux Web, récupérer son identifiant et lire les rapports. La réception dans le compte GA4
+reste à vérifier après configuration du véritable identifiant et déploiement autorisé.

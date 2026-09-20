@@ -46,7 +46,12 @@ export default defineConfig({
   webServer: {
     command: 'npm run serve:ssr:Portfolio',
     url: `${baseURL}/healthz`,
-    env: { PORT: port, OPENAI_API_KEY: '', CONTACT_FORM_ENDPOINT: '' },
+    env: {
+      PORT: port,
+      OPENAI_API_KEY: '',
+      CONTACT_FORM_ENDPOINT: '',
+      GA4_MEASUREMENT_ID: 'G-TEST123456',
+    },
     reuseExistingServer: false,
     timeout: 30_000,
   },

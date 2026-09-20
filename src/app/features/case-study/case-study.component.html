@@ -13,6 +13,7 @@
     <a
       class="case-language"
       [routerLink]="alternatePath"
+      (click)="analytics.track('language_change', { locale: locale === 'fr' ? 'en' : 'fr' })"
       [attr.aria-label]="chrome.languageLabel"
       [attr.lang]="chrome.languageTarget.toLowerCase()"
       [attr.hreflang]="chrome.languageTarget.toLowerCase()"
@@ -22,6 +23,7 @@
     <a
       class="case-cv"
       [href]="chrome.cvHref"
+      (click)="trackCv()"
       [attr.download]="chrome.cvFileName"
       [attr.aria-label]="chrome.cvLabel"
       >↓ {{ chrome.cvLabel }}</a
@@ -29,7 +31,7 @@
     <button
       class="case-theme"
       type="button"
-      (click)="preferences.toggleTheme()"
+      (click)="toggleTheme()"
       [attr.aria-label]="themeLabel()"
       [title]="themeLabel()"
     >
@@ -165,7 +167,12 @@
   <aside class="case-cta">
     <p>{{ copy.contactCta.title }}</p>
     <div class="case-cta-actions">
-      <a class="case-cta-primary" [href]="copy.contactCta.href">{{ copy.contactCta.action }}</a>
+      <a
+        class="case-cta-primary"
+        [href]="copy.contactCta.href"
+        (click)="analytics.track('contact_click', { channel: 'email', placement: 'contact' })"
+        >{{ copy.contactCta.action }}</a
+      >
       <a class="case-cta-next" [routerLink]="copy.otherCase.path">{{ copy.otherCase.label }}</a>
     </div>
   </aside>
@@ -175,5 +182,10 @@
     [attr.aria-label]="locale === 'fr' ? 'Navigation des études de cas' : 'Case study navigation'"
   >
     <a [routerLink]="chrome.homePath">{{ copy.backToHome }}</a>
+    @if (analytics.available()) {
+      <button class="privacy-settings" type="button" (click)="analytics.openPreferences()">
+        {{ locale === 'fr' ? 'Confidentialité' : 'Privacy' }}
+      </button>
+    }
   </nav>
 </main>

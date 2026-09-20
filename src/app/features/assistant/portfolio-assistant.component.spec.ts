@@ -1,11 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpErrorResponse } from '@angular/common/http';
 import { vi } from 'vitest';
+import { signal } from '@angular/core';
+import { AnalyticsService } from '../../core/services/analytics.service';
 import { PortfolioAssistantApiService } from './portfolio-assistant-api.service';
 import { PortfolioAssistantComponent } from './portfolio-assistant.component';
 
 describe('PortfolioAssistantComponent', () => {
   let fixture: ComponentFixture<PortfolioAssistantComponent>;
+  const analytics = {
+    available: signal(false),
+    consent: signal('pending'),
+    preferencesOpen: signal(false),
+    track: vi.fn(),
+  };
   const api = {
     ask: vi
       .fn()
@@ -13,12 +21,16 @@ describe('PortfolioAssistantComponent', () => {
   };
 
   beforeEach(async () => {
+    analytics.track.mockReset();
     api.ask
       .mockReset()
       .mockResolvedValue({ answer: 'Je travaille chez Betclic depuis le 6 octobre 2025.' });
     await TestBed.configureTestingModule({
       imports: [PortfolioAssistantComponent],
-      providers: [{ provide: PortfolioAssistantApiService, useValue: api }],
+      providers: [
+        { provide: PortfolioAssistantApiService, useValue: api },
+        { provide: AnalyticsService, useValue: analytics },
+      ],
     }).compileComponents();
     fixture = TestBed.createComponent(PortfolioAssistantComponent);
     fixture.detectChanges();
@@ -112,6 +124,12 @@ describe('PortfolioAssistantComponent', () => {
       ]),
       'en',
     );
+    expect(analytics.track.mock.calls).toEqual([
+      ['assistant_open', { locale: 'en' }],
+      ['assistant_send', { locale: 'en' }],
+      ['assistant_success', { locale: 'en' }],
+    ]);
+    expect(JSON.stringify(analytics.track.mock.calls)).not.toContain('je suis gentil');
   });
 
   it('keeps the assistant panel free of contact actions and extra header chrome', () => {

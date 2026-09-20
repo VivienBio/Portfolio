@@ -668,6 +668,11 @@ button:focus-visible,
 }
 
 @media (max-width: 760px) {
+  .assistant-dock,
+  .assistant-restore {
+    bottom: calc(max(0.4rem, env(safe-area-inset-bottom)) + var(--analytics-consent-height, 0px));
+  }
+
   .assistant-dock {
     right: 0.75rem;
   }
@@ -717,7 +722,7 @@ button:focus-visible,
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 520px), (max-width: 900px) and (max-height: 600px) {
   .assistant-dock {
     right: 0.4rem;
     flex-direction: row;
@@ -775,6 +780,25 @@ button:focus-visible,
     height: 1px;
     overflow: hidden;
     clip-path: inset(50%);
+  }
+}
+
+@media (max-height: 600px) and (max-width: 900px) {
+  :host(.consent-notice-open) {
+    .assistant-dock,
+    .assistant-restore {
+      bottom: max(0.4rem, env(safe-area-inset-bottom));
+    }
+
+    .assistant-bubble,
+    .assistant-hide {
+      display: none;
+    }
+
+    .assistant-launcher {
+      min-width: 3rem;
+      padding-inline: 0.4rem;
+    }
   }
 }
 

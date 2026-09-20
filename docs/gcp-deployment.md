@@ -113,6 +113,9 @@ Le workflow lit ces variables via `vars.*` :
 | `GCP_RUNTIME_SERVICE_ACCOUNT`    | `portfolio-runtime@portfolio-505218.iam.gserviceaccount.com`                                         |
 | `GCP_WORKLOAD_IDENTITY_PROVIDER` | `projects/<number>/locations/global/workloadIdentityPools/github-actions/providers/github-portfolio` |
 | `OPENAI_MODEL`                   | `gpt-5.6-terra`                                                                                      |
+| `GA4_MEASUREMENT_ID`             | Identifiant public du flux Web GA4 (`G-…`), facultatif ; absence = audience désactivée               |
+
+La variable GA4 est injectée au runtime lors du déploiement. Les aperçus et localhost restent exclus par vérification du domaine dans le navigateur. La collecte sur le domaine public commence seulement après accord du visiteur. Le [guide Analytics](analytics-ga4.md) détaille la création du flux et les réglages nécessaires pour éviter les doublons.
 
 `CONTACT_FORM_ENDPOINT` n’est pas une variable GitHub : il est monté depuis le secret GCP `contact-form-endpoint`. Angular ne l’expose pas au navigateur.
 

@@ -14,6 +14,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AssistantMessage } from '../../core/domain/assistant.models';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { PortfolioAssistantApiService } from './portfolio-assistant-api.service';
+import { AnalyticsService } from '../../core/services/analytics.service';
 
 const ASSISTANT_COPY = {
   fr: {
@@ -138,6 +139,8 @@ const EMPTY_CONVERSATION: ConversationState = { messages: [], sending: false, er
   templateUrl: './portfolio-assistant.component.html',
   styleUrl: './portfolio-assistant.component.scss',
   host: {
+    '[class.consent-notice-open]':
+      "analytics.available() && (analytics.consent() === 'pending' || analytics.preferencesOpen())",
     '[style.--assistant-viewport-height]': 'viewportHeight()',
     '[style.--assistant-viewport-top]': 'viewportTop()',
   },
@@ -147,6 +150,7 @@ export class PortfolioAssistantComponent {
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly api = inject(PortfolioAssistantApiService);
+  protected readonly analytics = inject(AnalyticsService);
   private readonly document = inject(DOCUMENT);
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly conversation = viewChild<ElementRef<HTMLElement>>('conversation');
@@ -203,6 +207,7 @@ export class PortfolioAssistantComponent {
     }
 
     this.isOpen.set(true);
+    this.analytics.track('assistant_open', { locale: this.locale() });
     this.captureModal();
     this.scheduleFocus(() => this.assistantPanel()?.nativeElement.focus({ preventScroll: true }));
     this.scheduleScrollConversation();
@@ -275,6 +280,7 @@ export class PortfolioAssistantComponent {
   }
 
   private async requestReply(locale: PortfolioLocale): Promise<void> {
+    this.analytics.track('assistant_send', { locale });
     this.updateConversation(locale, { error: null, sending: true });
     this.scheduleScrollConversation();
 
@@ -292,11 +298,13 @@ export class PortfolioAssistantComponent {
           { role: 'assistant', content: response.answer },
         ],
       });
+      this.analytics.track('assistant_success', { locale });
       if (this.locale() === locale && this.isOpen()) {
         this.scheduleScrollConversation();
       }
     } catch (error: unknown) {
       if (!this.destroyRef.destroyed) {
+        this.analytics.track('assistant_error', { locale });
         this.updateConversation(locale, { error: readApiError(error) });
       }
     } finally {

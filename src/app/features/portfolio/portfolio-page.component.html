@@ -31,6 +31,7 @@
     <a
       class="language-switch"
       [routerLink]="copy.language.href"
+      (click)="analytics.track('language_change', { locale: locale === 'fr' ? 'en' : 'fr' })"
       [attr.hreflang]="copy.language.target.toLowerCase()"
       [attr.aria-label]="copy.language.ariaLabel"
     >
@@ -41,6 +42,7 @@
     <a
       class="cv-download"
       [href]="copy.cv.href"
+      (click)="trackCv(locale, 'header')"
       [attr.download]="copy.cv.fileName"
       [attr.aria-label]="copy.cv.ariaLabel"
       ><span aria-hidden="true">↓</span><span class="cv-label">{{ copy.cv.label }}</span
@@ -49,7 +51,7 @@
     <button
       class="theme-button"
       type="button"
-      (click)="preferences.toggleTheme()"
+      (click)="toggleTheme()"
       [attr.aria-label]="themeLabel()"
       [title]="themeLabel()"
     >
@@ -338,6 +340,7 @@
     <p>
       <a
         href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+        (click)="analytics.track('contact_click', { channel: 'linkedin', placement: 'contact' })"
         target="_blank"
         rel="noopener noreferrer"
         >{{ copy.quote.action }} <span aria-hidden="true">↗</span></a
@@ -360,12 +363,14 @@
         <a
           class="primary light contact-main-action"
           href="mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot"
+          (click)="analytics.track('contact_click', { channel: 'email', placement: 'contact' })"
           ><span>{{ copy.contact.emailAction }}</span
           ><b aria-hidden="true">↗</b></a
         >
         <a
           class="contact-link"
           href="mailto:billot.vivien@gmail.com"
+          (click)="analytics.track('contact_click', { channel: 'email', placement: 'contact' })"
           [attr.aria-label]="copy.contact.emailAction"
           >billot.vivien@gmail.com</a
         >
@@ -375,6 +380,7 @@
         <a
           class="contact-link"
           href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+          (click)="analytics.track('contact_click', { channel: 'linkedin', placement: 'contact' })"
           target="_blank"
           rel="noopener noreferrer"
           >LinkedIn ↗</a
@@ -389,6 +395,7 @@
         <a
           class="contact-link contact-cv"
           href="/assets/CV-Vivien-Billot-FR.pdf"
+          (click)="trackCv('fr', 'contact')"
           download="CV-Vivien-Billot-FR.pdf"
           [attr.aria-label]="copy.footer.cvFrAriaLabel"
           >{{ copy.footer.cvFr }} ↓</a
@@ -396,6 +403,7 @@
         <a
           class="contact-link contact-cv"
           href="/assets/CV-Vivien-Billot-EN.pdf"
+          (click)="trackCv('en', 'contact')"
           download="CV-Vivien-Billot-EN.pdf"
           [attr.aria-label]="copy.footer.cvEnAriaLabel"
           >{{ copy.footer.cvEn }} ↓</a
@@ -408,6 +416,11 @@
   <div class="footer-bottom">
     <small>© {{ year }} · Vivien Billot · {{ copy.footer.rights }}</small>
     <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="accueil">{{ copy.footer.top }} ↑</a>
+    @if (analytics.available()) {
+      <button class="privacy-settings" type="button" (click)="analytics.openPreferences()">
+        {{ locale === 'fr' ? 'Confidentialité' : 'Privacy' }}
+      </button>
+    }
   </div>
 </footer>
 <app-portfolio-assistant [locale]="locale" />

@@ -477,6 +477,10 @@
 }
 
 .case-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2rem;
   padding: 2.2rem 0 0;
 }
 

@@ -31,6 +31,7 @@ import {
 } from './app/core/infrastructure/runtime-configuration';
 import { PortfolioLocale } from './app/core/domain/portfolio.models';
 import { canonicalRedirectTarget } from './app/core/infrastructure/canonical-host';
+import { registerAnalyticsConfiguration } from './app/core/infrastructure/analytics-configuration';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 const runtimeConfiguration = readRuntimeConfiguration(process.env);
@@ -42,7 +43,12 @@ const angularApp = new AngularNodeAppEngine({
   allowedHosts: resolveAllowedHosts(process.env['NG_ALLOWED_HOSTS']),
 });
 
-app.use(buildSecurityHeaders(readPrerenderedScriptHashes()));
+app.use(
+  buildSecurityHeaders(
+    readPrerenderedScriptHashes(),
+    Boolean(runtimeConfiguration.ga4MeasurementId),
+  ),
+);
 app.use(compression());
 app.use((req, res, next) => {
   const redirectTarget = canonicalRedirectTarget(req.hostname, req.originalUrl);
@@ -61,6 +67,7 @@ app.use((req, res, next) => {
   next();
 });
 registerHealthCheck(app);
+registerAnalyticsConfiguration(app, runtimeConfiguration.ga4MeasurementId);
 const assistants = {
   fr: createAssistant('fr', runtimeConfiguration),
   en: createAssistant('en', runtimeConfiguration),
