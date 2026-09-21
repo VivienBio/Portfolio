@@ -64,8 +64,10 @@
     class="assistant-panel"
     id="portfolio-assistant-panel"
     role="dialog"
+    tabindex="-1"
     aria-modal="true"
     aria-labelledby="assistant-title"
+    [attr.lang]="locale()"
     (keydown.escape)="close()"
     (keydown)="onDialogKeydown($event)"
   >
@@ -95,9 +97,9 @@
         </p>
       }
       @if (isSending()) {
-        <p class="message typing">
+        <p class="message typing" role="status" [attr.aria-label]="copy().thinking">
           <span>{{ copy().assistantName }}</span
-          ><i></i><i></i><i></i>
+          ><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
         </p>
       }
     </div>
@@ -120,6 +122,7 @@
           id="assistant-question"
           rows="1"
           maxlength="1200"
+          enterkeyhint="send"
           (keydown)="onQuestionKeydown($event)"
           [formControl]="question"
           [placeholder]="copy().questionPlaceholder"
@@ -135,7 +138,12 @@
     </form>
 
     @if (error()) {
-      <p class="assistant-error" role="alert">{{ error() }}</p>
+      <div class="assistant-error">
+        <p role="alert">{{ error() }}</p>
+        <button type="button" (click)="retryQuestion()" [disabled]="isSending()">
+          {{ copy().retry }}
+        </button>
+      </div>
     }
   </section>
 }

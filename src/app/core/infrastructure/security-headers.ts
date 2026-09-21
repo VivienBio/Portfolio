@@ -12,17 +12,30 @@ const STATIC_HEADERS = {
   'X-Permitted-Cross-Domain-Policies': 'none',
 } as const;
 
-function buildContentSecurityPolicy(scriptHashes: readonly string[]): string {
-  const scriptSources = ["'self'", ...scriptHashes.map((hash) => `'${hash}'`)].join(' ');
+function buildContentSecurityPolicy(
+  scriptHashes: readonly string[],
+  analyticsEnabled: boolean,
+): string {
+  const scriptSources = [
+    "'self'",
+    ...scriptHashes.map((hash) => `'${hash}'`),
+    ...(analyticsEnabled ? ['https://www.googletagmanager.com'] : []),
+  ].join(' ');
+  const analyticsConnections = analyticsEnabled
+    ? ' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com'
+    : '';
+  const analyticsImages = analyticsEnabled
+    ? ' https://www.googletagmanager.com https://*.google-analytics.com'
+    : '';
 
   return [
     "default-src 'self'",
     "base-uri 'self'",
-    "connect-src 'self'",
+    `connect-src 'self'${analyticsConnections}`,
     "font-src 'self'",
     "form-action 'self'",
     "frame-ancestors 'none'",
-    "img-src 'self' data:",
+    `img-src 'self' data:${analyticsImages}`,
     "object-src 'none'",
     `script-src ${scriptSources}`,
     "style-src 'self' 'unsafe-inline'",
@@ -30,8 +43,11 @@ function buildContentSecurityPolicy(scriptHashes: readonly string[]): string {
   ].join('; ');
 }
 
-export function buildSecurityHeaders(scriptHashes: readonly string[] = []): RequestHandler {
-  const contentSecurityPolicy = buildContentSecurityPolicy(scriptHashes);
+export function buildSecurityHeaders(
+  scriptHashes: readonly string[] = [],
+  analyticsEnabled = false,
+): RequestHandler {
+  const contentSecurityPolicy = buildContentSecurityPolicy(scriptHashes, analyticsEnabled);
 
   return (_request: Request, response: Response, next: NextFunction): void => {
     response.setHeader('Content-Security-Policy', contentSecurityPolicy);

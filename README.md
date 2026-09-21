@@ -17,6 +17,26 @@ npm run build
 npm run check
 ```
 
+Pour la recette complète (PDF, formatage, TypeScript, tests, compilation et navigateurs) :
+
+```bash
+npx playwright install chromium
+npm run check:full
+```
+
+Les tests navigateur lancent leur propre serveur de production sur le port 4300
+(`PLAYWRIGHT_PORT` permet de le changer), sans clé IA ni envoi de contact externe. Ils couvrent
+Chromium sur ordinateur et l'émulation tactile Android Pixel 7.
+Sous Windows, Chromium utilise Microsoft Edge installé sur la machine.
+La recette Android physique reste distincte de cette émulation.
+
+Une suite Firefox responsive complémentaire est disponible avec `npx playwright install firefox`
+puis `npm run test:e2e:firefox` (ou `npm run test:e2e:all` pour les trois profils). Sur le poste de
+recette Windows, Firefox Playwright n'a pas pu démarrer : erreur système SideBySide/mozglue,
+inchangée après réinstallation. Aucun résultat de conformité Firefox n'est donc revendiqué.
+
+Le détail des corrections et des preuves figure dans [la recette du 20 septembre 2026](docs/recette-android-2026-09-20.md).
+
 La suite couvre le domaine, le contrat des données, l'immutabilité profonde, la persistance du thème, le rendu sémantique, les invariants d'accessibilité, la sécurité des liens, les routes lazy, les garde-fous IA et le health check Cloud Run.
 
 | Niveau        | Preuves automatisées                                         |
@@ -50,6 +70,12 @@ Commandes principales après activation du billing GCP :
 ## Architecture applicative
 
 Le projet sépare le domaine, les ports applicatifs, les cas d’usage, les adaptateurs d'infrastructure et les composants de présentation. La page principale est chargée paresseusement et rendue côté serveur. Les appels OpenAI et contact restent côté serveur ; aucune clé ni endpoint sensible n’est exposé dans Angular.
+
+## Audience et KPI avec Google Analytics 4
+
+Le suivi utilise la balise officielle GA4, chargée après acceptation du visiteur. Les rapports restent privés dans Google Analytics : utilisateurs, sessions, acquisition, appareils, pages, engagement et événements du portfolio (CV, contacts et assistant). Aucun texte de conversation ni coordonnée saisie n'est transmis par les événements du site.
+
+Le [guide GA4 pour débuter](docs/analytics-ga4.md) explique la création du compte, les rapports à consulter, les limites des chiffres et la configuration des événements. Renseigner la variable GitHub publique `GA4_MEASUREMENT_ID` avant le prochain déploiement autorisé. Sans identifiant valide, aucun tag ni bandeau n'est activé. Les aperçus Cloud Run et localhost ne collectent pas d'audience.
 
 ---
 
@@ -99,13 +125,14 @@ ng test
 
 ## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
+For desktop and Android emulation checks, build the app and run:
 
 ```bash
-ng e2e
+npm run build
+npm run test:e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Playwright starts an isolated local SSR server. Analytics tests use an intercepted test tag and never send events to Google.
 
 ## Additional Resources
 

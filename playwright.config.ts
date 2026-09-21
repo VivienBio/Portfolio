@@ -1,6 +1,8 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 const localBrowser = process.platform === 'win32' ? { channel: 'msedge' as const } : {};
+const port = process.env['PLAYWRIGHT_PORT'] ?? '4300';
+const baseURL = `http://127.0.0.1:${port}`;
 
 export default defineConfig({
   testDir: './e2e',
@@ -8,31 +10,49 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env['CI']),
   retries: process.env['CI'] ? 1 : 0,
+  workers: process.env['CI'] ? 2 : 4,
   reporter: process.env['CI'] ? 'github' : 'list',
   use: {
-    baseURL: 'http://127.0.0.1:4000',
+    baseURL,
+    colorScheme: 'light',
+    contextOptions: { reducedMotion: 'reduce' },
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
-    ...localBrowser,
   },
   projects: [
     {
       name: 'desktop',
-      use: { viewport: { width: 1440, height: 900 } },
+      use: { ...localBrowser, viewport: { width: 1440, height: 900 } },
     },
     {
       name: 'mobile',
       use: {
+        ...devices['Pixel 7'],
+        ...localBrowser,
         viewport: { width: 390, height: 844 },
-        isMobile: true,
+        locale: 'fr-FR',
+      },
+    },
+    {
+      name: 'firefox-responsive',
+      use: {
+        browserName: 'firefox',
+        viewport: { width: 390, height: 844 },
         hasTouch: true,
+        locale: 'fr-FR',
       },
     },
   ],
   webServer: {
     command: 'npm run serve:ssr:Portfolio',
-    url: 'http://127.0.0.1:4000/healthz',
-    reuseExistingServer: !process.env['CI'],
+    url: `${baseURL}/healthz`,
+    env: {
+      PORT: port,
+      OPENAI_API_KEY: '',
+      CONTACT_FORM_ENDPOINT: '',
+      GA4_MEASUREMENT_ID: 'G-TEST123456',
+    },
+    reuseExistingServer: false,
     timeout: 30_000,
   },
 });

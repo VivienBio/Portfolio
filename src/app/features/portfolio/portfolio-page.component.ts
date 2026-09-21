@@ -7,6 +7,7 @@ import { PORTFOLIO_PUBLIC_IDENTITY } from '../../core/domain/assistant.models';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { LocalPortfolioRepository } from '../../core/infrastructure/local-portfolio.repository';
 import { PreferencesService } from '../../core/services/preferences.service';
+import { AnalyticsService } from '../../core/services/analytics.service';
 import { PortfolioAssistantComponent } from '../assistant/portfolio-assistant.component';
 import { ProjectsGridComponent } from '../projects/projects-grid.component';
 import { PORTFOLIO_PAGE_COPY } from './portfolio-page.copy';
@@ -26,6 +27,7 @@ export class PortfolioPageComponent {
   private readonly document = inject(DOCUMENT);
   private readonly route = inject(ActivatedRoute, { optional: true });
   protected readonly preferences = inject(PreferencesService);
+  protected readonly analytics = inject(AnalyticsService);
   private readonly seo = inject(SeoService);
   protected readonly locale: PortfolioLocale =
     this.route?.snapshot.data['locale'] === 'fr' ? 'fr' : 'en';
@@ -60,5 +62,19 @@ export class PortfolioPageComponent {
     const element = this.document.documentElement;
     const availableHeight = element.scrollHeight - element.clientHeight;
     this.scrollProgress.set(availableHeight > 0 ? (element.scrollTop / availableHeight) * 100 : 0);
+  }
+
+  protected toggleTheme(): void {
+    this.preferences.toggleTheme();
+    this.analytics.track('theme_change', { theme: this.preferences.theme() });
+  }
+
+  protected trackCv(language: PortfolioLocale, placement: 'header' | 'contact'): void {
+    this.analytics.track('file_download', {
+      file_name: language === 'fr' ? 'CV-Vivien-Billot-FR.pdf' : 'CV-Vivien-Billot-EN.pdf',
+      file_extension: 'pdf',
+      cv_language: language,
+      placement,
+    });
   }
 }

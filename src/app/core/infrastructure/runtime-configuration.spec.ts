@@ -14,13 +14,23 @@ describe('readRuntimeConfiguration', () => {
       OPENAI_API_KEY: ' sk-test ',
       OPENAI_MODEL: ' gpt-custom ',
       CONTACT_FORM_ENDPOINT: ' https://formspree.io/f/example ',
+      GA4_MEASUREMENT_ID: ' G-TEST123456 ',
     });
 
     expect(configuration).toEqual({
       openAiApiKey: 'sk-test',
       openAiModel: 'gpt-custom',
       contactFormEndpoint: 'https://formspree.io/f/example',
+      ga4MeasurementId: 'G-TEST123456',
     });
+  });
+
+  it('disables analytics when the public measurement ID is absent or invalid', () => {
+    for (const value of [undefined, '', 'UA-123', 'G-123?secret=value', '<script>']) {
+      expect(
+        readRuntimeConfiguration({ GA4_MEASUREMENT_ID: value }).ga4MeasurementId,
+      ).toBeUndefined();
+    }
   });
 
   it('keeps production startup available when optional runtime values are missing', () => {

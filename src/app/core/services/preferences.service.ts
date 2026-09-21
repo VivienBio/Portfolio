@@ -17,12 +17,20 @@ export class PreferencesService {
     const nextTheme: Theme = this.theme() === 'light' ? 'dark' : 'light';
     this.theme.set(nextTheme);
     this.applyTheme(nextTheme);
-    this.document.defaultView?.localStorage?.setItem(THEME_STORAGE_KEY, nextTheme);
+    try {
+      this.document.defaultView?.localStorage?.setItem(THEME_STORAGE_KEY, nextTheme);
+    } catch {
+      // The selected theme still works when browser storage is blocked or full.
+    }
   }
 
   private readTheme(): Theme {
-    const savedTheme = this.document.defaultView?.localStorage?.getItem(THEME_STORAGE_KEY);
-    return savedTheme === 'dark' ? 'dark' : 'light';
+    try {
+      const savedTheme = this.document.defaultView?.localStorage?.getItem(THEME_STORAGE_KEY);
+      return savedTheme === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
   }
 
   private applyTheme(theme: Theme): void {

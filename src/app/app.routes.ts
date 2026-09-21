@@ -1,9 +1,7 @@
 import { Routes } from '@angular/router';
 
-const EN_HOME_TITLE =
-  'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems';
-const FR_HOME_TITLE =
-  'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués';
+const EN_HOME_TITLE = 'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems';
+const FR_HOME_TITLE = 'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués';
 
 export const routes: Routes = [
   {
@@ -66,6 +64,5 @@ export const routes: Routes = [
       import('./features/not-found/not-found.component').then(
         ({ NotFoundComponent }) => NotFoundComponent,
       ),
-    title: 'Page not found · Vivien Billot',
   },
 ];

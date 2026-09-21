@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { SeoService } from '../../core/services/seo.service';
 import { PreferencesService } from '../../core/services/preferences.service';
+import { AnalyticsService } from '../../core/services/analytics.service';
 import { CASE_STUDIES, CaseStudySlug } from './case-studies.copy';
 
 const CHROME_COPY = {
@@ -42,6 +43,7 @@ export class CaseStudyComponent {
   private readonly document = inject(DOCUMENT);
   private readonly seo = inject(SeoService);
   protected readonly preferences = inject(PreferencesService);
+  protected readonly analytics = inject(AnalyticsService);
 
   protected readonly locale: PortfolioLocale =
     this.route?.snapshot.data['locale'] === 'fr' ? 'fr' : 'en';
@@ -71,6 +73,20 @@ export class CaseStudyComponent {
         { hreflang: 'fr', path: frPath },
         { hreflang: 'x-default', path: enPath },
       ],
+    });
+  }
+
+  protected toggleTheme(): void {
+    this.preferences.toggleTheme();
+    this.analytics.track('theme_change', { theme: this.preferences.theme() });
+  }
+
+  protected trackCv(): void {
+    this.analytics.track('file_download', {
+      file_name: this.locale === 'fr' ? 'CV-Vivien-Billot-FR.pdf' : 'CV-Vivien-Billot-EN.pdf',
+      file_extension: 'pdf',
+      cv_language: this.locale,
+      placement: 'header',
     });
   }
 }

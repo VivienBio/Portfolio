@@ -156,7 +156,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Senior Software Engineer · C# / .NET · Distributed systems',
       title: 'Systems where wrong answers',
       accent: 'are expensive.',
-      lead: 'For 15+ years I’ve designed, built, and modernized software where correctness is the business: real-time sports pricing at Betclic, the ad platform at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. I work end to end — business, architecture, code, production — and leave systems clearer and teams more autonomous than I found them.',
+      lead: 'For 15+ years, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
       primaryAction: 'Read the case studies',
       secondaryAction: 'Let’s talk',
       proof: [
@@ -366,7 +366,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Senior Software Engineer · C# / .NET · Systèmes distribués',
       title: 'Des systèmes où l’erreur',
       accent: 'coûte cher.',
-      lead: 'Depuis 15+ ans, je conçois, construis et modernise des logiciels où la justesse est le métier : pricing sportif temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Je travaille de bout en bout — métier, architecture, code, production — et je laisse les systèmes plus lisibles et les équipes plus autonomes que je ne les ai trouvés.',
+      lead: '15+ ans à concevoir et moderniser des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
       primaryAction: 'Lire les études de cas',
       secondaryAction: 'Parlons-en',
       proof: [

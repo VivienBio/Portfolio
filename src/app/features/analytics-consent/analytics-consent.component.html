@@ -1,0 +1,31 @@
+@if (visible()) {
+  <section
+    #notice
+    class="analytics-consent"
+    role="region"
+    tabindex="-1"
+    aria-labelledby="consent-title"
+    [attr.lang]="locale()"
+  >
+    <h2 id="consent-title">{{ copy().title }}</h2>
+    <p>{{ copy().description }}</p>
+    @if (analytics.consent() !== 'pending') {
+      <p class="consent-status">
+        {{ analytics.consent() === 'granted' ? copy().granted : copy().denied }}
+      </p>
+    }
+    <p class="consent-retention">{{ copy().retention }}</p>
+    <div class="consent-actions">
+      <button class="consent-reject" type="button" (click)="reject()">{{ copy().reject }}</button>
+      <button class="consent-accept" type="button" (click)="accept()">{{ copy().accept }}</button>
+    </div>
+    <div class="consent-links">
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+        >{{ copy().policy }} <span aria-hidden="true">↗</span></a
+      >
+      @if (analytics.preferencesOpen() && analytics.consent() !== 'pending') {
+        <button class="consent-close" type="button" (click)="close()">{{ copy().close }}</button>
+      }
+    </div>
+  </section>
+}
