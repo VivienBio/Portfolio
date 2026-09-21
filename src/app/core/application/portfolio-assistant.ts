@@ -15,9 +15,9 @@ const OUT_OF_SCOPE_REPLY =
 const ENGLISH_OUT_OF_SCOPE_REPLY =
   'I am Vivien’s professional digital twin. I can only answer about his background, skills, projects, and how to contact him.';
 
-const CONTACT_REPLY = `Vous pouvez me joindre par email à ${PORTFOLIO_CONTACT.email}, par téléphone au ${PORTFOLIO_CONTACT.phone}, ou sur LinkedIn. Je peux aussi transmettre votre message directement depuis cette fenêtre.`;
+const CONTACT_REPLY = `Vous pouvez me joindre par email à ${PORTFOLIO_CONTACT.email}, par téléphone au ${PORTFOLIO_CONTACT.phone}, ou sur LinkedIn. Retrouvez ces liens dans la rubrique Contact du site pour m’écrire ou m’appeler.`;
 
-const ENGLISH_CONTACT_REPLY = `You can reach me by email at ${PORTFOLIO_CONTACT.email}, by phone on ${PORTFOLIO_CONTACT.phone}, or through LinkedIn. I can also forward your message directly from this chat.`;
+const ENGLISH_CONTACT_REPLY = `You can reach me by email at ${PORTFOLIO_CONTACT.email}, by phone on ${PORTFOLIO_CONTACT.phone}, or through LinkedIn. Use the links in the site’s Contact section to message or call me.`;
 
 const INJECTION_PATTERNS = [
   /ignore\s+(les|toutes|mes|tes|vos)?\s*(instructions|consignes)/u,

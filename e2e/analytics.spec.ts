@@ -155,6 +155,56 @@ for (const locale of ['fr', 'en'] as const) {
     }
   });
 
+  test(`${locale}: recommendations and phone clicks have separate non-personal metrics`, async ({
+    page,
+  }, testInfo) => {
+    await interceptAnalytics(page);
+    await page.addInitScript(() => {
+      // Exercise Angular's actual click handlers without opening LinkedIn or a phone application.
+      document.addEventListener('click', (event) => {
+        const link = event.target instanceof Element ? event.target.closest('a') : null;
+        if (link?.matches('a[href^="tel:"], a[href^="https://www.linkedin.com/"]')) {
+          event.preventDefault();
+        }
+      });
+    });
+    await page.goto(path);
+    await activate(page.locator('.consent-accept'), testInfo);
+    await expect.poll(() => eventsNamed(page, 'page_view')).toHaveLength(1);
+
+    await activate(page.locator('.quote a'), testInfo);
+    await expect.poll(() => eventsNamed(page, 'recommendation_click')).toHaveLength(1);
+    expect(await eventsNamed(page, 'contact_click')).toHaveLength(0);
+    expect((await eventsNamed(page, 'recommendation_click'))[0]?.parameters).toMatchObject({
+      locale,
+      channel: 'linkedin',
+      placement: 'recommendations',
+    });
+
+    const phone = page.locator('.contact-link[href^="tel:"]');
+    const phoneHref = await phone.getAttribute('href');
+    await activate(phone, testInfo);
+    await expect.poll(() => eventsNamed(page, 'contact_click')).toHaveLength(1);
+    expect((await eventsNamed(page, 'contact_click'))[0]?.parameters).toMatchObject({
+      locale,
+      channel: 'phone',
+      placement: 'contact',
+    });
+
+    await activate(page.locator('.contact-link[href^="https://www.linkedin.com/"]'), testInfo);
+    await expect.poll(() => eventsNamed(page, 'contact_click')).toHaveLength(2);
+    expect((await eventsNamed(page, 'contact_click'))[1]?.parameters).toMatchObject({
+      channel: 'linkedin',
+      placement: 'contact',
+    });
+    expect(await eventsNamed(page, 'recommendation_click')).toHaveLength(1);
+    expect(await eventsNamed(page, 'page_view')).toHaveLength(1);
+    const payload = JSON.stringify(await readCommands(page));
+    expect(phoneHref).toMatch(/^tel:/);
+    expect(payload).not.toContain(phoneHref!.slice(4));
+    expect(payload).not.toMatch(/tel:|mailto:|linkedin\.com\/in\//);
+  });
+
   test(`${locale}: withdrawing consent clears GA cookies, unloads the tag and keeps locale`, async ({
     page,
     context,
@@ -201,10 +251,99 @@ test('missing analytics configuration leaves the site usable without a consent p
   expect(await readCommands(page)).toEqual([]);
 });
 
-test.describe('Android consent layout', () => {
+test.describe('Touch consent layout', () => {
   test.beforeEach(({}, testInfo) => {
-    test.skip(testInfo.project.name !== 'mobile', 'Android touch layout only');
+    test.skip(!testInfo.project.use.hasTouch, 'Touch viewport layout only');
   });
+
+  for (const viewport of [
+    { width: 320, height: 568 },
+    { width: 390, height: 844 },
+    { width: 844, height: 390 },
+  ]) {
+    for (const locale of ['fr', 'en'] as const) {
+      test(`${locale} ${viewport.width}x${viewport.height}: 200% text keeps consent choices readable and equally accessible`, async ({
+        page,
+      }) => {
+        const googleRequests = await interceptAnalytics(page);
+        await page.setViewportSize(viewport);
+        await page.goto(locale === 'fr' ? '/fr' : '/');
+        const consent = page.locator('.analytics-consent');
+        await expect(consent).toBeVisible();
+        await page.evaluate(async () => {
+          document.documentElement.style.fontSize = '200%';
+          await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+          await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+        });
+        await expect
+          .poll(() => page.evaluate(() => getComputedStyle(document.documentElement).fontSize))
+          .toBe('32px');
+        const notice = await consent.evaluate((element) => ({
+          scrollWidth: element.scrollWidth,
+          clientWidth: element.clientWidth,
+          left: element.getBoundingClientRect().left,
+          right: element.getBoundingClientRect().right,
+        }));
+        expect(notice.scrollWidth).toBeLessThanOrEqual(notice.clientWidth + 1);
+        expect(notice.left).toBeGreaterThanOrEqual(0);
+        expect(notice.right).toBeLessThanOrEqual(viewport.width + 1);
+
+        const launcher = page.locator('.assistant-launcher');
+        await launcher.tap({ trial: true });
+        const launcherBox = await launcher.boundingBox();
+        expect(launcherBox).not.toBeNull();
+        expect(launcherBox!.x).toBeGreaterThanOrEqual(-1);
+        expect(launcherBox!.y).toBeGreaterThanOrEqual(-1);
+        expect(launcherBox!.x + launcherBox!.width).toBeLessThanOrEqual(viewport.width + 1);
+        expect(launcherBox!.y + launcherBox!.height).toBeLessThanOrEqual(viewport.height + 1);
+
+        const sizes: { width: number; height: number }[] = [];
+        for (const selector of ['.consent-accept', '.consent-reject']) {
+          const button = consent.locator(selector);
+          await button.tap({ trial: true });
+          const layout = await button.evaluate((element) => {
+            const box = element.getBoundingClientRect();
+            const panel = element.closest('.analytics-consent')!.getBoundingClientRect();
+            const range = document.createRange();
+            range.selectNodeContents(element);
+            const text = range.getBoundingClientRect();
+            return {
+              width: box.width,
+              height: box.height,
+              textLeft: text.left - box.left,
+              textRight: box.right - text.right,
+              textTop: text.top - box.top,
+              textBottom: box.bottom - text.bottom,
+              visibleTop: box.top - panel.top,
+              visibleBottom: panel.bottom - box.bottom,
+              scrollWidth: element.scrollWidth,
+              clientWidth: element.clientWidth,
+            };
+          });
+          expect(layout.width).toBeGreaterThanOrEqual(48);
+          expect(layout.height).toBeGreaterThanOrEqual(48);
+          expect(layout.scrollWidth).toBeLessThanOrEqual(layout.clientWidth + 1);
+          for (const distance of [
+            layout.textLeft,
+            layout.textRight,
+            layout.textTop,
+            layout.textBottom,
+            layout.visibleTop,
+            layout.visibleBottom,
+          ]) {
+            expect(distance).toBeGreaterThanOrEqual(-1);
+          }
+          sizes.push(layout);
+        }
+        expect(Math.abs(sizes[0]!.width - sizes[1]!.width)).toBeLessThanOrEqual(1);
+        expect(Math.abs(sizes[0]!.height - sizes[1]!.height)).toBeLessThanOrEqual(1);
+        await consent.locator('.consent-reject').tap();
+        await expect(consent).toBeHidden();
+        expect(googleRequests).toEqual([]);
+        expect(await readCommands(page)).toEqual([]);
+      });
+    }
+  }
 
   for (const viewport of [
     { width: 320, height: 568, locale: 'fr' },

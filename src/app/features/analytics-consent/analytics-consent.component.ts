@@ -19,7 +19,8 @@ const COPY = {
     description:
       'Avec votre accord, Google Analytics 4 utilise des cookies pour mesurer les visites et les interactions avec le CV. Aucun message de conversation ni coordonnée saisie n’est envoyé à Analytics.',
     retention: 'Votre choix est conservé 180 jours et reste modifiable via « Confidentialité ».',
-    policy: 'Confidentialité Google',
+    policy: 'Comment vos données sont utilisées',
+    policyPath: '/fr/confidentialite',
     accept: 'Accepter',
     reject: 'Refuser',
     close: 'Fermer les préférences',
@@ -31,7 +32,8 @@ const COPY = {
     description:
       'With your permission, Google Analytics 4 uses cookies to measure visits and resume interactions. No chat messages or contact details you enter are sent to Analytics.',
     retention: 'Your choice is kept for 180 days. You can change it anytime under “Privacy”.',
-    policy: 'Google privacy policy',
+    policy: 'How your data is used',
+    policyPath: '/privacy',
     accept: 'Accept',
     reject: 'Reject',
     close: 'Close preferences',

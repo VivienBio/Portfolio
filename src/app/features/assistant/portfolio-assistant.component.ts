@@ -11,6 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { AssistantMessage } from '../../core/domain/assistant.models';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { PortfolioAssistantApiService } from './portfolio-assistant-api.service';
@@ -30,6 +31,9 @@ const ASSISTANT_COPY = {
     restore: 'Afficher Vivien',
     initialMessage:
       'Je réponds sur le parcours de Vivien, sa stack, son leadership et ses choix d’architecture.',
+    processing:
+      'Assistant IA : vos questions peuvent être transmises à OpenAI. Évitez les données sensibles.',
+    policy: 'Protection des données',
     quickQuestions: ['Parcours', 'Priorités', 'Leadership', 'Différence'],
     suggestedQuestions: 'Questions suggérées',
     conversationLabel: 'Conversation avec le double numérique de Vivien',
@@ -82,6 +86,8 @@ const ASSISTANT_COPY = {
     restore: 'Show Vivien',
     initialMessage:
       'I answer about Vivien’s background, stack, leadership, and architecture choices.',
+    processing: 'AI assistant: your questions may be sent to OpenAI. Avoid sensitive information.',
+    policy: 'Privacy policy',
     quickQuestions: ['Career path', 'Priorities', 'Leadership', 'Difference'],
     suggestedQuestions: 'Suggested questions',
     conversationLabel: 'Conversation with Vivien’s professional digital twin',
@@ -135,7 +141,7 @@ const EMPTY_CONVERSATION: ConversationState = { messages: [], sending: false, er
 
 @Component({
   selector: 'app-portfolio-assistant',
-  imports: [NgOptimizedImage, ReactiveFormsModule],
+  imports: [NgOptimizedImage, ReactiveFormsModule, RouterLink],
   templateUrl: './portfolio-assistant.component.html',
   styleUrl: './portfolio-assistant.component.scss',
   host: {

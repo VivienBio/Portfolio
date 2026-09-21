@@ -94,6 +94,22 @@ describe('PortfolioAssistant', () => {
 
     expect(reply.answer).toContain('billot.vivien@gmail.com');
     expect(reply.answer).toContain('06 23 85 77 32');
+    expect(reply.answer).toContain('rubrique Contact');
+    expect(reply.answer).not.toContain('transmettre votre message');
+    expect(gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('directs English contact questions to available contact links without promising chat delivery', async () => {
+    const gateway: AssistantGateway = { answer: vi.fn() };
+    const knowledge = buildPortfolioKnowledge(new LocalPortfolioRepository().getPortfolio('en'));
+    const assistant = new PortfolioAssistant(gateway, knowledge, 'en');
+
+    const reply = await assistant.reply([{ role: 'user', content: 'How can I contact you?' }]);
+
+    expect(reply.answer).toContain('billot.vivien@gmail.com');
+    expect(reply.answer).toContain('06 23 85 77 32');
+    expect(reply.answer).toContain('Contact section');
+    expect(reply.answer).not.toContain('forward your message');
     expect(gateway.answer).not.toHaveBeenCalled();
   });
 

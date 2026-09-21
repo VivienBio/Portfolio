@@ -1,10 +1,18 @@
-import { DOCUMENT, NgOptimizedImage } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { DOCUMENT, NgOptimizedImage, ViewportScroller } from '@angular/common';
+import {
+  Component,
+  DestroyRef,
+  ElementRef,
+  afterNextRender,
+  computed,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { SeoService } from '../../core/services/seo.service';
 import { PreferencesService } from '../../core/services/preferences.service';
 import { AnalyticsService } from '../../core/services/analytics.service';
+import { observeHeaderOffset } from '../../core/services/observe-header-offset';
 import { CASE_STUDIES, CaseStudySlug } from './case-studies.copy';
 
 const CHROME_COPY = {
@@ -58,6 +66,17 @@ export class CaseStudyComponent {
   );
 
   constructor() {
+    const host = inject<ElementRef<HTMLElement>>(ElementRef);
+    const destroyRef = inject(DestroyRef);
+    const scroller = inject(ViewportScroller);
+    afterNextRender(() =>
+      observeHeaderOffset(
+        this.document,
+        host.nativeElement.querySelector('.case-header'),
+        destroyRef,
+        scroller,
+      ),
+    );
     this.document.documentElement.lang = this.locale;
     const path = this.locale === 'fr' ? `/fr/work/${this.slug}` : `/work/${this.slug}`;
     const enPath = `/work/${this.slug}`;

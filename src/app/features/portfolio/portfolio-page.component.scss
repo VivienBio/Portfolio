@@ -2,6 +2,7 @@
   display: block;
   min-width: 0;
   overflow: clip;
+  overflow-wrap: anywhere;
 }
 .skip-link {
   position: fixed;
@@ -22,9 +23,11 @@
   top: 0;
   z-index: 30;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: clamp(0.8rem, 1.3vw, 1.4rem);
-  height: 5.5rem;
+  min-height: 5.5rem;
+  height: auto;
   padding: 0 max(1.5rem, calc((100vw - 1240px) / 2));
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   border-bottom: 1px solid var(--line);
@@ -42,11 +45,12 @@
   display: flex;
   align-items: center;
   gap: 0.82rem;
-  min-height: 3rem;
+  min-height: 48px;
+  min-width: 0;
   margin-right: auto;
   color: var(--ink);
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
 }
 .brand-photo {
   position: relative;
@@ -76,6 +80,7 @@
 }
 .brand-identity {
   display: grid;
+  min-width: 0;
   gap: 0.14rem;
   line-height: 1;
 }
@@ -94,14 +99,16 @@
 }
 nav {
   display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
   gap: clamp(0.85rem, 1.2vw, 1.3rem);
 }
 nav a {
   position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: 3rem;
-  min-width: 3rem;
+  min-height: 48px;
+  min-width: 48px;
   padding: 0.5rem 0;
   color: var(--muted);
   font-size: 0.76rem;
@@ -148,10 +155,12 @@ nav a:focus-visible {
 }
 .header-actions {
   display: flex;
+  flex-wrap: wrap;
   flex: 0 0 auto;
   align-items: center;
   gap: 0.65rem;
   min-width: 0;
+  max-width: 100%;
 }
 .language-switch,
 .cv-download {
@@ -159,8 +168,8 @@ nav a:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.42rem;
-  min-width: 3rem;
-  min-height: 3rem;
+  min-width: 48px;
+  min-height: 48px;
   padding: 0 0.75rem;
   color: var(--ink);
   border: 1px solid var(--line);
@@ -202,8 +211,8 @@ nav a:focus-visible {
   display: none;
 }
 .theme-button {
-  width: 3rem;
-  min-height: 3rem;
+  width: 48px;
+  min-height: 48px;
   flex: 0 0 auto;
   aspect-ratio: 1;
   color: var(--ink);
@@ -308,11 +317,13 @@ h1 > em {
 }
 .primary {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: clamp(0.5rem, 3vw, 2rem);
   min-width: 250px;
   padding: 1.05rem 1.25rem;
+  padding-inline: min(1.25rem, 24px);
   color: var(--accent-contrast);
   background: var(--accent);
   border: 1px solid var(--accent);
@@ -845,6 +856,7 @@ h2 {
 }
 .principles-grid article {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.55rem;
   align-content: start;
   padding: 1.65rem;
@@ -1003,7 +1015,7 @@ h2 {
 }
 .contact-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(23rem, 0.95fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr));
   gap: clamp(1.2rem, 4vw, 4rem);
   align-items: stretch;
   padding: clamp(1.35rem, 4.5vw, 3.8rem);
@@ -1013,7 +1025,9 @@ h2 {
 }
 .contact-copy {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: center;
+  min-width: 0;
 }
 .contact .eyebrow {
   color: #8de9bd;
@@ -1044,6 +1058,7 @@ h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: center;
   gap: 0.75rem;
+  min-width: 0;
 }
 .primary.light {
   position: relative;
@@ -1062,6 +1077,7 @@ h2 {
   justify-content: space-between;
   min-height: 3.55rem;
   padding: 1rem 1.15rem;
+  padding-inline: min(1.15rem, 20px);
   color: #f8faf9;
   background: #ffffff0b;
   border: 1px solid #ffffff24;
@@ -1107,6 +1123,7 @@ footer {
   align-items: center;
   gap: 0.45rem;
   width: fit-content;
+  max-width: 100%;
   margin-top: 1.35rem;
   padding: 0.48rem 0.62rem;
   color: #f8faf9;
@@ -1211,6 +1228,7 @@ footer {
   }
   nav {
     display: flex;
+    flex-wrap: nowrap;
     order: 10;
     flex-basis: 100%;
     gap: 1.1rem;
@@ -1235,16 +1253,17 @@ footer {
 @media (max-width: 900px) {
   main,
   footer {
-    width: min(100% - 2.4rem, 1240px);
+    width: min(100% - min(2.4rem, 48px), 1240px);
   }
   .hero {
     padding: 2.5rem 0 4rem;
   }
   .work-flagships {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .work-card {
     min-height: 0;
+    padding: min(1.5rem, 28px);
   }
   h1 {
     max-width: 100%;
@@ -1307,10 +1326,10 @@ footer {
     padding: 4rem 0;
   }
   .work {
-    padding-inline: 1.2rem;
+    padding-inline: min(1.2rem, 24px);
   }
   .principles-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .section-heading {
     grid-template-columns: 1fr;
@@ -1322,13 +1341,13 @@ footer {
     line-height: 1.08;
   }
   .expertise-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .expertise-grid article {
     min-height: 0;
   }
   .working-style-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .working-style-grid article {
     min-height: 0;
@@ -1337,7 +1356,7 @@ footer {
     margin-top: 1.8rem;
   }
   .quote {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     padding: 6rem 0;
   }
@@ -1348,30 +1367,31 @@ footer {
     grid-column: 1;
   }
   .timeline article {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
   .period span {
     display: none;
   }
   .learning {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 3rem;
     padding: 3rem 1.4rem;
   }
   .contact {
     margin-block: 5rem 3rem;
-    padding: 0.85rem;
+    padding: min(0.85rem, 16px);
   }
   .contact-panel {
     gap: 2rem;
     padding: 1.75rem 1rem;
+    padding-inline: min(1rem, 20px);
   }
   .contact h2 {
     max-width: 11ch;
   }
   .contact-directory {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .contact-main-action,
   .contact-link {

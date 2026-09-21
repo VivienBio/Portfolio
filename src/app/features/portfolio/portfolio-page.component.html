@@ -340,7 +340,12 @@
     <p>
       <a
         href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
-        (click)="analytics.track('contact_click', { channel: 'linkedin', placement: 'contact' })"
+        (click)="
+          analytics.track('recommendation_click', {
+            channel: 'linkedin',
+            placement: 'recommendations',
+          })
+        "
         target="_blank"
         rel="noopener noreferrer"
         >{{ copy.quote.action }} <span aria-hidden="true">↗</span></a
@@ -374,7 +379,11 @@
           [attr.aria-label]="copy.contact.emailAction"
           >billot.vivien@gmail.com</a
         >
-        <a class="contact-link" href="tel:+33623857732" [attr.aria-label]="copy.contact.phoneAction"
+        <a
+          class="contact-link"
+          href="tel:+33623857732"
+          (click)="analytics.track('contact_click', { channel: 'phone', placement: 'contact' })"
+          [attr.aria-label]="copy.contact.phoneAction"
           >06 23 85 77 32</a
         >
         <a
@@ -416,6 +425,9 @@
   <div class="footer-bottom">
     <small>© {{ year }} · Vivien Billot · {{ copy.footer.rights }}</small>
     <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="accueil">{{ copy.footer.top }} ↑</a>
+    <a [routerLink]="locale === 'fr' ? '/fr/confidentialite' : '/privacy'">
+      {{ locale === 'fr' ? 'Protection des données' : 'Privacy policy' }}
+    </a>
     @if (analytics.available()) {
       <button class="privacy-settings" type="button" (click)="analytics.openPreferences()">
         {{ locale === 'fr' ? 'Confidentialité' : 'Privacy' }}

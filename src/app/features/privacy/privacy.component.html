@@ -1,0 +1,81 @@
+<a class="skip-link" [routerLink]="copy.path" fragment="privacy-main">{{ copy.skip }}</a>
+<header class="privacy-header">
+  <nav [attr.aria-label]="copy.navigation">
+    <a class="back" [routerLink]="copy.homePath">{{ copy.home }}</a>
+    <div class="header-actions">
+      <a
+        [routerLink]="copy.alternatePath"
+        [attr.hreflang]="locale === 'fr' ? 'en' : 'fr'"
+        [attr.lang]="locale === 'fr' ? 'en' : 'fr'"
+        >{{ copy.alternate }}</a
+      >
+      <button
+        class="theme-toggle"
+        type="button"
+        (click)="toggleTheme()"
+        [attr.aria-label]="themeLabel()"
+      >
+        <span aria-hidden="true">{{ preferences.theme() === 'dark' ? '☀' : '◐' }}</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="privacy-main" tabindex="-1" class="privacy-page">
+  <div class="privacy-intro">
+    <p class="eyebrow">{{ copy.eyebrow }}</p>
+    <h1>{{ copy.title }}</h1>
+    <p class="lead">{{ copy.description }}</p>
+    <p class="updated">{{ copy.updated }}</p>
+  </div>
+
+  <ul class="privacy-summary">
+    @for (item of copy.summary; track item.title) {
+      <li>
+        <strong>{{ item.title }}</strong>
+        <p>{{ item.detail }}</p>
+      </li>
+    }
+  </ul>
+
+  <div class="privacy-layout">
+    <aside>
+      <nav class="contents" [attr.aria-label]="copy.contents">
+        <p>{{ copy.contents }}</p>
+        @for (section of copy.sections; track section.id) {
+          <a [routerLink]="copy.path" [fragment]="section.id">{{ section.title }}</a>
+        }
+      </nav>
+      @if (analytics.available()) {
+        <button class="choices" type="button" (click)="analytics.openPreferences()">
+          {{ copy.choices }}
+        </button>
+      } @else {
+        <p class="measurement-unavailable">{{ copy.choicesUnavailable }}</p>
+      }
+    </aside>
+    <div class="privacy-content">
+      @for (section of copy.sections; track section.id) {
+        <section [attr.aria-labelledby]="section.id + '-title'" [id]="section.id" tabindex="-1">
+          <h2 [id]="section.id + '-title'">{{ section.title }}</h2>
+          @for (paragraph of section.paragraphs; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+          @for (link of section.links; track link.href) {
+            <a class="source-link" [href]="link.href" target="_blank" rel="noopener noreferrer"
+              >{{ link.label }} <span aria-hidden="true">↗</span></a
+            >
+          }
+        </section>
+      }
+      <a
+        class="contact-link"
+        href="mailto:billot.vivien@gmail.com?subject=Confidentialit%C3%A9%20du%20portfolio"
+        >{{ copy.contact }} <span aria-hidden="true">↗</span></a
+      >
+    </div>
+  </div>
+</main>
+<footer class="privacy-footer">
+  <span>Vivien Billot</span><a [routerLink]="copy.homePath">{{ copy.home }}</a>
+</footer>

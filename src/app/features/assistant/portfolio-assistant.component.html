@@ -90,6 +90,12 @@
       [attr.aria-label]="copy().conversationLabel"
       [attr.aria-busy]="isSending()"
     >
+      <p class="assistant-privacy">
+        {{ copy().processing }}
+        <a [routerLink]="locale() === 'fr' ? '/fr/confidentialite' : '/privacy'" (click)="close()">
+          {{ copy().policy }}
+        </a>
+      </p>
       @for (message of messages(); track $index) {
         <p class="message" [class.message-user]="message.role === 'user'">
           <span>{{ message.role === 'user' ? copy().visitor : copy().assistantName }}</span
