@@ -59,6 +59,24 @@ export const routes: Routes = [
     title: 'Moderniser le SI publicitaire de TF1 — étude de cas · Vivien Billot',
   },
   {
+    path: 'privacy',
+    loadComponent: () =>
+      import('./features/privacy/privacy.component').then(
+        ({ PrivacyComponent }) => PrivacyComponent,
+      ),
+    data: { locale: 'en' },
+    title: 'Privacy · Vivien Billot',
+  },
+  {
+    path: 'fr/confidentialite',
+    loadComponent: () =>
+      import('./features/privacy/privacy.component').then(
+        ({ PrivacyComponent }) => PrivacyComponent,
+      ),
+    data: { locale: 'fr' },
+    title: 'Confidentialité · Vivien Billot',
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./features/not-found/not-found.component').then(

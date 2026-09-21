@@ -7,5 +7,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'work/tf1', renderMode: RenderMode.Prerender },
   { path: 'fr/work/betclic', renderMode: RenderMode.Prerender },
   { path: 'fr/work/tf1', renderMode: RenderMode.Prerender },
+  { path: 'privacy', renderMode: RenderMode.Prerender },
+  { path: 'fr/confidentialite', renderMode: RenderMode.Prerender },
   { path: '**', renderMode: RenderMode.Server },
 ];

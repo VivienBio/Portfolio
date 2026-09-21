@@ -30,8 +30,8 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Install browser for E2E checks
-        run: npx playwright install --with-deps chromium
+      - name: Install Chromium and Firefox for E2E checks
+        run: npx playwright install --with-deps chromium firefox
 
       - name: Audit production dependencies
         run: npm run security:audit
@@ -51,5 +51,15 @@ jobs:
       - name: Production build
         run: npm run build
 
-      - name: Browser, responsive and accessibility tests
-        run: npm run test:e2e
+      - name: Chromium and Firefox responsive and accessibility tests
+        run: npm run test:e2e:all
+
+      - name: Preserve failed browser test evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-failures
+          path: .playwright-results/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 7

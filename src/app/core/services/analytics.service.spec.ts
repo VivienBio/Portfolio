@@ -285,6 +285,29 @@ describe('AnalyticsService', () => {
     expect(lastSet?.[1]).toMatchObject({ page_location: `${ORIGIN}/work/tf1` });
   });
 
+  it.each([
+    ['/privacy', 'en', 'Vivien Billot — Privacy'],
+    ['/fr/confidentialite', 'fr', 'Vivien Billot — Confidentialité'],
+  ])('recognizes the privacy route %s and strips private URL additions', (path, locale, title) => {
+    const service = initialize();
+    service.accept();
+    const privateUrl = `${path}?email=private@example.com#rights`;
+    events.next(new NavigationEnd(1, privateUrl, privateUrl));
+
+    expect(measurements('page_view')).toHaveLength(2);
+    expect(measurements('page_view').at(-1)?.[2]).toEqual({
+      page_location: `${ORIGIN}${path}`,
+      page_title: title,
+      page_referrer: `${ORIGIN}/fr`,
+      locale,
+    });
+    events.next(new NavigationEnd(2, '/fr', '/fr'));
+    expect(measurements('page_view').at(-1)?.[2]).toMatchObject({
+      page_referrer: `${ORIGIN}${path}`,
+    });
+    expect(JSON.stringify(commands())).not.toMatch(/private|email=|#rights/);
+  });
+
   it('uses the preceding sanitized page as the SPA referrer and preserves it for that view', () => {
     const service = initialize();
     service.accept();
@@ -352,6 +375,40 @@ describe('AnalyticsService', () => {
     );
     expect(JSON.stringify(commands())).not.toMatch(/private|Secret|message=|secret/);
     expect(measurements('private_event')).toHaveLength(0);
+  });
+
+  it('separates recommendation interest from contact intent without sending contact details', () => {
+    const service = initialize();
+    const recommendation = { channel: 'linkedin', placement: 'recommendations' } as const;
+    const phone = {
+      channel: 'phone',
+      placement: 'contact',
+      phone_number: '+33000000000',
+      link_url: 'tel:+33000000000',
+      link_text: 'Private contact',
+    } as const;
+
+    service.track('recommendation_click', recommendation);
+    service.track('contact_click', phone);
+    expect(commands()).toEqual([]);
+
+    service.accept();
+    service.track('recommendation_click', recommendation);
+    expect(measurements('recommendation_click')).toHaveLength(1);
+    expect(measurements('contact_click')).toHaveLength(0);
+    expect(measurements('recommendation_click')[0]?.[2]).toMatchObject(recommendation);
+
+    service.track('contact_click', phone);
+    expect(measurements('contact_click')).toHaveLength(1);
+    expect(measurements('contact_click')[0]?.[2]).toEqual({
+      page_location: `${ORIGIN}/fr`,
+      page_title: 'Vivien Billot — Portfolio français',
+      page_referrer: 'https://www.linkedin.com',
+      locale: 'fr',
+      channel: 'phone',
+      placement: 'contact',
+    });
+    expect(JSON.stringify(commands())).not.toMatch(/33000000000|tel:|Private contact/);
   });
 
   it('retains only the documented campaign labels, separate from the stripped URL', () => {

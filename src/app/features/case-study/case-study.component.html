@@ -182,6 +182,9 @@
     [attr.aria-label]="locale === 'fr' ? 'Navigation des études de cas' : 'Case study navigation'"
   >
     <a [routerLink]="chrome.homePath">{{ copy.backToHome }}</a>
+    <a [routerLink]="locale === 'fr' ? '/fr/confidentialite' : '/privacy'">
+      {{ locale === 'fr' ? 'Protection des données' : 'Privacy policy' }}
+    </a>
     @if (analytics.available()) {
       <button class="privacy-settings" type="button" (click)="analytics.openPreferences()">
         {{ locale === 'fr' ? 'Confidentialité' : 'Privacy' }}

@@ -16,6 +16,8 @@ const COPY = {
     alternate: 'English version',
     alternatePath: '/',
     privacy: 'Confidentialité',
+    policy: 'Protection des données',
+    policyPath: '/fr/confidentialite',
   },
   en: {
     title: 'Page not found · Vivien Billot',
@@ -27,6 +29,8 @@ const COPY = {
     alternate: 'Version française',
     alternatePath: '/fr',
     privacy: 'Privacy',
+    policy: 'Privacy policy',
+    policyPath: '/privacy',
   },
 } as const;
 
@@ -41,6 +45,7 @@ const COPY = {
       <nav [attr.aria-label]="copy().navigation">
         <a [routerLink]="copy().homePath">{{ copy().home }}</a>
         <a [routerLink]="copy().alternatePath">{{ copy().alternate }}</a>
+        <a [routerLink]="copy().policyPath">{{ copy().policy }}</a>
       </nav>
       @if (analytics.available()) {
         <button class="privacy-settings" type="button" (click)="analytics.openPreferences()">

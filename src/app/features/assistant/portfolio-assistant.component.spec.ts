@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpErrorResponse } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 import { signal } from '@angular/core';
 import { AnalyticsService } from '../../core/services/analytics.service';
@@ -28,6 +29,7 @@ describe('PortfolioAssistantComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PortfolioAssistantComponent],
       providers: [
+        provideRouter([]),
         { provide: PortfolioAssistantApiService, useValue: api },
         { provide: AnalyticsService, useValue: analytics },
       ],
@@ -64,6 +66,8 @@ describe('PortfolioAssistantComponent', () => {
     expect(dialog?.getAttribute('aria-labelledby')).toBe('assistant-title');
     expect(dialog?.getAttribute('aria-modal')).toBe('true');
     expect(dialog?.textContent).toContain('Vivien Billot');
+    expect(dialog?.querySelector('.assistant-privacy')?.textContent).toContain('OpenAI');
+    expect(dialog?.querySelector('.assistant-privacy a')?.getAttribute('href')).toBe('/privacy');
     expect(element.querySelector('.assistant-dock')).toBeNull();
     expect(element.querySelector('.assistant-sidekick .assistant-persona-side')).toBeTruthy();
     expect(dialog?.querySelector('.contact-shortcut')).toBeNull();
@@ -96,6 +100,9 @@ describe('PortfolioAssistantComponent', () => {
     expect(element.textContent).toContain('On discute ?');
     element.querySelector<HTMLButtonElement>('.assistant-launcher')?.click();
     fixture.detectChanges();
+    expect(element.querySelector('.assistant-privacy a')?.getAttribute('href')).toBe(
+      '/fr/confidentialite',
+    );
     element.querySelector<HTMLButtonElement>('.quick-questions button')?.click();
     await fixture.whenStable();
 

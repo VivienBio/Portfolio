@@ -155,6 +155,56 @@ for (const locale of ['fr', 'en'] as const) {
     }
   });
 
+  test(`${locale}: recommendations and phone clicks have separate non-personal metrics`, async ({
+    page,
+  }, testInfo) => {
+    await interceptAnalytics(page);
+    await page.addInitScript(() => {
+      // Exercise Angular's actual click handlers without opening LinkedIn or a phone application.
+      document.addEventListener('click', (event) => {
+        const link = event.target instanceof Element ? event.target.closest('a') : null;
+        if (link?.matches('a[href^="tel:"], a[href^="https://www.linkedin.com/"]')) {
+          event.preventDefault();
+        }
+      });
+    });
+    await page.goto(path);
+    await activate(page.locator('.consent-accept'), testInfo);
+    await expect.poll(() => eventsNamed(page, 'page_view')).toHaveLength(1);
+
+    await activate(page.locator('.quote a'), testInfo);
+    await expect.poll(() => eventsNamed(page, 'recommendation_click')).toHaveLength(1);
+    expect(await eventsNamed(page, 'contact_click')).toHaveLength(0);
+    expect((await eventsNamed(page, 'recommendation_click'))[0]?.parameters).toMatchObject({
+      locale,
+      channel: 'linkedin',
+      placement: 'recommendations',
+    });
+
+    const phone = page.locator('.contact-link[href^="tel:"]');
+    const phoneHref = await phone.getAttribute('href');
+    await activate(phone, testInfo);
+    await expect.poll(() => eventsNamed(page, 'contact_click')).toHaveLength(1);
+    expect((await eventsNamed(page, 'contact_click'))[0]?.parameters).toMatchObject({
+      locale,
+      channel: 'phone',
+      placement: 'contact',
+    });
+
+    await activate(page.locator('.contact-link[href^="https://www.linkedin.com/"]'), testInfo);
+    await expect.poll(() => eventsNamed(page, 'contact_click')).toHaveLength(2);
+    expect((await eventsNamed(page, 'contact_click'))[1]?.parameters).toMatchObject({
+      channel: 'linkedin',
+      placement: 'contact',
+    });
+    expect(await eventsNamed(page, 'recommendation_click')).toHaveLength(1);
+    expect(await eventsNamed(page, 'page_view')).toHaveLength(1);
+    const payload = JSON.stringify(await readCommands(page));
+    expect(phoneHref).toMatch(/^tel:/);
+    expect(payload).not.toContain(phoneHref!.slice(4));
+    expect(payload).not.toMatch(/tel:|mailto:|linkedin\.com\/in\//);
+  });
+
   test(`${locale}: withdrawing consent clears GA cookies, unloads the tag and keeps locale`, async ({
     page,
     context,
@@ -201,9 +251,9 @@ test('missing analytics configuration leaves the site usable without a consent p
   expect(await readCommands(page)).toEqual([]);
 });
 
-test.describe('Android consent layout', () => {
+test.describe('Touch consent layout', () => {
   test.beforeEach(({}, testInfo) => {
-    test.skip(testInfo.project.name !== 'mobile', 'Android touch layout only');
+    test.skip(!testInfo.project.use.hasTouch, 'Touch viewport layout only');
   });
 
   for (const viewport of [

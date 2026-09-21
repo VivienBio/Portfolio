@@ -36,4 +36,16 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://vivien-billot.web.app/fr/work/tf1" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vivien-billot.web.app/work/tf1" />
   </url>
+  <url>
+    <loc>https://vivien-billot.web.app/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vivien-billot.web.app/privacy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vivien-billot.web.app/fr/confidentialite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vivien-billot.web.app/privacy" />
+  </url>
+  <url>
+    <loc>https://vivien-billot.web.app/fr/confidentialite</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vivien-billot.web.app/privacy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vivien-billot.web.app/fr/confidentialite" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vivien-billot.web.app/privacy" />
+  </url>
 </urlset>

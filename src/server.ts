@@ -110,6 +110,8 @@ const PAGE_PATHS = new Set([
   '/work/tf1',
   '/fr/work/betclic',
   '/fr/work/tf1',
+  '/privacy',
+  '/fr/confidentialite',
 ]);
 
 app.use((req, res, next) => {

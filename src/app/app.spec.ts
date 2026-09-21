@@ -34,6 +34,8 @@ describe('App', () => {
       'work/tf1',
       'fr/work/betclic',
       'fr/work/tf1',
+      'privacy',
+      'fr/confidentialite',
       '**',
     ]);
     for (const route of routes) {

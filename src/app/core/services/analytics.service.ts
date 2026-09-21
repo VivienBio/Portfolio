@@ -7,6 +7,7 @@ export type AnalyticsConsent = 'pending' | 'granted' | 'denied';
 export type AnalyticsEvent =
   | 'file_download'
   | 'contact_click'
+  | 'recommendation_click'
   | 'contact_submit'
   | 'contact_success'
   | 'contact_error'
@@ -23,8 +24,9 @@ export interface AnalyticsParameters {
   readonly cv_language?: 'fr' | 'en';
   readonly file_name?: 'CV-Vivien-Billot-FR.pdf' | 'CV-Vivien-Billot-EN.pdf';
   readonly file_extension?: 'pdf';
-  readonly placement?: 'hero' | 'header' | 'footer' | 'contact' | 'assistant' | 'project';
-  readonly channel?: 'email' | 'linkedin';
+  readonly placement?:
+    'hero' | 'header' | 'footer' | 'contact' | 'assistant' | 'project' | 'recommendations';
+  readonly channel?: 'email' | 'linkedin' | 'phone';
   readonly theme?: 'light' | 'dark';
   readonly target?: 'betclic' | 'tf1';
 }
@@ -53,6 +55,8 @@ const DENIED_CONSENT = {
 const PAGE_TITLES: Readonly<Record<string, string>> = {
   '/': 'Vivien Billot — Portfolio',
   '/fr': 'Vivien Billot — Portfolio français',
+  '/privacy': 'Vivien Billot — Privacy',
+  '/fr/confidentialite': 'Vivien Billot — Confidentialité',
   '/work/betclic': 'Vivien Billot — Betclic case study',
   '/work/tf1': 'Vivien Billot — TF1 case study',
   '/fr/work/betclic': 'Vivien Billot — Étude de cas Betclic',
@@ -61,6 +65,7 @@ const PAGE_TITLES: Readonly<Record<string, string>> = {
 const EVENT_NAMES = new Set<AnalyticsEvent>([
   'file_download',
   'contact_click',
+  'recommendation_click',
   'contact_submit',
   'contact_success',
   'contact_error',
@@ -77,8 +82,8 @@ const PARAMETER_VALUES: Readonly<Record<keyof AnalyticsParameters, readonly stri
   cv_language: ['fr', 'en'],
   file_name: ['CV-Vivien-Billot-FR.pdf', 'CV-Vivien-Billot-EN.pdf'],
   file_extension: ['pdf'],
-  placement: ['hero', 'header', 'footer', 'contact', 'assistant', 'project'],
-  channel: ['email', 'linkedin'],
+  placement: ['hero', 'header', 'footer', 'contact', 'assistant', 'project', 'recommendations'],
+  channel: ['email', 'linkedin', 'phone'],
   theme: ['light', 'dark'],
   target: ['betclic', 'tf1'],
 };

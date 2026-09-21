@@ -254,9 +254,9 @@ const mobileScenarios = [
   { width: 844, height: 390, locale: 'fr', theme: 'dark' },
 ] as const;
 
-test.describe('Android responsive acceptance', () => {
+test.describe('Touch responsive acceptance', () => {
   test.beforeEach(({}, testInfo) => {
-    test.skip(testInfo.project.name !== 'mobile', 'Android touch emulation only');
+    test.skip(!testInfo.project.use.hasTouch, 'Touch viewport layout only');
   });
 
   for (const scenario of mobileScenarios) {

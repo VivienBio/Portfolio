@@ -20,9 +20,7 @@
       <button class="consent-accept" type="button" (click)="accept()">{{ copy().accept }}</button>
     </div>
     <div class="consent-links">
-      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
-        >{{ copy().policy }} <span aria-hidden="true">↗</span></a
-      >
+      <a [href]="copy().policyPath">{{ copy().policy }}</a>
       @if (analytics.preferencesOpen() && analytics.consent() !== 'pending') {
         <button class="consent-close" type="button" (click)="close()">{{ copy().close }}</button>
       }
