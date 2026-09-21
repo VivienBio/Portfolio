@@ -1,5 +1,13 @@
-import { DOCUMENT, NgOptimizedImage } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { DOCUMENT, NgOptimizedImage, ViewportScroller } from '@angular/common';
+import {
+  Component,
+  DestroyRef,
+  ElementRef,
+  afterNextRender,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { PORTFOLIO_REPOSITORY } from '../../core/application/portfolio.repository';
@@ -8,6 +16,7 @@ import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { LocalPortfolioRepository } from '../../core/infrastructure/local-portfolio.repository';
 import { PreferencesService } from '../../core/services/preferences.service';
 import { AnalyticsService } from '../../core/services/analytics.service';
+import { observeHeaderOffset } from '../../core/services/observe-header-offset';
 import { PortfolioAssistantComponent } from '../assistant/portfolio-assistant.component';
 import { ProjectsGridComponent } from '../projects/projects-grid.component';
 import { PORTFOLIO_PAGE_COPY } from './portfolio-page.copy';
@@ -42,6 +51,17 @@ export class PortfolioPageComponent {
   protected readonly scrollProgress = signal(0);
 
   constructor() {
+    const host = inject<ElementRef<HTMLElement>>(ElementRef);
+    const destroyRef = inject(DestroyRef);
+    const scroller = inject(ViewportScroller);
+    afterNextRender(() =>
+      observeHeaderOffset(
+        this.document,
+        host.nativeElement.querySelector('.site-header'),
+        destroyRef,
+        scroller,
+      ),
+    );
     this.document.documentElement.lang = this.locale;
     const path = this.locale === 'fr' ? '/fr' : '/';
     this.seo.apply({

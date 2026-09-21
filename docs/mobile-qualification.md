@@ -23,6 +23,17 @@ Les captures et traces des tests échoués sont conservées sept jours dans les 
 GitHub Actions `browser-test-failures` ou `release-browser-test-failures`.
 Ils n'utilisent ni le compte Analytics public ni les données de visiteurs.
 
+La suite couvre aussi les seuils de navigation à 600, 760, 761, 768, 820, 1024,
+1100, 1101 et 1280 px. Un parcours garde une conversation ouverte pendant les
+changements téléphone → paysage → tablette → bureau → petit écran : le brouillon,
+la réponse, la langue, le thème et l'accès aux commandes doivent rester conservés.
+
+Les tests de texte agrandi à 200 % contrôlent la taille racine réellement appliquée,
+les glyphes et boutons dans l'écran, le consentement, le bot et le décalage des ancres
+sous un en-tête devenu plus haut. Cette simulation CSS ne remplace pas une preuve
+de tous les réglages d'accessibilité Android. Les captures font l'objet d'une relecture
+visuelle ; ces contrôles ne garantissent pas une identité de rendu entre tous les appareils.
+
 ## Reproduire les contrôles
 
 Avec la version de Node indiquée par `.nvmrc` et les dépendances verrouillées :

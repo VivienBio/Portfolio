@@ -349,8 +349,10 @@ async function expectTouchTarget(locator: Locator): Promise<void> {
   const box = await locator.boundingBox();
   expect(box).not.toBeNull();
   const label = (await locator.getAttribute('aria-label')) ?? (await locator.innerText());
-  expect(box!.width, `${label} width`).toBeGreaterThanOrEqual(48);
-  expect(box!.height, `${label} height`).toBeGreaterThanOrEqual(48);
+  // Gecko can report 47.999984px for an exact 48px CSS target.
+  // Ignore floating-point noise, while still rejecting genuinely undersized controls.
+  expect(box!.width + 0.001, `${label} width`).toBeGreaterThanOrEqual(48);
+  expect(box!.height + 0.001, `${label} height`).toBeGreaterThanOrEqual(48);
 }
 
 async function expectInsideViewport(locator: Locator, page: Page): Promise<void> {
