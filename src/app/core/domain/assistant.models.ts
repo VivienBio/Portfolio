@@ -20,7 +20,7 @@ export interface ContactSubmission {
 export const PORTFOLIO_CONTACT = Object.freeze({
   email: 'billot.vivien@gmail.com',
   phone: '06 23 85 77 32',
-  linkedin: 'https://www.linkedin.com/in/vivien-billot-a86b2557/',
+  linkedin: 'https://www.linkedin.com/in/vivien-billot/',
 });
 
 export const PORTFOLIO_PUBLIC_IDENTITY = Object.freeze({

@@ -4,6 +4,7 @@ import { SITE_URL, SeoPage, absoluteUrl, ogLocale } from '../infrastructure/site
 
 const MANAGED_LINK_ATTRIBUTE = 'data-seo';
 const PERSON_SCRIPT_ID = 'person-json-ld';
+const DEFAULT_SOCIAL_IMAGE = '/og-image.jpg';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -12,6 +13,7 @@ export class SeoService {
   private readonly title = inject(Title);
 
   apply(page: SeoPage): void {
+    const image = `${SITE_URL}${page.image ?? DEFAULT_SOCIAL_IMAGE}`;
     this.meta.removeTag('name="robots"');
     this.title.setTitle(page.title);
     this.meta.updateTag({ name: 'description', content: page.description });
@@ -21,7 +23,7 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:title', content: page.title });
     this.meta.updateTag({ property: 'og:description', content: page.description });
     this.meta.updateTag({ property: 'og:url', content: absoluteUrl(page.path) });
-    this.meta.updateTag({ property: 'og:image', content: `${SITE_URL}/og-image.jpg` });
+    this.meta.updateTag({ property: 'og:image', content: image });
     this.meta.updateTag({ property: 'og:image:width', content: '1200' });
     this.meta.updateTag({ property: 'og:image:height', content: '630' });
     this.meta.updateTag({ property: 'og:locale', content: ogLocale(page.locale) });
@@ -32,7 +34,7 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: page.title });
     this.meta.updateTag({ name: 'twitter:description', content: page.description });
-    this.meta.updateTag({ name: 'twitter:image', content: `${SITE_URL}/og-image.jpg` });
+    this.meta.updateTag({ name: 'twitter:image', content: image });
 
     this.replaceManagedLinks(page);
     this.replacePersonJsonLd(page);
@@ -76,10 +78,7 @@ export class SeoService {
       url: absoluteUrl(page.locale === 'fr' ? '/fr' : '/'),
       image: `${SITE_URL}/vivien-billot-linkedin.jpg`,
       worksFor: { '@type': 'Organization', name: 'Betclic Group' },
-      sameAs: [
-        'https://www.linkedin.com/in/vivien-billot-a86b2557/',
-        'https://github.com/VivienBio',
-      ],
+      sameAs: ['https://www.linkedin.com/in/vivien-billot/', 'https://github.com/VivienBio'],
       knowsAbout: [
         'C#',
         '.NET',

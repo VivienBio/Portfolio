@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { SITE_URL } from '../../core/infrastructure/site';
 import { CASE_STUDIES } from './case-studies.copy';
 import { CaseStudyComponent } from './case-study.component';
 
@@ -85,6 +86,15 @@ describe('CaseStudyComponent', () => {
       element.querySelector<HTMLAnchorElement>('.case-cta-primary')?.href.startsWith('mailto:'),
     ).toBe(true);
     expect(element.querySelector('.case-language')?.getAttribute('href')).toBe('/fr/work/betclic');
+  });
+
+  it('shares a social preview image specific to the case study', () => {
+    render();
+    const ogImage = document.head.querySelector('meta[property="og:image"]');
+    const twitterImage = document.head.querySelector('meta[name="twitter:image"]');
+
+    expect(ogImage?.getAttribute('content')).toBe(`${SITE_URL}/og-case-betclic-en.jpg`);
+    expect(twitterImage?.getAttribute('content')).toBe(`${SITE_URL}/og-case-betclic-en.jpg`);
   });
 
   it('provides complete, mirrored copy for every locale and slug', () => {

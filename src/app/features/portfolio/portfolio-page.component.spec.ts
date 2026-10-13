@@ -94,7 +94,7 @@ describe('PortfolioPageComponent', () => {
     expect(element.textContent).toContain('TicTacToe Solver');
     expect(element.querySelector('app-portfolio-assistant')).toBeTruthy();
     expect(
-      element.querySelector('a[href="https://www.linkedin.com/in/vivien-billot-a86b2557/"]'),
+      element.querySelector('a[href="https://www.linkedin.com/in/vivien-billot/"]'),
     ).toBeTruthy();
     expect(Boolean(projects && contact && projects.compareDocumentPosition(contact) & 4)).toBe(
       true,
