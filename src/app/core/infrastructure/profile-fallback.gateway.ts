@@ -18,7 +18,7 @@ const ANSWERS = {
         'parcours',
       ],
       answer:
-        'Je suis Senior Software Engineer, avec un fil conducteur dans mon parcours : rendre des domaines complexes plus lisibles, plus fiables et plus rapides à faire évoluer.\n\nJ’ai construit cette approche dans des contextes exigeants : le médical réglementé chez Stago, la transformation digitale d’un réseau de plus de 500 agences chez Rent A Car, la refonte du SI publicitaire chez TF1 avec deux équipes pluridisciplinaires, puis aujourd’hui le pricing sportif propriétaire chez Betclic, où les probabilités internes, les simulations Monte-Carlo et les décisions de marché ont un impact direct sur le risque et le ROI.\n\nCe qui me caractérise, c’est cette capacité à relier le métier, l’architecture, la qualité, le delivery et la progression des équipes. Je ne cherche pas seulement à livrer une feature : je veux laisser un système plus compréhensible et une équipe plus autonome.',
+        'Je suis Senior Software Engineer, avec un fil conducteur dans mon parcours : rendre des domaines complexes plus lisibles, plus fiables et plus rapides à faire évoluer.\n\nJ’ai construit cette approche dans des contextes exigeants : le médical réglementé chez Stago, la transformation digitale d’un réseau de plus de 500 agences chez Rent A Car, la refonte du SI publicitaire chez TF1 avec trois équipes pluridisciplinaires, puis aujourd’hui le pricing sportif propriétaire chez Betclic, où les probabilités internes, les simulations Monte-Carlo et les décisions de marché ont un impact direct sur le risque et le ROI.\n\nCe qui me caractérise, c’est cette capacité à relier le métier, l’architecture, la qualité, le delivery et la progression des équipes. Je ne cherche pas seulement à livrer une feature : je veux laisser un système plus compréhensible et une équipe plus autonome.',
     },
     {
       terms: [
@@ -37,7 +37,7 @@ const ANSWERS = {
     {
       terms: ['aides tu une equipe', 'livrer mieux', 'leadership', 'management', 'coaching'],
       answer:
-        'J’aide une équipe à livrer mieux en rendant le travail plus clair. Je cherche d’abord à aligner le besoin métier, le modèle, les responsabilités du code et les signaux de production. Ensuite, je transforme cette clarté en pratiques concrètes : découpage réaliste, tests utiles, revues de code, standards communs, CI/CD et observabilité.\n\nChez TF1, cette approche m’a permis d’encadrer deux équipes pendant une modernisation majeure du SI publicitaire, avec 11 projets mis en production, 4 engagés et plus de 80 incidents traités. Chez Rent A Car et Stago, elle s’est aussi traduite par du recrutement, du mentorat, de la planification et la montée en autonomie d’équipes techniques.',
+        'J’aide une équipe à livrer mieux en rendant le travail plus clair. Je cherche d’abord à aligner le besoin métier, le modèle, les responsabilités du code et les signaux de production. Ensuite, je transforme cette clarté en pratiques concrètes : découpage réaliste, tests utiles, revues de code, standards communs, CI/CD et observabilité.\n\nChez TF1, cette approche m’a permis d’encadrer trois équipes pendant une modernisation majeure du SI publicitaire, avec 11 projets mis en production, 4 engagés et plus de 80 incidents traités. Chez Rent A Car et Stago, elle s’est aussi traduite par du recrutement, du mentorat, de la planification et la montée en autonomie d’équipes techniques.',
     },
     {
       terms: [
@@ -137,7 +137,7 @@ const ANSWERS = {
     {
       terms: ['tf1', 'publicit'],
       answer:
-        'Chez Groupe TF1, j’ai été le référent technique de deux équipes pluridisciplinaires pendant la refonte du SI publicitaire. Le bilan documenté comprend 11 projets en production, 4 en cours et plus de 80 incidents traités. J’ai défini architecture et roadmaps, piloté la modernisation vers .NET 6/8, Angular, Azure et AKS, renforcé la sécurité avec Checkmarx, Snyk et SonarQube, puis réduit le lead time avec les pratiques Accelerate, les tests et l’observabilité.',
+        'Chez Groupe TF1, j’ai été le référent technique de trois équipes pluridisciplinaires pendant la refonte du SI publicitaire. Le bilan documenté comprend 11 projets en production, 4 en cours et plus de 80 incidents traités. J’ai défini architecture et roadmaps, piloté la modernisation vers .NET 6/8, Angular, Azure et AKS, renforcé la sécurité avec Checkmarx, Snyk et SonarQube, puis réduit le lead time avec les pratiques Accelerate, les tests et l’observabilité.',
     },
     {
       terms: ['rent', 'location'],
@@ -172,7 +172,7 @@ const ANSWERS = {
         'background',
       ],
       answer:
-        'I am a Senior Software Engineer, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with two multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
+        'I am a Senior Software Engineer, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with three multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
     },
     {
       terms: [
@@ -190,7 +190,7 @@ const ANSWERS = {
     {
       terms: ['help a team', 'deliver better', 'leadership', 'management', 'coaching'],
       answer:
-        'I help a team deliver better by making the work clearer. I first align the business need, the model, code responsibilities, and production signals. Then I turn that clarity into concrete practices: realistic slicing, useful tests, code reviews, shared standards, CI/CD, and observability.\n\nAt TF1, this helped me lead two teams through a major advertising-system modernisation, with 11 projects brought to production, 4 underway, and over 80 incidents resolved. At Rent A Car and Stago, the same approach included hiring, mentoring, planning, and growing technical autonomy.',
+        'I help a team deliver better by making the work clearer. I first align the business need, the model, code responsibilities, and production signals. Then I turn that clarity into concrete practices: realistic slicing, useful tests, code reviews, shared standards, CI/CD, and observability.\n\nAt TF1, this helped me lead three teams through a major advertising-system modernisation, with 11 projects brought to production, 4 underway, and over 80 incidents resolved. At Rent A Car and Stago, the same approach included hiring, mentoring, planning, and growing technical autonomy.',
     },
     {
       terms: [
@@ -290,7 +290,7 @@ const ANSWERS = {
     {
       terms: ['tf1', 'advertis'],
       answer:
-        'At TF1 Group, I was the technical reference for two multidisciplinary teams during the advertising-system redesign. The documented results include 11 projects in production, 4 underway, and over 80 incidents resolved. I defined architecture and roadmaps, led modernisation towards .NET 6/8, Angular, Azure, and AKS, strengthened security with Checkmarx, Snyk, and SonarQube, and reduced lead time through Accelerate practices, testing, and observability.',
+        'At TF1 Group, I was the technical reference for three multidisciplinary teams during the advertising-system redesign. The documented results include 11 projects in production, 4 underway, and over 80 incidents resolved. I defined architecture and roadmaps, led modernisation towards .NET 6/8, Angular, Azure, and AKS, strengthened security with Checkmarx, Snyk, and SonarQube, and reduced lead time through Accelerate practices, testing, and observability.',
     },
     {
       terms: ['rent', 'rental'],

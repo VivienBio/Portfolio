@@ -149,11 +149,11 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       label: 'Resume PDF',
       href: '/assets/CV-Vivien-Billot-EN.pdf',
       fileName: 'CV-Vivien-Billot-EN.pdf',
-      ariaLabel: 'Download Vivien Billot English resume as a PDF',
+      ariaLabel: 'Resume PDF (CV): download Vivien Billot’s English resume',
     },
     theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     hero: {
-      eyebrow: 'Senior Software Engineer · C# / .NET · Distributed systems',
+      eyebrow: 'Freelance Senior Software Engineer & Tech Lead · C# / .NET',
       title: 'Systems where wrong answers',
       accent: 'are expensive.',
       lead: 'For 15+ years, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
@@ -182,9 +182,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         value: '15+',
         label: 'years of engineering, from regulated medical software to real-time pricing',
       },
-      { value: '11', label: 'projects shipped to production while leading two teams at TF1' },
+      { value: '11', label: 'projects shipped to production while leading three teams at TF1' },
       { value: '500+', label: 'rental branches served by platforms my team built at Rent A Car' },
-      { value: '4', label: 'teams led across TF1, Rent A Car, and Stago' },
+      { value: '5', label: 'teams led across TF1, Rent A Car, and Stago' },
     ],
     manifesto: ['ARCHITECT', 'HARDEN', 'SHIP', 'TRANSFER'],
     work: {
@@ -203,10 +203,10 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           path: '/work/betclic',
         },
         {
-          kicker: 'TF1 Group · Mar 2022–Oct 2025 · Tech Lead of two teams',
+          kicker: 'TF1 Group · Feb 2022–Oct 2025 · Tech Lead of three teams',
           title: 'Modernizing a broadcaster’s ad platform without stopping it',
           summary:
-            'Leading the redesign of TF1’s advertising platform from March 2022 to October 2025: 11 projects shipped to production, a VB6-era stack retired step by step, and two teams that got stronger along the way.',
+            'Leading the redesign of TF1’s advertising platform from February 2022 to October 2025: 11 projects shipped to production, a VB6-era stack retired step by step, and three teams that got stronger along the way.',
           path: '/work/tf1',
         },
       ],
@@ -337,9 +337,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       rights: 'All rights reserved',
     },
     seo: {
-      title: 'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems',
+      title: 'Vivien Billot — Freelance Senior Software Engineer (.NET)',
       description:
-        'Senior Software Engineer with 15+ years on high-stakes systems: real-time sports pricing at Betclic, advertising platform modernization at TF1, regulated medical software. C#/.NET, AWS, Azure, distributed systems, team leadership.',
+        'Freelance Senior Software Engineer & Tech Lead: real-time sports pricing at Betclic, TF1 ad platform modernization, medical software. C#/.NET, AWS, Azure.',
     },
   },
   fr: {
@@ -359,11 +359,11 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       label: 'CV PDF',
       href: '/assets/CV-Vivien-Billot-FR.pdf',
       fileName: 'CV-Vivien-Billot-FR.pdf',
-      ariaLabel: 'Télécharger le CV français de Vivien Billot au format PDF',
+      ariaLabel: 'CV PDF : télécharger le CV français de Vivien Billot',
     },
     theme: { light: 'Activer le thème clair', dark: 'Activer le thème sombre' },
     hero: {
-      eyebrow: 'Senior Software Engineer · C# / .NET · Systèmes distribués',
+      eyebrow: 'Senior Software Engineer & Tech Lead freelance · C# / .NET',
       title: 'Des systèmes où l’erreur',
       accent: 'coûte cher.',
       lead: '15+ ans à concevoir et moderniser des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
@@ -389,9 +389,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     metricsLabel: 'Impact sélectionné',
     metrics: [
       { value: '15+', label: 'années d’ingénierie, du médical réglementé au pricing temps réel' },
-      { value: '11', label: 'projets mis en production en encadrant deux équipes chez TF1' },
+      { value: '11', label: 'projets mis en production en encadrant trois équipes chez TF1' },
       { value: '500+', label: 'agences servies par les plateformes construites chez Rent A Car' },
-      { value: '4', label: 'équipes encadrées chez TF1, Rent A Car et Stago' },
+      { value: '5', label: 'équipes encadrées chez TF1, Rent A Car et Stago' },
     ],
     manifesto: ['ARCHITECTURER', 'FIABILISER', 'LIVRER', 'TRANSMETTRE'],
     work: {
@@ -410,10 +410,10 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           path: '/fr/work/betclic',
         },
         {
-          kicker: 'Groupe TF1 · Mars 2022–octobre 2025 · Tech Lead de deux équipes',
+          kicker: 'Groupe TF1 · Février 2022–octobre 2025 · Tech Lead de trois équipes',
           title: 'Moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
           summary:
-            'Piloter la refonte du SI publicitaire de TF1 de mars 2022 à octobre 2025 : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et deux équipes qui en sont sorties plus fortes.',
+            'Piloter la refonte du SI publicitaire de TF1 de février 2022 à octobre 2025 : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et trois équipes qui en sont sorties plus fortes.',
           path: '/fr/work/tf1',
         },
       ],
@@ -545,9 +545,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       rights: 'Tous droits réservés',
     },
     seo: {
-      title: 'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués',
+      title: 'Vivien Billot — Senior Software Engineer .NET freelance',
       description:
-        'Senior Software Engineer, 15+ ans sur des systèmes à fort enjeu : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1, logiciel médical réglementé. C#/.NET, AWS, Azure, leadership d’équipe.',
+        'Senior Software Engineer & Tech Lead freelance : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1. C#/.NET, AWS, Azure.',
     },
   },
 };

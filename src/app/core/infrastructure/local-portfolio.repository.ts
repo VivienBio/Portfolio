@@ -81,9 +81,9 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     {
       company: 'Groupe TF1',
       role: 'Tech Lead / Architecte',
-      period: 'Mars 2022 — octobre 2025',
+      period: 'Février 2022 — octobre 2025',
       summary:
-        'Référent technique de deux équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
+        'Référent technique de trois équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
       achievements: [
         'Donner un cap commun aux équipes : architecture, roadmap, priorisation, coaching, recrutement et respect des délais',
         'Réduire le lead time et traiter plus de 80 incidents avec les pratiques Accelerate, les tests et l’observabilité',
@@ -95,7 +95,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     {
       company: 'Rent A Car',
       role: 'Développeur senior → Tech Lead / Responsable technique',
-      period: 'Déc. 2017 — fév. 2022',
+      period: 'Déc. 2017 — déc. 2021',
       summary:
         'De développeur senior à responsable technique d’une équipe de neuf personnes, j’ai contribué à la transformation numérique d’un réseau de plus de 500 agences.',
       achievements: [
@@ -344,9 +344,9 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     {
       ...FRENCH_PORTFOLIO.experiences[1]!,
       role: 'Tech Lead / Software Architect',
-      period: 'Mar 2022 — Oct 2025',
+      period: 'Feb 2022 — Oct 2025',
       summary:
-        'As the technical reference for two multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
+        'As the technical reference for three multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
       achievements: [
         'Giving teams a shared direction through architecture, roadmaps, prioritization, coaching, hiring, and delivery discipline',
         'Reducing lead time and resolving over 80 incidents through Accelerate practices, testing, and observability',
@@ -357,7 +357,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     {
       ...FRENCH_PORTFOLIO.experiences[2]!,
       role: 'Senior Developer → Tech Lead / Technical Manager',
-      period: 'Dec 2017 — Feb 2022',
+      period: 'Dec 2017 — Dec 2021',
       summary:
         'I progressed from senior developer to technical manager of a nine-person team, contributing to the digital transformation of a network of over 500 branches.',
       achievements: [
