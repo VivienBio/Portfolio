@@ -30,14 +30,16 @@ jobs:
       - name: Update the lockfile for the patched versions
         run: |
           set +e
-          npm install --no-audit --no-fund --save-prefix='~' \
-            @angular/common@22.2.2 @angular/compiler@22.2.2 @angular/core@22.2.2 \
-            @angular/forms@22.2.2 @angular/platform-browser@22.2.2 \
-            @angular/platform-server@22.2.2 @angular/router@22.2.2 @angular/ssr@22.2.2 \
-            @angular/build@22.2.2 @angular/cli@22.2.2 @angular/compiler-cli@22.2.2 \
-            > install.log 2>&1
+          node -e '
+            const fs = require("fs");
+            const lock = JSON.parse(fs.readFileSync("package-lock.json", "utf8"));
+            for (const key of Object.keys(lock.packages)) {
+              if (/node_modules\/(@angular|@angular-devkit|@schematics)\//.test(key)) delete lock.packages[key];
+            }
+            fs.writeFileSync("package-lock.json", JSON.stringify(lock, null, 2) + "\n");
+          '
+          npm install --no-audit --no-fund > install.log 2>&1
           rc=$?
-          [ "$rc" -eq 0 ] && { npm install --no-audit --no-fund compression@^1.8.2 >> install.log 2>&1; rc=$?; }
           echo "::notice title=npm-install::rc=$rc $(tail -c 3500 install.log | tr '\n' ' ')"
           [ "$rc" -eq 0 ] || exit 1
           npm update proxy-addr --no-audit --no-fund > update.log 2>&1
