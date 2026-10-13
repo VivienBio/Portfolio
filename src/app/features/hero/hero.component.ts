@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
         automatisation IA.
       </p>
       <a
-        href="https://linkedin.com/in/vivien-billot-a86b2557/"
+        href="https://linkedin.com/in/vivien-billot/"
         target="_blank"
         class="inline-block px-8 py-3 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform"
         >Me contacter sur LinkedIn</a

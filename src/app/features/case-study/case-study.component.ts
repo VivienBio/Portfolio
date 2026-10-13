@@ -87,6 +87,7 @@ export class CaseStudyComponent {
       path,
       locale: this.locale,
       ogType: 'article',
+      image: `/og-case-${this.slug}-${this.locale}.jpg`,
       alternates: [
         { hreflang: 'en', path: enPath },
         { hreflang: 'fr', path: frPath },
