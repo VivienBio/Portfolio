@@ -472,6 +472,11 @@ h1 > em {
 .reveal-4 {
   animation-delay: 0.4s;
 }
+/* Headline and lead are the largest paint: keep them visible, only slide them in. */
+.reveal-lcp {
+  opacity: 1;
+  animation-name: rise;
+}
 .metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1173,6 +1178,14 @@ footer {
   }
   to {
     opacity: 1;
+    transform: none;
+  }
+}
+@keyframes rise {
+  from {
+    transform: translateY(28px);
+  }
+  to {
     transform: none;
   }
 }

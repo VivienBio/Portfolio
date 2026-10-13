@@ -24,6 +24,7 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:description', content: page.description });
     this.meta.updateTag({ property: 'og:url', content: absoluteUrl(page.path) });
     this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ property: 'og:image:alt', content: page.title });
     this.meta.updateTag({ property: 'og:image:width', content: '1200' });
     this.meta.updateTag({ property: 'og:image:height', content: '630' });
     this.meta.updateTag({ property: 'og:locale', content: ogLocale(page.locale) });
@@ -35,6 +36,7 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:title', content: page.title });
     this.meta.updateTag({ name: 'twitter:description', content: page.description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
+    this.meta.updateTag({ name: 'twitter:image:alt', content: page.title });
 
     this.replaceManagedLinks(page);
     this.replacePersonJsonLd(page);
@@ -74,10 +76,9 @@ export class SeoService {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Vivien Billot',
-      jobTitle: 'Senior Software Engineer',
+      jobTitle: 'Freelance Senior Software Engineer & Tech Lead',
       url: absoluteUrl(page.locale === 'fr' ? '/fr' : '/'),
       image: `${SITE_URL}/vivien-billot-linkedin.jpg`,
-      worksFor: { '@type': 'Organization', name: 'Betclic Group' },
       sameAs: ['https://www.linkedin.com/in/vivien-billot/', 'https://github.com/VivienBio'],
       knowsAbout: [
         'C#',
