@@ -41,8 +41,9 @@ for (const locale of ['fr', 'en'] as const) {
     await expectLocale(page, locale);
     await activate(page.locator('.brand'), testInfo);
     await expect(page).toHaveURL(new RegExp(`${copy.path === '/' ? '/' : '/fr'}#accueil$`));
-    await activate(page.locator('.site-header nav a[href$="#expertise"]'), testInfo);
-    await expect(page).toHaveURL(new RegExp(`${copy.path === '/' ? '/' : '/fr'}#expertise$`));
+    await openNavigation(page, testInfo);
+    await activate(page.locator('.site-header nav a[href$="#approche"]'), testInfo);
+    await expect(page).toHaveURL(new RegExp(`${copy.path === '/' ? '/' : '/fr'}#approche$`));
     await expectLocale(page, locale);
 
     await activate(page.locator('.theme-button'), testInfo);
@@ -282,14 +283,26 @@ test.describe('Touch responsive acceptance', () => {
       await expectLocale(page, scenario.locale);
       await expectNoHorizontalOverflow(page);
       for (const target of await page
-        .locator('.header-actions > a, .header-actions > button, .site-header nav a')
+        .locator('.header-actions > a, .header-actions > button')
         .all()) {
         await expectTouchTarget(target);
       }
+      const menuToggle = page.locator('.menu-toggle');
+      if (await menuToggle.isVisible()) {
+        await expectTouchTarget(menuToggle);
+        await expectNoHorizontalOverflow(page);
+      }
+      await openNavigation(page, testInfo);
+      for (const target of await page.locator('.site-header nav a').all()) {
+        await expectTouchTarget(target);
+        await expectInsideViewport(target, page);
+      }
 
-      // Playwright scrolls the horizontal mobile navigation into view before its real tap.
       await page.locator('.site-header nav a[href$="#contact"]').tap();
       await expect(page).toHaveURL(/#contact$/);
+      if (await menuToggle.isVisible()) {
+        await expect(menuToggle).toHaveAttribute('aria-expanded', 'false');
+      }
       await expectLocale(page, scenario.locale);
       await page.locator('.brand').tap();
       await expectNoHorizontalOverflow(page);
@@ -322,6 +335,17 @@ test.describe('Touch responsive acceptance', () => {
     });
   }
 });
+
+/** Small screens fold the navigation behind a menu button; wider ones always show it. */
+async function openNavigation(page: Page, testInfo: TestInfo): Promise<void> {
+  const toggle = page.locator('.menu-toggle');
+  if (!(await toggle.isVisible())) return;
+  if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
+    await activate(toggle, testInfo);
+  }
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('#site-nav')).toBeVisible();
+}
 
 async function activate(locator: Locator, testInfo: TestInfo): Promise<void> {
   if (testInfo.project.use.hasTouch) {

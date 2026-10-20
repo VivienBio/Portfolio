@@ -1,25 +1,20 @@
-<div class="projects-grid">
-  @for (project of projects(); track project.title; let index = $index) {
-    <article>
-      <div class="project-topline">
-        <span>0{{ index + 1 }}</span
-        ><small>{{ project.category }}</small>
+<ul class="projects-list">
+  @for (project of projects(); track project.title) {
+    <li class="project">
+      <div class="project-head">
+        <h3>
+          <a [href]="project.url" target="_blank" rel="noopener noreferrer"
+            >{{ project.title }} <span aria-hidden="true">↗</span></a
+          >
+        </h3>
+        <small>{{ project.category }}</small>
       </div>
-      <h3>{{ project.title }}</h3>
       <p>{{ project.description }}</p>
-      <blockquote>{{ project.proof }}</blockquote>
-      <ul [attr.aria-label]="copy().technologies">
+      <ul class="project-tags" [attr.aria-label]="copy().technologies">
         @for (technology of project.technologies; track technology) {
           <li>{{ technology }}</li>
         }
       </ul>
-      <a
-        [href]="project.url"
-        [attr.aria-label]="copy().open + ' — ' + project.title"
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ copy().open }} <span aria-hidden="true">↗</span></a
-      >
-    </article>
+    </li>
   }
-</div>
+</ul>

@@ -2,8 +2,8 @@ import { Component, computed, input } from '@angular/core';
 import { PortfolioLocale, PortfolioProject } from '../../core/domain/portfolio.models';
 
 const GRID_COPY = {
-  en: { technologies: 'Project technologies', open: 'View the code or profile' },
-  fr: { technologies: 'Technologies du projet', open: 'Voir le code ou le profil' },
+  en: { technologies: 'Project technologies' },
+  fr: { technologies: 'Technologies du projet' },
 } as const;
 
 @Component({

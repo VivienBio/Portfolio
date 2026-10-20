@@ -1,9 +1,7 @@
-<a class="skip-link" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contenu">{{
-  copy.skipToContent
-}}</a>
-<header class="site-header">
+<a class="skip-link" [routerLink]="homePath" fragment="contenu">{{ copy.skipToContent }}</a>
+<header #siteHeader class="site-header" [class.menu-open]="menuOpen()">
   <div class="scroll-progress" aria-hidden="true" [style.width.%]="scrollProgress()"></div>
-  <a class="brand" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="accueil">
+  <a class="brand" [routerLink]="homePath" fragment="accueil" (click)="menuOpen.set(false)">
     <span class="brand-photo" aria-hidden="true">
       <img ngSrc="/vivien-billot-avatar.webp" width="160" height="160" alt="" priority />
     </span>
@@ -13,14 +11,16 @@
     </span>
     <span class="visually-hidden">{{ copy.homeHint }}</span>
   </a>
-  <nav [attr.aria-label]="copy.navigationLabel">
-    <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="work">{{ copy.navigation[0] }}</a
-    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="expertise">{{
-      copy.navigation[1]
-    }}</a
-    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="parcours">{{ copy.navigation[2] }}</a
-    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="projets">{{ copy.navigation[3] }}</a
-    ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contact">{{ copy.navigation[4] }}</a>
+  <nav
+    #siteNavigation
+    id="site-nav"
+    class="site-nav"
+    [attr.aria-label]="copy.navigationLabel"
+    (click)="closeMenuAfterNavigation($event)"
+  >
+    @for (item of copy.navigation; track item.fragment) {
+      <a [routerLink]="homePath" [fragment]="item.fragment">{{ item.label }}</a>
+    }
   </nav>
   <span class="availability"><i aria-hidden="true"></i> {{ copy.availability }}</span>
   <div class="header-actions" role="group" [attr.aria-label]="copy.headerActionsLabel">
@@ -50,315 +50,294 @@
     <button
       class="theme-button"
       type="button"
+      [class.is-dark]="preferences.theme() === 'dark'"
       (click)="toggleTheme()"
       [attr.aria-label]="themeLabel()"
       [title]="themeLabel()"
     >
-      <span aria-hidden="true">{{ preferences.theme() === 'dark' ? '☀' : '◐' }}</span>
+      <svg class="icon icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+        <path d="M20.2 14.6A8.5 8.5 0 0 1 9.4 3.8a8.5 8.5 0 1 0 10.8 10.8Z" />
+      </svg>
+      <svg class="icon icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+        <circle cx="12" cy="12" r="4.2" />
+        <path
+          d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"
+        />
+      </svg>
     </button>
   </div>
+  <button
+    #menuToggle
+    class="menu-toggle"
+    type="button"
+    aria-controls="site-nav"
+    [attr.aria-expanded]="menuOpen()"
+    (click)="toggleMenu()"
+  >
+    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+      <path class="icon-open" d="M4 7h16M4 12h16M4 17h16" />
+      <path class="icon-close" d="M6 6l12 12M18 6 6 18" />
+    </svg>
+    <span class="visually-hidden">{{ copy.menu }}</span>
+  </button>
 </header>
 
 <main id="contenu" tabindex="-1">
   <section class="hero" id="accueil" tabindex="-1" aria-labelledby="hero-title">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-copy">
-      <p class="eyebrow reveal reveal-1">
-        <span></span><b>{{ copy.hero.eyebrow }}</b>
-      </p>
+      <p class="hero-role reveal reveal-1">{{ copy.hero.eyebrow }}</p>
       <h1 id="hero-title" class="reveal reveal-2 reveal-lcp">
         <span>{{ copy.hero.title }}</span
         ><em>{{ copy.hero.accent }}</em>
       </h1>
       <p class="lead reveal reveal-3 reveal-lcp">{{ copy.hero.lead }}</p>
       <div class="actions reveal reveal-4">
-        <a class="primary" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="work"
+        <a class="primary" [routerLink]="homePath" fragment="work"
           ><span>{{ copy.hero.primaryAction }}</span
           ><b aria-hidden="true">↓</b></a
-        ><a class="secondary" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contact"
-          >{{ copy.hero.secondaryAction }} <span aria-hidden="true">→</span></a
-        >
+        ><a class="secondary" [routerLink]="homePath" fragment="contact">{{
+          copy.hero.secondaryAction
+        }}</a>
       </div>
-      <div class="hero-proof reveal reveal-4">
+      <ul class="hero-proof reveal reveal-4">
         @for (proof of copy.hero.proof; track proof) {
-          <span>{{ proof }}</span>
+          <li>{{ proof }}</li>
         }
-      </div>
+      </ul>
     </div>
-    <aside class="signal-card reveal reveal-3" [attr.aria-label]="copy.hero.profileLabel">
-      <div class="card-top">
-        <p>{{ copy.hero.profileLabel }}</p>
-        <span>14+</span>
-      </div>
-      <div class="profile-snapshot">
-        <p>{{ copy.hero.profileTitle }}</p>
-        <ul>
-          @for (point of copy.hero.profilePoints; track point; let index = $index) {
-            <li>
-              <b>0{{ index + 1 }}</b
-              ><span>{{ point }}</span>
-            </li>
-          }
-        </ul>
-      </div>
-      <div class="card-bottom">
-        @for (item of copy.hero.profileFooter; track item) {
-          <p>{{ item }}</p>
-        }
-      </div>
-    </aside>
-  </section>
-
-  <section class="metrics" [attr.aria-label]="copy.metricsLabel">
-    @for (metric of copy.metrics; track metric.value; let index = $index) {
-      <div>
-        <small>0{{ index + 1 }}</small
-        ><strong>{{ metric.value }}</strong
-        ><span>{{ metric.label }}</span>
-      </div>
-    }
-  </section>
-
-  <section class="manifesto" aria-label="Vision">
-    @for (item of copy.manifesto; track item; let last = $last) {
-      <span>{{ item }}</span>
-      @if (!last) {
-        <i aria-hidden="true">·</i>
-      }
-    }
-  </section>
-
-  <section class="section work" id="work" tabindex="-1" aria-labelledby="work-title">
-    <div class="section-heading inverse">
-      <div>
-        <p class="eyebrow">{{ copy.work.eyebrow }}</p>
-        <h2 id="work-title">
-          {{ copy.work.title }}<br /><em>{{ copy.work.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.work.intro }}</p>
-    </div>
-
-    <div class="work-flagships">
-      @for (flagship of copy.work.flagships; track flagship.path) {
-        <a class="work-card" [routerLink]="flagship.path">
-          <p class="work-kicker">{{ flagship.kicker }}</p>
-          <h3>{{ flagship.title }}</h3>
-          <p class="work-summary">{{ flagship.summary }}</p>
-          <span class="work-cta">{{ copy.work.openCase }} <b aria-hidden="true">→</b></span>
-        </a>
-      }
-    </div>
-
-    <div class="work-compact">
-      @for (row of copy.work.compact; track row.company) {
-        <article class="work-row">
-          <div class="work-row-meta">
-            <span>{{ row.company }}</span
-            ><span>{{ row.period }}</span>
-          </div>
-          <p class="work-row-role">{{ row.role }}</p>
-          <p class="work-row-summary">{{ row.summary }}</p>
-          <ul class="work-tags" [attr.aria-label]="copy.expertise.technologies">
-            @for (tag of row.tags; track tag) {
-              <li>{{ tag }}</li>
-            }
-          </ul>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section
-    class="section principles"
-    id="principes"
-    tabindex="-1"
-    aria-labelledby="principles-title"
-  >
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">{{ copy.principles.eyebrow }}</p>
-        <h2 id="principles-title">
-          {{ copy.principles.title }}<br /><em>{{ copy.principles.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.principles.intro }}</p>
-    </div>
-    <div class="principles-grid">
-      @for (principle of copy.principles.items; track principle.title; let index = $index) {
-        <article>
-          <b aria-hidden="true">0{{ index + 1 }}</b>
-          <h3>{{ principle.title }}</h3>
-          <p>{{ principle.description }}</p>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section class="section" id="expertise" tabindex="-1" aria-labelledby="expertise-title">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">{{ copy.expertise.eyebrow }}</p>
-        <h2 id="expertise-title">
-          {{ copy.expertise.title }}<br /><em>{{ copy.expertise.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.expertise.intro }}</p>
-    </div>
-    <div class="expertise-grid">
-      @for (item of portfolio.expertises; track item.title) {
-        <article>
-          <div class="card-index">
-            <span>{{ item.index }}</span
-            ><i aria-hidden="true">↗</i>
-          </div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
-          <ul [attr.aria-label]="copy.expertise.technologies">
-            @for (technology of item.technologies; track technology) {
-              <li>{{ technology }}</li>
-            }
-          </ul>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section
-    class="section working-style"
-    id="approche"
-    tabindex="-1"
-    aria-labelledby="working-style-title"
-  >
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">{{ copy.workingStyle.eyebrow }}</p>
-        <h2 id="working-style-title">
-          {{ copy.workingStyle.title }}<br /><em>{{ copy.workingStyle.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.workingStyle.intro }}</p>
-    </div>
-    <div class="working-style-grid">
-      @for (item of portfolio.workingStyle; track item.index) {
-        <article [class.is-vigilance]="item.kind === 'vigilance'">
-          <div class="working-style-meta">
-            <span>{{
-              item.kind === 'strength' ? copy.workingStyle.strength : copy.workingStyle.vigilance
-            }}</span>
-            <b>{{ item.index }}</b>
-          </div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
-          <p class="working-style-practice">
-            <strong>{{ copy.workingStyle.safeguard }}</strong
-            >{{ item.practice }}
-          </p>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section class="section journey" id="parcours" tabindex="-1" aria-labelledby="journey-title">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">{{ copy.journey.eyebrow }}</p>
-        <h2 id="journey-title">
-          {{ copy.journey.title }}<br /><em>{{ copy.journey.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.journey.intro }}</p>
-    </div>
-    <div class="timeline">
-      @for (experience of portfolio.experiences; track experience.company; let index = $index) {
-        <article>
-          <div class="period">
-            <span>0{{ index + 1 }}</span
-            >{{ experience.period }}
-          </div>
-          <div class="experience">
-            <p class="company">{{ experience.company }}</p>
-            <h3>{{ experience.role }}</h3>
-            <p>{{ experience.summary }}</p>
-            <ul>
-              @for (achievement of experience.achievements; track achievement) {
-                <li>{{ achievement }}</li>
-              }
-            </ul>
-            <div class="tags">
-              @for (technology of experience.technologies; track technology) {
-                <span>{{ technology }}</span>
-              }
-            </div>
-          </div>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section class="section learning" id="formation" tabindex="-1" aria-labelledby="learning-title">
-    <div>
-      <p class="eyebrow">{{ copy.learning.eyebrow }}</p>
-      <h2 id="learning-title">
-        {{ copy.learning.title }}<br /><em>{{ copy.learning.accent }}</em>
-      </h2>
-      <p>{{ copy.learning.description }}</p>
-      <a
-        href="https://www.codingame.com/profile/534d2045d7dc0057e6d53d29336657fe6190191"
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ copy.learning.action }} <span aria-hidden="true">↗</span></a
-      >
-    </div>
-    <ul>
-      @for (certification of portfolio.certifications; track certification; let index = $index) {
+    <ul class="metrics reveal reveal-3" [attr.aria-label]="copy.metricsLabel">
+      @for (metric of copy.metrics; track metric.value) {
         <li>
-          <span>0{{ index + 1 }}</span
-          >{{ certification }}
+          <strong>{{ metric.value }}</strong
+          ><span>{{ metric.label }}</span>
         </li>
       }
     </ul>
   </section>
 
-  <section class="section projects" id="projets" tabindex="-1" aria-labelledby="projects-title">
+  <section class="section missions" id="missions" tabindex="-1" aria-labelledby="missions-title">
     <div class="section-heading">
-      <div>
-        <p class="eyebrow">{{ copy.projects.eyebrow }}</p>
-        <h2 id="projects-title">
-          {{ copy.projects.title }}<br /><em>{{ copy.projects.accent }}</em>
-        </h2>
-      </div>
-      <p>{{ copy.projects.intro }}</p>
+      <h2 id="missions-title">{{ copy.missions.title }}</h2>
+      <p>{{ copy.missions.intro }}</p>
     </div>
-    <app-projects-grid [projects]="portfolio.projects" [locale]="locale" />
+    <div class="missions-layout">
+      <ul class="missions-list">
+        @for (mission of copy.missions.items; track mission.title) {
+          <li>
+            <h3>{{ mission.title }}</h3>
+            <p>{{ mission.description }}</p>
+            <p class="mission-proof">
+              <strong>{{ copy.missions.proofLabel }}</strong> {{ mission.proof }}
+            </p>
+          </li>
+        }
+      </ul>
+      <div class="missions-practical">
+        <h3>{{ copy.missions.practicalTitle }}</h3>
+        <dl>
+          @for (row of copy.missions.practical; track row.label) {
+            <div>
+              <dt>{{ row.label }}</dt>
+              <dd>{{ row.value }}</dd>
+            </div>
+          }
+        </dl>
+        <a
+          class="primary light missions-action"
+          [href]="copy.missions.emailHref"
+          (click)="analytics.track('contact_click', { channel: 'email', placement: 'missions' })"
+          ><span>{{ copy.missions.emailAction }}</span></a
+        >
+      </div>
+    </div>
   </section>
 
-  <section class="quote" [attr.aria-label]="copy.quote.label">
-    <div class="quote-mark" aria-hidden="true">“</div>
-    <blockquote>{{ copy.quote.text }}</blockquote>
-    <p>
+  <section class="section work" id="work" tabindex="-1" aria-labelledby="work-title">
+    <div class="section-heading inverse">
+      <h2 id="work-title">{{ copy.work.title }}</h2>
+      <p>{{ copy.work.intro }}</p>
+    </div>
+
+    <div class="career" id="parcours">
+      <div class="work-flagships">
+        @for (flagship of copy.work.flagships; track flagship.path) {
+          <a class="work-card" [routerLink]="flagship.path">
+            <p class="work-kicker">{{ flagship.kicker }}</p>
+            <h3>{{ flagship.title }}</h3>
+            <p class="work-summary">{{ flagship.summary }}</p>
+            <span class="work-cta">{{ copy.work.openCase }}</span>
+          </a>
+        }
+      </div>
+
+      <h3 class="career-title">{{ copy.work.earlierTitle }}</h3>
+      <div class="work-compact">
+        @for (row of copy.work.compact; track row.company) {
+          <article class="work-row">
+            <div class="work-row-meta">
+              <span>{{ row.company }}</span
+              ><span>{{ row.period }}</span>
+            </div>
+            <h4 class="work-row-role">{{ row.role }}</h4>
+            <p class="work-row-summary">{{ row.summary }}</p>
+            <ul class="work-tags" [attr.aria-label]="copy.work.technologies">
+              @for (tag of row.tags; track tag) {
+                <li>{{ tag }}</li>
+              }
+            </ul>
+          </article>
+        }
+        <p class="work-earlier">
+          <span>{{ copy.work.internships.period }}</span
+          >{{ copy.work.internships.text }}
+        </p>
+      </div>
       <a
-        href="https://www.linkedin.com/in/vivien-billot/details/recommendations/"
-        (click)="
-          analytics.track('recommendation_click', {
-            channel: 'linkedin',
-            placement: 'recommendations',
-          })
-        "
-        target="_blank"
-        rel="noopener noreferrer"
-        >{{ copy.quote.action }} <span aria-hidden="true">↗</span></a
+        class="work-cv"
+        [href]="copy.cv.href"
+        (click)="trackCv(locale, 'work')"
+        [attr.download]="copy.cv.fileName"
+        >{{ copy.work.cvAction }} <span aria-hidden="true">↓</span></a
       >
-    </p>
+    </div>
+  </section>
+
+  <section class="section approach" id="approche" tabindex="-1" aria-labelledby="approach-title">
+    <div class="section-heading">
+      <h2 id="approach-title">{{ copy.approach.title }}</h2>
+      <p>{{ copy.approach.intro }}</p>
+    </div>
+
+    <div class="approach-block" id="expertise">
+      <h3 class="block-title">{{ copy.approach.expertiseTitle }}</h3>
+      <ul class="expertise-grid">
+        @for (item of portfolio.expertises; track item.title) {
+          <li>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.description }}</p>
+            <ul class="tags" [attr.aria-label]="copy.approach.technologies">
+              @for (technology of item.technologies; track technology) {
+                <li>{{ technology }}</li>
+              }
+            </ul>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="approach-block" id="principes">
+      <h3 class="block-title">{{ copy.approach.principlesTitle }}</h3>
+      <p class="block-intro">{{ copy.approach.principlesIntro }}</p>
+      <ul class="principles-grid">
+        @for (principle of copy.approach.principles; track principle.title) {
+          <li>
+            <h4>{{ principle.title }}</h4>
+            <p>{{ principle.description }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="approach-block">
+      <h3 class="block-title">{{ copy.approach.styleTitle }}</h3>
+      <div class="working-style-grid">
+        <div class="working-style-column">
+          <h4>{{ copy.approach.strengthsTitle }}</h4>
+          <ul>
+            @for (item of strengths; track item.index) {
+              <li>
+                <strong>{{ item.title }}</strong>
+                <p>{{ item.description }}</p>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="working-style-column is-vigilance">
+          <h4>{{ copy.approach.vigilanceTitle }}</h4>
+          <ul>
+            @for (item of vigilances; track item.index) {
+              <li>
+                <strong>{{ item.title }}</strong>
+                <p>{{ item.description }}</p>
+                <p class="working-style-practice">
+                  <b>{{ copy.approach.safeguard }}</b> {{ item.practice }}
+                </p>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="section recommendations"
+    id="recommandations"
+    tabindex="-1"
+    aria-labelledby="recommendations-title"
+  >
+    <div class="section-heading">
+      <h2 id="recommendations-title">{{ copy.recommendations.title }}</h2>
+      <p>{{ copy.recommendations.intro }}</p>
+    </div>
+    <div class="recommendations-grid">
+      @for (item of copy.recommendations.items; track item.name) {
+        <figure>
+          <blockquote [attr.cite]="contact.linkedinRecommendations">
+            <p>
+              {{ copy.recommendations.openQuote }}{{ item.quote
+              }}{{ copy.recommendations.closeQuote }}
+            </p>
+          </blockquote>
+          <figcaption>
+            <strong>{{ item.name }}</strong>
+            <span>{{ item.role }}</span>
+            @if (item.translated) {
+              <small>{{ copy.recommendations.translated }}</small>
+            }
+          </figcaption>
+        </figure>
+      }
+    </div>
+    <a
+      class="recommendations-link"
+      [href]="contact.linkedinRecommendations"
+      (click)="
+        analytics.track('recommendation_click', {
+          channel: 'linkedin',
+          placement: 'recommendations',
+        })
+      "
+      target="_blank"
+      rel="noopener noreferrer"
+      >{{ copy.recommendations.action }} <span aria-hidden="true">↗</span></a
+    >
+  </section>
+
+  <section class="section projects" id="projets" tabindex="-1" aria-labelledby="projects-title">
+    <div class="section-heading">
+      <h2 id="projects-title">{{ copy.projects.title }}</h2>
+      <p>{{ copy.projects.intro }}</p>
+    </div>
+    <div class="projects-layout">
+      <app-projects-grid [projects]="portfolio.projects" [locale]="locale" />
+      <div class="learning" id="formation">
+        <h3 class="block-title">{{ copy.projects.learningTitle }}</h3>
+        <p>{{ copy.projects.learningDescription }}</p>
+        <ul [attr.aria-label]="copy.projects.certificationsLabel">
+          @for (certification of portfolio.certifications; track certification) {
+            <li>{{ certification }}</li>
+          }
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section class="contact" id="contact" tabindex="-1" aria-labelledby="contact-title">
     <div class="contact-panel">
       <div class="contact-copy">
-        <p class="eyebrow">{{ copy.contact.eyebrow }}</p>
-        <h2 id="contact-title">
-          {{ copy.contact.title }}<br /><em>{{ copy.contact.accent }}</em>
-        </h2>
+        <h2 id="contact-title">{{ copy.contact.title }}</h2>
         <p>{{ copy.contact.description }}</p>
         <span class="footer-status"><i aria-hidden="true"></i>{{ copy.footer.availability }}</span>
       </div>
@@ -422,7 +401,7 @@
 <footer>
   <div class="footer-bottom">
     <small>© {{ year }} · Vivien Billot · {{ copy.footer.rights }}</small>
-    <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="accueil">{{ copy.footer.top }} ↑</a>
+    <a [routerLink]="homePath" fragment="accueil">{{ copy.footer.top }} ↑</a>
     <a [routerLink]="locale === 'fr' ? '/fr/confidentialite' : '/privacy'">
       {{ locale === 'fr' ? 'Protection des données' : 'Privacy policy' }}
     </a>

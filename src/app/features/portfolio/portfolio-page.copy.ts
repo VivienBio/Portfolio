@@ -1,11 +1,34 @@
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 
+interface NavigationItem {
+  readonly label: string;
+  /** Section identifier on the home page, shared by both languages. */
+  readonly fragment: string;
+}
+
+interface Mission {
+  readonly title: string;
+  readonly description: string;
+  /** Where this kind of work was already done, so the offer is backed by facts. */
+  readonly proof: string;
+}
+
+interface Recommendation {
+  /** Verbatim excerpt of a public LinkedIn recommendation, or a faithful translation of one. */
+  readonly quote: string;
+  readonly name: string;
+  readonly role: string;
+  readonly translated?: boolean;
+}
+
 interface PageCopy {
   readonly skipToContent: string;
   /** Screen-reader context appended to the visible brand name and title. */
   readonly homeHint: string;
   readonly navigationLabel: string;
-  readonly navigation: readonly string[];
+  readonly navigation: readonly NavigationItem[];
+  /** Name of the button that opens the navigation on small screens. */
+  readonly menu: string;
   readonly availability: string;
   readonly headerActionsLabel: string;
   readonly language: {
@@ -33,18 +56,21 @@ interface PageCopy {
     readonly primaryAction: string;
     readonly secondaryAction: string;
     readonly proof: readonly string[];
-    readonly profileLabel: string;
-    readonly profileTitle: string;
-    readonly profilePoints: readonly string[];
-    readonly profileFooter: readonly string[];
   };
   readonly metricsLabel: string;
   readonly metrics: readonly { readonly value: string; readonly label: string }[];
-  readonly manifesto: readonly string[];
-  readonly work: {
-    readonly eyebrow: string;
+  readonly missions: {
     readonly title: string;
-    readonly accent: string;
+    readonly intro: string;
+    readonly proofLabel: string;
+    readonly items: readonly Mission[];
+    readonly practicalTitle: string;
+    readonly practical: readonly { readonly label: string; readonly value: string }[];
+    readonly emailAction: string;
+    readonly emailHref: string;
+  };
+  readonly work: {
+    readonly title: string;
     readonly intro: string;
     readonly openCase: string;
     readonly flagships: readonly {
@@ -53,6 +79,7 @@ interface PageCopy {
       readonly summary: string;
       readonly path: string;
     }[];
+    readonly earlierTitle: string;
     readonly compact: readonly {
       readonly company: string;
       readonly period: string;
@@ -60,68 +87,47 @@ interface PageCopy {
       readonly summary: string;
       readonly tags: readonly string[];
     }[];
-  };
-  readonly principles: {
-    readonly eyebrow: string;
-    readonly title: string;
-    readonly accent: string;
-    readonly intro: string;
-    readonly items: readonly { readonly title: string; readonly description: string }[];
-  };
-  readonly expertise: {
-    readonly eyebrow: string;
-    readonly title: string;
-    readonly accent: string;
-    readonly intro: string;
     readonly technologies: string;
+    readonly internships: { readonly period: string; readonly text: string };
+    readonly cvAction: string;
   };
-  readonly workingStyle: {
-    readonly eyebrow: string;
+  readonly approach: {
     readonly title: string;
-    readonly accent: string;
     readonly intro: string;
-    readonly strength: string;
-    readonly vigilance: string;
+    readonly expertiseTitle: string;
+    readonly technologies: string;
+    readonly principlesTitle: string;
+    readonly principlesIntro: string;
+    readonly principles: readonly { readonly title: string; readonly description: string }[];
+    readonly styleTitle: string;
+    readonly strengthsTitle: string;
+    readonly vigilanceTitle: string;
     readonly safeguard: string;
   };
+  readonly recommendations: {
+    readonly title: string;
+    readonly intro: string;
+    readonly openQuote: string;
+    readonly closeQuote: string;
+    readonly translated: string;
+    readonly items: readonly Recommendation[];
+    readonly action: string;
+  };
   readonly projects: {
-    readonly eyebrow: string;
     readonly title: string;
-    readonly accent: string;
     readonly intro: string;
-  };
-  readonly quote: {
-    readonly label: string;
-    readonly text: string;
-    readonly action: string;
-  };
-  readonly journey: {
-    readonly eyebrow: string;
-    readonly title: string;
-    readonly accent: string;
-    readonly intro: string;
-  };
-  readonly learning: {
-    readonly eyebrow: string;
-    readonly title: string;
-    readonly accent: string;
-    readonly description: string;
-    readonly action: string;
+    readonly learningTitle: string;
+    readonly learningDescription: string;
+    readonly certificationsLabel: string;
   };
   readonly contact: {
-    readonly eyebrow: string;
     readonly title: string;
-    readonly accent: string;
     readonly description: string;
     readonly emailAction: string;
-    readonly cvAction: string;
     readonly phoneAction: string;
     readonly phoneDisplay: string;
-    readonly linkedinAction: string;
   };
   readonly footer: {
-    readonly description: string;
-    readonly role: string;
     readonly availability: string;
     readonly directoryLabel: string;
     readonly cvFr: string;
@@ -142,7 +148,13 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     skipToContent: 'Skip to content',
     homeHint: ', home',
     navigationLabel: 'Primary navigation',
-    navigation: ['Work', 'Expertise', 'Experience', 'Projects', 'Contact'],
+    navigation: [
+      { label: 'Services', fragment: 'missions' },
+      { label: 'Work', fragment: 'work' },
+      { label: 'Approach', fragment: 'approche' },
+      { label: 'Contact', fragment: 'contact' },
+    ],
+    menu: 'Menu',
     availability: 'Open to discussing what’s next',
     headerActionsLabel: 'Quick actions',
     language: {
@@ -163,7 +175,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Freelance Senior Software Engineer & Tech Lead · C# / .NET',
       title: 'Systems where wrong answers',
       accent: 'are expensive.',
-      lead: 'Since 2012, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
+      lead: 'Since 2012, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago.',
       primaryAction: 'Read the case studies',
       secondaryAction: 'Let’s talk',
       proof: [
@@ -174,14 +186,6 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         'Legacy modernization',
         'Technical leadership',
       ],
-      profileLabel: 'Profile / at a glance',
-      profileTitle: 'What I get hired for',
-      profilePoints: [
-        'Making critical business rules explicit, testable, and safe to change',
-        'Modernizing legacy systems without stopping delivery',
-        'Raising a team’s delivery capacity and autonomy',
-      ],
-      profileFooter: ['Architecture', 'Delivery', 'Leadership'],
     },
     metricsLabel: 'Key results',
     metrics: [
@@ -193,13 +197,46 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       { value: '500+', label: 'rental branches served by platforms my team built at Rent A Car' },
       { value: '5', label: 'teams led across TF1, Rent A Car, and Stago' },
     ],
-    manifesto: ['ARCHITECT', 'HARDEN', 'SHIP', 'TRANSFER'],
+    missions: {
+      title: 'Services',
+      intro: 'Three kinds of engagement, each backed by systems I have run in production.',
+      proofLabel: 'Track record:',
+      items: [
+        {
+          title: 'Tech Lead for .NET teams',
+          description:
+            'Taking technical ownership of one or more teams: architecture direction, priorities, delivery quality, and skills growth.',
+          proof: 'three teams at TF1, nine people at Rent A Car, eight in R&D at Stago.',
+        },
+        {
+          title: 'Legacy modernization',
+          description:
+            'Evolving an aging system without stopping the business: map what exists, lock the business rules in tests, migrate step by step.',
+          proof: 'VB6-era legacy moved to .NET 6/8, Angular, Azure, and AKS at TF1.',
+        },
+        {
+          title: 'Critical, real-time systems',
+          description:
+            'Designing or hardening a system where a mistake is expensive: explicit business rules, observability, and replay to explain every decision.',
+          proof: 'real-time sports pricing at Betclic, patient-results calculation at Stago.',
+        },
+      ],
+      practicalTitle: 'In practice',
+      practical: [
+        { label: 'Status', value: 'Freelance, on a mission with Betclic since October 2025' },
+        { label: 'Location', value: 'Paris region, France' },
+        { label: 'Languages', value: 'French (native), English (professional)' },
+        {
+          label: 'To start',
+          value: 'An email with the context, the expected duration, and the preferred start date.',
+        },
+      ],
+      emailAction: 'Propose a mission',
+      emailHref: 'mailto:billot.vivien@gmail.com?subject=Mission%20proposal',
+    },
     work: {
-      eyebrow: 'Selected work',
-      title: 'Complex systems.',
-      accent: 'Decisions that hold up.',
-      intro:
-        'Two case studies in depth — what the problem was, which decisions I made, what they cost, and what shipped. Two more environments in brief.',
+      title: 'Work',
+      intro: 'Two in-depth case studies, then the rest of the career in brief.',
       openCase: 'Read the case study',
       flagships: [
         {
@@ -217,6 +254,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           path: '/work/tf1',
         },
       ],
+      earlierTitle: 'Earlier roles',
       compact: [
         {
           company: 'Rent A Car',
@@ -235,13 +273,22 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           tags: ['C#', 'WPF', 'TDD', 'NUnit', 'TeamCity', 'IBM Rational DOORS'],
         },
       ],
+      technologies: 'Technologies',
+      internships: {
+        period: '2011–2012',
+        text: 'Internships: C++ / C# developer at Bentley Systems, VB.NET developer at Total.',
+      },
+      cvAction: 'Full career in the resume (PDF)',
     },
-    principles: {
-      eyebrow: 'Engineering principles',
-      title: 'Opinions I defend.',
-      accent: 'Until proven wrong.',
-      intro: 'What I bring to a design review — and what I drop when the evidence goes against it.',
-      items: [
+    approach: {
+      title: 'Approach',
+      intro: 'What I know how to do, how I make decisions, and what I keep in check.',
+      expertiseTitle: 'Expertise',
+      technologies: 'Technologies',
+      principlesTitle: 'Engineering principles',
+      principlesIntro:
+        'What I bring to a design review — and what I drop when the evidence goes against it.',
+      principles: [
         {
           title: 'Simplicity before sophistication',
           description:
@@ -273,68 +320,59 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
             'Every significant decision is written down with its alternatives and its cost. Teams align on reasoning, not on authority.',
         },
       ],
+      styleTitle: 'Working with me',
+      strengthsTitle: 'What you gain',
+      vigilanceTitle: 'What I watch',
+      safeguard: 'My safeguard:',
     },
-    expertise: {
-      eyebrow: 'Expertise',
-      title: 'The problems',
-      accent: 'people call me in for.',
-      intro:
-        'Organized by problem, not by keyword count. Each area is backed by systems that ran — and still run — in production.',
-      technologies: 'Technologies',
-    },
-    workingStyle: {
-      eyebrow: 'How I work',
-      title: 'What you gain.',
-      accent: 'What I keep in check.',
-      intro:
-        'Strengths come with failure modes. These are mine — and the instincts I rein in to stay useful to the team.',
-      strength: 'Strength',
-      vigilance: 'What I watch',
-      safeguard: 'My safeguard',
+    recommendations: {
+      title: 'Recommendations',
+      intro: 'Excerpts from public recommendations on LinkedIn.',
+      openQuote: '“',
+      closeQuote: '”',
+      translated: 'Translated from French',
+      items: [
+        {
+          quote:
+            'Vivien is incredibly reliable under pressure and technically sound, always able to propose solutions with a clear, long-term vision.',
+          name: 'Apoorva Deshmukh',
+          role: 'Product at Unlimitail, worked with Vivien on the same team',
+        },
+        {
+          quote:
+            'Hard-working, committed and always focused on modernization, Vivien has that rare ability to get back to the essence of the need: he knows how to simplify, clarify and focus efforts on what really adds value.',
+          name: 'Arnaud Pradeilles',
+          role: 'Solution architect, worked with Vivien at TF1',
+          translated: true,
+        },
+        {
+          quote:
+            'He was an exceptional leader and mentor, both technically and on a human level. […] he helps the people around him grow.',
+          name: 'Vince Gusmini',
+          role: '.NET developer on Vivien’s team at Rent A Car',
+          translated: true,
+        },
+      ],
+      action: 'Read all recommendations on LinkedIn',
     },
     projects: {
-      eyebrow: 'Public code',
-      title: 'Small on purpose,',
-      accent: 'easy to inspect.',
+      title: 'Public code & learning',
       intro:
         'Each project isolates one practice — domain modeling, TDD, algorithmic optimization — so the reasoning is easy to follow.',
-    },
-    quote: {
-      label: 'Professional recommendations',
-      text: 'The strongest proof is other people’s words: recommendations from the engineers, managers, and product owners I’ve worked with are public on LinkedIn.',
-      action: 'Read the recommendations',
-    },
-    journey: {
-      eyebrow: 'Experience',
-      title: 'A career built on',
-      accent: 'expensive mistakes avoided.',
-      intro:
-        'Six environments, one through line: the more a mistake costs, the more the fundamentals matter — explicit domains, tests, observability, and teams that understand their own system.',
-    },
-    learning: {
-      eyebrow: 'Continuous learning',
-      title: 'Learn to',
-      accent: 'decide better.',
-      description:
+      learningTitle: 'Education & training',
+      learningDescription:
         'Engineering degree from ESILV (scientific computing), exchange at Université Laval. I keep the fundamentals sharp through deliberate practice: DDD training with Julien Topçu, SAFe RTE certification, security and observability training — and competitive programming on CodinGame, where I rank in the world’s top 0.1% (Grand Master).',
-      action: 'See my CodinGame profile',
+      certificationsLabel: 'Training and certifications',
     },
     contact: {
-      eyebrow: 'Contact',
-      title: 'A system to modernize,',
-      accent: 'or a team to lead?',
+      title: 'A system to modernize, or a team to lead?',
       description:
         'Freelance Senior Software Engineer, currently on contract with Betclic Group. If you’re facing a system that must not fail, a legacy that has to move, or a team that needs to speed up — I’d like to hear about it.',
       emailAction: 'Email Vivien',
-      cvAction: 'Download resume',
       phoneAction: 'Call Vivien Billot at +33 6 23 85 77 32',
       phoneDisplay: '+33 6 23 85 77 32',
-      linkedinAction: 'View LinkedIn profile',
     },
     footer: {
-      description:
-        'Architecture, modernization, real-time systems, technical debt, or team performance: if the topic matters, I prefer to frame it quickly and concretely.',
-      role: 'Senior Software Engineer · Paris region',
       availability: 'Open to discussing what’s next',
       directoryLabel: 'Contact details and useful links',
       cvFr: 'French resume',
@@ -354,7 +392,13 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     skipToContent: 'Aller au contenu',
     homeHint: ', accueil',
     navigationLabel: 'Navigation principale',
-    navigation: ['Réalisations', 'Expertise', 'Parcours', 'Projets', 'Contact'],
+    navigation: [
+      { label: 'Missions', fragment: 'missions' },
+      { label: 'Réalisations', fragment: 'work' },
+      { label: 'Approche', fragment: 'approche' },
+      { label: 'Contact', fragment: 'contact' },
+    ],
+    menu: 'Menu',
     availability: 'Ouvert à la discussion',
     headerActionsLabel: 'Actions rapides',
     language: {
@@ -375,7 +419,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Senior Software Engineer & Tech Lead freelance · C# / .NET',
       title: 'Des systèmes où l’erreur',
       accent: 'coûte cher.',
-      lead: 'Depuis 2012, je conçois et modernise des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
+      lead: 'Depuis 2012, je conçois et modernise des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 et logiciel médical réglementé chez Stago.',
       primaryAction: 'Lire les études de cas',
       secondaryAction: 'Parlons-en',
       proof: [
@@ -386,14 +430,6 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         'Modernisation legacy',
         'Leadership technique',
       ],
-      profileLabel: 'Profil / en bref',
-      profileTitle: 'Ce pour quoi on me recrute',
-      profilePoints: [
-        'Rendre les règles métier critiques explicites, testables et sûres à faire évoluer',
-        'Moderniser du legacy sans mettre le delivery à l’arrêt',
-        'Augmenter la capacité de livraison et l’autonomie des équipes',
-      ],
-      profileFooter: ['Architecture', 'Delivery', 'Leadership'],
     },
     metricsLabel: 'Résultats clés',
     metrics: [
@@ -402,13 +438,48 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       { value: '500+', label: 'agences servies par les plateformes construites chez Rent A Car' },
       { value: '5', label: 'équipes encadrées chez TF1, Rent A Car et Stago' },
     ],
-    manifesto: ['ARCHITECTURER', 'FIABILISER', 'LIVRER', 'TRANSMETTRE'],
-    work: {
-      eyebrow: 'Réalisations',
-      title: 'Des systèmes complexes.',
-      accent: 'Des décisions qui tiennent.',
+    missions: {
+      title: 'Missions',
       intro:
-        'Deux études de cas en profondeur — le problème, les décisions prises, leur coût et ce qui a été livré. Deux autres environnements en bref.',
+        'Trois types de missions, chacune adossée à des systèmes que j’ai fait tourner en production.',
+      proofLabel: 'Déjà fait :',
+      items: [
+        {
+          title: 'Tech Lead d’équipes .NET',
+          description:
+            'Prendre la responsabilité technique d’une ou plusieurs équipes : cap d’architecture, priorités, qualité du delivery et montée en compétence.',
+          proof: 'trois équipes chez TF1, neuf personnes chez Rent A Car, huit en R&D chez Stago.',
+        },
+        {
+          title: 'Modernisation de legacy',
+          description:
+            'Faire évoluer un système ancien sans arrêter le business : cartographier l’existant, verrouiller les règles métier par les tests, migrer pas à pas.',
+          proof: 'legacy VB6 migré vers .NET 6/8, Angular, Azure et AKS chez TF1.',
+        },
+        {
+          title: 'Systèmes critiques et temps réel',
+          description:
+            'Concevoir ou fiabiliser un système où une erreur coûte cher : règles métier explicites, observabilité et replay pour expliquer chaque décision.',
+          proof:
+            'pricing sportif temps réel chez Betclic, calcul des résultats patients chez Stago.',
+        },
+      ],
+      practicalTitle: 'En pratique',
+      practical: [
+        { label: 'Statut', value: 'Freelance, en mission chez Betclic depuis octobre 2025' },
+        { label: 'Localisation', value: 'Île-de-France' },
+        { label: 'Langues', value: 'Français (natif), anglais (professionnel)' },
+        {
+          label: 'Pour démarrer',
+          value: 'Un email avec le contexte, la durée envisagée et la date de démarrage souhaitée.',
+        },
+      ],
+      emailAction: 'Proposer une mission',
+      emailHref: 'mailto:billot.vivien@gmail.com?subject=Proposition%20de%20mission',
+    },
+    work: {
+      title: 'Réalisations',
+      intro: 'Deux études de cas détaillées, puis le reste du parcours en bref.',
       openCase: 'Lire l’étude de cas',
       flagships: [
         {
@@ -426,6 +497,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           path: '/fr/work/tf1',
         },
       ],
+      earlierTitle: 'Auparavant',
       compact: [
         {
           company: 'Rent A Car',
@@ -444,14 +516,22 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           tags: ['C#', 'WPF', 'TDD', 'NUnit', 'TeamCity', 'IBM Rational DOORS'],
         },
       ],
+      technologies: 'Technologies',
+      internships: {
+        period: '2011–2012',
+        text: 'Stages : développeur C++ / C# chez Bentley Systems, développeur VB.NET chez Total.',
+      },
+      cvAction: 'Parcours complet dans le CV (PDF)',
     },
-    principles: {
-      eyebrow: 'Principes d’ingénierie',
-      title: 'Des convictions défendues.',
-      accent: 'Jusqu’à preuve du contraire.',
-      intro:
+    approach: {
+      title: 'Approche',
+      intro: 'Ce que je sais faire, comment je décide, et ce que je surveille chez moi.',
+      expertiseTitle: 'Expertise',
+      technologies: 'Technologies',
+      principlesTitle: 'Principes d’ingénierie',
+      principlesIntro:
         'Ce que j’apporte en revue de conception — et ce que j’abandonne quand les faits me donnent tort.',
-      items: [
+      principles: [
         {
           title: 'La simplicité avant la sophistication',
           description:
@@ -483,68 +563,57 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
             'Chaque décision significative est écrite avec ses alternatives et son coût. Les équipes s’alignent sur le raisonnement, pas sur l’autorité.',
         },
       ],
+      styleTitle: 'Travailler avec moi',
+      strengthsTitle: 'Ce que vous obtenez',
+      vigilanceTitle: 'Ce que je surveille',
+      safeguard: 'Mon garde-fou :',
     },
-    expertise: {
-      eyebrow: 'Expertise',
-      title: 'Les problèmes pour lesquels',
-      accent: 'on m’appelle.',
-      intro:
-        'Organisée par problème, pas par nombre de mots-clés. Chaque domaine s’appuie sur des systèmes qui ont tourné — et tournent encore — en production.',
-      technologies: 'Technologies',
-    },
-    workingStyle: {
-      eyebrow: 'Mode de collaboration',
-      title: 'Ce que vous obtenez.',
-      accent: 'Ce que je surveille.',
-      intro:
-        'Les forces ont leurs revers. Voici les miennes — et les réflexes que je cadre pour rester utile au collectif.',
-      strength: 'Force',
-      vigilance: 'Point de vigilance',
-      safeguard: 'Mon garde-fou',
+    recommendations: {
+      title: 'Recommandations',
+      intro: 'Extraits de recommandations publiques sur LinkedIn.',
+      openQuote: '« ',
+      closeQuote: ' »',
+      translated: 'Traduit de l’anglais',
+      items: [
+        {
+          quote:
+            'Vivien a démontré une capacité exceptionnelle à gérer les situations complexes, lors d’incident critique, y compris sur des domaines en dehors de son périmètre. Il a toujours su garder son calme et nous guider vers des solutions efficaces.',
+          name: 'Lydie Monnet',
+          role: 'PMO, Groupe TF1',
+        },
+        {
+          quote:
+            'Bosseur, impliqué et toujours orienté vers la modernisation, Vivien a cette capacité rare à revenir à la quintessence du besoin : il sait simplifier, clarifier et concentrer les efforts sur ce qui apporte réellement de la valeur.',
+          name: 'Arnaud Pradeilles',
+          role: 'Architecte solution, a travaillé avec Vivien chez TF1',
+        },
+        {
+          quote:
+            'Il a été un leader et mentor exceptionnel tant techniquement que humainement. […] il fait grandir les personnes autour de lui.',
+          name: 'Vince Gusmini',
+          role: 'Développeur .NET dans l’équipe de Vivien chez Rent A Car',
+        },
+      ],
+      action: 'Lire toutes les recommandations sur LinkedIn',
     },
     projects: {
-      eyebrow: 'Code public',
-      title: 'Petits par choix,',
-      accent: 'faciles à inspecter.',
+      title: 'Code public et formation',
       intro:
         'Chaque projet isole une pratique — modélisation de domaine, TDD, optimisation algorithmique — pour que le raisonnement reste lisible.',
-    },
-    quote: {
-      label: 'Recommandations professionnelles',
-      text: 'La meilleure preuve, ce sont les mots des autres : les recommandations des ingénieurs, managers et product owners avec qui j’ai travaillé sont publiques sur LinkedIn.',
-      action: 'Lire les recommandations',
-    },
-    journey: {
-      eyebrow: 'Parcours',
-      title: 'Une progression',
-      accent: 'par la complexité.',
-      intro:
-        'Six environnements, un fil rouge : plus une erreur coûte cher, plus les fondamentaux comptent — domaines explicites, tests, observabilité et équipes qui comprennent leur propre système.',
-    },
-    learning: {
-      eyebrow: 'Formation continue',
-      title: 'Apprendre pour',
-      accent: 'mieux décider.',
-      description:
+      learningTitle: 'Formation',
+      learningDescription:
         'Ingénieur ESILV (calcul scientifique), échange à l’Université Laval. J’entretiens les fondamentaux par la pratique délibérée : formation DDD avec Julien Topçu, certification SAFe RTE, sécurité et observabilité — et la programmation compétitive sur CodinGame, où je suis dans le top 0,1 % mondial (Grand Maître).',
-      action: 'Voir mon profil CodinGame',
+      certificationsLabel: 'Formations et certifications',
     },
     contact: {
-      eyebrow: 'Contact',
-      title: 'Un système à moderniser,',
-      accent: 'ou une équipe à faire grandir ?',
+      title: 'Un système à moderniser, ou une équipe à faire grandir ?',
       description:
         'Senior Software Engineer freelance, actuellement en mission chez Betclic Group. Un système qui ne doit pas tomber, un legacy qui doit bouger, une équipe qui doit accélérer — j’aimerais en entendre parler.',
       emailAction: 'Envoyer un email',
-      cvAction: 'Télécharger le CV',
       phoneAction: 'Appeler Vivien Billot au 06 23 85 77 32',
       phoneDisplay: '06 23 85 77 32',
-      linkedinAction: 'Voir le profil LinkedIn',
     },
     footer: {
-      description:
-        'Architecture, modernisation, systèmes temps réel, dette technique ou performance d’équipe : si le sujet compte, je préfère le cadrer vite et concrètement.',
-      role: 'Senior Software Engineer · Île-de-France',
       availability: 'Ouvert à la discussion',
       directoryLabel: 'Coordonnées et liens utiles',
       cvFr: 'CV français',
