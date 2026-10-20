@@ -224,7 +224,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       practicalTitle: 'In practice',
       practical: [
         { label: 'Status', value: 'Freelance, on a mission with Betclic since October 2025' },
-        { label: 'Location', value: 'Paris region, France' },
+        { label: 'Location', value: 'Paris region, France; hybrid or remote' },
         { label: 'Languages', value: 'French (native), English (professional)' },
         {
           label: 'To start',
@@ -467,7 +467,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       practicalTitle: 'En pratique',
       practical: [
         { label: 'Statut', value: 'Freelance, en mission chez Betclic depuis octobre 2025' },
-        { label: 'Localisation', value: 'Île-de-France' },
+        { label: 'Localisation', value: 'Île-de-France, en hybride ou en télétravail' },
         { label: 'Langues', value: 'Français (natif), anglais (professionnel)' },
         {
           label: 'Pour démarrer',

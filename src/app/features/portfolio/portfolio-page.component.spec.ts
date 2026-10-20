@@ -97,6 +97,7 @@ describe('PortfolioPageComponent', () => {
     expect(missions?.querySelectorAll('.mission-proof')).toHaveLength(3);
     expect(practical?.textContent).toContain('Betclic');
     expect(practical?.textContent).toContain('Paris region');
+    expect(practical?.textContent).toContain('hybrid or remote');
     expect(practical?.querySelector('a')?.getAttribute('href')).toBe(
       'mailto:billot.vivien@gmail.com?subject=Mission%20proposal',
     );
