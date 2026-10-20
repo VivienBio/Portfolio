@@ -55,6 +55,10 @@
   background: var(--night);
   border-bottom: 1px solid var(--night-line);
 }
+/* The open menu covers the floating chat pill instead of sliding under it. */
+.site-header.menu-open {
+  z-index: 250;
+}
 .scroll-progress {
   position: absolute;
   bottom: -1px;
@@ -244,6 +248,7 @@
   font-size: 0.95rem;
   font-weight: 550;
   line-height: 1.4;
+  text-wrap: pretty;
 }
 h1,
 h2,
@@ -255,7 +260,7 @@ h4 {
 }
 h1 {
   margin-bottom: 0;
-  font-size: clamp(2.6rem, 5.1vw, 4.7rem);
+  font-size: clamp(2.6rem, 4.6vw, 4.25rem);
   font-weight: 800;
   font-stretch: 110%;
   line-height: 0.98;
@@ -620,20 +625,19 @@ h2 {
   margin: 0.75rem 0 0;
   line-height: 1.6;
 }
+/* Inline blocks, so a wrapped label keeps its arrow on the last line. */
 .case-link,
 .work-cv,
 .recommendations-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-height: 2.75rem;
+  display: inline-block;
+  padding-block: 0.65rem;
   color: var(--accent);
   font-weight: 650;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.25rem;
 }
 .case-link {
-  margin-top: 0.35rem;
+  margin-top: 0.1rem;
 }
 .work-cv {
   margin: 1.5rem 0 0 calc(5.5rem + 1.75rem + 2.5rem);
@@ -1013,7 +1017,7 @@ h2 {
     padding: 2rem 0 2.5rem;
   }
   h1 {
-    font-size: clamp(2.45rem, 11vw, 3.4rem);
+    font-size: clamp(2.1rem, 10.6vw, 3.4rem);
     line-height: 1;
   }
   .hero-status {
@@ -1089,7 +1093,21 @@ h2 {
     display: inline;
   }
 }
+/* Small phones: keep both hero actions above the floating chat pill. */
 @media (max-width: 430px) {
+  .hero {
+    padding-top: 1.5rem;
+  }
+  .hero-status {
+    margin-bottom: 0.9rem;
+  }
+  .lead {
+    margin-top: 1rem;
+  }
+  .actions {
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+  }
   .site-header {
     padding-inline: 0.85rem;
     column-gap: 0.4rem;

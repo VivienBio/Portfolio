@@ -27,7 +27,8 @@ textarea {
   gap: 0.65rem;
   min-width: 0;
   min-height: 56px;
-  padding: 0.3rem 1.15rem 0.3rem 0.3rem;
+  /* Pixel padding: enlarged text grows the label, not the pill around the photo. */
+  padding: 5px 1.15rem 5px 5px;
   color: var(--night-ink);
   background: var(--night-raised);
   border: 1px solid var(--night-border);
@@ -134,9 +135,9 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-width: 3rem;
-  min-height: 3rem;
-  padding: 0.3rem 0.85rem 0.3rem 0.3rem;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 5px 0.85rem 5px 5px;
   color: var(--night-ink);
   background: var(--night-raised);
   border: 1px solid var(--night-border);
@@ -678,7 +679,7 @@ button:focus-visible,
 @media (max-width: 760px) {
   .assistant-dock,
   .assistant-restore {
-    bottom: calc(max(0.5rem, env(safe-area-inset-bottom)) + var(--analytics-consent-height, 0px));
+    bottom: calc(max(0.4rem, env(safe-area-inset-bottom)) + var(--analytics-consent-height, 0px));
   }
 
   .assistant-dock {
@@ -735,7 +736,7 @@ button:focus-visible,
   }
 
   .assistant-restore {
-    padding: 0.3rem;
+    padding: 5px;
   }
 }
 
@@ -760,7 +761,7 @@ button:focus-visible,
     }
 
     .assistant-launcher {
-      padding: 0.3rem;
+      padding: 5px;
     }
   }
 }
