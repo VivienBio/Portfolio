@@ -1,6 +1,6 @@
 {
   "fr-desktop-light": {
-    "height": 6257,
+    "height": 6248,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -8,21 +8,21 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "73.44px",
+      "size": "66.24px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 967.03125,
+      "left": 966.828125,
       "right": 1416,
       "top": 832,
       "bottom": 888
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 680,
+      "accueil": 676,
       "missions": 797,
-      "work": 1195,
+      "work": 1189,
       "approche": 1165,
       "recommandations": 706,
       "projets": 728,
@@ -33,7 +33,7 @@
     "errors": []
   },
   "fr-desktop-dark": {
-    "height": 6257,
+    "height": 6248,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -41,21 +41,21 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "73.44px",
+      "size": "66.24px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 967.03125,
+      "left": 966.828125,
       "right": 1416,
       "top": 832,
       "bottom": 888
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 680,
+      "accueil": 676,
       "missions": 797,
-      "work": 1195,
+      "work": 1189,
       "approche": 1165,
       "recommandations": 706,
       "projets": 728,
@@ -66,7 +66,7 @@
     "errors": []
   },
   "en-desktop-light": {
-    "height": 6167,
+    "height": 6134,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -74,21 +74,21 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "73.44px",
+      "size": "66.24px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 985.03125,
+      "left": 984.828125,
       "right": 1416,
       "top": 832,
       "bottom": 888
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 710,
+      "accueil": 682,
       "missions": 797,
-      "work": 1195,
+      "work": 1189,
       "approche": 1111,
       "recommandations": 698,
       "projets": 728,
@@ -99,7 +99,7 @@
     "errors": []
   },
   "fr-laptop-light": {
-    "height": 6123,
+    "height": 6118,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -107,12 +107,12 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "65.28px",
+      "size": "58.88px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 807.03125,
+      "left": 806.828125,
       "right": 1256,
       "top": 732,
       "bottom": 788
@@ -121,7 +121,7 @@
     "sections": {
       "accueil": 676,
       "missions": 785,
-      "work": 1182,
+      "work": 1176,
       "approche": 1152,
       "recommandations": 690,
       "projets": 728,
@@ -132,7 +132,7 @@
     "errors": []
   },
   "fr-small-laptop": {
-    "height": 6928,
+    "height": 6912,
     "overflowX": 0,
     "header": 107,
     "fonts": [
@@ -140,12 +140,12 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "56.1px",
+      "size": "50.6px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 629.03125,
+      "left": 628.828125,
       "right": 1078,
       "top": 692,
       "bottom": 748
@@ -154,11 +154,11 @@
       ".replay"
     ],
     "sections": {
-      "accueil": 1096,
+      "accueil": 1085,
       "missions": 869,
-      "work": 1147,
+      "work": 1141,
       "approche": 1228,
-      "recommandations": 913,
+      "recommandations": 914,
       "projets": 747,
       "contact": 497
     },
@@ -167,7 +167,7 @@
     "errors": []
   },
   "fr-tablet-light": {
-    "height": 7849,
+    "height": 7845,
     "overflowX": 0,
     "header": 107,
     "fonts": [
@@ -180,7 +180,7 @@
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 303.671875,
+      "left": 303.46875,
       "right": 752.640625,
       "top": 956,
       "bottom": 1012
@@ -192,9 +192,9 @@
     "sections": {
       "accueil": 1019,
       "missions": 1151,
-      "work": 1196,
+      "work": 1190,
       "approche": 1560,
-      "recommandations": 837,
+      "recommandations": 838,
       "projets": 722,
       "contact": 678
     },
@@ -203,7 +203,7 @@
     "errors": []
   },
   "fr-mobile-light": {
-    "height": 10489,
+    "height": 10521,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -211,25 +211,25 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "42.9px",
+      "size": "41.34px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 187.828125,
+      "left": 187.625,
       "right": 380.40625,
-      "top": 780,
-      "bottom": 836
+      "top": 781.609375,
+      "bottom": 837.609375
     },
     "overlapsWithDock": [
       ".replay"
     ],
     "sections": {
-      "accueil": 1145,
+      "accueil": 1121,
       "missions": 1535,
-      "work": 1699,
+      "work": 1733,
       "approche": 2325,
-      "recommandations": 1095,
+      "recommandations": 1116,
       "projets": 1031,
       "contact": 880
     },
@@ -270,7 +270,7 @@
     "errors": []
   },
   "en-mobile-dark": {
-    "height": 10259,
+    "height": 10270,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -278,25 +278,25 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "42.9px",
+      "size": "41.34px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 214.828125,
+      "left": 214.625,
       "right": 380.40625,
-      "top": 780,
-      "bottom": 836
+      "top": 781.609375,
+      "bottom": 837.609375
     },
     "overlapsWithDock": [
       ".replay"
     ],
     "sections": {
-      "accueil": 1145,
+      "accueil": 1121,
       "missions": 1481,
-      "work": 1697,
+      "work": 1731,
       "approche": 2222,
-      "recommandations": 1033,
+      "recommandations": 1034,
       "projets": 1007,
       "contact": 843
     },
@@ -337,7 +337,7 @@
     "errors": []
   },
   "fr-mobile-320": {
-    "height": 11816,
+    "height": 11817,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -345,26 +345,25 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "39.2px",
+      "size": "33.92px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 117.828125,
+      "left": 117.625,
       "right": 310.40625,
-      "top": 576,
-      "bottom": 632
+      "top": 577.609375,
+      "bottom": 633.609375
     },
     "overlapsWithDock": [
-      ".hero-copy",
-      ".actions .secondary"
+      ".replay"
     ],
     "sections": {
-      "accueil": 1207,
+      "accueil": 1132,
       "missions": 1762,
-      "work": 1977,
+      "work": 2031,
       "approche": 2735,
-      "recommandations": 1229,
+      "recommandations": 1250,
       "projets": 1128,
       "contact": 947
     },
@@ -405,7 +404,7 @@
     "errors": []
   },
   "fr-landscape": {
-    "height": 7607,
+    "height": 7599,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -413,12 +412,12 @@
     ],
     "h1": {
       "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
-      "size": "43.044px",
+      "size": "41.6px",
       "stretch": "110%",
       "color": "rgb(243, 245, 248)"
     },
     "dock": {
-      "left": 634.546875,
+      "left": 634.34375,
       "right": 827.125,
       "top": 322,
       "bottom": 378
@@ -427,11 +426,11 @@
       ".hero-copy"
     ],
     "sections": {
-      "accueil": 1031,
+      "accueil": 1029,
       "missions": 1101,
-      "work": 1122,
+      "work": 1117,
       "approche": 1491,
-      "recommandations": 842,
+      "recommandations": 843,
       "projets": 722,
       "contact": 649
     },
@@ -485,7 +484,7 @@
       "color": "rgb(20, 28, 43)"
     },
     "dock": {
-      "left": 967.03125,
+      "left": 966.828125,
       "right": 1416,
       "top": 832,
       "bottom": 888
@@ -518,7 +517,7 @@
       "color": "rgb(233, 238, 245)"
     },
     "dock": {
-      "left": 985.03125,
+      "left": 984.828125,
       "right": 1416,
       "top": 832,
       "bottom": 888
@@ -551,10 +550,10 @@
       "color": "rgb(20, 28, 43)"
     },
     "dock": {
-      "left": 187.828125,
+      "left": 187.625,
       "right": 380.40625,
-      "top": 780,
-      "bottom": 836
+      "top": 781.609375,
+      "bottom": 837.609375
     },
     "overlapsWithDock": [],
     "sections": {
