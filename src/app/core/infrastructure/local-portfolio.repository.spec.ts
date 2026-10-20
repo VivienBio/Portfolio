@@ -90,6 +90,8 @@ describe('LocalPortfolioRepository', () => {
     expect(betclic?.achievements.join(' ')).toContain('skills, commandes, agents');
     expect(betclic?.technologies).toContain('Pricing sportif');
     expect(betclic?.technologies).toContain('Dagger / GHA');
+    expect(betclic?.technologies).toContain('Kafka / gRPC');
+    expect(betclic?.achievements.join(' ')).toContain('XGBoost/ONNX');
     expect(tf1?.summary).toContain('trois équipes');
     expect(tf1?.summary).toContain('11 projets');
     expect(tf1?.achievements.join(' ')).toContain('80 incidents');
