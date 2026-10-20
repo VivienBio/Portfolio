@@ -89,7 +89,7 @@
     <aside class="signal-card reveal reveal-3" [attr.aria-label]="copy.hero.profileLabel">
       <div class="card-top">
         <p>{{ copy.hero.profileLabel }}</p>
-        <span>15+</span>
+        <span>14+</span>
       </div>
       <div class="profile-snapshot">
         <p>{{ copy.hero.profileTitle }}</p>
@@ -383,7 +383,7 @@
           href="tel:+33623857732"
           (click)="analytics.track('contact_click', { channel: 'phone', placement: 'contact' })"
           [attr.aria-label]="copy.contact.phoneAction"
-          >06 23 85 77 32</a
+          >{{ copy.contact.phoneDisplay }}</a
         >
         <a
           class="contact-link"

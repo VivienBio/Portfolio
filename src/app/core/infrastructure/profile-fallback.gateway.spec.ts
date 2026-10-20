@@ -13,6 +13,17 @@ describe('ProfileFallbackGateway', () => {
     ).resolves.toContain('skills, commandes, agents');
   });
 
+  it('does not mistake words containing "ai" for a question about AI', async () => {
+    const gateway = new ProfileFallbackGateway('en');
+
+    await expect(
+      gateway.answer({
+        instructions: 'ignored by the deterministic fallback',
+        messages: [{ role: 'user', content: 'Explain your domain expertise' }],
+      }),
+    ).resolves.not.toContain('Claude Code');
+  });
+
   it('lists the technology stack in a structured way', async () => {
     const gateway = new ProfileFallbackGateway();
 

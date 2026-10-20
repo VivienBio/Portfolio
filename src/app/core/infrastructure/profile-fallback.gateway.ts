@@ -321,11 +321,16 @@ export class ProfileFallbackGateway implements AssistantGateway {
   answer(request: AssistantGatewayRequest): Promise<string> {
     const question = normalize(request.messages.at(-1)?.content ?? '');
     const answer = ANSWERS[this.locale].find(({ terms }) =>
-      terms.some((term) => question.includes(term)),
+      terms.some((term) => mentions(question, term)),
     )?.answer;
 
     return Promise.resolve(answer ?? DEFAULT_ANSWERS[this.locale]);
   }
+}
+
+/** Short terms such as "ai" or "ia" must be whole words: "domain" is not a question about AI. */
+function mentions(question: string, term: string): boolean {
+  return term.length <= 3 ? ` ${question} `.includes(` ${term} `) : question.includes(term);
 }
 
 function normalize(value: string): string {

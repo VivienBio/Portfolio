@@ -19,6 +19,60 @@ const CONTACT_REPLY = `Vous pouvez me joindre par email à ${PORTFOLIO_CONTACT.e
 
 const ENGLISH_CONTACT_REPLY = `You can reach me by email at ${PORTFOLIO_CONTACT.email}, by phone on ${PORTFOLIO_CONTACT.phone}, or through LinkedIn. Use the links in the site’s Contact section to message or call me.`;
 
+const FREELANCE_REPLY = `Je suis Senior Software Engineer & Tech Lead freelance (C#/.NET), actuellement en mission chez Betclic. Pour une future mission, écrivez-moi à ${PORTFOLIO_CONTACT.email} avec le contexte, la durée et la date de démarrage souhaitée. Mon TJM dépend du périmètre et du format de la mission : je le précise par email. Je suis basé en Île-de-France, ouvert à l’hybride et au télétravail.`;
+
+const ENGLISH_FREELANCE_REPLY = `I am a freelance Senior Software Engineer & Tech Lead (C#/.NET), currently on a mission with Betclic. For a future mission, email me at ${PORTFOLIO_CONTACT.email} with the context, duration, and preferred start date. My day rate depends on the scope and format of the mission; I share it by email. I am based in the Paris region (France), open to hybrid and remote work.`;
+
+const CONTACT_TERMS = [
+  'contact',
+  'email',
+  'mail',
+  'telephone',
+  'phone',
+  'joindre',
+  'coordonnees',
+  'reach',
+];
+
+const FREELANCE_TERMS = [
+  'freelance',
+  'free lance',
+  'independant',
+  'tjm',
+  'taux journalier',
+  'tarif',
+  'daily rate',
+  'day rate',
+  'your rate',
+  'es tu disponible',
+  'etes vous disponible',
+  'tu es disponible',
+  'vous etes disponible',
+  'est il disponible',
+  'ta disponibilite',
+  'votre disponibilite',
+  'sa disponibilite',
+  'disponible pour',
+  'are you available',
+  'is he available',
+  'your availability',
+  'his availability',
+  'available for',
+  'teletravail',
+  'full remote',
+  'remote work',
+  'work remotely',
+  'hybrid work',
+  'en hybride',
+  'where are you based',
+  'ou es tu base',
+  'ou etes vous base',
+  'ou habites tu',
+  'based in',
+];
+
+const COMPANY_TERMS = ['betclic', 'tf1', 'rent a car', 'stago', 'bentley'];
+
 const INJECTION_PATTERNS = [
   /ignore\s+(les|toutes|mes|tes|vos)?\s*(instructions|consignes)/u,
   /oublie\s+(les|toutes|mes|tes|vos)?\s*(instructions|consignes)/u,
@@ -267,6 +321,8 @@ export function buildPortfolioKnowledge(portfolio: Portfolio): string {
       languages: ['Français : langue maternelle', 'Anglais : capacité professionnelle'],
       education:
         'Diplôme d’ingénieur ESILV, option calcul scientifique (2007–2012), avec un échange à l’Université Laval.',
+      status: 'Freelance, en mission chez Betclic depuis octobre 2025',
+      workPreferences: 'Île-de-France (région parisienne), hybride ou télétravail',
     },
     contact: PORTFOLIO_CONTACT,
     portfolio,
@@ -295,6 +351,10 @@ export class PortfolioAssistant {
 
     if (isContactQuestion(normalizedQuestion)) {
       return { answer: this.contactReply() };
+    }
+
+    if (isFreelanceQuestion(normalizedQuestion)) {
+      return { answer: this.locale === 'en' ? ENGLISH_FREELANCE_REPLY : FREELANCE_REPLY };
     }
 
     if (!isPortfolioQuestion(normalizedQuestion)) {
@@ -414,17 +474,19 @@ function sanitizeMessages(messages: readonly AssistantMessage[]): readonly Assis
 }
 
 function isContactQuestion(question: string): boolean {
-  return [
-    'contact',
-    'email',
-    'mail',
-    'telephone',
-    'phone',
-    'joindre',
-    'coordonnees',
-    'reach',
-    'details',
-  ].some((term) => question.includes(term));
+  return CONTACT_TERMS.some((term) => startsWord(question, term));
+}
+
+function isFreelanceQuestion(question: string): boolean {
+  return (
+    FREELANCE_TERMS.some((term) => startsWord(question, term)) &&
+    !COMPANY_TERMS.some((term) => startsWord(question, term))
+  );
+}
+
+/** True when `term` appears at the start of a word, so "contact" matches "contacter" but not "details". */
+function startsWord(question: string, term: string): boolean {
+  return ` ${question}`.includes(` ${term}`);
 }
 
 function isAgeQuestion(question: string): boolean {
