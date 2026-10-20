@@ -124,7 +124,10 @@ test('renders a complete, accessible French experience', async ({ page }, testIn
 test('tells the full Betclic case study with decisions and trade-offs', async ({
   page,
 }, testInfo) => {
-  await page.getByRole('link', { name: /Real-time sports odds/i }).click();
+  await page
+    .getByRole('link', { name: /Real-time sports odds/i })
+    .first()
+    .click();
   await expect(page).toHaveURL(/\/work\/betclic$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Real-time sports odds');
   await expect(page.getByRole('heading', { name: 'Key decisions' })).toBeVisible();

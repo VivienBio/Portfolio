@@ -76,15 +76,19 @@ describe('PortfolioPageComponent', () => {
     );
   });
 
-  it('shows a labelled market replay in the hero, with its events as text', () => {
+  it('opens both case studies from the hero, without any figures from a client system', () => {
     const element = render();
-    const replay = element.querySelector('.hero figure.replay');
-    const events = replay?.querySelectorAll('.replay-log li') ?? [];
+    const hero = element.querySelector('.hero');
+    const links = hero?.querySelectorAll<HTMLAnchorElement>('.hero-case-link') ?? [];
 
-    expect(replay?.querySelector('figcaption')?.textContent).toContain('Illustration');
-    expect(replay?.querySelectorAll('svg[role="img"][aria-label]')).toHaveLength(2);
-    expect(events).toHaveLength(3);
-    expect(events[0]?.querySelector('.replay-time')?.textContent).toBe('62:14.208');
+    expect(hero?.querySelector('.hero-cases h2')?.textContent).toContain('Case studies');
+    expect(links).toHaveLength(2);
+    expect(links[0]?.getAttribute('href')).toBe('/work/betclic');
+    expect(links[0]?.textContent?.trim()).toBe('Real-time sports odds, priced in-house');
+    expect(links[1]?.getAttribute('href')).toBe('/work/tf1');
+    expect(hero?.querySelector('svg, figure')).toBeNull();
+    expect(hero?.textContent).not.toMatch(/\d+[.,]\d{2}\b|\d+:\d{2}/);
+    expect(element.querySelector('.hero .secondary')?.textContent?.trim()).toBe('See my career');
   });
 
   it('offers three kinds of missions backed by facts, with practical details', () => {

@@ -103,100 +103,17 @@
         </div>
       </div>
 
-      <figure class="replay reveal reveal-3">
-        <figcaption>
-          <span class="replay-title">{{ copy.replay.title }}</span>
-          <span class="replay-note">{{ copy.replay.note }}</span>
-        </figcaption>
-        <svg
-          class="replay-chart replay-chart-wide"
-          viewBox="0 0 640 286"
-          role="img"
-          [attr.aria-label]="copy.replay.chartLabel"
-        >
-          <line class="chart-grid" x1="24" x2="560" y1="86.2" y2="86.2" />
-          <line class="chart-grid" x1="24" x2="560" y1="147.7" y2="147.7" />
-          <line class="chart-grid" x1="24" x2="560" y1="209.2" y2="209.2" />
-          <text class="chart-axis" x="574" y="90.5">{{ copy.replay.odds[0] }}</text>
-          <text class="chart-axis" x="574" y="152">{{ copy.replay.odds[1] }}</text>
-          <text class="chart-axis" x="574" y="213.5">{{ copy.replay.odds[2] }}</text>
-          <line class="chart-half" x1="292" x2="292" y1="40" y2="240" />
-          <text class="chart-axis" x="292" y="30" text-anchor="middle">
-            {{ copy.replay.halfTime }}
-          </text>
-          <rect class="chart-band" x="393.2" y="40" width="12" height="200" />
-          <text class="chart-signal" x="399.2" y="30" text-anchor="middle">
-            {{ copy.replay.suspended }}
-          </text>
-          <path
-            class="chart-trace"
-            d="M24.0 70.8 L41.9 69.2 L59.7 73.8 L77.6 72.3 L95.5 78.5 L113.3 76.9 L131.2 81.5 L149.1 80.0 L166.9 86.2 L184.8 87.7 L202.7 90.8 L220.5 87.7 L238.4 84.6 L256.3 81.5 L274.1 83.1 L292.0 83.1 L309.9 78.5 L327.7 75.4 L345.6 76.9 L363.5 72.3 L381.3 69.2 L393.2 67.7"
-          />
-          <path class="chart-jump" d="M393.2 67.7 L405.2 175.4" />
-          <path
-            class="chart-trace"
-            d="M405.2 175.4 L417.1 176.9 L429.0 180.0 L440.9 183.1 L452.8 184.6 L464.7 187.7 L476.6 189.2 L488.5 192.3 L500.4 195.4 L512.4 198.5 L524.3 201.5 L536.2 206.2 L548.1 209.2"
-          />
-          <circle class="chart-pin" cx="393.2" cy="67.7" r="5.5" />
-          <text class="chart-label" x="381" y="56" text-anchor="end">{{ copy.replay.goal }}</text>
-          <circle class="chart-pin" cx="405.2" cy="175.4" r="5.5" />
-          <text class="chart-label" x="417" y="161">{{ copy.replay.reopened }}</text>
-          <circle class="chart-glow" cx="548.1" cy="209.2" r="15" />
-          <circle class="chart-head" cx="548.1" cy="209.2" r="5.5" />
-          <text class="chart-signal" x="548.1" y="187" text-anchor="middle">
-            {{ copy.replay.live }}
-          </text>
-          <text class="chart-axis" x="24" y="268" text-anchor="middle">0’</text>
-          <text class="chart-axis" x="113.3" y="268" text-anchor="middle">15’</text>
-          <text class="chart-axis" x="202.7" y="268" text-anchor="middle">30’</text>
-          <text class="chart-axis" x="292" y="268" text-anchor="middle">45’</text>
-          <text class="chart-axis" x="381.3" y="268" text-anchor="middle">60’</text>
-          <text class="chart-axis" x="470.7" y="268" text-anchor="middle">75’</text>
-          <text class="chart-axis" x="560" y="268" text-anchor="middle">90’</text>
-        </svg>
-        <svg
-          class="replay-chart replay-chart-compact"
-          viewBox="0 0 350 170"
-          role="img"
-          [attr.aria-label]="copy.replay.chartLabel"
-        >
-          <line class="chart-grid" x1="12" x2="338" y1="51.7" y2="51.7" />
-          <line class="chart-grid" x1="12" x2="338" y1="88.6" y2="88.6" />
-          <line class="chart-grid" x1="12" x2="338" y1="125.5" y2="125.5" />
-          <rect class="chart-band" x="236.6" y="24" width="7.2" height="120" />
-          <text class="chart-signal chart-small" x="240.2" y="15" text-anchor="middle">
-            {{ copy.replay.suspended }}
-          </text>
-          <path
-            class="chart-trace"
-            d="M12.0 42.5 L22.9 41.5 L33.7 44.3 L44.6 43.4 L55.5 47.1 L66.3 46.2 L77.2 48.9 L88.1 48.0 L98.9 51.7 L109.8 52.6 L120.7 54.5 L131.5 52.6 L142.4 50.8 L153.3 48.9 L164.1 49.8 L175.0 49.8 L185.9 47.1 L196.7 45.2 L207.6 46.2 L218.5 43.4 L229.3 41.5 L236.6 40.6"
-          />
-          <path class="chart-jump" d="M236.6 40.6 L243.8 105.2" />
-          <path
-            class="chart-trace"
-            d="M243.8 105.2 L251.1 106.2 L258.3 108.0 L265.6 109.8 L272.8 110.8 L280.0 112.6 L287.3 113.5 L294.5 115.4 L301.8 117.2 L309.0 119.1 L316.3 120.9 L323.5 123.7 L330.8 125.5"
-          />
-          <circle class="chart-pin" cx="236.6" cy="40.6" r="4.5" />
-          <text class="chart-label chart-small" x="228" y="34" text-anchor="end">
-            {{ copy.replay.goalShort }}
-          </text>
-          <circle class="chart-pin" cx="243.8" cy="105.2" r="4.5" />
-          <text class="chart-label chart-small" x="253" y="96">{{ copy.replay.reopened }}</text>
-          <circle class="chart-glow" cx="330.8" cy="125.5" r="11" />
-          <circle class="chart-head" cx="330.8" cy="125.5" r="4.5" />
-          <text class="chart-axis chart-small" x="12" y="162">0’</text>
-          <text class="chart-axis chart-small" x="175" y="162" text-anchor="middle">45’</text>
-          <text class="chart-axis chart-small" x="338" y="162" text-anchor="end">90’</text>
-        </svg>
-        <ol class="replay-log" [attr.aria-label]="copy.replay.eventsLabel">
-          @for (event of copy.replay.events; track event.time) {
-            <li>
-              <span class="replay-time">{{ event.time }}</span
-              ><span>{{ event.text }}</span>
+      <div class="hero-cases reveal reveal-3">
+        <h2 id="hero-cases-title" class="hero-cases-title">{{ copy.hero.caseStudiesTitle }}</h2>
+        <ul>
+          @for (caseStudy of copy.hero.caseStudies; track caseStudy.path) {
+            <li class="hero-case">
+              <span class="hero-case-meta">{{ caseStudy.meta }}</span>
+              <a class="hero-case-link" [routerLink]="caseStudy.path">{{ caseStudy.title }}</a>
             </li>
           }
-        </ol>
-      </figure>
+        </ul>
+      </div>
     </div>
   </section>
 

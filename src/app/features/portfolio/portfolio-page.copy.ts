@@ -24,10 +24,12 @@ interface CareerStep {
   readonly current?: boolean;
 }
 
-interface ReplayEvent {
-  /** Match clock, minutes:seconds.milliseconds, as an event log would print it. */
-  readonly time: string;
-  readonly text: string;
+/** A public case study, linked from the hero. */
+interface CaseStudyLink {
+  /** Client and period, as stated on the CV. */
+  readonly meta: string;
+  readonly title: string;
+  readonly path: string;
 }
 
 interface Recommendation {
@@ -70,21 +72,8 @@ interface PageCopy {
     readonly lead: string;
     readonly primaryAction: string;
     readonly secondaryAction: string;
-  };
-  readonly replay: {
-    readonly title: string;
-    readonly note: string;
-    /** Text alternative of the chart: what the line shows, in one sentence. */
-    readonly chartLabel: string;
-    readonly halfTime: string;
-    readonly suspended: string;
-    readonly goal: string;
-    readonly goalShort: string;
-    readonly reopened: string;
-    readonly live: string;
-    readonly odds: readonly [string, string, string];
-    readonly eventsLabel: string;
-    readonly events: readonly ReplayEvent[];
+    readonly caseStudiesTitle: string;
+    readonly caseStudies: readonly CaseStudyLink[];
   };
   readonly missions: {
     readonly title: string;
@@ -181,25 +170,19 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Systems where wrong answers are expensive.',
       lead: 'Freelance Senior Software Engineer and Tech Lead in C# / .NET. Since 2012: real-time sports pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago.',
       primaryAction: 'Propose a mission',
-      secondaryAction: 'Read the case studies',
-    },
-    replay: {
-      title: 'Replaying a market, one decision at a time',
-      note: 'Illustration: what my engines record, so that every decision can be replayed exactly.',
-      chartLabel:
-        'Illustration: a market’s odds hover around 2.00 for an hour; after a goal in the 62nd minute the market is suspended, reopened at 1.42, then the odds drift down to 1.20.',
-      halfTime: 'Half-time',
-      suspended: 'Suspended 4.2 s',
-      goal: '62’ Home goal',
-      goalShort: '62’ Goal',
-      reopened: 'Reopened at 1.42',
-      live: 'Live',
-      odds: ['2.00', '1.60', '1.20'],
-      eventsLabel: 'Event log',
-      events: [
-        { time: '62:14.208', text: 'Home goal: the market is suspended.' },
-        { time: '62:18.410', text: 'Probabilities recomputed: the odds move from 2.12 to 1.42.' },
-        { time: '62:18.415', text: 'Market reopened; every decision is recorded and replayable.' },
+      secondaryAction: 'See my career',
+      caseStudiesTitle: 'Case studies',
+      caseStudies: [
+        {
+          meta: 'Betclic Group, since October 2025',
+          title: 'Real-time sports odds, priced in-house',
+          path: '/work/betclic',
+        },
+        {
+          meta: 'TF1 Group, 2022 to 2025',
+          title: 'Modernizing a broadcaster’s ad platform without stopping it',
+          path: '/work/tf1',
+        },
       ],
     },
     missions: {
@@ -421,27 +404,18 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Des systèmes où l’erreur coûte cher.',
       lead: 'Senior Software Engineer et Tech Lead freelance en C# / .NET. Depuis 2012 : pricing sportif temps réel chez Betclic, SI publicitaire de TF1, logiciel médical réglementé chez Stago.',
       primaryAction: 'Proposer une mission',
-      secondaryAction: 'Lire les études de cas',
-    },
-    replay: {
-      title: 'Le rejeu d’un marché, décision par décision',
-      note: 'Illustration : ce que mes moteurs enregistrent pour pouvoir tout rejouer à l’identique.',
-      chartLabel:
-        'Illustration : la cote d’un marché oscille autour de 2,00 pendant une heure ; après un but à la 62e minute, le marché est suspendu, rouvert à 1,42, puis la cote descend jusqu’à 1,20.',
-      halfTime: 'Mi-temps',
-      suspended: 'Suspendu 4,2 s',
-      goal: '62’ But domicile',
-      goalShort: '62’ But',
-      reopened: 'Rouvert à 1,42',
-      live: 'En direct',
-      odds: ['2,00', '1,60', '1,20'],
-      eventsLabel: 'Journal des événements',
-      events: [
-        { time: '62:14.208', text: 'But domicile : le marché est suspendu.' },
-        { time: '62:18.410', text: 'Probabilités recalculées : la cote passe de 2,12 à 1,42.' },
+      secondaryAction: 'Voir le parcours',
+      caseStudiesTitle: 'Études de cas',
+      caseStudies: [
         {
-          time: '62:18.415',
-          text: 'Marché rouvert ; chaque décision est enregistrée et rejouable.',
+          meta: 'Betclic Group, depuis octobre 2025',
+          title: 'Des cotes sportives temps réel, produites en interne',
+          path: '/fr/work/betclic',
+        },
+        {
+          meta: 'Groupe TF1, de 2022 à 2025',
+          title: 'Moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
+          path: '/fr/work/tf1',
         },
       ],
     },
