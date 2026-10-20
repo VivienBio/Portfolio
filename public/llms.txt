@@ -26,7 +26,7 @@ The facts below are the same ones published on his portfolio, résumé and Linke
 
 ## Pages
 
-- [Portfolio (English)](https://vivien-billot.web.app/): positioning, selected work, principles, experience and contact.
+- [Portfolio (English)](https://vivien-billot.web.app/): positioning, services, case studies and career, approach, recommendations and contact.
 - [Portfolio (French)](https://vivien-billot.web.app/fr): the same content in French.
 - [Case study: real-time sports pricing at Betclic](https://vivien-billot.web.app/work/betclic): context, constraints, key decisions and trade-offs.
 - [Case study: modernizing TF1's advertising platform](https://vivien-billot.web.app/work/tf1): leading three teams through a modernization without stopping the business.

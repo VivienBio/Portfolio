@@ -52,37 +52,86 @@ describe('PortfolioPageComponent', () => {
     expect(rows[1]?.textContent).toContain('Stago');
   });
 
-  it('shows six engineering principles and six problem-oriented expertise areas', () => {
+  it('groups expertise, principles and working style in one approach section', () => {
     const element = render();
+    const approach = element.querySelector('#approche');
 
-    expect(element.querySelectorAll('.principles-grid article')).toHaveLength(6);
-    expect(element.textContent).toContain('Simplicity before sophistication');
-    expect(element.textContent).toContain('Tests are a design tool');
-    expect(element.querySelectorAll('.expertise-grid article')).toHaveLength(6);
-    expect(element.textContent).toContain('Distributed systems & messaging');
-    expect(element.textContent).toContain('Technical leadership');
+    expect(approach?.querySelectorAll('.expertise-grid > li')).toHaveLength(6);
+    expect(approach?.querySelectorAll('.principles-grid > li')).toHaveLength(6);
+    expect(approach?.textContent).toContain('Simplicity before sophistication');
+    expect(approach?.textContent).toContain('Tests are a design tool');
+    expect(approach?.textContent).toContain('Distributed systems & messaging');
+    expect(approach?.textContent).toContain('Technical leadership');
+    expect(approach?.querySelector('#expertise')).toBeTruthy();
+    expect(approach?.querySelector('#principes')).toBeTruthy();
   });
 
-  it('renders every professional experience with verified metrics', () => {
+  it('tells the career once, from the case studies to the internships', () => {
     const element = render();
+    const career = element.querySelector('#work #parcours');
 
-    expect(element.querySelectorAll('.timeline article')).toHaveLength(6);
-    expect(element.textContent).toContain('Betclic Group');
-    expect(element.textContent).toContain('TF1 Group');
-    expect(element.textContent).toContain('Total');
-    expect(element.textContent).toContain('11');
-    expect(element.textContent).toContain('500+');
-    expect(element.textContent).toContain('proprietary sports-pricing');
+    for (const company of [
+      'Betclic Group',
+      'TF1 Group',
+      'Rent A Car',
+      'Stago',
+      'Bentley Systems',
+      'Total',
+    ]) {
+      expect(career?.textContent).toContain(company);
+    }
+    expect(element.querySelector('.metrics')?.textContent).toContain('11');
+    expect(element.querySelector('.metrics')?.textContent).toContain('500+');
+    expect(element.querySelector('.timeline')).toBeNull();
+    expect(career?.querySelector('a.work-cv')?.getAttribute('href')).toBe(
+      '/assets/CV-Vivien-Billot-EN.pdf',
+    );
+  });
+
+  it('offers three kinds of missions backed by facts, with practical details', () => {
+    const element = render();
+    const missions = element.querySelector('#missions');
+    const practical = missions?.querySelector('.missions-practical');
+
+    expect(missions?.querySelectorAll('.missions-list > li')).toHaveLength(3);
+    expect(missions?.querySelectorAll('.mission-proof')).toHaveLength(3);
+    expect(practical?.textContent).toContain('Betclic');
+    expect(practical?.textContent).toContain('Paris region');
+    expect(practical?.textContent).toContain('hybrid or remote');
+    expect(practical?.querySelector('a')?.getAttribute('href')).toBe(
+      'mailto:billot.vivien@gmail.com?subject=Mission%20proposal',
+    );
   });
 
   it('presents strengths alongside managed points of vigilance', () => {
     const element = render();
-    const items = element.querySelectorAll('.working-style-grid article');
+    const columns = element.querySelectorAll('.working-style-column');
 
-    expect(items).toHaveLength(6);
-    expect(element.textContent).toContain('Seeing the whole system');
-    expect(element.textContent).toContain('What I watch');
-    expect(element.textContent).toContain('My safeguard');
+    expect(columns).toHaveLength(2);
+    expect(columns[0]?.querySelectorAll('li')).toHaveLength(3);
+    expect(columns[1]?.querySelectorAll('li')).toHaveLength(3);
+    expect(columns[0]?.textContent).toContain('Seeing the whole system');
+    expect(columns[1]?.textContent).toContain('What I watch');
+    expect(columns[1]?.textContent).toContain('My safeguard');
+  });
+
+  it('quotes attributed LinkedIn recommendations and links to all of them', () => {
+    const element = render();
+    const section = element.querySelector('#recommandations');
+    const quotes = section?.querySelectorAll('figure') ?? [];
+    const links = section?.querySelectorAll<HTMLAnchorElement>('a') ?? [];
+
+    expect(quotes).toHaveLength(3);
+    for (const quote of quotes) {
+      expect(quote.querySelector('blockquote')?.textContent?.trim().length).toBeGreaterThan(40);
+      expect(quote.querySelector('figcaption strong')?.textContent?.trim()).toBeTruthy();
+    }
+    expect(section?.textContent).toContain('Apoorva Deshmukh');
+    expect(section?.textContent).toContain('Translated from French');
+    expect(links).toHaveLength(1);
+    expect(links[0]?.href).toBe(
+      'https://www.linkedin.com/in/vivien-billot/details/recommendations/',
+    );
   });
 
   it('shows personal projects, recommendations, and the portfolio assistant', () => {
@@ -90,7 +139,8 @@ describe('PortfolioPageComponent', () => {
     const projects = element.querySelector('#projets');
     const contact = element.querySelector('#contact');
 
-    expect(element.querySelectorAll('.projects-grid article')).toHaveLength(5);
+    expect(element.querySelectorAll('#projets .project')).toHaveLength(5);
+    expect(element.querySelector('#projets #formation')).toBeTruthy();
     expect(element.textContent).toContain('TicTacToe Solver');
     expect(element.querySelector('app-portfolio-assistant')).toBeTruthy();
     expect(
@@ -114,6 +164,40 @@ describe('PortfolioPageComponent', () => {
     expect(element.querySelector('section#contact')?.getAttribute('aria-labelledby')).toBe(
       'contact-title',
     );
+    expect(element.querySelectorAll('nav a')).toHaveLength(4);
+    expect(element.querySelector('.menu-toggle')?.getAttribute('aria-controls')).toBe('site-nav');
+    expect(element.querySelector('nav#site-nav')).toBeTruthy();
+  });
+
+  it('opens the small-screen menu and closes it on Escape, outside clicks and navigation', () => {
+    const fixture = TestBed.createComponent(PortfolioPageComponent);
+    fixture.detectChanges();
+    const element = fixture.nativeElement as HTMLElement;
+    const toggle = element.querySelector<HTMLButtonElement>('.menu-toggle')!;
+    const header = element.querySelector('.site-header')!;
+
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    toggle.click();
+    fixture.detectChanges();
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    expect(header.classList).toContain('menu-open');
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    fixture.detectChanges();
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(document.activeElement).toBe(toggle);
+
+    toggle.click();
+    fixture.detectChanges();
+    element.querySelector<HTMLElement>('#missions')!.click();
+    fixture.detectChanges();
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+
+    toggle.click();
+    fixture.detectChanges();
+    element.querySelector<HTMLAnchorElement>('nav a[href="/#contact"]')!.click();
+    fixture.detectChanges();
+    expect(header.classList).not.toContain('menu-open');
   });
 
   it('puts direct recruiter contact paths and both resumes in the page', () => {

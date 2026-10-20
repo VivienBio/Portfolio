@@ -12,11 +12,13 @@ describe('ProjectsGridComponent', () => {
     );
     fixture.detectChanges();
     const element = fixture.nativeElement as HTMLElement;
-    const projects = element.querySelectorAll('article');
+    const projects = element.querySelectorAll('.project');
     const links = element.querySelectorAll<HTMLAnchorElement>('a[target="_blank"]');
 
     expect(projects).toHaveLength(5);
+    expect(links).toHaveLength(5);
     expect(element.textContent).toContain('TicTacToe Solver');
+    expect(element.querySelector('h3 a')?.textContent).toContain('Portfolio');
     for (const link of links) {
       expect(link.rel).toContain('noopener');
       expect(link.rel).toContain('noreferrer');

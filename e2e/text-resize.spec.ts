@@ -90,6 +90,10 @@ test('positions anchor headings below the resized header and clears its offset w
       }),
     )
     .toBe(true);
+  const menuToggle = page.locator('.menu-toggle');
+  if (await menuToggle.isVisible()) {
+    await menuToggle.click();
+  }
   await page
     .locator('.site-header nav')
     .getByRole('link', { name: 'Contact', exact: true })

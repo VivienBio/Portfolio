@@ -172,7 +172,7 @@ for (const locale of ['fr', 'en'] as const) {
     await activate(page.locator('.consent-accept'), testInfo);
     await expect.poll(() => eventsNamed(page, 'page_view')).toHaveLength(1);
 
-    await activate(page.locator('.quote a'), testInfo);
+    await activate(page.locator('.recommendations-link'), testInfo);
     await expect.poll(() => eventsNamed(page, 'recommendation_click')).toHaveLength(1);
     expect(await eventsNamed(page, 'contact_click')).toHaveLength(0);
     expect((await eventsNamed(page, 'recommendation_click'))[0]?.parameters).toMatchObject({

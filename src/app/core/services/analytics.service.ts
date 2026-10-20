@@ -25,7 +25,15 @@ export interface AnalyticsParameters {
   readonly file_name?: 'CV-Vivien-Billot-FR.pdf' | 'CV-Vivien-Billot-EN.pdf';
   readonly file_extension?: 'pdf';
   readonly placement?:
-    'hero' | 'header' | 'footer' | 'contact' | 'assistant' | 'project' | 'recommendations';
+    | 'hero'
+    | 'header'
+    | 'footer'
+    | 'contact'
+    | 'assistant'
+    | 'project'
+    | 'recommendations'
+    | 'missions'
+    | 'work';
   readonly channel?: 'email' | 'linkedin' | 'phone';
   readonly theme?: 'light' | 'dark';
   readonly target?: 'betclic' | 'tf1';
@@ -82,7 +90,17 @@ const PARAMETER_VALUES: Readonly<Record<keyof AnalyticsParameters, readonly stri
   cv_language: ['fr', 'en'],
   file_name: ['CV-Vivien-Billot-FR.pdf', 'CV-Vivien-Billot-EN.pdf'],
   file_extension: ['pdf'],
-  placement: ['hero', 'header', 'footer', 'contact', 'assistant', 'project', 'recommendations'],
+  placement: [
+    'hero',
+    'header',
+    'footer',
+    'contact',
+    'assistant',
+    'project',
+    'recommendations',
+    'missions',
+    'work',
+  ],
   channel: ['email', 'linkedin', 'phone'],
   theme: ['light', 'dark'],
   target: ['betclic', 'tf1'],
