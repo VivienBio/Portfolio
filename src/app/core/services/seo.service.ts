@@ -5,6 +5,8 @@ import { SITE_URL, SeoPage, absoluteUrl, ogLocale } from '../infrastructure/site
 const MANAGED_LINK_ATTRIBUTE = 'data-seo';
 const PERSON_SCRIPT_ID = 'person-json-ld';
 const DEFAULT_SOCIAL_IMAGE = '/og-image.jpg';
+/** Bump whenever a social image changes: LinkedIn and others cache previews by image URL. */
+const SOCIAL_IMAGE_VERSION = '2026-10-20';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -13,7 +15,7 @@ export class SeoService {
   private readonly title = inject(Title);
 
   apply(page: SeoPage): void {
-    const image = `${SITE_URL}${page.image ?? DEFAULT_SOCIAL_IMAGE}`;
+    const image = `${SITE_URL}${page.image ?? DEFAULT_SOCIAL_IMAGE}?v=${SOCIAL_IMAGE_VERSION}`;
     this.meta.removeTag('name="robots"');
     this.title.setTitle(page.title);
     this.meta.updateTag({ name: 'description', content: page.description });
