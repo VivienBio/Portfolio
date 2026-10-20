@@ -8,21 +8,21 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       index: '01',
       title: 'Ingénierie logicielle',
       description:
-        'Rendre les domaines complexes explicites, testables et sûrs à faire évoluer : un domaine protégé, des cas d’usage clairs, des dépendances qui ne dictent pas la solution.',
+        'Rendre les domaines complexes explicites, testables et sûrs à faire évoluer : un domaine protégé, des cas d’usage clairs, des dépendances qui ne dictent pas la solution.',
       technologies: ['C#', '.NET / ASP.NET Core', 'DDD', 'Hexagonale', 'CQRS', 'TDD'],
     },
     {
       index: '02',
       title: 'Systèmes distribués & messaging',
       description:
-        'Concevoir des services qui restent justes quand tout devient asynchrone : frontières nettes, résilience et flux d’événements maîtrisés.',
+        'Concevoir des services qui restent justes quand tout devient asynchrone : frontières nettes, résilience et flux d’événements maîtrisés.',
       technologies: ['Microservices', 'Kafka', 'Messaging', 'Résilience'],
     },
     {
       index: '03',
       title: 'Cloud & plateforme',
       description:
-        'Traiter la plateforme comme un produit : reproductible, sécurisée, observable — et des signaux de production réellement actionnables.',
+        'Traiter la plateforme comme un produit : reproductible, sécurisée, observable — et des signaux de production réellement actionnables.',
       technologies: [
         'AWS (ECS/Fargate)',
         'Azure (AKS)',
@@ -35,21 +35,21 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       index: '04',
       title: 'Delivery & qualité',
       description:
-        'Raccourcir le chemin de la décision à la production sans rogner sur la qualité : pipelines, quality gates et sécurité intégrée.',
+        'Raccourcir le chemin de la décision à la production sans rogner sur la qualité : pipelines, quality gates et sécurité intégrée.',
       technologies: ['GitHub Actions', 'CI/CD', 'Dagger', 'SonarQube', 'Checkmarx / Snyk'],
     },
     {
       index: '05',
       title: 'Full stack & frontend',
       description:
-        'Des interfaces qui respectent l’utilisateur et le modèle métier derrière : de l’API au parcours Angular, fiable et accessible.',
+        'Des interfaces qui respectent l’utilisateur et le modèle métier derrière : de l’API au parcours Angular, fiable et accessible.',
       technologies: ['Angular', 'TypeScript', 'SQL / NoSQL', 'Accessibilité', 'SSR'],
     },
     {
       index: '06',
       title: 'Leadership technique',
       description:
-        'Faire monter le niveau de l’équipe, pas seulement celui du code : cap commun, décisions explicites et autonomie durable.',
+        'Faire monter le niveau de l’équipe, pas seulement celui du code : cap commun, décisions explicites et autonomie durable.',
       technologies: ['Roadmaps', 'Revues d’architecture', 'Mentorat', 'Recrutement', 'Standards'],
     },
   ],
@@ -59,7 +59,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       role: 'Senior Software Engineer',
       period: 'Depuis octobre 2025',
       summary:
-        'Je contribue à une chaîne de pricing sportif propriétaire : générer nos propres probabilités afin de proposer rapidement des cotes maîtrisées aux parieurs, avec davantage d’autonomie qu’une dépendance exclusive à des providers externes.',
+        'Je contribue à une chaîne de pricing sportif propriétaire : générer nos propres probabilités afin de proposer rapidement des cotes maîtrisées aux parieurs, avec davantage d’autonomie qu’une dépendance exclusive à des providers externes.',
       achievements: [
         'Mettre en production avec les quants, au quotidien et en anglais, des modèles statistiques, XGBoost/ONNX et des simulations Monte-Carlo couvrant de nombreux sports et compétitions',
         'Transformer ces probabilités en cotes pilotées en interne, dans un moteur temps réel C#/.NET, Kafka et gRPC, pour gagner en vitesse, en maîtrise et en indépendance',
@@ -84,12 +84,12 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       role: 'Tech Lead / Architecte',
       period: 'Février 2022 — octobre 2025',
       summary:
-        'Référent technique de trois équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
+        'Référent technique de trois équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
       achievements: [
-        'Donner un cap commun aux équipes : architecture, roadmap, priorisation, coaching, recrutement et respect des délais',
+        'Donner un cap commun aux équipes : architecture, roadmap, priorisation, coaching, recrutement et respect des délais',
         'Réduire le lead time grâce aux pratiques Accelerate, aux tests et à l’observabilité',
         'Moderniser du legacy VB6 vers .NET 6/8, Angular, Azure et AKS, avec gouvernance API et sécurité applicative',
-        'Explorer des usages IA ciblés : assistance Copilot et validation éditoriale automatisée de vidéos',
+        'Explorer des usages IA ciblés : assistance Copilot et validation éditoriale automatisée de vidéos',
       ],
       technologies: ['.NET 6/8', 'Angular', 'Azure / AKS', 'Apigee', 'Datadog', 'Checkmarx / Snyk'],
     },
@@ -101,7 +101,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
         'De développeur senior à responsable technique d’une équipe de neuf personnes, j’ai contribué à la transformation numérique d’un réseau de plus de 500 agences.',
       achievements: [
         'Lancer Easy Péage, présenté comme le premier service européen de paiement de péage embarqué dans un véhicule de location',
-        'Digitaliser le parcours : check-in, signature Yousign, état des lieux WeProov et e-commerce à fort trafic',
+        'Digitaliser le parcours : check-in, signature Yousign, état des lieux WeProov et e-commerce à fort trafic',
         'Construire microservices, pricing dynamique, interface ANTAI et référentiel client unique conforme au RGPD',
         'Industrialiser CI/CD, Docker, AWS et ELK tout en recrutant et en faisant progresser l’équipe',
       ],
@@ -126,7 +126,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       role: 'Développeur C++ / C# — stage',
       period: 'Avr. — nov. 2012',
       summary:
-        'Première expérience sur des applications de génie civil : finaliser un framework métier et développer des outils qui sécurisent les données de conception.',
+        'Première expérience sur des applications de génie civil : finaliser un framework métier et développer des outils qui sécurisent les données de conception.',
       achievements: [
         'Développer un éditeur interactif d’expressions paramétriques',
         'Créer des outils de contrôle et de réparation de l’intégrité des données',
@@ -151,7 +151,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       title: 'Portfolio — Digital Twin',
       category: 'Architecture · Angular · Cloud',
       description:
-        'Un portfolio qui se comporte comme un produit : il raconte mon parcours, expose mes choix d’architecture et propose une conversation ancrée sur des informations vérifiées.',
+        'Un portfolio qui se comporte comme un produit : il raconte mon parcours, expose mes choix d’architecture et propose une conversation ancrée sur des informations vérifiées.',
       proof:
         'Angular SSR, architecture hexagonale, TDD, contrôles d’accessibilité et déploiement GCP pensé sans secrets dans le navigateur.',
       technologies: ['Angular 22', 'OpenAI', 'GCP', 'Vitest'],
@@ -161,7 +161,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       title: 'TicTacToe Solver',
       category: 'TDD · Domain Design',
       description:
-        'Bien plus qu’un morpion : un laboratoire C# pour modéliser des règles, faire émerger le design par les tests et garder le comportement métier évident.',
+        'Bien plus qu’un morpion : un laboratoire C# pour modéliser des règles, faire émerger le design par les tests et garder le comportement métier évident.',
       proof:
         'Une base volontairement compacte où chaque règle est nommée, testée et donc facile à challenger ou à faire évoluer.',
       technologies: ['C#', 'TDD', 'SOLID'],
@@ -173,7 +173,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       description:
         'Un exercice C# public qui met la logique du jeu au premier plan, avec un projet de tests dédié pour verrouiller les règles et les cas limites.',
       proof:
-        'Une démonstration supplémentaire d’une pratique récurrente : partir du comportement attendu, puis construire un code simple à vérifier.',
+        'Une démonstration supplémentaire d’une pratique récurrente : partir du comportement attendu, puis construire un code simple à vérifier.',
       technologies: ['C#', 'Tests', 'Règles métier'],
       url: 'https://github.com/VivienBio/BullsAndCows',
     },
@@ -181,7 +181,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       title: 'Vending Machine',
       category: 'Craft · Kata',
       description:
-        'Une machine distributrice traitée comme un vrai domaine : monnaie, stock, remboursement et règles métier restent indépendants de l’interface.',
+        'Une machine distributrice traitée comme un vrai domaine : monnaie, stock, remboursement et règles métier restent indépendants de l’interface.',
       proof:
         'Un terrain de pratique pour le refactoring guidé par les tests et le design qui émerge du comportement plutôt que d’un diagramme figé.',
       technologies: ['DDD', 'TDD', 'Clean Code'],
@@ -191,9 +191,9 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       title: 'CodinGame',
       category: 'Algorithmes · Optimisation',
       description:
-        'Des problèmes d’algorithmes comme salle d’entraînement : comprendre vite, choisir la bonne complexité et livrer une stratégie robuste sous contrainte.',
+        'Des problèmes d’algorithmes comme salle d’entraînement : comprendre vite, choisir la bonne complexité et livrer une stratégie robuste sous contrainte.',
       proof:
-        'Grand Maître CodinGame, dans le top 0,1 % mondial : une pratique régulière de l’optimisation et du raisonnement algorithmique.',
+        'Grand Maître CodinGame, dans le top 0,1 % mondial : une pratique régulière de l’optimisation et du raisonnement algorithmique.',
       technologies: ['Algorithmes', 'Optimisation', 'IA'],
       url: 'https://www.codingame.com/profile/534d2045d7dc0057e6d53d29336657fe6190191',
     },

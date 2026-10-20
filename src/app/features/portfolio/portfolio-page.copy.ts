@@ -405,7 +405,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       current: 'FR',
       target: 'EN',
       href: '/',
-      currentHint: 'Version actuelle : ',
+      currentHint: 'Version actuelle : ',
       switchHint: ' — passer à la version anglaise',
     },
     cv: {
@@ -447,19 +447,19 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           title: 'Tech Lead d’équipes .NET',
           description:
-            'Prendre la responsabilité technique d’une ou plusieurs équipes : cap d’architecture, priorités, qualité du delivery et montée en compétence.',
+            'Prendre la responsabilité technique d’une ou plusieurs équipes : cap d’architecture, priorités, qualité du delivery et montée en compétence.',
           proof: 'trois équipes chez TF1, neuf personnes chez Rent A Car, huit en R&D chez Stago.',
         },
         {
           title: 'Modernisation de legacy',
           description:
-            'Faire évoluer un système ancien sans arrêter le business : cartographier l’existant, verrouiller les règles métier par les tests, migrer pas à pas.',
+            'Faire évoluer un système ancien sans arrêter le business : cartographier l’existant, verrouiller les règles métier par les tests, migrer pas à pas.',
           proof: 'legacy VB6 migré vers .NET 6/8, Angular, Azure et AKS chez TF1.',
         },
         {
           title: 'Systèmes critiques et temps réel',
           description:
-            'Concevoir ou fiabiliser un système où une erreur coûte cher : règles métier explicites, observabilité et replay pour expliquer chaque décision.',
+            'Concevoir ou fiabiliser un système où une erreur coûte cher : règles métier explicites, observabilité et replay pour expliquer chaque décision.',
           proof:
             'pricing sportif temps réel chez Betclic, calcul des résultats patients chez Stago.',
         },
@@ -493,7 +493,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           kicker: 'Groupe TF1 · Février 2022–octobre 2025 · Tech Lead de trois équipes',
           title: 'Moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
           summary:
-            'Piloter la refonte de bout en bout : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et trois équipes qui en sont sorties plus fortes.',
+            'Piloter la refonte de bout en bout : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et trois équipes qui en sont sorties plus fortes.',
           path: '/fr/work/tf1',
         },
       ],
@@ -504,7 +504,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           period: '2017–2021',
           role: 'Développeur senior → Tech Lead / Responsable technique',
           summary:
-            'Construire le parcours de location digital d’un réseau de plus de 500 agences : microservices, pricing dynamique, e-commerce à fort trafic et Easy Péage — annoncé comme le premier paiement de péage embarqué d’Europe pour la location. De développeur senior à responsable technique d’une équipe de neuf personnes.',
+            'Construire le parcours de location digital d’un réseau de plus de 500 agences : microservices, pricing dynamique, e-commerce à fort trafic et Easy Péage — annoncé comme le premier paiement de péage embarqué d’Europe pour la location. De développeur senior à responsable technique d’une équipe de neuf personnes.',
           tags: ['C#', '.NET Core', 'Angular', 'Microservices', 'AWS', 'Docker', 'PostgreSQL'],
         },
         {
@@ -512,14 +512,14 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           period: '2012–2017',
           role: 'Responsable d’étude → Responsable d’équipe R&D',
           summary:
-            'Concevoir le framework C# qui calcule les résultats patients sur des automates de diagnostic in vitro — un environnement réglementé où une approximation est un défaut. Encadrer une équipe R&D de huit personnes ; refactorer les modules critiques avec TDD et structurer l’intégration continue et la traçabilité des exigences.',
+            'Concevoir le framework C# qui calcule les résultats patients sur des automates de diagnostic in vitro — un environnement réglementé où une approximation est un défaut. Encadrer une équipe R&D de huit personnes ; refactorer les modules critiques avec TDD et structurer l’intégration continue et la traçabilité des exigences.',
           tags: ['C#', 'WPF', 'TDD', 'NUnit', 'TeamCity', 'IBM Rational DOORS'],
         },
       ],
       technologies: 'Technologies',
       internships: {
         period: '2011–2012',
-        text: 'Stages : développeur C++ / C# chez Bentley Systems, développeur VB.NET chez Total.',
+        text: 'Stages : développeur C++ / C# chez Bentley Systems, développeur VB.NET chez Total.',
       },
       cvAction: 'Parcours complet dans le CV (PDF)',
     },
@@ -540,7 +540,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           title: 'L’architecture suit le problème',
           description:
-            'DDD, hexagonale, CQRS, microservices : je les utilise quand le domaine les justifie — et je plaide contre quand ce n’est pas le cas.',
+            'DDD, hexagonale, CQRS, microservices : je les utilise quand le domaine les justifie — et je plaide contre quand ce n’est pas le cas.',
         },
         {
           title: 'Les tests sont un outil de conception',
@@ -550,7 +550,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           title: 'L’observabilité se conçoit dès le départ',
           description:
-            'Un système que je ne peux pas expliquer en production n’est pas terminé. Traçage, replay et signaux actionnables font partie de l’architecture ; ils ne s’ajoutent pas après coup.',
+            'Un système que je ne peux pas expliquer en production n’est pas terminé. Traçage, replay et signaux actionnables font partie de l’architecture ; ils ne s’ajoutent pas après coup.',
         },
         {
           title: 'L’évolution plutôt que la perfection',
@@ -583,7 +583,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         },
         {
           quote:
-            'Bosseur, impliqué et toujours orienté vers la modernisation, Vivien a cette capacité rare à revenir à la quintessence du besoin : il sait simplifier, clarifier et concentrer les efforts sur ce qui apporte réellement de la valeur.',
+            'Bosseur, impliqué et toujours orienté vers la modernisation, Vivien a cette capacité rare à revenir à la quintessence du besoin : il sait simplifier, clarifier et concentrer les efforts sur ce qui apporte réellement de la valeur.',
           name: 'Arnaud Pradeilles',
           role: 'Architecte solution, a travaillé avec Vivien chez TF1',
         },
@@ -602,7 +602,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         'Chaque projet isole une pratique — modélisation de domaine, TDD, optimisation algorithmique — pour que le raisonnement reste lisible.',
       learningTitle: 'Formation',
       learningDescription:
-        'Ingénieur ESILV (calcul scientifique), échange à l’Université Laval. J’entretiens les fondamentaux par la pratique délibérée : formation DDD avec Julien Topçu, certification SAFe RTE, sécurité et observabilité — et la programmation compétitive sur CodinGame, où je suis dans le top 0,1 % mondial (Grand Maître).',
+        'Ingénieur ESILV (calcul scientifique), échange à l’Université Laval. J’entretiens les fondamentaux par la pratique délibérée : formation DDD avec Julien Topçu, certification SAFe RTE, sécurité et observabilité — et la programmation compétitive sur CodinGame, où je suis dans le top 0,1 % mondial (Grand Maître).',
       certificationsLabel: 'Formations et certifications',
     },
     contact: {
@@ -626,7 +626,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     seo: {
       title: 'Vivien Billot — Senior Software Engineer .NET freelance',
       description:
-        'Senior Software Engineer & Tech Lead freelance : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1. C#/.NET, AWS, Azure.',
+        'Senior Software Engineer & Tech Lead freelance : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1. C#/.NET, AWS, Azure.',
     },
   },
 };
