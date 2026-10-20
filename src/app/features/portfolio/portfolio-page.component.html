@@ -22,7 +22,6 @@
       <a [routerLink]="homePath" [fragment]="item.fragment">{{ item.label }}</a>
     }
   </nav>
-  <span class="availability"><i aria-hidden="true"></i> {{ copy.availability }}</span>
   <div class="header-actions" role="group" [attr.aria-label]="copy.headerActionsLabel">
     <a
       class="language-switch"
@@ -43,7 +42,7 @@
       [href]="copy.cv.href"
       (click)="trackCv(locale, 'header')"
       [attr.download]="copy.cv.fileName"
-      ><span aria-hidden="true">↓</span><span class="cv-label">{{ copy.cv.label }}</span
+      ><span class="cv-label">{{ copy.cv.label }}</span
       ><span class="cv-label-compact">CV</span
       ><span class="visually-hidden">{{ copy.cv.hint }}</span></a
     >
@@ -83,45 +82,130 @@
 </header>
 
 <main id="contenu" tabindex="-1">
-  <section class="hero" id="accueil" tabindex="-1" aria-labelledby="hero-title">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-copy">
-      <p class="hero-role reveal reveal-1">{{ copy.hero.eyebrow }}</p>
-      <h1 id="hero-title" class="reveal reveal-2 reveal-lcp">
-        <span>{{ copy.hero.title }}</span
-        ><em>{{ copy.hero.accent }}</em>
-      </h1>
-      <p class="lead reveal reveal-3 reveal-lcp">{{ copy.hero.lead }}</p>
-      <div class="actions reveal reveal-4">
-        <a class="primary" [routerLink]="homePath" fragment="work"
-          ><span>{{ copy.hero.primaryAction }}</span
-          ><b aria-hidden="true">↓</b></a
-        ><a class="secondary" [routerLink]="homePath" fragment="contact">{{
-          copy.hero.secondaryAction
-        }}</a>
+  <section class="hero night" id="accueil" tabindex="-1" aria-labelledby="hero-title">
+    <div class="wrap hero-layout">
+      <div class="hero-copy">
+        <p class="hero-status reveal reveal-1">
+          <span class="live-dot" aria-hidden="true"></span>{{ copy.hero.status }}
+        </p>
+        <h1 id="hero-title" class="reveal reveal-2 reveal-lcp">{{ copy.hero.title }}</h1>
+        <p class="lead reveal reveal-3 reveal-lcp">{{ copy.hero.lead }}</p>
+        <div class="actions reveal reveal-4">
+          <a
+            class="primary"
+            [href]="copy.missions.emailHref"
+            (click)="analytics.track('contact_click', { channel: 'email', placement: 'hero' })"
+            >{{ copy.hero.primaryAction }}</a
+          >
+          <a class="secondary" [routerLink]="homePath" fragment="work">{{
+            copy.hero.secondaryAction
+          }}</a>
+        </div>
       </div>
-      <ul class="hero-proof reveal reveal-4">
-        @for (proof of copy.hero.proof; track proof) {
-          <li>{{ proof }}</li>
-        }
-      </ul>
+
+      <figure class="replay reveal reveal-3">
+        <figcaption>
+          <span class="replay-title">{{ copy.replay.title }}</span>
+          <span class="replay-note">{{ copy.replay.note }}</span>
+        </figcaption>
+        <svg
+          class="replay-chart replay-chart-wide"
+          viewBox="0 0 640 286"
+          role="img"
+          [attr.aria-label]="copy.replay.chartLabel"
+        >
+          <line class="chart-grid" x1="24" x2="560" y1="86.2" y2="86.2" />
+          <line class="chart-grid" x1="24" x2="560" y1="147.7" y2="147.7" />
+          <line class="chart-grid" x1="24" x2="560" y1="209.2" y2="209.2" />
+          <text class="chart-axis" x="574" y="90.5">{{ copy.replay.odds[0] }}</text>
+          <text class="chart-axis" x="574" y="152">{{ copy.replay.odds[1] }}</text>
+          <text class="chart-axis" x="574" y="213.5">{{ copy.replay.odds[2] }}</text>
+          <line class="chart-half" x1="292" x2="292" y1="40" y2="240" />
+          <text class="chart-axis" x="292" y="30" text-anchor="middle">
+            {{ copy.replay.halfTime }}
+          </text>
+          <rect class="chart-band" x="393.2" y="40" width="12" height="200" />
+          <text class="chart-signal" x="399.2" y="30" text-anchor="middle">
+            {{ copy.replay.suspended }}
+          </text>
+          <path
+            class="chart-trace"
+            d="M24.0 70.8 L41.9 69.2 L59.7 73.8 L77.6 72.3 L95.5 78.5 L113.3 76.9 L131.2 81.5 L149.1 80.0 L166.9 86.2 L184.8 87.7 L202.7 90.8 L220.5 87.7 L238.4 84.6 L256.3 81.5 L274.1 83.1 L292.0 83.1 L309.9 78.5 L327.7 75.4 L345.6 76.9 L363.5 72.3 L381.3 69.2 L393.2 67.7"
+          />
+          <path class="chart-jump" d="M393.2 67.7 L405.2 175.4" />
+          <path
+            class="chart-trace"
+            d="M405.2 175.4 L417.1 176.9 L429.0 180.0 L440.9 183.1 L452.8 184.6 L464.7 187.7 L476.6 189.2 L488.5 192.3 L500.4 195.4 L512.4 198.5 L524.3 201.5 L536.2 206.2 L548.1 209.2"
+          />
+          <circle class="chart-pin" cx="393.2" cy="67.7" r="5.5" />
+          <text class="chart-label" x="381" y="56" text-anchor="end">{{ copy.replay.goal }}</text>
+          <circle class="chart-pin" cx="405.2" cy="175.4" r="5.5" />
+          <text class="chart-label" x="417" y="161">{{ copy.replay.reopened }}</text>
+          <circle class="chart-glow" cx="548.1" cy="209.2" r="15" />
+          <circle class="chart-head" cx="548.1" cy="209.2" r="5.5" />
+          <text class="chart-signal" x="548.1" y="187" text-anchor="middle">
+            {{ copy.replay.live }}
+          </text>
+          <text class="chart-axis" x="24" y="268" text-anchor="middle">0’</text>
+          <text class="chart-axis" x="113.3" y="268" text-anchor="middle">15’</text>
+          <text class="chart-axis" x="202.7" y="268" text-anchor="middle">30’</text>
+          <text class="chart-axis" x="292" y="268" text-anchor="middle">45’</text>
+          <text class="chart-axis" x="381.3" y="268" text-anchor="middle">60’</text>
+          <text class="chart-axis" x="470.7" y="268" text-anchor="middle">75’</text>
+          <text class="chart-axis" x="560" y="268" text-anchor="middle">90’</text>
+        </svg>
+        <svg
+          class="replay-chart replay-chart-compact"
+          viewBox="0 0 350 170"
+          role="img"
+          [attr.aria-label]="copy.replay.chartLabel"
+        >
+          <line class="chart-grid" x1="12" x2="338" y1="51.7" y2="51.7" />
+          <line class="chart-grid" x1="12" x2="338" y1="88.6" y2="88.6" />
+          <line class="chart-grid" x1="12" x2="338" y1="125.5" y2="125.5" />
+          <rect class="chart-band" x="236.6" y="24" width="7.2" height="120" />
+          <text class="chart-signal chart-small" x="240.2" y="15" text-anchor="middle">
+            {{ copy.replay.suspended }}
+          </text>
+          <path
+            class="chart-trace"
+            d="M12.0 42.5 L22.9 41.5 L33.7 44.3 L44.6 43.4 L55.5 47.1 L66.3 46.2 L77.2 48.9 L88.1 48.0 L98.9 51.7 L109.8 52.6 L120.7 54.5 L131.5 52.6 L142.4 50.8 L153.3 48.9 L164.1 49.8 L175.0 49.8 L185.9 47.1 L196.7 45.2 L207.6 46.2 L218.5 43.4 L229.3 41.5 L236.6 40.6"
+          />
+          <path class="chart-jump" d="M236.6 40.6 L243.8 105.2" />
+          <path
+            class="chart-trace"
+            d="M243.8 105.2 L251.1 106.2 L258.3 108.0 L265.6 109.8 L272.8 110.8 L280.0 112.6 L287.3 113.5 L294.5 115.4 L301.8 117.2 L309.0 119.1 L316.3 120.9 L323.5 123.7 L330.8 125.5"
+          />
+          <circle class="chart-pin" cx="236.6" cy="40.6" r="4.5" />
+          <text class="chart-label chart-small" x="228" y="34" text-anchor="end">
+            {{ copy.replay.goalShort }}
+          </text>
+          <circle class="chart-pin" cx="243.8" cy="105.2" r="4.5" />
+          <text class="chart-label chart-small" x="253" y="96">{{ copy.replay.reopened }}</text>
+          <circle class="chart-glow" cx="330.8" cy="125.5" r="11" />
+          <circle class="chart-head" cx="330.8" cy="125.5" r="4.5" />
+          <text class="chart-axis chart-small" x="12" y="162">0’</text>
+          <text class="chart-axis chart-small" x="175" y="162" text-anchor="middle">45’</text>
+          <text class="chart-axis chart-small" x="338" y="162" text-anchor="end">90’</text>
+        </svg>
+        <ol class="replay-log" [attr.aria-label]="copy.replay.eventsLabel">
+          @for (event of copy.replay.events; track event.time) {
+            <li>
+              <span class="replay-time">{{ event.time }}</span
+              ><span>{{ event.text }}</span>
+            </li>
+          }
+        </ol>
+      </figure>
     </div>
-    <ul class="metrics reveal reveal-3" [attr.aria-label]="copy.metricsLabel">
-      @for (metric of copy.metrics; track metric.value) {
-        <li>
-          <strong>{{ metric.value }}</strong
-          ><span>{{ metric.label }}</span>
-        </li>
-      }
-    </ul>
   </section>
 
   <section class="section missions" id="missions" tabindex="-1" aria-labelledby="missions-title">
-    <div class="section-heading">
-      <h2 id="missions-title">{{ copy.missions.title }}</h2>
-      <p>{{ copy.missions.intro }}</p>
-    </div>
-    <div class="missions-layout">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2 id="missions-title">{{ copy.missions.title }}</h2>
+        <p>{{ copy.missions.intro }}</p>
+      </div>
       <ul class="missions-list">
         @for (mission of copy.missions.items; track mission.title) {
           <li>
@@ -133,136 +217,95 @@
           </li>
         }
       </ul>
-      <div class="missions-practical">
-        <h3>{{ copy.missions.practicalTitle }}</h3>
-        <dl>
-          @for (row of copy.missions.practical; track row.label) {
-            <div>
-              <dt>{{ row.label }}</dt>
-              <dd>{{ row.value }}</dd>
-            </div>
-          }
-        </dl>
-        <a
-          class="primary light missions-action"
-          [href]="copy.missions.emailHref"
-          (click)="analytics.track('contact_click', { channel: 'email', placement: 'missions' })"
-          ><span>{{ copy.missions.emailAction }}</span></a
-        >
-      </div>
+      <dl class="practical" [attr.aria-label]="copy.missions.practicalLabel">
+        @for (row of copy.missions.practical; track row.label) {
+          <div>
+            <dt>{{ row.label }}</dt>
+            <dd>{{ row.value }}</dd>
+          </div>
+        }
+      </dl>
+      <a
+        class="button-night missions-action"
+        [href]="copy.missions.emailHref"
+        (click)="analytics.track('contact_click', { channel: 'email', placement: 'missions' })"
+        >{{ copy.missions.emailAction }}</a
+      >
     </div>
   </section>
 
-  <section class="section work" id="work" tabindex="-1" aria-labelledby="work-title">
-    <div class="section-heading inverse">
-      <h2 id="work-title">{{ copy.work.title }}</h2>
-      <p>{{ copy.work.intro }}</p>
-    </div>
-
-    <div class="career" id="parcours">
-      <div class="work-flagships">
-        @for (flagship of copy.work.flagships; track flagship.path) {
-          <a class="work-card" [routerLink]="flagship.path">
-            <p class="work-kicker">{{ flagship.kicker }}</p>
-            <h3>{{ flagship.title }}</h3>
-            <p class="work-summary">{{ flagship.summary }}</p>
-            <span class="work-cta">{{ copy.work.openCase }}</span>
-          </a>
-        }
+  <section class="section career" id="work" tabindex="-1" aria-labelledby="career-title">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2 id="career-title">{{ copy.career.title }}</h2>
+        <p>{{ copy.career.intro }}</p>
       </div>
-
-      <h3 class="career-title">{{ copy.work.earlierTitle }}</h3>
-      <div class="work-compact">
-        @for (row of copy.work.compact; track row.company) {
-          <article class="work-row">
-            <div class="work-row-meta">
-              <span>{{ row.company }}</span
-              ><span>{{ row.period }}</span>
-            </div>
-            <h4 class="work-row-role">{{ row.role }}</h4>
-            <p class="work-row-summary">{{ row.summary }}</p>
-            <ul class="work-tags" [attr.aria-label]="copy.work.technologies">
-              @for (tag of row.tags; track tag) {
-                <li>{{ tag }}</li>
+      <ol class="timeline" id="parcours">
+        @for (step of copy.career.steps; track step.company) {
+          <li
+            class="timeline-step"
+            [class.is-current]="step.current === true"
+            [class.is-major]="step.caseStudy !== undefined"
+          >
+            <span class="timeline-year">{{ step.year }}</span>
+            <span class="timeline-rail" aria-hidden="true"><i></i></span>
+            <div class="timeline-body">
+              <h3>{{ step.company }}</h3>
+              <p class="timeline-role">{{ step.role }}</p>
+              @if (step.summary) {
+                <p class="timeline-summary">{{ step.summary }}</p>
               }
-            </ul>
-          </article>
+              @if (step.caseStudy; as caseStudy) {
+                <a class="case-link" [routerLink]="caseStudy.path">{{ caseStudy.label }}</a>
+              }
+            </div>
+          </li>
         }
-        <p class="work-earlier">
-          <span>{{ copy.work.internships.period }}</span
-          >{{ copy.work.internships.text }}
-        </p>
-      </div>
+      </ol>
       <a
         class="work-cv"
         [href]="copy.cv.href"
         (click)="trackCv(locale, 'work')"
         [attr.download]="copy.cv.fileName"
-        >{{ copy.work.cvAction }} <span aria-hidden="true">↓</span></a
+        >{{ copy.career.cvAction }}&nbsp;<span aria-hidden="true">↓</span></a
       >
     </div>
   </section>
 
   <section class="section approach" id="approche" tabindex="-1" aria-labelledby="approach-title">
-    <div class="section-heading">
-      <h2 id="approach-title">{{ copy.approach.title }}</h2>
-      <p>{{ copy.approach.intro }}</p>
-    </div>
-
-    <div class="approach-block" id="expertise">
-      <h3 class="block-title">{{ copy.approach.expertiseTitle }}</h3>
-      <ul class="expertise-grid">
-        @for (item of portfolio.expertises; track item.title) {
-          <li>
-            <h4>{{ item.title }}</h4>
-            <p>{{ item.description }}</p>
-            <ul class="tags" [attr.aria-label]="copy.approach.technologies">
-              @for (technology of item.technologies; track technology) {
-                <li>{{ technology }}</li>
-              }
-            </ul>
-          </li>
-        }
-      </ul>
-    </div>
-
-    <div class="approach-block" id="principes">
-      <h3 class="block-title">{{ copy.approach.principlesTitle }}</h3>
-      <p class="block-intro">{{ copy.approach.principlesIntro }}</p>
-      <ul class="principles-grid">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2 id="approach-title">{{ copy.approach.title }}</h2>
+        <p>{{ copy.approach.intro }}</p>
+      </div>
+      <ul class="principles" id="principes">
         @for (principle of copy.approach.principles; track principle.title) {
           <li>
-            <h4>{{ principle.title }}</h4>
+            <h3>{{ principle.title }}</h3>
             <p>{{ principle.description }}</p>
           </li>
         }
       </ul>
-    </div>
-
-    <div class="approach-block">
-      <h3 class="block-title">{{ copy.approach.styleTitle }}</h3>
-      <div class="working-style-grid">
-        <div class="working-style-column">
-          <h4>{{ copy.approach.strengthsTitle }}</h4>
-          <ul>
-            @for (item of strengths; track item.index) {
-              <li>
-                <strong>{{ item.title }}</strong>
-                <p>{{ item.description }}</p>
-              </li>
+      <div class="approach-columns">
+        <div id="expertise">
+          <h3 class="block-title">{{ copy.approach.stackTitle }}</h3>
+          <dl class="stack">
+            @for (area of stack; track area.title) {
+              <div>
+                <dt>{{ area.title }}</dt>
+                <dd>{{ area.technologies }}</dd>
+              </div>
             }
-          </ul>
+          </dl>
         </div>
-        <div class="working-style-column is-vigilance">
-          <h4>{{ copy.approach.vigilanceTitle }}</h4>
-          <ul>
+        <div>
+          <h3 class="block-title">{{ copy.approach.vigilanceTitle }}</h3>
+          <p class="block-intro">{{ copy.approach.vigilanceIntro }}</p>
+          <ul class="vigilance">
             @for (item of vigilances; track item.index) {
               <li>
-                <strong>{{ item.title }}</strong>
-                <p>{{ item.description }}</p>
-                <p class="working-style-practice">
-                  <b>{{ copy.approach.safeguard }}</b> {{ item.practice }}
-                </p>
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.practice }}</p>
               </li>
             }
           </ul>
@@ -277,84 +320,83 @@
     tabindex="-1"
     aria-labelledby="recommendations-title"
   >
-    <div class="section-heading">
-      <h2 id="recommendations-title">{{ copy.recommendations.title }}</h2>
-      <p>{{ copy.recommendations.intro }}</p>
-    </div>
-    <div class="recommendations-grid">
-      @for (item of copy.recommendations.items; track item.name) {
-        <figure>
-          <blockquote [attr.cite]="contact.linkedinRecommendations">
-            <p>
-              {{ copy.recommendations.openQuote }}{{ item.quote
-              }}{{ copy.recommendations.closeQuote }}
-            </p>
-          </blockquote>
-          <figcaption>
-            <strong>{{ item.name }}</strong>
-            <span>{{ item.role }}</span>
-            @if (item.translated) {
-              <small>{{ copy.recommendations.translated }}</small>
-            }
-          </figcaption>
-        </figure>
-      }
-    </div>
-    <a
-      class="recommendations-link"
-      [href]="contact.linkedinRecommendations"
-      (click)="
-        analytics.track('recommendation_click', {
-          channel: 'linkedin',
-          placement: 'recommendations',
-        })
-      "
-      target="_blank"
-      rel="noopener noreferrer"
-      >{{ copy.recommendations.action }} <span aria-hidden="true">↗</span></a
-    >
-  </section>
-
-  <section class="section projects" id="projets" tabindex="-1" aria-labelledby="projects-title">
-    <div class="section-heading">
-      <h2 id="projects-title">{{ copy.projects.title }}</h2>
-      <p>{{ copy.projects.intro }}</p>
-    </div>
-    <div class="projects-layout">
-      <app-projects-grid [projects]="portfolio.projects" [locale]="locale" />
-      <div class="learning" id="formation">
-        <h3 class="block-title">{{ copy.projects.learningTitle }}</h3>
-        <p>{{ copy.projects.learningDescription }}</p>
-        <ul [attr.aria-label]="copy.projects.certificationsLabel">
-          @for (certification of portfolio.certifications; track certification) {
-            <li>{{ certification }}</li>
-          }
-        </ul>
+    <div class="wrap">
+      <div class="section-heading">
+        <h2 id="recommendations-title">{{ copy.recommendations.title }}</h2>
+        <p>{{ copy.recommendations.intro }}</p>
       </div>
+      <div class="quotes">
+        @for (item of copy.recommendations.items; track item.name) {
+          <figure>
+            <blockquote [attr.cite]="contact.linkedinRecommendations">
+              <p>
+                {{ copy.recommendations.openQuote }}{{ item.quote
+                }}{{ copy.recommendations.closeQuote }}
+              </p>
+            </blockquote>
+            <figcaption>
+              <strong>{{ item.name }}</strong>
+              <span>{{ item.role }}</span>
+              @if (item.translated) {
+                <small>{{ copy.recommendations.translated }}</small>
+              }
+            </figcaption>
+          </figure>
+        }
+      </div>
+      <a
+        class="recommendations-link"
+        [href]="contact.linkedinRecommendations"
+        (click)="
+          analytics.track('recommendation_click', {
+            channel: 'linkedin',
+            placement: 'recommendations',
+          })
+        "
+        target="_blank"
+        rel="noopener noreferrer"
+        >{{ copy.recommendations.action }}&nbsp;<span aria-hidden="true">↗</span></a
+      >
     </div>
   </section>
 
-  <section class="contact" id="contact" tabindex="-1" aria-labelledby="contact-title">
-    <div class="contact-panel">
+  <div class="section code">
+    <div class="wrap code-layout">
+      <section id="projets" tabindex="-1" aria-labelledby="projects-title">
+        <h2 id="projects-title">{{ copy.projects.title }}</h2>
+        <app-projects-grid [projects]="portfolio.projects" [locale]="locale" />
+      </section>
+      <section class="learning" id="formation" tabindex="-1" aria-labelledby="learning-title">
+        <h2 id="learning-title">{{ copy.projects.learningTitle }}</h2>
+        <p>{{ copy.projects.learningDescription }}</p>
+        <h3>{{ copy.projects.certificationsTitle }}</h3>
+        <p class="certifications">{{ certifications }}</p>
+      </section>
+    </div>
+  </div>
+
+  <section class="contact night" id="contact" tabindex="-1" aria-labelledby="contact-title">
+    <div class="wrap contact-layout">
       <div class="contact-copy">
         <h2 id="contact-title">{{ copy.contact.title }}</h2>
         <p>{{ copy.contact.description }}</p>
-        <span class="footer-status"><i aria-hidden="true"></i>{{ copy.footer.availability }}</span>
+        <p class="contact-status">
+          <span class="live-dot" aria-hidden="true"></span>{{ copy.footer.availability }}
+        </p>
       </div>
 
       <div class="contact-directory" role="group" [attr.aria-label]="copy.footer.directoryLabel">
         <a
-          class="primary light contact-main-action"
-          href="mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot"
+          class="contact-main-action"
+          [href]="copy.missions.emailHref"
           (click)="analytics.track('contact_click', { channel: 'email', placement: 'contact' })"
-          ><span>{{ copy.contact.emailAction }}</span
-          ><b aria-hidden="true">↗</b></a
+          ><span>{{ copy.contact.emailAction }}</span></a
         >
         <a
           class="contact-link"
-          href="mailto:billot.vivien@gmail.com"
+          [href]="'mailto:' + contact.email"
           (click)="analytics.track('contact_click', { channel: 'email', placement: 'contact' })"
-          >billot.vivien@gmail.com</a
+          >{{ contact.email }}</a
         >
         <a
           class="contact-link"
@@ -365,7 +407,7 @@
         >
         <a
           class="contact-link"
-          href="https://www.linkedin.com/in/vivien-billot/"
+          [href]="contact.linkedin"
           (click)="analytics.track('contact_click', { channel: 'linkedin', placement: 'contact' })"
           target="_blank"
           rel="noopener noreferrer"
@@ -379,7 +421,7 @@
           >GitHub ↗</a
         >
         <a
-          class="contact-link contact-cv"
+          class="contact-link"
           href="/assets/CV-Vivien-Billot-FR.pdf"
           (click)="trackCv('fr', 'contact')"
           download="CV-Vivien-Billot-FR.pdf"
@@ -387,7 +429,7 @@
           >{{ copy.footer.cvFr }} ↓</a
         >
         <a
-          class="contact-link contact-cv"
+          class="contact-link"
           href="/assets/CV-Vivien-Billot-EN.pdf"
           (click)="trackCv('en', 'contact')"
           download="CV-Vivien-Billot-EN.pdf"
@@ -398,10 +440,10 @@
     </div>
   </section>
 </main>
-<footer>
-  <div class="footer-bottom">
-    <small>© {{ year }} · Vivien Billot · {{ copy.footer.rights }}</small>
-    <a [routerLink]="homePath" fragment="accueil">{{ copy.footer.top }} ↑</a>
+<footer class="site-footer">
+  <div class="wrap footer-bottom">
+    <small>© {{ year }} Vivien Billot. {{ copy.footer.rights }}</small>
+    <a [routerLink]="homePath" fragment="accueil">{{ copy.footer.top }}</a>
     <a [routerLink]="locale === 'fr' ? '/fr/confidentialite' : '/privacy'">
       {{ locale === 'fr' ? 'Protection des données' : 'Privacy policy' }}
     </a>

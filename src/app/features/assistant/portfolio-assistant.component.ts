@@ -20,8 +20,8 @@ import { AnalyticsService } from '../../core/services/analytics.service';
 
 const ASSISTANT_COPY = {
   fr: {
-    launcherLabel: 'On discute ? Discuter avec le double numérique de Vivien',
-    launcherTitle: 'On discute ?',
+    launcherTitle: 'Discuter',
+    launcherMore: ' avec le double numérique de Vivien',
     title: 'Vivien Billot',
     assistantName: 'Vivien Billot',
     close: 'Fermer l’assistant',
@@ -47,8 +47,8 @@ const ASSISTANT_COPY = {
     thinking: 'Vivien prépare sa réponse…',
   },
   en: {
-    launcherLabel: 'Let’s talk? Chat with Vivien’s professional digital twin',
-    launcherTitle: 'Let’s talk?',
+    launcherTitle: 'Chat',
+    launcherMore: ' with Vivien’s professional digital twin',
     title: 'Vivien Billot',
     assistantName: 'Vivien Billot',
     close: 'Close assistant',

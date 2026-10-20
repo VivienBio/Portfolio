@@ -15,7 +15,7 @@
 .skip-link:focus {
   transform: none;
 }
-.privacy-header,
+.privacy-header nav,
 .privacy-page,
 .privacy-footer {
   max-width: 1240px;
@@ -32,8 +32,13 @@
   flex-wrap: wrap;
 }
 .privacy-header {
-  padding-block: 1.25rem;
-  border-bottom: 1px solid var(--line);
+  padding-block: 0.75rem;
+  color: var(--night-ink);
+  background: var(--night);
+  border-bottom: 1px solid var(--night-line);
+}
+.privacy-header :focus-visible {
+  outline-color: var(--signal);
 }
 .privacy-header a,
 .privacy-footer a {
@@ -48,31 +53,54 @@
   text-decoration: none;
 }
 .theme-toggle {
+  display: inline-grid;
+  place-items: center;
   width: 48px;
   height: 48px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--ink);
-  background: var(--surface);
-  font-size: 1.5rem;
+  padding: 0;
+  border: 1px solid var(--night-border);
+  border-radius: 8px;
+  color: var(--night-ink);
+  background: transparent;
   cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--night-raised);
+  border-color: var(--night-muted);
+}
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Both icons are rendered so server and browser markup match; the theme picks the visible one. */
+.theme-toggle .icon-sun,
+.theme-toggle.is-dark .icon-moon {
+  display: none;
+}
+.theme-toggle.is-dark .icon-sun {
+  display: inline;
 }
 .privacy-intro {
   max-width: 760px;
   padding-block: clamp(3rem, 7vw, 6rem) 2.5rem;
 }
 .eyebrow {
-  color: var(--accent);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 h1 {
   margin: 0.8rem 0 1.25rem;
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  line-height: 1.05;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.5rem, 7vw, 4.6rem);
+  font-weight: 800;
+  font-stretch: 108%;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
   overflow-wrap: anywhere;
 }
 .lead {
@@ -90,7 +118,7 @@ h1 {
   padding: 0;
   margin: 0 0 3rem;
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 12px;
   overflow: hidden;
 }
 .privacy-summary li {
@@ -118,11 +146,9 @@ h1 {
   margin-bottom: 1.5rem;
 }
 .contents p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--muted);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-weight: 650;
 }
 .contents a {
   display: flex;
@@ -164,8 +190,10 @@ h1 {
 h2 {
   margin: 0 0 1.2rem;
   font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 720;
+  font-stretch: 106%;
   line-height: 1.3;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.01em;
 }
 .privacy-content p {
   margin: 0 0 1rem;

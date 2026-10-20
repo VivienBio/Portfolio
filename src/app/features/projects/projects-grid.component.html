@@ -1,20 +1,16 @@
 <ul class="projects-list">
   @for (project of projects(); track project.title) {
     <li class="project">
-      <div class="project-head">
-        <h3>
-          <a [href]="project.url" target="_blank" rel="noopener noreferrer"
-            >{{ project.title }} <span aria-hidden="true">↗</span></a
-          >
-        </h3>
-        <small>{{ project.category }}</small>
-      </div>
-      <p>{{ project.description }}</p>
-      <ul class="project-tags" [attr.aria-label]="copy().technologies">
-        @for (technology of project.technologies; track technology) {
-          <li>{{ technology }}</li>
-        }
-      </ul>
+      <h3>
+        <a [href]="project.url" target="_blank" rel="noopener noreferrer"
+          >{{ project.title }} <span aria-hidden="true">↗</span></a
+        >
+      </h3>
+      <p class="project-tech">
+        <span class="visually-hidden">{{ copy().techPrefix }}</span
+        >{{ project.technologies.join(', ') }}
+      </p>
+      <p class="project-description">{{ project.description }}</p>
     </li>
   }
 </ul>

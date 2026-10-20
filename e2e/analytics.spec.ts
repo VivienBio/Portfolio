@@ -33,7 +33,7 @@ for (const locale of ['fr', 'en'] as const) {
     await expect(consent).toBeHidden();
     await expect.poll(() => readConsent(page)).toMatchObject({ version: 1, value: 'denied' });
     await activate(page.locator('.theme-button'), testInfo);
-    await activate(page.locator('.actions .primary'), testInfo);
+    await activate(page.locator('.actions .secondary'), testInfo);
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await page.reload();
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
@@ -84,7 +84,7 @@ for (const locale of ['fr', 'en'] as const) {
     }
 
     await activate(page.locator('.theme-button'), testInfo);
-    await activate(page.locator('.actions .primary'), testInfo);
+    await activate(page.locator('.actions .secondary'), testInfo);
     await expect(page).toHaveURL(/#work$/);
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     expect(await eventsNamed(page, 'page_view')).toHaveLength(1);
@@ -115,7 +115,7 @@ for (const locale of ['fr', 'en'] as const) {
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
 
     const workPath = locale === 'fr' ? '/fr/work/betclic' : '/work/betclic';
-    await activate(page.locator(`.work-card[href="${workPath}"]`), testInfo);
+    await activate(page.locator(`.case-link[href="${workPath}"]`), testInfo);
     await expect(page).toHaveURL(new RegExp(`${workPath}$`));
     await expect.poll(() => eventsNamed(page, 'page_view')).toHaveLength(2);
     await expect.poll(() => eventsNamed(page, 'project_view')).toHaveLength(1);
@@ -231,7 +231,7 @@ for (const locale of ['fr', 'en'] as const) {
     expect(await readCommands(page)).toEqual([]);
     expect(googleRequests).toHaveLength(1);
     await activate(page.locator('.theme-button'), testInfo);
-    await activate(page.locator('.actions .primary'), testInfo);
+    await activate(page.locator('.actions .secondary'), testInfo);
     expect(await readCommands(page)).toEqual([]);
     expect(googleRequests).toHaveLength(1);
   });

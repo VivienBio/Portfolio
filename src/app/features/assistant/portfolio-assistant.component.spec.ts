@@ -46,11 +46,14 @@ describe('PortfolioAssistantComponent', () => {
     expect(launcher?.getAttribute('aria-controls')).toBe('portfolio-assistant-panel');
     expect(
       launcher?.querySelector<HTMLImageElement>('.assistant-persona img')?.getAttribute('ngsrc'),
-    ).toBe('/vivien-billot-character-cutout-v3.webp');
+    ).toBe('/vivien-billot-avatar.webp');
+    expect(launcher?.hasAttribute('aria-label')).toBe(false);
     expect(launcher?.querySelector('.assistant-persona i')).toBeNull();
     expect(element.querySelector('.assistant-hide')).toBeTruthy();
     expect(launcher?.querySelector('.assistant-expand-indicator')).toBeNull();
-    expect(launcher?.textContent).toContain('Let’s talk?');
+    expect(launcher?.textContent?.replace(/\s+/g, ' ').trim()).toBe(
+      'Chat with Vivien’s professional digital twin',
+    );
     expect(launcher?.textContent).not.toContain('Betclic · TF1');
     expect(element.querySelector('[role="dialog"]')).toBeNull();
   });
@@ -156,7 +159,7 @@ describe('PortfolioAssistantComponent', () => {
     fixture.detectChanges();
     const element = fixture.nativeElement as HTMLElement;
 
-    expect(element.textContent).toContain('On discute ?');
+    expect(element.textContent).toContain('Discuter avec le double numérique de Vivien');
     element.querySelector<HTMLButtonElement>('.assistant-launcher')?.click();
     fixture.detectChanges();
     expect(element.querySelector('.assistant-privacy a')?.getAttribute('href')).toBe(
@@ -222,7 +225,7 @@ describe('PortfolioAssistantComponent', () => {
       element
         .querySelector<HTMLImageElement>('.assistant-restore-avatar img')
         ?.getAttribute('ngsrc'),
-    ).toBe('/vivien-billot-character-cutout-v3.webp');
+    ).toBe('/vivien-billot-avatar.webp');
 
     element.querySelector<HTMLButtonElement>('.assistant-restore')?.click();
     fixture.detectChanges();

@@ -36,40 +36,27 @@ describe('PortfolioPageComponent', () => {
     expect(element.querySelector('.hero .lead')?.textContent).toContain('Stago');
   });
 
-  it('links the flagship case studies and keeps the compact rows factual', () => {
+  it('links both case studies from the career timeline', () => {
     const element = render();
-    const cards = element.querySelectorAll<HTMLAnchorElement>('.work-card');
-    const rows = element.querySelectorAll('.work-row');
+    const links = element.querySelectorAll<HTMLAnchorElement>('#work .case-link');
 
-    expect(cards).toHaveLength(2);
-    expect(cards[0]?.getAttribute('href')).toBe('/work/betclic');
-    expect(cards[1]?.getAttribute('href')).toBe('/work/tf1');
-    expect(cards[0]?.textContent).toContain('Real-time sports odds');
-    expect(cards[1]?.textContent).toContain('Modernizing');
-    expect(rows).toHaveLength(2);
-    expect(rows[0]?.textContent).toContain('Rent A Car');
-    expect(rows[0]?.textContent).toContain('Easy Péage');
-    expect(rows[1]?.textContent).toContain('Stago');
+    expect(links).toHaveLength(2);
+    expect(links[0]?.getAttribute('href')).toBe('/work/betclic');
+    expect(links[1]?.getAttribute('href')).toBe('/work/tf1');
+    expect(links[0]?.textContent).toContain('real-time sports odds');
+    expect(links[1]?.textContent).toContain('modernizing');
+    expect(element.querySelectorAll('.timeline-step.is-major')).toHaveLength(2);
+    expect(element.querySelector('.timeline-step.is-current')?.textContent).toContain('Betclic');
   });
 
-  it('groups expertise, principles and working style in one approach section', () => {
+  it('tells the career once, in order, from the current mission to the internships', () => {
     const element = render();
-    const approach = element.querySelector('#approche');
+    const career = element.querySelector('#work ol#parcours');
+    const years = Array.from(career?.querySelectorAll('.timeline-year') ?? []).map((year) =>
+      year.textContent?.trim(),
+    );
 
-    expect(approach?.querySelectorAll('.expertise-grid > li')).toHaveLength(6);
-    expect(approach?.querySelectorAll('.principles-grid > li')).toHaveLength(6);
-    expect(approach?.textContent).toContain('Simplicity before sophistication');
-    expect(approach?.textContent).toContain('Tests are a design tool');
-    expect(approach?.textContent).toContain('Distributed systems & messaging');
-    expect(approach?.textContent).toContain('Technical leadership');
-    expect(approach?.querySelector('#expertise')).toBeTruthy();
-    expect(approach?.querySelector('#principes')).toBeTruthy();
-  });
-
-  it('tells the career once, from the case studies to the internships', () => {
-    const element = render();
-    const career = element.querySelector('#work #parcours');
-
+    expect(years).toEqual(['2025', '2022', '2017', '2012', '2011']);
     for (const company of [
       'Betclic Group',
       'TF1 Group',
@@ -80,39 +67,58 @@ describe('PortfolioPageComponent', () => {
     ]) {
       expect(career?.textContent).toContain(company);
     }
-    expect(element.querySelector('.metrics')?.textContent).toContain('11');
-    expect(element.querySelector('.metrics')?.textContent).toContain('500+');
-    expect(element.querySelector('.timeline')).toBeNull();
-    expect(career?.querySelector('a.work-cv')?.getAttribute('href')).toBe(
+    expect(career?.textContent).toContain('11 projects shipped');
+    expect(career?.textContent).toContain('500+ branches');
+    expect(career?.textContent).toContain('Easy Péage');
+    expect(element.querySelector('.metrics')).toBeNull();
+    expect(element.querySelector('#work a.work-cv')?.getAttribute('href')).toBe(
       '/assets/CV-Vivien-Billot-EN.pdf',
     );
+  });
+
+  it('shows a labelled market replay in the hero, with its events as text', () => {
+    const element = render();
+    const replay = element.querySelector('.hero figure.replay');
+    const events = replay?.querySelectorAll('.replay-log li') ?? [];
+
+    expect(replay?.querySelector('figcaption')?.textContent).toContain('Illustration');
+    expect(replay?.querySelectorAll('svg[role="img"][aria-label]')).toHaveLength(2);
+    expect(events).toHaveLength(3);
+    expect(events[0]?.querySelector('.replay-time')?.textContent).toBe('62:14.208');
   });
 
   it('offers three kinds of missions backed by facts, with practical details', () => {
     const element = render();
     const missions = element.querySelector('#missions');
-    const practical = missions?.querySelector('.missions-practical');
+    const practical = missions?.querySelector('dl.practical');
 
     expect(missions?.querySelectorAll('.missions-list > li')).toHaveLength(3);
     expect(missions?.querySelectorAll('.mission-proof')).toHaveLength(3);
+    expect(practical?.querySelectorAll('dt')).toHaveLength(4);
     expect(practical?.textContent).toContain('Betclic');
     expect(practical?.textContent).toContain('Paris region');
     expect(practical?.textContent).toContain('hybrid or remote');
-    expect(practical?.querySelector('a')?.getAttribute('href')).toBe(
+    expect(missions?.querySelector('a.missions-action')?.getAttribute('href')).toBe(
+      'mailto:billot.vivien@gmail.com?subject=Mission%20proposal',
+    );
+    expect(element.querySelector('.hero a.primary')?.getAttribute('href')).toBe(
       'mailto:billot.vivien@gmail.com?subject=Mission%20proposal',
     );
   });
 
-  it('presents strengths alongside managed points of vigilance', () => {
+  it('groups principles, stack and points of vigilance in one approach section', () => {
     const element = render();
-    const columns = element.querySelectorAll('.working-style-column');
+    const approach = element.querySelector('#approche');
 
-    expect(columns).toHaveLength(2);
-    expect(columns[0]?.querySelectorAll('li')).toHaveLength(3);
-    expect(columns[1]?.querySelectorAll('li')).toHaveLength(3);
-    expect(columns[0]?.textContent).toContain('Seeing the whole system');
-    expect(columns[1]?.textContent).toContain('What I watch');
-    expect(columns[1]?.textContent).toContain('My safeguard');
+    expect(approach?.querySelectorAll('#principes > li')).toHaveLength(6);
+    expect(approach?.querySelectorAll('#expertise .stack > div')).toHaveLength(6);
+    expect(approach?.querySelectorAll('.vigilance > li')).toHaveLength(3);
+    expect(approach?.textContent).toContain('Simplicity before sophistication');
+    expect(approach?.textContent).toContain('Tests are a design tool');
+    expect(approach?.textContent).toContain('Distributed systems & messaging');
+    expect(approach?.textContent).toContain('Technical leadership');
+    expect(approach?.textContent).toContain('High standards for quality');
+    expect(approach?.textContent).toContain('I timebox the analysis');
   });
 
   it('quotes attributed LinkedIn recommendations and links to all of them', () => {
@@ -140,7 +146,7 @@ describe('PortfolioPageComponent', () => {
     const contact = element.querySelector('#contact');
 
     expect(element.querySelectorAll('#projets .project')).toHaveLength(5);
-    expect(element.querySelector('#projets #formation')).toBeTruthy();
+    expect(element.querySelector('section#formation')?.textContent).toContain('Education');
     expect(element.textContent).toContain('TicTacToe Solver');
     expect(element.querySelector('app-portfolio-assistant')).toBeTruthy();
     expect(
@@ -158,13 +164,14 @@ describe('PortfolioPageComponent', () => {
     expect(element.querySelector('main#contenu')).toBeTruthy();
     expect(element.querySelector('footer')).toBeTruthy();
     expect(element.querySelector('nav')?.getAttribute('aria-label')).toBe('Primary navigation');
-    expect(element.querySelector('a[href="/#work"]')?.textContent).toContain('Work');
+    expect(element.querySelector('nav a[href="/#work"]')?.textContent).toContain('Career');
+    expect(element.querySelector('nav a[href="/#missions"]')?.textContent).toContain('Services');
     expect(element.querySelector('a[href="/#contact"]')?.textContent).toContain('Contact');
     expect(element.querySelector('.skip-link')?.getAttribute('href')).toBe('/#contenu');
     expect(element.querySelector('section#contact')?.getAttribute('aria-labelledby')).toBe(
       'contact-title',
     );
-    expect(element.querySelectorAll('nav a')).toHaveLength(4);
+    expect(element.querySelectorAll('nav a')).toHaveLength(5);
     expect(element.querySelector('.menu-toggle')?.getAttribute('aria-controls')).toBe('site-nav');
     expect(element.querySelector('nav#site-nav')).toBeTruthy();
   });
