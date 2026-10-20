@@ -65,7 +65,7 @@ for (const t of targets) {
       return { left: box.left, right: box.right, top: box.top, bottom: box.bottom };
     };
     const dock = rect('.assistant-dock');
-    const watched = ['.hero-copy', '.replay', '.replay-log', '.actions .primary', '.actions .secondary', '.case-hero h1', '.case-cta'];
+    const watched = ['.hero-copy', '.hero-cases', '.actions .primary', '.actions .secondary', '.case-hero h1', '.case-cta'];
     const overlaps = watched.filter((selector) => intersects(rect(selector), dock));
     const sections = {};
     for (const id of ['accueil', 'missions', 'work', 'approche', 'recommandations', 'projets', 'contact']) {
