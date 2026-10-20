@@ -49,12 +49,14 @@ export class PortfolioPageComponent {
   protected readonly copy = PORTFOLIO_PAGE_COPY[this.locale];
   protected readonly portfolio = this.repository.getPortfolio(this.locale);
   protected readonly contact = PORTFOLIO_CONTACT;
-  protected readonly strengths = this.portfolio.workingStyle.filter(
-    (item) => item.kind === 'strength',
-  );
   protected readonly vigilances = this.portfolio.workingStyle.filter(
     (item) => item.kind === 'vigilance',
   );
+  protected readonly stack = this.portfolio.expertises.map(({ title, technologies }) => ({
+    title,
+    technologies: technologies.join(', '),
+  }));
+  protected readonly certifications = this.portfolio.certifications.join(', ');
   readonly identityName = PORTFOLIO_PUBLIC_IDENTITY.name;
   readonly identityMeta = 'Freelance Senior Software Engineer';
   protected readonly themeLabel = computed(() =>

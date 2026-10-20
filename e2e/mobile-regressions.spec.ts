@@ -36,7 +36,7 @@ for (const locale of ['fr', 'en'] as const) {
     await expectLocale(page, locale);
 
     // Exercise the real links: relative href="#..." used to resolve against <base href="/">.
-    await activate(page.locator('.actions .primary'), testInfo);
+    await activate(page.locator('.actions .secondary'), testInfo);
     await expect(page).toHaveURL(new RegExp(`${copy.path}#work$`));
     await expectLocale(page, locale);
     await activate(page.locator('.brand'), testInfo);
@@ -138,7 +138,7 @@ test('French case studies retain locale, content and theme through next, back an
   const browserErrors = collectBrowserErrors(page);
   await page.goto('/fr');
   await activate(page.locator('.theme-button'), testInfo);
-  await activate(page.locator('.work-card[href="/fr/work/betclic"]'), testInfo);
+  await activate(page.locator('.case-link[href="/fr/work/betclic"]'), testInfo);
   await expect(page).toHaveURL(/\/fr\/work\/betclic$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/temps réel/i);
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');

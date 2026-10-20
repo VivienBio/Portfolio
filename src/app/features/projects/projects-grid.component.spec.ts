@@ -19,6 +19,7 @@ describe('ProjectsGridComponent', () => {
     expect(links).toHaveLength(5);
     expect(element.textContent).toContain('TicTacToe Solver');
     expect(element.querySelector('h3 a')?.textContent).toContain('Portfolio');
+    expect(element.querySelector('.project-tech')?.textContent).toContain('Angular 22, OpenAI');
     for (const link of links) {
       expect(link.rel).toContain('noopener');
       expect(link.rel).toContain('noreferrer');

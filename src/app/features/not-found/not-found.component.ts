@@ -69,14 +69,19 @@ const COPY = {
     .code {
       margin: 0;
       color: var(--accent);
-      font: 800 0.9rem monospace;
-      letter-spacing: 0.2em;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-stretch: 75%;
+      font-variant-numeric: tabular-nums;
     }
 
     h1 {
       margin: 0;
       font-size: clamp(2.2rem, 6vw, 4rem);
-      letter-spacing: -0.05em;
+      font-weight: 800;
+      font-stretch: 108%;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
     }
 
     .hint {

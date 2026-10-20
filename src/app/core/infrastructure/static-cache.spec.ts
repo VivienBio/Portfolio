@@ -12,7 +12,7 @@ describe('staticCacheControl', () => {
   });
 
   it('keeps fonts for a month', () => {
-    expect(staticCacheControl('/app/dist/browser/fonts/inter-latin-var.woff2')).toBe(
+    expect(staticCacheControl('/app/dist/browser/fonts/archivo-latin-var.woff2')).toBe(
       'public, max-age=2592000',
     );
   });

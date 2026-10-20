@@ -11,34 +11,74 @@ textarea {
 
 .assistant-dock {
   position: fixed;
-  right: clamp(0.85rem, 2.4vw, 1.7rem);
-  bottom: max(0.4rem, env(safe-area-inset-bottom));
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
   z-index: 214;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: calc(100% - 1.5rem);
 }
 
+/* A pill with Vivien's photo: small enough to never hide the page it floats over. */
 .assistant-launcher {
-  position: relative;
   display: flex;
-  align-items: flex-end;
-  gap: 0;
-  padding: 0.5rem 0 0;
-  color: #f8faf9;
-  background: transparent;
-  border: 0;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  min-height: 56px;
+  padding: 0.3rem 1.15rem 0.3rem 0.3rem;
+  color: var(--night-ink);
+  background: var(--night-raised);
+  border: 1px solid var(--night-border);
+  border-radius: 999px;
+  box-shadow: 0 0.8rem 2rem #080e1859;
   cursor: pointer;
   text-align: left;
   transition:
-    transform 0.25s ease,
-    filter 0.25s ease;
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .assistant-launcher:hover {
-  filter: brightness(1.04);
-  transform: translateY(-3px);
+  background: var(--night);
+  border-color: var(--night-muted);
+  transform: translateY(-2px);
+}
+
+.assistant-launcher:focus-visible,
+.assistant-hide:focus-visible,
+.assistant-restore:focus-visible {
+  outline-color: var(--signal);
+}
+
+.assistant-launcher .assistant-persona {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: 2px solid var(--signal);
+  border-radius: 50%;
+  filter: none;
+}
+
+.assistant-launcher .assistant-persona::before {
+  display: none;
+}
+
+.assistant-launcher .assistant-persona img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+}
+
+.assistant-launcher-label {
+  min-width: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.25;
 }
 
 .assistant-hide {
@@ -49,27 +89,23 @@ textarea {
   width: 48px;
   height: 48px;
   padding: 0;
-  color: #f8faf9;
-  background: #081410b8;
-  border: 1px solid #ffffff22;
+  color: var(--night-ink);
+  background: color-mix(in srgb, var(--night) 88%, transparent);
+  border: 1px solid var(--night-border);
   border-radius: 50%;
-  box-shadow: 0 0.8rem 1.8rem #06100d66;
+  box-shadow: 0 0.8rem 1.8rem #080e1840;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 800;
-  letter-spacing: 0;
   line-height: 1;
-  text-transform: none;
   transition:
     background 0.2s,
-    border-color 0.2s,
-    transform 0.2s;
+    border-color 0.2s;
 }
 
 .assistant-hide:hover {
-  background: #102c26;
-  border-color: #ffffff33;
-  transform: translateY(-1px);
+  background: var(--night-raised);
+  border-color: var(--night-muted);
 }
 
 .assistant-backdrop {
@@ -77,7 +113,7 @@ textarea {
   inset: 0;
   z-index: 210;
   padding: 0;
-  background: #06100d33;
+  background: #080e1838;
   border: 0;
   cursor: default;
   touch-action: none;
@@ -92,69 +128,54 @@ textarea {
 
 .assistant-restore {
   position: fixed;
-  right: clamp(0.75rem, 2vw, 1.2rem);
-  bottom: max(0.4rem, env(safe-area-inset-bottom));
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
   z-index: 214;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   min-width: 3rem;
   min-height: 3rem;
-  padding: 0.38rem 0.68rem 0.38rem 0.42rem;
-  color: #f8faf9;
-  background: #102c26f2;
-  border: 1px solid #ffffff2e;
+  padding: 0.3rem 0.85rem 0.3rem 0.3rem;
+  color: var(--night-ink);
+  background: var(--night-raised);
+  border: 1px solid var(--night-border);
   border-radius: 999px;
-  box-shadow: 0 1rem 2.4rem #06100d66;
+  box-shadow: 0 1rem 2.4rem #080e1859;
   cursor: pointer;
-  backdrop-filter: blur(18px);
-  transition:
-    transform 0.2s,
-    background 0.2s;
+  transition: background 0.2s;
 }
 
 .assistant-restore-avatar {
-  position: relative;
   display: grid;
-  place-items: center;
-  width: 1.45rem;
-  height: 2.15rem;
+  width: 2.25rem;
+  height: 2.25rem;
   overflow: hidden;
-  background: transparent;
-  border: 0;
+  border-radius: 50%;
 }
 
 .assistant-restore-avatar img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
+  object-fit: cover;
 }
 
 .assistant-restore strong {
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+  font-size: 0.8rem;
 }
 
 .assistant-restore:hover {
-  transform: translateY(-2px);
+  background: var(--night);
 }
 
+/* The full figure that stands beside the open conversation on large screens. */
 .assistant-persona {
   position: relative;
   display: block;
   width: clamp(7rem, 9.5vw, 9rem);
   height: clamp(10.5rem, 14.25vw, 13.5rem);
-  filter: drop-shadow(0 1.5rem 1.9rem #06100d99);
+  filter: drop-shadow(0 1.5rem 1.9rem #080e1899);
   transform-origin: center bottom;
-  transition:
-    filter 0.25s ease,
-    transform 0.25s ease;
-}
-
-.assistant-launcher:hover .assistant-persona {
-  filter: drop-shadow(0 1.8rem 2.2rem #06100db3);
-  transform: translateY(-0.15rem) scale(1.015);
 }
 
 .assistant-persona-side {
@@ -169,7 +190,7 @@ textarea {
   left: 8%;
   height: 1.2rem;
   content: '';
-  background: radial-gradient(ellipse, #06100d75 0%, transparent 72%);
+  background: radial-gradient(ellipse, #080e1875 0%, transparent 72%);
   filter: blur(0.2rem);
 }
 
@@ -180,53 +201,6 @@ textarea {
   height: 100%;
   object-fit: contain;
   object-position: center bottom;
-  filter: contrast(1.04) saturate(1.02);
-}
-
-.assistant-bubble {
-  position: absolute;
-  top: -0.2rem;
-  left: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: max-content;
-  max-width: calc(100vw - 4rem);
-  padding: 0.32rem 0.55rem;
-  margin-bottom: 0;
-  color: #f8faf9;
-  background: color-mix(in srgb, #102c26 92%, #183b33 8%);
-  border: 1px solid #ffffff24;
-  border-radius: 0.95rem 1rem 1rem 0.3rem;
-  box-shadow: 0 0.8rem 2rem #06100d4d;
-  backdrop-filter: blur(16px);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s ease;
-}
-
-.assistant-bubble::after {
-  position: absolute;
-  z-index: -1;
-  bottom: -0.32rem;
-  left: 0.72rem;
-  width: 0.62rem;
-  height: 0.62rem;
-  content: '';
-  background: inherit;
-  border-right: 1px solid #ffffff24;
-  border-bottom: 1px solid #ffffff24;
-  border-bottom-right-radius: 0.2rem;
-  transform: rotate(45deg);
-}
-
-.assistant-bubble strong {
-  font-size: clamp(0.62rem, 0.9vw, 0.7rem);
-  font-weight: 720;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
 }
 
 .assistant-panel {
@@ -244,7 +218,7 @@ textarea {
   background: var(--bg);
   border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
   border-radius: 1.25rem;
-  box-shadow: 0 28px 90px #06100d4d;
+  box-shadow: 0 28px 90px #080e184d;
   backdrop-filter: blur(24px);
   transform-origin: bottom right;
   animation: assistant-enter 0.3s cubic-bezier(0.2, 0.75, 0.2, 1);
@@ -316,23 +290,23 @@ textarea {
 
 .message span {
   display: block;
-  margin-bottom: 0.28rem;
+  margin-bottom: 0.3rem;
   color: var(--accent);
-  font: 800 0.58rem/1 monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.1;
 }
 
 .message-user {
   align-self: flex-end;
-  color: #f4f7f6;
-  background: #173e35;
-  border-color: #173e35;
+  color: var(--night-ink);
+  background: var(--night);
+  border-color: var(--night-border);
   border-radius: 1rem 0.2rem 1rem 1rem;
 }
 
 .message-user span {
-  color: #8de9bd;
+  color: var(--trace);
 }
 
 .message a {
@@ -504,9 +478,9 @@ button:focus-visible,
 .panel-kicker {
   margin: 0 0 0.35rem;
   color: var(--accent);
-  font: 800 0.63rem/1 monospace;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.2;
 }
 
 .panel-intro h3,
@@ -542,10 +516,8 @@ button:focus-visible,
 .contact-form > label {
   display: block;
   margin: 0.7rem 0 0.3rem;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
 .contact-form > input,
@@ -633,9 +605,8 @@ button:focus-visible,
 
 .confirmation dt {
   color: var(--muted);
-  font-size: 0.67rem;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .confirmation dd {
@@ -657,8 +628,8 @@ button:focus-visible,
   place-items: center;
   width: 4.5rem;
   aspect-ratio: 1;
-  color: #102c26;
-  background: #8de9bd;
+  color: var(--signal-ink);
+  background: var(--signal);
   border-radius: 50%;
   font-size: 1.8rem;
 }
@@ -707,32 +678,16 @@ button:focus-visible,
 @media (max-width: 760px) {
   .assistant-dock,
   .assistant-restore {
-    bottom: calc(max(0.4rem, env(safe-area-inset-bottom)) + var(--analytics-consent-height, 0px));
+    bottom: calc(max(0.5rem, env(safe-area-inset-bottom)) + var(--analytics-consent-height, 0px));
   }
 
   .assistant-dock {
-    right: 0.75rem;
-  }
-
-  .assistant-persona {
-    width: 6rem;
-    height: 9rem;
+    right: 0.6rem;
+    max-width: calc(100% - 1.2rem);
   }
 
   .assistant-sidekick {
     display: none;
-  }
-
-  .assistant-bubble {
-    top: -0.35rem;
-    right: 0;
-    left: auto;
-    max-width: calc(100vw - 3rem);
-    padding: 0.3rem 0.5rem;
-  }
-
-  .assistant-bubble strong {
-    font-size: 0.62rem;
   }
 
   .assistant-panel {
@@ -763,69 +718,24 @@ button:focus-visible,
   }
 }
 
+/* Phones: the pill keeps only its verb; the rest of the name stays for assistive technologies. */
 @media (max-width: 520px), (max-width: 900px) and (max-height: 600px) {
-  .assistant-dock {
-    right: 0.4rem;
-    max-width: calc(100% - 0.8rem);
-    flex-direction: row;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
   .assistant-launcher {
-    min-width: 0;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 56px;
-    padding: 0.2rem 0.8rem 0.2rem 0.4rem;
-    background: #102c26f2;
-    border: 1px solid #ffffff2e;
-    border-radius: 999px;
-    box-shadow: 0 0.5rem 1.5rem #06100d40;
-    backdrop-filter: blur(18px);
+    padding-right: 1rem;
   }
 
-  .assistant-persona {
-    flex: 0 0 auto;
-    width: 32px;
-    height: 48px;
-    filter: none;
-  }
-
-  .assistant-persona::before,
-  .assistant-bubble::after {
-    display: none;
-  }
-
-  .assistant-bubble {
-    position: static;
-    min-width: 0;
-    max-width: none;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-  }
-
-  .assistant-bubble strong {
-    font-size: 0.78rem;
-    line-height: 1.25;
-    overflow-wrap: anywhere;
-    white-space: normal;
-  }
-
-  .assistant-restore {
-    padding: 0.42rem;
-  }
-
+  .assistant-launcher-more,
   .assistant-restore strong {
     position: absolute;
     width: 1px;
     height: 1px;
     overflow: hidden;
     clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .assistant-restore {
+    padding: 0.3rem;
   }
 }
 
@@ -836,14 +746,21 @@ button:focus-visible,
       bottom: max(0.4rem, env(safe-area-inset-bottom));
     }
 
-    .assistant-bubble,
     .assistant-hide {
       display: none;
     }
 
+    .assistant-launcher-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
     .assistant-launcher {
-      min-width: 3rem;
-      padding-inline: 0.4rem;
+      padding: 0.3rem;
     }
   }
 }

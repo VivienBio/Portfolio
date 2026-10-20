@@ -6,7 +6,7 @@ const MANAGED_LINK_ATTRIBUTE = 'data-seo';
 const PERSON_SCRIPT_ID = 'person-json-ld';
 const DEFAULT_SOCIAL_IMAGE = '/og-image.jpg';
 /** Bump whenever a social image changes: LinkedIn and others cache previews by image URL. */
-const SOCIAL_IMAGE_VERSION = '2026-10-20';
+const SOCIAL_IMAGE_VERSION = '2026-10-20-night';
 const AUTHOR = 'Vivien Billot';
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;

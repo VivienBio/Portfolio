@@ -31,26 +31,31 @@
   min-height: 4.25rem;
   height: auto;
   padding: 0 max(1.5rem, calc((100vw - 1240px) / 2));
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
+  color: var(--night-ink);
+  background: var(--night);
+  border-bottom: 1px solid var(--night-line);
+}
+
+.case-header :focus-visible,
+.case-cta :focus-visible {
+  outline-color: var(--signal);
 }
 
 .case-back {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  color: var(--night-soft);
+  font-size: 0.95rem;
+  font-weight: 600;
   text-decoration: none;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
 .case-back:hover {
-  color: var(--accent);
+  color: var(--night-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
 }
 
 .case-brand {
@@ -61,7 +66,7 @@
   min-width: 48px;
   justify-content: center;
   margin-inline: auto;
-  color: var(--ink);
+  color: var(--night-ink);
   text-decoration: none;
 }
 
@@ -70,8 +75,8 @@
   width: 2.1rem;
   aspect-ratio: 1;
   overflow: hidden;
+  border: 1px solid var(--night-border);
   border-radius: 50%;
-  box-shadow: inset 0 0 0 1px #ffffff38;
 }
 
 .case-brand-photo img {
@@ -81,10 +86,9 @@
 }
 
 .case-brand strong {
-  font-size: 0.8rem;
-  font-weight: 850;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 1.05rem;
+  font-weight: 750;
+  font-stretch: 112%;
   white-space: nowrap;
 }
 
@@ -104,15 +108,13 @@
   justify-content: center;
   min-height: 48px;
   min-width: 48px;
-  padding: 0 0.7rem;
-  color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  padding: 0 0.85rem;
+  color: var(--night-ink);
+  border: 1px solid var(--night-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 650;
   text-decoration: none;
-  text-transform: uppercase;
   white-space: nowrap;
   transition:
     color 0.2s,
@@ -121,22 +123,45 @@
 }
 
 .case-language:hover,
-.case-cv:hover {
-  color: var(--accent-contrast);
-  background: var(--accent);
-  border-color: var(--accent);
+.case-cv:hover,
+.case-theme:hover {
+  background: var(--night-raised);
+  border-color: var(--night-muted);
 }
 
 .case-theme {
+  display: inline-grid;
+  place-items: center;
   width: 48px;
   min-height: 48px;
   flex: 0 0 auto;
+  padding: 0;
   aspect-ratio: 1;
-  color: var(--ink);
+  color: var(--night-ink);
   background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  border: 1px solid var(--night-border);
+  border-radius: 8px;
   cursor: pointer;
+}
+
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Both icons are rendered so server and browser markup match; the theme picks the visible one. */
+.case-theme .icon-sun,
+.case-theme.is-dark .icon-moon {
+  display: none;
+}
+
+.case-theme.is-dark .icon-sun {
+  display: inline;
 }
 
 .case {
@@ -157,20 +182,19 @@
 }
 
 .eyebrow {
-  margin-bottom: 1.3rem;
-  color: var(--accent);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .case-hero h1 {
   margin: 0 0 1.4rem;
-  font-family: Inter, Avenir, 'Segoe UI', sans-serif;
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.5rem, 5.6vw, 4.2rem);
+  font-weight: 800;
+  font-stretch: 108%;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   overflow-wrap: break-word;
 }
@@ -181,15 +205,16 @@
 }
 
 .case-hero h1 em {
-  color: var(--accent);
+  color: inherit;
   font-style: normal;
 }
 
 .case-role {
   margin: 0;
   color: var(--muted);
-  font: 700 0.78rem/1.5 monospace;
-  letter-spacing: 0.04em;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .case-section {
@@ -198,9 +223,10 @@
 
 .case-section h2 {
   margin: 0 0 1rem;
-  font-family: Inter, Avenir, 'Segoe UI', sans-serif;
-  font-size: 1.45rem;
-  letter-spacing: -0.03em;
+  font-size: 1.5rem;
+  font-weight: 720;
+  font-stretch: 106%;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -250,9 +276,9 @@
 .case-diagram figcaption {
   margin-bottom: 1.1rem;
   color: var(--muted);
-  font: 700 0.64rem/1.4 monospace;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.4;
 }
 
 .diagram-flow {
@@ -337,14 +363,16 @@
   gap: 0.7rem;
   align-items: baseline;
   margin: 0 0 1rem;
-  font-family: Inter, Avenir, 'Segoe UI', sans-serif;
-  font-size: 1.08rem;
-  letter-spacing: -0.02em;
+  font-size: 1.12rem;
+  letter-spacing: -0.01em;
 }
 
 .decision h3 b {
   color: var(--accent);
-  font: 700 0.7rem monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-stretch: 75%;
+  font-variant-numeric: tabular-nums;
 }
 
 .decision dl {
@@ -361,9 +389,9 @@
 
 .decision dt {
   color: var(--accent);
-  font: 800 0.62rem/1.7 monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 650;
+  line-height: 1.6;
 }
 
 .decision dd {
@@ -419,9 +447,9 @@
   color: var(--muted);
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 2px;
-  font-size: 0.67rem;
-  font-weight: 700;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 650;
 }
 
 .case-cta {
@@ -429,18 +457,18 @@
   gap: 1.2rem;
   padding: 2rem;
   margin-top: 3rem;
-  color: #f8faf9;
-  background: linear-gradient(135deg, #09231e 0%, #113d33 75%);
-  border: 1px solid #ffffff24;
-  border-radius: 1rem;
+  color: var(--night-ink);
+  background: var(--night);
+  border: 1px solid var(--night-line);
+  border-radius: 14px;
 }
 
 .case-cta > p {
   margin: 0;
-  font-family: Inter, Avenir, 'Segoe UI', sans-serif;
   font-size: clamp(1.25rem, 2.4vw, 1.7rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 750;
+  font-stretch: 108%;
+  letter-spacing: -0.01em;
   line-height: 1.25;
 }
 
@@ -455,11 +483,11 @@
   display: inline-flex;
   align-items: center;
   min-height: 3rem;
-  padding: 0.75rem 1.2rem;
-  color: #173e35;
-  background: #fff;
-  border-radius: 2px;
-  font-weight: 800;
+  padding: 0.75rem 1.3rem;
+  color: var(--signal-ink);
+  background: var(--signal);
+  border-radius: 8px;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -467,7 +495,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 3rem;
-  color: #8de9bd;
+  color: var(--trace);
   font-weight: 700;
   text-decoration: none;
 }
@@ -476,10 +504,6 @@
 .case-footer a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
-}
-
-.case-cta a:focus-visible {
-  outline-color: #8de9bd;
 }
 
 .case-footer {
@@ -563,8 +587,7 @@
   }
 
   .case-back {
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
+    font-size: 0.9rem;
   }
 
   .case-actions {
@@ -573,7 +596,6 @@
 
   .case-cv {
     padding-inline: 0.55rem;
-    letter-spacing: 0.03em;
   }
 
   .case-diagram,

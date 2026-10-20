@@ -8,14 +8,14 @@
       aria-expanded="false"
       aria-controls="portfolio-assistant-panel"
       aria-haspopup="dialog"
-      [attr.aria-label]="copy().launcherLabel"
     >
-      <span class="assistant-bubble" aria-hidden="true">
-        <strong>{{ copy().launcherTitle }}</strong>
-      </span>
       <span class="assistant-persona" aria-hidden="true">
-        <img ngSrc="/vivien-billot-character-cutout-v3.webp" width="320" height="480" alt="" />
+        <img ngSrc="/vivien-billot-avatar.webp" width="160" height="160" alt="" />
       </span>
+      <span class="assistant-launcher-label"
+        >{{ copy().launcherTitle
+        }}<span class="assistant-launcher-more">{{ copy().launcherMore }}</span></span
+      >
     </button>
     <button
       class="assistant-hide"
@@ -38,7 +38,7 @@
     [attr.aria-label]="copy().restore"
   >
     <span class="assistant-restore-avatar" aria-hidden="true">
-      <img ngSrc="/vivien-billot-character-cutout-v3.webp" width="320" height="480" alt="" />
+      <img ngSrc="/vivien-billot-avatar.webp" width="160" height="160" alt="" />
     </span>
     <strong>{{ copy().restore }}</strong>
   </button>

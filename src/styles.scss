@@ -1,47 +1,67 @@
+/* Archivo, variable in width and weight: wide for titles, narrow for years and odds. */
 @font-face {
-  font-family: Inter;
+  font-family: Archivo;
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 400 800;
+  font-stretch: 70% 115%;
   font-display: swap;
-  src: url('/fonts/inter-latin-var.woff2') format('woff2');
+  src: url('/fonts/archivo-latin-var.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: Inter;
+  font-family: Archivo;
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 400 800;
+  font-stretch: 70% 115%;
   font-display: swap;
-  src: url('/fonts/inter-latin-ext-var.woff2') format('woff2');
+  src: url('/fonts/archivo-latin-ext-var.woff2') format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
     U+A720-A7FF;
 }
 
+/*
+ * Night and paper, a blue trace, and amber only for what is happening now
+ * (the current mission, a live value, the main action). Same palette as the LinkedIn banner.
+ */
 :root {
   color-scheme: light;
-  --bg: #f5f3ee;
-  --surface: #ebe8e1;
-  --ink: #17201d;
-  --muted: #59625e;
-  --accent: #b83b1f;
-  --accent-contrast: #fff;
-  --line: #d5d1c8;
-  --deep: #173e35;
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #141c2b;
+  --muted: #566174;
+  --accent: #2f5fd0;
+  --accent-contrast: #ffffff;
+  --line: #dce2ea;
+  --deep: #0e1828;
+  --night: #0e1828;
+  --night-raised: #121f33;
+  --night-line: #24334d;
+  --night-border: #3a4b68;
+  --night-ink: #f3f5f8;
+  --night-soft: #c9d3e1;
+  --night-muted: #a8b4c7;
+  --trace: #7ea2ff;
+  --signal: #f2a93b;
+  --signal-soft: #f3c47f;
+  --signal-ink: #0e1828;
+  --font: Archivo, system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 }
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --bg: #111816;
-  --surface: #1a2421;
-  --ink: #f5f3ee;
-  --muted: #aab2ae;
-  --accent: #f07855;
-  --accent-contrast: #111816;
-  --line: #34413d;
-  --deep: #7fc0aa;
+  --bg: #0b1320;
+  --surface: #111c2e;
+  --ink: #e9eef5;
+  --muted: #a8b4c7;
+  --accent: #8fb0ff;
+  --accent-contrast: #0b1320;
+  --line: #24334d;
+  --deep: #0e1828;
 }
 * {
   box-sizing: border-box;
@@ -64,7 +84,7 @@ body {
   overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
-  font-family: Inter, Avenir, 'Segoe UI', sans-serif;
+  font-family: var(--font);
   line-height: 1.5;
   transition:
     background 0.2s,
