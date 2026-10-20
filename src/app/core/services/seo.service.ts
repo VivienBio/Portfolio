@@ -79,11 +79,16 @@ export class SeoService {
       jobTitle: 'Freelance Senior Software Engineer & Tech Lead',
       url: absoluteUrl(page.locale === 'fr' ? '/fr' : '/'),
       image: `${SITE_URL}/vivien-billot-linkedin.jpg`,
-      sameAs: ['https://www.linkedin.com/in/vivien-billot/', 'https://github.com/VivienBio'],
+      sameAs: [
+        'https://www.linkedin.com/in/vivien-billot/',
+        'https://github.com/VivienBio',
+        'https://www.codingame.com/profile/534d2045d7dc0057e6d53d29336657fe6190191',
+      ],
       knowsAbout: [
         'C#',
         '.NET',
         'Distributed systems',
+        'Kafka',
         'Software architecture',
         'Domain-Driven Design',
         'AWS',

@@ -2,12 +2,24 @@ import { describe, expect, it, vi } from 'vitest';
 import { AssistantGateway } from './assistant.gateway';
 import { buildPortfolioKnowledge, PortfolioAssistant } from './portfolio-assistant';
 import { LocalPortfolioRepository } from '../infrastructure/local-portfolio.repository';
+import { SITE_URL } from '../infrastructure/site';
+import { PORTFOLIO_LINKS } from '../domain/assistant.models';
 
 function createAssistant(answer = 'Je suis Senior Software Engineer chez Betclic.') {
   const gateway: AssistantGateway = { answer: vi.fn().mockResolvedValue(answer) };
   const knowledge = buildPortfolioKnowledge(new LocalPortfolioRepository().getPortfolio());
 
   return { assistant: new PortfolioAssistant(gateway, knowledge), gateway };
+}
+
+function createEnglishAssistant() {
+  const gateway: AssistantGateway = { answer: vi.fn().mockResolvedValue('I work at Betclic.') };
+  const knowledge = buildPortfolioKnowledge(
+    new LocalPortfolioRepository().getPortfolio('en'),
+    'en',
+  );
+
+  return { assistant: new PortfolioAssistant(gateway, knowledge, 'en'), gateway };
 }
 
 describe('PortfolioAssistant', () => {
@@ -94,7 +106,7 @@ describe('PortfolioAssistant', () => {
 
     expect(reply.answer).toContain('billot.vivien@gmail.com');
     expect(reply.answer).toContain('06 23 85 77 32');
-    expect(reply.answer).toContain('rubrique Contact');
+    expect(reply.answer).toContain('https://www.linkedin.com/in/vivien-billot/');
     expect(reply.answer).not.toContain('transmettre votre message');
     expect(gateway.answer).not.toHaveBeenCalled();
   });
@@ -107,8 +119,8 @@ describe('PortfolioAssistant', () => {
     const reply = await assistant.reply([{ role: 'user', content: 'How can I contact you?' }]);
 
     expect(reply.answer).toContain('billot.vivien@gmail.com');
-    expect(reply.answer).toContain('06 23 85 77 32');
-    expect(reply.answer).toContain('Contact section');
+    expect(reply.answer).toContain('+33 6 23 85 77 32');
+    expect(reply.answer).toContain('https://www.linkedin.com/in/vivien-billot/');
     expect(reply.answer).not.toContain('forward your message');
     expect(gateway.answer).not.toHaveBeenCalled();
   });
@@ -138,6 +150,69 @@ describe('PortfolioAssistant', () => {
     expect(reply.answer).toContain('Paris region');
     expect(reply.answer).toContain('day rate');
     expect(gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('answers the availability quick questions in both languages without calling the model', async () => {
+    const french = createAssistant();
+    const english = createEnglishAssistant();
+
+    const frenchReply = await french.assistant.reply([{ role: 'user', content: 'Disponibilité' }]);
+    const englishReply = await english.assistant.reply([{ role: 'user', content: 'Availability' }]);
+
+    expect(frenchReply.answer).toContain('TJM');
+    expect(frenchReply.answer).toContain('/assets/CV-Vivien-Billot-FR.pdf');
+    expect(englishReply.answer).toContain('day rate');
+    expect(french.gateway.answer).not.toHaveBeenCalled();
+    expect(english.gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('shares the resume link for CV questions in the visitor language', async () => {
+    const french = createAssistant();
+    const english = createEnglishAssistant();
+
+    const frenchReply = await french.assistant.reply([
+      { role: 'user', content: 'Peux-tu m’envoyer ton CV ?' },
+    ]);
+    const englishReply = await english.assistant.reply([
+      { role: 'user', content: 'Can I see your resume?' },
+    ]);
+
+    expect(frenchReply.answer).toContain(`${SITE_URL}/assets/CV-Vivien-Billot-FR.pdf`);
+    expect(englishReply.answer).toContain(`${SITE_URL}/assets/CV-Vivien-Billot-EN.pdf`);
+    expect(french.gateway.answer).not.toHaveBeenCalled();
+    expect(english.gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('points LinkedIn questions to the profile URL', async () => {
+    const { assistant, gateway } = createAssistant();
+
+    const reply = await assistant.reply([{ role: 'user', content: 'Quel est ton LinkedIn ?' }]);
+
+    expect(reply.answer).toContain('https://www.linkedin.com/in/vivien-billot/');
+    expect(gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('thanks visitors warmly but keeps polite questions with the model', async () => {
+    const { assistant, gateway } = createAssistant();
+
+    const thanks = await assistant.reply([{ role: 'user', content: 'Merci beaucoup !' }]);
+    expect(thanks.answer).toContain('Avec plaisir');
+    expect(gateway.answer).not.toHaveBeenCalled();
+
+    await assistant.reply([{ role: 'user', content: 'Merci de me présenter ton parcours' }]);
+    expect(gateway.answer).toHaveBeenCalledOnce();
+  });
+
+  it('gives the model the public links of the visitor locale', async () => {
+    const { assistant, gateway } = createEnglishAssistant();
+
+    await assistant.reply([{ role: 'user', content: 'What did you build at Betclic?' }]);
+
+    const instructions = vi.mocked(gateway.answer).mock.calls[0]?.[0].instructions;
+    expect(instructions).toContain(`${SITE_URL}/work/betclic`);
+    expect(instructions).toContain('without Markdown');
+    expect(PORTFOLIO_LINKS.fr.tf1CaseStudy).toBe(`${SITE_URL}/fr/work/tf1`);
+    expect(PORTFOLIO_LINKS.en.cv).toBe(`${SITE_URL}/assets/CV-Vivien-Billot-EN.pdf`);
   });
 
   it('keeps questions asking for details about a role with the model', async () => {

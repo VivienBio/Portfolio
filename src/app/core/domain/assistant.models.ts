@@ -20,12 +20,33 @@ export interface ContactSubmission {
 export const PORTFOLIO_CONTACT = Object.freeze({
   email: 'billot.vivien@gmail.com',
   phone: '06 23 85 77 32',
+  internationalPhone: '+33 6 23 85 77 32',
   linkedin: 'https://www.linkedin.com/in/vivien-billot/',
+});
+
+const PORTFOLIO_SITE = 'https://vivien-billot.web.app';
+
+/** Public pages the assistant may point to, per locale. */
+export const PORTFOLIO_LINKS = Object.freeze({
+  fr: Object.freeze({
+    portfolio: `${PORTFOLIO_SITE}/fr`,
+    betclicCaseStudy: `${PORTFOLIO_SITE}/fr/work/betclic`,
+    tf1CaseStudy: `${PORTFOLIO_SITE}/fr/work/tf1`,
+    cv: `${PORTFOLIO_SITE}/assets/CV-Vivien-Billot-FR.pdf`,
+    linkedin: PORTFOLIO_CONTACT.linkedin,
+  }),
+  en: Object.freeze({
+    portfolio: `${PORTFOLIO_SITE}/`,
+    betclicCaseStudy: `${PORTFOLIO_SITE}/work/betclic`,
+    tf1CaseStudy: `${PORTFOLIO_SITE}/work/tf1`,
+    cv: `${PORTFOLIO_SITE}/assets/CV-Vivien-Billot-EN.pdf`,
+    linkedin: PORTFOLIO_CONTACT.linkedin,
+  }),
 });
 
 export const PORTFOLIO_PUBLIC_IDENTITY = Object.freeze({
   name: 'Vivien Billot',
-  headline: 'Senior Software Engineer · architecte logiciel · freelance',
+  headline: 'Freelance Senior Software Engineer & Tech Lead · C# / .NET',
   location: 'Île-de-France',
   birthDateIso: '1988-03-05',
 });

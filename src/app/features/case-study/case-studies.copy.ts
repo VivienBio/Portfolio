@@ -161,7 +161,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   otherCase: { label: 'Next case study: TF1 →', path: '/work/tf1' },
   contactCta: {
     title: 'Working on a system where wrong answers are expensive?',
-    action: 'Let’s talk',
+    action: 'Email me',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
@@ -279,7 +279,7 @@ const EN_TF1: CaseStudyCopy = {
   otherCase: { label: 'Next case study: Betclic →', path: '/work/betclic' },
   contactCta: {
     title: 'Facing a modernization that cannot stop the business?',
-    action: 'Let’s talk',
+    action: 'Email me',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
@@ -394,7 +394,7 @@ const FR_BETCLIC: CaseStudyCopy = {
   otherCase: { label: 'Étude de cas suivante : TF1 →', path: '/fr/work/tf1' },
   contactCta: {
     title: 'Un système où l’erreur coûte cher ?',
-    action: 'Parlons-en',
+    action: 'M’écrire',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
@@ -515,7 +515,7 @@ const FR_TF1: CaseStudyCopy = {
   otherCase: { label: 'Étude de cas suivante : Betclic →', path: '/fr/work/betclic' },
   contactCta: {
     title: 'Une modernisation qui ne peut pas arrêter le métier ?',
-    action: 'Parlons-en',
+    action: 'M’écrire',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
