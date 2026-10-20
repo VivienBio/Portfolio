@@ -26,7 +26,7 @@ test('serves the English positioning at the root and stays inside the viewport',
   ).toBeVisible();
   await expect(page.locator('#contact')).toBeAttached();
   await expect(
-    page.getByRole('link', { name: /Download Vivien Billot English resume/i }).first(),
+    page.getByRole('link', { name: /Download Vivien Billot’s English resume/i }).first(),
   ).toHaveAttribute('href', '/assets/CV-Vivien-Billot-EN.pdf');
   await expect(page.locator('link[rel="icon"][type="image/svg+xml"]')).toHaveAttribute(
     'href',

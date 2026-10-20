@@ -54,7 +54,7 @@ const ASSISTANT_COPY = {
     hide: 'Hide Vivien',
     restore: 'Show Vivien',
     initialMessage:
-      'I answer about Vivien’s background, stack, leadership, architecture choices, and freelance availability.',
+      'I answer questions about Vivien’s background, stack, leadership, architecture choices, and freelance availability.',
     processing: 'AI assistant: your questions may be sent to OpenAI. Avoid sensitive information.',
     policy: 'Privacy policy',
     quickQuestions: ['Career path', 'Availability', 'Leadership', 'Difference'],

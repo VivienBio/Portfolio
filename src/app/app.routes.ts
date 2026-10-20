@@ -38,7 +38,7 @@ export const routes: Routes = [
         ({ CaseStudyComponent }) => CaseStudyComponent,
       ),
     data: { locale: 'en', slug: 'tf1' },
-    title: "Modernizing TF1's advertising platform — Vivien Billot",
+    title: 'Modernizing TF1’s advertising platform — Vivien Billot',
   },
   {
     path: 'fr/work/betclic',

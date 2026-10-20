@@ -68,7 +68,7 @@ describe('PortfolioPageComponent', () => {
 
     expect(element.querySelectorAll('.timeline article')).toHaveLength(6);
     expect(element.textContent).toContain('Betclic Group');
-    expect(element.textContent).toContain('Groupe TF1');
+    expect(element.textContent).toContain('TF1 Group');
     expect(element.textContent).toContain('Total');
     expect(element.textContent).toContain('11');
     expect(element.textContent).toContain('500+');

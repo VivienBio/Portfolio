@@ -177,7 +177,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       ],
       profileFooter: ['Architecture', 'Delivery', 'Leadership'],
     },
-    metricsLabel: 'Selected impact',
+    metricsLabel: 'Key results',
     metrics: [
       {
         value: '14+',
@@ -207,14 +207,14 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           kicker: 'TF1 Group · Feb 2022–Oct 2025 · Tech Lead of three teams',
           title: 'Modernizing a broadcaster’s ad platform without stopping it',
           summary:
-            'Leading the redesign of TF1’s advertising platform from February 2022 to October 2025: 11 projects shipped to production, a VB6-era stack retired step by step, and three teams that got stronger along the way.',
+            'Led the redesign of TF1’s advertising platform: 11 projects shipped to production, a VB6-era stack retired step by step, and three teams that got stronger along the way.',
           path: '/work/tf1',
         },
       ],
       compact: [
         {
           company: 'Rent A Car',
-          period: '2017–2022',
+          period: '2017–2021',
           role: 'Senior Developer → Tech Lead / Technical Manager',
           summary:
             'Built the digital rental journey for a 500+ branch network: microservices, dynamic pricing, high-traffic e-commerce, and Easy Péage — announced as Europe’s first in-vehicle toll payment for rental cars. Grew from senior developer to technical manager of a nine-person team.',
@@ -225,7 +225,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           period: '2012–2017',
           role: 'R&D Project Lead → R&D Team Lead',
           summary:
-            'Designed the C# framework that computes patient results on in-vitro diagnostic instruments — a regulated environment where an approximation is a defect. Led an eight-person R&D team; refactored critical modules with TDD and structured continuous integration and requirements traceability.',
+            'Designed the C# framework that computes patient results on in-vitro diagnostic instruments — a regulated environment where an approximation is a defect. Led an eight-person R&D team; refactored critical modules with TDD; structured continuous integration and requirements traceability.',
           tags: ['C#', 'WPF', 'TDD', 'NUnit', 'TeamCity', 'IBM Rational DOORS'],
         },
       ],
@@ -234,7 +234,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Engineering principles',
       title: 'Opinions I defend.',
       accent: 'Until proven wrong.',
-      intro: 'What I bring to a design review — and what I drop when the evidence proves it wrong.',
+      intro: 'What I bring to a design review — and what I drop when the evidence goes against it.',
       items: [
         {
           title: 'Simplicity before sophistication',
@@ -281,7 +281,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'What you gain.',
       accent: 'What I keep in check.',
       intro:
-        'Strengths come with failure modes. These are mine — and the instincts I keep in check to stay useful to the team.',
+        'Strengths come with failure modes. These are mine — and the instincts I rein in to stay useful to the team.',
       strength: 'Strength',
       vigilance: 'What I watch',
       safeguard: 'My safeguard',
@@ -291,7 +291,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Small on purpose,',
       accent: 'easy to inspect.',
       intro:
-        'Each project isolates one practice — domain modeling, TDD, algorithmic optimization — so the reasoning is easy to inspect.',
+        'Each project isolates one practice — domain modeling, TDD, algorithmic optimization — so the reasoning is easy to follow.',
     },
     quote: {
       label: 'Professional recommendations',
@@ -333,8 +333,8 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       directoryLabel: 'Contact details and useful links',
       cvFr: 'French resume',
       cvEn: 'English resume',
-      cvFrAriaLabel: 'Download Vivien Billot French resume as a PDF',
-      cvEnAriaLabel: 'Download Vivien Billot English resume as a PDF',
+      cvFrAriaLabel: 'Download Vivien Billot’s French resume as a PDF',
+      cvEnAriaLabel: 'Download Vivien Billot’s English resume as a PDF',
       top: 'Back to top',
       rights: 'All rights reserved',
     },
@@ -388,7 +388,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       ],
       profileFooter: ['Architecture', 'Delivery', 'Leadership'],
     },
-    metricsLabel: 'Impact sélectionné',
+    metricsLabel: 'Résultats clés',
     metrics: [
       { value: '14+', label: 'années d’ingénierie, du médical réglementé au pricing temps réel' },
       { value: '11', label: 'projets mis en production en encadrant trois équipes chez TF1' },
@@ -415,17 +415,17 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           kicker: 'Groupe TF1 · Février 2022–octobre 2025 · Tech Lead de trois équipes',
           title: 'Moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
           summary:
-            'Piloter la refonte du SI publicitaire de TF1 de février 2022 à octobre 2025 : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et trois équipes qui en sont sorties plus fortes.',
+            'Piloter la refonte de bout en bout : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et trois équipes qui en sont sorties plus fortes.',
           path: '/fr/work/tf1',
         },
       ],
       compact: [
         {
           company: 'Rent A Car',
-          period: '2017–2022',
+          period: '2017–2021',
           role: 'Développeur senior → Tech Lead / Responsable technique',
           summary:
-            'Construire le parcours de location digital d’un réseau de 500+ agences : microservices, pricing dynamique, e-commerce à fort trafic et Easy Péage — annoncé comme le premier paiement de péage embarqué d’Europe pour la location. De développeur senior à responsable technique d’une équipe de neuf personnes.',
+            'Construire le parcours de location digital d’un réseau de plus de 500 agences : microservices, pricing dynamique, e-commerce à fort trafic et Easy Péage — annoncé comme le premier paiement de péage embarqué d’Europe pour la location. De développeur senior à responsable technique d’une équipe de neuf personnes.',
           tags: ['C#', '.NET Core', 'Angular', 'Microservices', 'AWS', 'Docker', 'PostgreSQL'],
         },
         {
@@ -463,7 +463,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           title: 'L’observabilité se conçoit dès le départ',
           description:
-            'Un système que je ne peux pas expliquer en production n’est pas terminé. Traçage, replay et signaux actionnables font partie de l’architecture, pas de l’après-coup.',
+            'Un système que je ne peux pas expliquer en production n’est pas terminé. Traçage, replay et signaux actionnables font partie de l’architecture ; ils ne s’ajoutent pas après coup.',
         },
         {
           title: 'L’évolution plutôt que la perfection',
@@ -500,7 +500,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Petits par choix,',
       accent: 'faciles à inspecter.',
       intro:
-        'Chaque projet isole une pratique — modélisation de domaine, TDD, optimisation algorithmique — pour que le raisonnement soit facile à inspecter.',
+        'Chaque projet isole une pratique — modélisation de domaine, TDD, optimisation algorithmique — pour que le raisonnement reste lisible.',
     },
     quote: {
       label: 'Recommandations professionnelles',

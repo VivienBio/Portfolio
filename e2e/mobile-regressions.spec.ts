@@ -17,7 +17,7 @@ const locales = {
     heading: 'Systems where wrong answers',
     question: 'Career path',
     answer: /leave a clearer system and a more autonomous team/i,
-    initial: /I answer about Vivien’s background/i,
+    initial: /I answer questions about Vivien’s background/i,
     pdf: 'CV-Vivien-Billot-EN.pdf',
   },
 } as const;
