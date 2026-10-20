@@ -1,6 +1,6 @@
 {
   "fr-desktop-light": {
-    "height": 6248,
+    "height": 6095,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -20,7 +20,7 @@
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 676,
+      "accueil": 522,
       "missions": 797,
       "work": 1189,
       "approche": 1165,
@@ -33,7 +33,7 @@
     "errors": []
   },
   "fr-desktop-dark": {
-    "height": 6248,
+    "height": 6095,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -53,7 +53,7 @@
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 676,
+      "accueil": 522,
       "missions": 797,
       "work": 1189,
       "approche": 1165,
@@ -66,7 +66,7 @@
     "errors": []
   },
   "en-desktop-light": {
-    "height": 6134,
+    "height": 6069,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -86,7 +86,7 @@
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 682,
+      "accueil": 617,
       "missions": 797,
       "work": 1189,
       "approche": 1111,
@@ -99,7 +99,7 @@
     "errors": []
   },
   "fr-laptop-light": {
-    "height": 6118,
+    "height": 5946,
     "overflowX": 0,
     "header": 76,
     "fonts": [
@@ -119,7 +119,7 @@
     },
     "overlapsWithDock": [],
     "sections": {
-      "accueil": 676,
+      "accueil": 503,
       "missions": 785,
       "work": 1176,
       "approche": 1152,
@@ -132,7 +132,7 @@
     "errors": []
   },
   "fr-small-laptop": {
-    "height": 6912,
+    "height": 6561,
     "overflowX": 0,
     "header": 107,
     "fonts": [
@@ -151,10 +151,10 @@
       "bottom": 748
     },
     "overlapsWithDock": [
-      ".replay"
+      ".hero-cases"
     ],
     "sections": {
-      "accueil": 1085,
+      "accueil": 734,
       "missions": 869,
       "work": 1141,
       "approche": 1228,
@@ -167,7 +167,7 @@
     "errors": []
   },
   "fr-tablet-light": {
-    "height": 7845,
+    "height": 7501,
     "overflowX": 0,
     "header": 107,
     "fonts": [
@@ -185,12 +185,9 @@
       "top": 956,
       "bottom": 1012
     },
-    "overlapsWithDock": [
-      ".replay",
-      ".replay-log"
-    ],
+    "overlapsWithDock": [],
     "sections": {
-      "accueil": 1019,
+      "accueil": 675,
       "missions": 1151,
       "work": 1190,
       "approche": 1560,
@@ -203,7 +200,7 @@
     "errors": []
   },
   "fr-mobile-light": {
-    "height": 10521,
+    "height": 10224,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -222,10 +219,10 @@
       "bottom": 837.609375
     },
     "overlapsWithDock": [
-      ".replay"
+      ".hero-cases"
     ],
     "sections": {
-      "accueil": 1121,
+      "accueil": 824,
       "missions": 1535,
       "work": 1733,
       "approche": 2325,
@@ -270,7 +267,7 @@
     "errors": []
   },
   "en-mobile-dark": {
-    "height": 10270,
+    "height": 9973,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -289,10 +286,10 @@
       "bottom": 837.609375
     },
     "overlapsWithDock": [
-      ".replay"
+      ".hero-cases"
     ],
     "sections": {
-      "accueil": 1121,
+      "accueil": 824,
       "missions": 1481,
       "work": 1731,
       "approche": 2222,
@@ -337,7 +334,7 @@
     "errors": []
   },
   "fr-mobile-320": {
-    "height": 11817,
+    "height": 11559,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -356,10 +353,10 @@
       "bottom": 633.609375
     },
     "overlapsWithDock": [
-      ".replay"
+      ".hero-cases"
     ],
     "sections": {
-      "accueil": 1132,
+      "accueil": 874,
       "missions": 1762,
       "work": 2031,
       "approche": 2735,
@@ -404,7 +401,7 @@
     "errors": []
   },
   "fr-landscape": {
-    "height": 7599,
+    "height": 7248,
     "overflowX": 0,
     "header": 68,
     "fonts": [
@@ -426,7 +423,7 @@
       ".hero-copy"
     ],
     "sections": {
-      "accueil": 1029,
+      "accueil": 678,
       "missions": 1101,
       "work": 1117,
       "approche": 1491,
