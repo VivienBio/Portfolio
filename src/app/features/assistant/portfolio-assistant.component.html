@@ -14,7 +14,7 @@
         <strong>{{ copy().launcherTitle }}</strong>
       </span>
       <span class="assistant-persona" aria-hidden="true">
-        <img ngSrc="/vivien-billot-character-cutout-v2.png" width="480" height="720" alt="" />
+        <img ngSrc="/vivien-billot-character-cutout-v3.webp" width="320" height="480" alt="" />
       </span>
     </button>
     <button
@@ -38,7 +38,7 @@
     [attr.aria-label]="copy().restore"
   >
     <span class="assistant-restore-avatar" aria-hidden="true">
-      <img ngSrc="/vivien-billot-character-cutout-v2.png" width="480" height="720" alt="" />
+      <img ngSrc="/vivien-billot-character-cutout-v3.webp" width="320" height="480" alt="" />
     </span>
     <strong>{{ copy().restore }}</strong>
   </button>
@@ -55,7 +55,7 @@
 
   <div class="assistant-sidekick" aria-hidden="true">
     <span class="assistant-persona assistant-persona-side">
-      <img ngSrc="/vivien-billot-character-cutout-v2.png" width="480" height="720" alt="" />
+      <img ngSrc="/vivien-billot-character-cutout-v3.webp" width="320" height="480" alt="" />
     </span>
   </div>
 
@@ -98,8 +98,19 @@
       </p>
       @for (message of messages(); track $index) {
         <p class="message" [class.message-user]="message.role === 'user'">
-          <span>{{ message.role === 'user' ? copy().visitor : copy().assistantName }}</span
-          >{{ message.content }}
+          <span>{{ message.role === 'user' ? copy().visitor : copy().assistantName }}</span>
+          @for (part of message.parts; track $index) {
+            @if (part.href) {
+              <a
+                [href]="part.href"
+                [attr.target]="part.external ? '_blank' : null"
+                [attr.rel]="part.external ? 'noopener noreferrer' : null"
+                >{{ part.text }}</a
+              >
+            } @else {
+              <ng-container>{{ part.text }}</ng-container>
+            }
+          }
         </p>
       }
       @if (isSending()) {

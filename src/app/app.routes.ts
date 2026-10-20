@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-const EN_HOME_TITLE = 'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems';
-const FR_HOME_TITLE = 'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués';
+const EN_HOME_TITLE = 'Vivien Billot — Freelance Senior Software Engineer (.NET)';
+const FR_HOME_TITLE = 'Vivien Billot — Senior Software Engineer .NET freelance';
 
 export const routes: Routes = [
   {
@@ -29,7 +29,7 @@ export const routes: Routes = [
         ({ CaseStudyComponent }) => CaseStudyComponent,
       ),
     data: { locale: 'en', slug: 'betclic' },
-    title: 'Real-time sports pricing at Betclic — case study · Vivien Billot',
+    title: 'Real-time sports pricing at Betclic — Vivien Billot',
   },
   {
     path: 'work/tf1',
@@ -38,7 +38,7 @@ export const routes: Routes = [
         ({ CaseStudyComponent }) => CaseStudyComponent,
       ),
     data: { locale: 'en', slug: 'tf1' },
-    title: "Modernizing TF1's advertising platform — case study · Vivien Billot",
+    title: 'Modernizing TF1’s advertising platform — Vivien Billot',
   },
   {
     path: 'fr/work/betclic',
@@ -47,7 +47,7 @@ export const routes: Routes = [
         ({ CaseStudyComponent }) => CaseStudyComponent,
       ),
     data: { locale: 'fr', slug: 'betclic' },
-    title: 'Pricing sportif temps réel chez Betclic — étude de cas · Vivien Billot',
+    title: 'Pricing sportif temps réel chez Betclic — Vivien Billot',
   },
   {
     path: 'fr/work/tf1',
@@ -56,7 +56,7 @@ export const routes: Routes = [
         ({ CaseStudyComponent }) => CaseStudyComponent,
       ),
     data: { locale: 'fr', slug: 'tf1' },
-    title: 'Moderniser le SI publicitaire de TF1 — étude de cas · Vivien Billot',
+    title: 'Moderniser le SI publicitaire de TF1 — Vivien Billot',
   },
   {
     path: 'privacy',

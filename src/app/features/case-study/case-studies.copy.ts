@@ -60,9 +60,9 @@ const EN_BETCLIC: CaseStudyCopy = {
   title: 'Real-time sports odds,',
   accent: 'priced in-house.',
   roleLine: 'Senior Software Engineer — Quant & sports pricing · C#/.NET · AWS',
-  metaTitle: 'Real-time sports pricing at Betclic — case study · Vivien Billot',
+  metaTitle: 'Real-time sports pricing at Betclic — Vivien Billot',
   metaDescription:
-    'Working on a proprietary sports-pricing chain that turns Monte Carlo simulations into live odds: market lifecycle, replay tooling, and automated delivery on AWS.',
+    'A proprietary sports-pricing chain turning Monte Carlo simulations into live odds: market lifecycle, replay tooling and automated delivery on AWS.',
   context: {
     heading: 'Context',
     paragraphs: [
@@ -106,7 +106,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   },
   decisionsHeading: 'Key decisions',
   decisionsIntro:
-    'Pricing in-house rather than depending exclusively on providers is Betclic’s strategic call — it sets the bar my work has to meet: own the models means own the errors. These are decisions I made within that frame.',
+    'Pricing in-house rather than depending exclusively on providers is Betclic’s strategic call — it sets the bar my work has to meet: owning the models means owning the errors. These are decisions I made within that frame.',
   decisionLabels: {
     problem: 'Problem',
     options: 'Options',
@@ -161,20 +161,20 @@ const EN_BETCLIC: CaseStudyCopy = {
   otherCase: { label: 'Next case study: TF1 →', path: '/work/tf1' },
   contactCta: {
     title: 'Working on a system where wrong answers are expensive?',
-    action: 'Let’s talk',
+    action: 'Email me',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
 
 const EN_TF1: CaseStudyCopy = {
   slug: 'tf1',
-  kicker: 'Case study · TF1 Group · Mar 2022–Oct 2025',
+  kicker: 'Case study · TF1 Group · Feb 2022–Oct 2025',
   title: 'Modernizing the ad platform',
   accent: 'without stopping it.',
-  roleLine: 'Tech Lead / Software Architect — two cross-functional teams',
-  metaTitle: "Modernizing TF1's advertising platform — case study · Vivien Billot",
+  roleLine: 'Tech Lead / Software Architect — three cross-functional teams',
+  metaTitle: 'Modernizing TF1’s advertising platform — Vivien Billot',
   metaDescription:
-    "Tech Lead of two teams on TF1's advertising platform from March 2022 to October 2025: VB6 legacy to .NET 6/8 and AKS, 11 projects shipped to production, delivery without interruption.",
+    'Tech Lead of three teams modernizing TF1’s ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped, no business interruption.',
   context: {
     heading: 'Context',
     paragraphs: [
@@ -190,7 +190,7 @@ const EN_TF1: CaseStudyCopy = {
   role: {
     heading: 'My role',
     paragraphs: [
-      'I owned technical direction for two cross-functional teams: architecture, roadmaps, prioritization, coaching, hiring, and delivery commitments. Decisions were written down, argued, and owned by the teams — my job was to make sure they were made, not to make them alone.',
+      'I owned technical direction for three cross-functional teams: architecture, roadmaps, prioritization, coaching, hiring, and delivery commitments. Decisions were written down, argued, and owned by the teams — my job was to make sure they were made, not to make them alone.',
     ],
   },
   constraintsHeading: 'Constraints',
@@ -198,7 +198,7 @@ const EN_TF1: CaseStudyCopy = {
     'Business continuity: advertising operations could not stop for a migration.',
     'Legacy depth: VB6-era systems with implicit rules that existed nowhere but in the code and in people’s heads.',
     'Exposure: incidents in an ad system are measured in money and in trust.',
-    'Two teams, one direction: consistent architecture and standards across parallel streams.',
+    'Three teams, one direction: consistent architecture and standards across parallel streams.',
   ],
   architecture: {
     heading: 'How it fits together',
@@ -231,7 +231,7 @@ const EN_TF1: CaseStudyCopy = {
       options: 'Big-bang rewrite, or incremental, domain-by-domain replacement.',
       decision: 'Incremental. Each domain moved when its replacement was proven in production.',
       tradeOff:
-        'We accepted running old and new in parallel — double run cost and boundary complexity — in exchange for keeping every business commitment through four years of transformation.',
+        'We accepted running old and new in parallel — double run cost and boundary complexity — in exchange for keeping every business commitment through nearly four years of transformation.',
     },
     {
       title: 'Make quality the delivery accelerator, not its tax.',
@@ -242,8 +242,8 @@ const EN_TF1: CaseStudyCopy = {
       tradeOff: 'Slower first commits, faster everything after.',
     },
     {
-      title: 'One architecture direction across two teams.',
-      problem: 'Two teams modernizing in parallel can produce two systems.',
+      title: 'One architecture direction across three teams.',
+      problem: 'Three teams modernizing in parallel can produce three systems.',
       options: 'Team-local choices, or shared architecture governance.',
       decision:
         'Shared standards, explicit architecture decisions, and API governance — written down, argued, and owned by the teams rather than imposed.',
@@ -256,7 +256,7 @@ const EN_TF1: CaseStudyCopy = {
     'VB6-era code gradually replaced with .NET 6/8, Angular, Azure, and AKS.',
     'Lead time reduced through testing, observability, and Accelerate practices.',
     '80+ production incidents resolved without pausing the modernization — each followed by a post-incident loop, with recurring classes of failure designed out over time.',
-    'Two teams grown through clear framing, shared decisions, and lasting standards — including hiring and coaching.',
+    'Three teams grown through clear framing, shared decisions, and lasting standards — including hiring and coaching.',
   ],
   learnedHeading: 'What I learned',
   learned: [
@@ -279,7 +279,7 @@ const EN_TF1: CaseStudyCopy = {
   otherCase: { label: 'Next case study: Betclic →', path: '/work/betclic' },
   contactCta: {
     title: 'Facing a modernization that cannot stop the business?',
-    action: 'Let’s talk',
+    action: 'Email me',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
@@ -290,9 +290,9 @@ const FR_BETCLIC: CaseStudyCopy = {
   title: 'Des cotes sportives temps réel,',
   accent: 'produites en interne.',
   roleLine: 'Senior Software Engineer — Quant & pricing sportif · C#/.NET · AWS',
-  metaTitle: 'Pricing sportif temps réel chez Betclic — étude de cas · Vivien Billot',
+  metaTitle: 'Pricing sportif temps réel chez Betclic — Vivien Billot',
   metaDescription:
-    'Contribuer à une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : cycle de vie des marchés, outillage de replay, delivery automatisé sur AWS.',
+    'Une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : marchés, replay, delivery automatisé sur AWS.',
   context: {
     heading: 'Contexte',
     paragraphs: [
@@ -353,7 +353,7 @@ const FR_BETCLIC: CaseStudyCopy = {
       decision:
         'J’ai construit le back-office de replay : rejouer les événements passés, tracer chaque décision algorithmique, valider un correctif contre la réalité avant sa mise en production.',
       tradeOff:
-        'Ce type d’outillage ne livre aucune feature visible. Il se rembourse à la première anomalie de marché qu’il faut expliquer avec des preuves plutôt qu’avec des hypothèses.',
+        'Ce type d’outillage ne livre aucune feature visible. Il est rentabilisé dès la première anomalie de marché qu’il faut expliquer avec des preuves plutôt qu’avec des hypothèses.',
     },
     {
       title: 'Qualifier l’accélération GPU avant de s’engager.',
@@ -394,20 +394,20 @@ const FR_BETCLIC: CaseStudyCopy = {
   otherCase: { label: 'Étude de cas suivante : TF1 →', path: '/fr/work/tf1' },
   contactCta: {
     title: 'Un système où l’erreur coûte cher ?',
-    action: 'Parlons-en',
+    action: 'M’écrire',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };
 
 const FR_TF1: CaseStudyCopy = {
   slug: 'tf1',
-  kicker: 'Étude de cas · Groupe TF1 · Mars 2022–octobre 2025',
+  kicker: 'Étude de cas · Groupe TF1 · Février 2022–octobre 2025',
   title: 'Moderniser le SI publicitaire',
   accent: 'sans l’arrêter.',
-  roleLine: 'Tech Lead / Architecte — deux équipes pluridisciplinaires',
-  metaTitle: 'Moderniser le SI publicitaire de TF1 — étude de cas · Vivien Billot',
+  roleLine: 'Tech Lead / Architecte — trois équipes pluridisciplinaires',
+  metaTitle: 'Moderniser le SI publicitaire de TF1 — Vivien Billot',
   metaDescription:
-    'Tech Lead de deux équipes sur le SI publicitaire de TF1 de mars 2022 à octobre 2025 : du legacy VB6 vers .NET 6/8 et AKS, 11 projets mis en production, sans interrompre le métier.',
+    'Tech Lead de trois équipes sur le SI publicitaire de TF1 (2022–2025) : du legacy VB6 vers .NET 6/8 et AKS, 11 projets livrés sans interrompre le métier.',
   context: {
     heading: 'Contexte',
     paragraphs: [
@@ -423,7 +423,7 @@ const FR_TF1: CaseStudyCopy = {
   role: {
     heading: 'Mon rôle',
     paragraphs: [
-      'J’ai porté la direction technique de deux équipes pluridisciplinaires : architecture, roadmaps, priorisation, coaching, recrutement et engagements de delivery. Les décisions étaient écrites, débattues et portées par les équipes — mon rôle était de garantir qu’elles soient prises, pas de les prendre seul.',
+      'J’ai porté la direction technique de trois équipes pluridisciplinaires : architecture, roadmaps, priorisation, coaching, recrutement et engagements de delivery. Les décisions étaient écrites, débattues et portées par les équipes — mon rôle était de garantir qu’elles soient prises, pas de les prendre seul.',
     ],
   },
   constraintsHeading: 'Contraintes',
@@ -431,7 +431,7 @@ const FR_TF1: CaseStudyCopy = {
     'Continuité métier : les opérations publicitaires ne pouvaient pas s’arrêter pour une migration.',
     'Profondeur du legacy : des systèmes de l’ère VB6 avec des règles implicites qui n’existaient nulle part ailleurs que dans le code et dans les têtes.',
     'Exposition : un incident dans un SI publicitaire se mesure en argent et en confiance.',
-    'Deux équipes, une direction : une architecture et des standards cohérents sur des chantiers parallèles.',
+    'Trois équipes, une direction : une architecture et des standards cohérents sur des chantiers parallèles.',
   ],
   architecture: {
     heading: 'Comment ça s’articule',
@@ -461,28 +461,28 @@ const FR_TF1: CaseStudyCopy = {
     {
       title: 'Le remplacement incrémental plutôt que la réécriture big-bang.',
       problem:
-        'Un système legacy qui fait tourner le revenu ne peut pas être gelé pour une réécriture pluriannuelle.',
+        'Un système legacy dont dépend le chiffre d’affaires ne peut pas être gelé pour une réécriture pluriannuelle.',
       options: 'Réécriture big-bang, ou remplacement incrémental domaine par domaine.',
       decision:
         'Incrémental. Chaque domaine basculait quand son remplaçant avait fait ses preuves en production.',
       tradeOff:
-        'Nous avons accepté de faire tourner l’ancien et le nouveau en parallèle — double coût d’exploitation et complexité des frontières — en échange du respect de chaque engagement métier de mars 2022 à octobre 2025.',
+        'Nous avons accepté de faire tourner l’ancien et le nouveau en parallèle — double coût d’exploitation et complexité des frontières — en échange du respect de chaque engagement métier de février 2022 à octobre 2025.',
     },
     {
       title: 'Faire de la qualité l’accélérateur du delivery, pas sa taxe.',
       problem:
-        'Moderniser tout en livrant, c’est voir les régressions de qualité se composer très vite.',
+        'Moderniser tout en livrant, c’est voir les régressions de qualité s’accumuler très vite.',
       options: 'Inspecter la qualité à la fin, ou la construire dans la boucle.',
       decision:
         'Des pratiques inspirées d’Accelerate : des tests qui verrouillent les règles métier, des standards de code review, de l’observabilité et une boucle de feedback plus courte.',
       tradeOff: 'Des premiers commits plus lents, tout le reste plus rapide.',
     },
     {
-      title: 'Une seule direction d’architecture pour deux équipes.',
-      problem: 'Deux équipes qui modernisent en parallèle peuvent produire deux systèmes.',
+      title: 'Une seule direction d’architecture pour trois équipes.',
+      problem: 'Trois équipes qui modernisent en parallèle peuvent produire trois systèmes.',
       options: 'Des choix locaux à chaque équipe, ou une gouvernance d’architecture partagée.',
       decision:
-        'Des standards partagés, des décisions d’architecture explicites et une gouvernance d’API — écrites, débattues et portées par les équipes plutôt qu’imposées.',
+        'Des standards partagés, des décisions d’architecture explicites et une gouvernance d’API — écrits, débattus et portés par les équipes plutôt qu’imposés.',
       tradeOff: 'L’alignement coûte des réunions ; la divergence coûte des années.',
     },
   ],
@@ -492,7 +492,7 @@ const FR_TF1: CaseStudyCopy = {
     'Le code de l’ère VB6 progressivement remplacé par .NET 6/8, Angular, Azure et AKS.',
     'Un lead time réduit grâce aux tests, à l’observabilité et aux pratiques Accelerate.',
     'Plus de 80 incidents de production résolus sans mettre la modernisation en pause — chacun suivi d’une boucle post-incident, les classes de défaillance récurrentes étant éliminées par la conception au fil du temps.',
-    'Deux équipes qui ont grandi : cadre clair, décisions partagées, standards durables — recrutement et coaching compris.',
+    'Trois équipes qui ont grandi : cadre clair, décisions partagées, standards durables — recrutement et coaching compris.',
   ],
   learnedHeading: 'Ce que j’en retiens',
   learned: [
@@ -515,7 +515,7 @@ const FR_TF1: CaseStudyCopy = {
   otherCase: { label: 'Étude de cas suivante : Betclic →', path: '/fr/work/betclic' },
   contactCta: {
     title: 'Une modernisation qui ne peut pas arrêter le métier ?',
-    action: 'Parlons-en',
+    action: 'M’écrire',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
 };

@@ -180,7 +180,7 @@ function createAssistant(
       )
     : fallbackGateway;
 
-  return new PortfolioAssistant(gateway, buildPortfolioKnowledge(portfolio), locale);
+  return new PortfolioAssistant(gateway, buildPortfolioKnowledge(portfolio, locale), locale);
 }
 
 function readPrerenderedScriptHashes(): string[] {

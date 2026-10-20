@@ -27,7 +27,7 @@
     ><a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="contact">{{ copy.navigation[4] }}</a>
   </nav>
   <span class="availability"><i aria-hidden="true"></i> {{ copy.availability }}</span>
-  <div class="header-actions" [attr.aria-label]="copy.headerActionsLabel">
+  <div class="header-actions" role="group" [attr.aria-label]="copy.headerActionsLabel">
     <a
       class="language-switch"
       [routerLink]="copy.language.href"
@@ -67,11 +67,11 @@
       <p class="eyebrow reveal reveal-1">
         <span></span><b>{{ copy.hero.eyebrow }}</b>
       </p>
-      <h1 id="hero-title" class="reveal reveal-2">
+      <h1 id="hero-title" class="reveal reveal-2 reveal-lcp">
         <span>{{ copy.hero.title }}</span
         ><em>{{ copy.hero.accent }}</em>
       </h1>
-      <p class="lead reveal reveal-3">{{ copy.hero.lead }}</p>
+      <p class="lead reveal reveal-3 reveal-lcp">{{ copy.hero.lead }}</p>
       <div class="actions reveal reveal-4">
         <a class="primary" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="work"
           ><span>{{ copy.hero.primaryAction }}</span
@@ -89,7 +89,7 @@
     <aside class="signal-card reveal reveal-3" [attr.aria-label]="copy.hero.profileLabel">
       <div class="card-top">
         <p>{{ copy.hero.profileLabel }}</p>
-        <span>15+</span>
+        <span>14+</span>
       </div>
       <div class="profile-snapshot">
         <p>{{ copy.hero.profileTitle }}</p>
@@ -339,7 +339,7 @@
     <blockquote>{{ copy.quote.text }}</blockquote>
     <p>
       <a
-        href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+        href="https://www.linkedin.com/in/vivien-billot/details/recommendations/"
         (click)="
           analytics.track('recommendation_click', {
             channel: 'linkedin',
@@ -364,7 +364,7 @@
         <span class="footer-status"><i aria-hidden="true"></i>{{ copy.footer.availability }}</span>
       </div>
 
-      <div class="contact-directory" [attr.aria-label]="copy.footer.directoryLabel">
+      <div class="contact-directory" role="group" [attr.aria-label]="copy.footer.directoryLabel">
         <a
           class="primary light contact-main-action"
           href="mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot"
@@ -376,7 +376,6 @@
           class="contact-link"
           href="mailto:billot.vivien@gmail.com"
           (click)="analytics.track('contact_click', { channel: 'email', placement: 'contact' })"
-          [attr.aria-label]="copy.contact.emailAction"
           >billot.vivien@gmail.com</a
         >
         <a
@@ -384,11 +383,11 @@
           href="tel:+33623857732"
           (click)="analytics.track('contact_click', { channel: 'phone', placement: 'contact' })"
           [attr.aria-label]="copy.contact.phoneAction"
-          >06 23 85 77 32</a
+          >{{ copy.contact.phoneDisplay }}</a
         >
         <a
           class="contact-link"
-          href="https://www.linkedin.com/in/vivien-billot-a86b2557/"
+          href="https://www.linkedin.com/in/vivien-billot/"
           (click)="analytics.track('contact_click', { channel: 'linkedin', placement: 'contact' })"
           target="_blank"
           rel="noopener noreferrer"

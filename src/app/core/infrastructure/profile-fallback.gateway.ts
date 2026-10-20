@@ -1,4 +1,5 @@
 import { AssistantGateway, AssistantGatewayRequest } from '../application/assistant.gateway';
+import { PORTFOLIO_CONTACT, PORTFOLIO_LINKS } from '../domain/assistant.models';
 import { PortfolioLocale } from '../domain/portfolio.models';
 
 const ANSWERS = {
@@ -6,7 +7,7 @@ const ANSWERS = {
     {
       terms: ['je suis gentil', 'gentil', 'sympa', 'ca va', 'comment ca va', 'hello', 'salut'],
       answer:
-        'Oui, ça a l’air sympa. Si tu veux, je peux surtout te répondre sur Vivien, son parcours, ses projets ou sa façon de travailler.',
+        'Je suis là pour vous répondre sur le parcours de Vivien, sa stack, ses projets, sa façon de travailler ou sa disponibilité en freelance.',
     },
     {
       terms: [
@@ -18,7 +19,7 @@ const ANSWERS = {
         'parcours',
       ],
       answer:
-        'Je suis Senior Software Engineer, avec un fil conducteur dans mon parcours : rendre des domaines complexes plus lisibles, plus fiables et plus rapides à faire évoluer.\n\nJ’ai construit cette approche dans des contextes exigeants : le médical réglementé chez Stago, la transformation digitale d’un réseau de plus de 500 agences chez Rent A Car, la refonte du SI publicitaire chez TF1 avec deux équipes pluridisciplinaires, puis aujourd’hui le pricing sportif propriétaire chez Betclic, où les probabilités internes, les simulations Monte-Carlo et les décisions de marché ont un impact direct sur le risque et le ROI.\n\nCe qui me caractérise, c’est cette capacité à relier le métier, l’architecture, la qualité, le delivery et la progression des équipes. Je ne cherche pas seulement à livrer une feature : je veux laisser un système plus compréhensible et une équipe plus autonome.',
+        'Je suis Senior Software Engineer, avec un fil conducteur dans mon parcours : rendre des domaines complexes plus lisibles, plus fiables et plus rapides à faire évoluer.\n\nJ’ai construit cette approche dans des contextes exigeants : le médical réglementé chez Stago, la transformation digitale d’un réseau de plus de 500 agences chez Rent A Car, la refonte du SI publicitaire chez TF1 avec trois équipes pluridisciplinaires, puis aujourd’hui le pricing sportif propriétaire chez Betclic, où les probabilités internes, les simulations Monte-Carlo et les décisions de marché ont un impact direct sur le risque et le ROI.\n\nCe qui me caractérise, c’est cette capacité à relier le métier, l’architecture, la qualité, le delivery et la progression des équipes. Je ne cherche pas seulement à livrer une feature : je veux laisser un système plus compréhensible et une équipe plus autonome.',
     },
     {
       terms: [
@@ -37,7 +38,7 @@ const ANSWERS = {
     {
       terms: ['aides tu une equipe', 'livrer mieux', 'leadership', 'management', 'coaching'],
       answer:
-        'J’aide une équipe à livrer mieux en rendant le travail plus clair. Je cherche d’abord à aligner le besoin métier, le modèle, les responsabilités du code et les signaux de production. Ensuite, je transforme cette clarté en pratiques concrètes : découpage réaliste, tests utiles, revues de code, standards communs, CI/CD et observabilité.\n\nChez TF1, cette approche m’a permis d’encadrer deux équipes pendant une modernisation majeure du SI publicitaire, avec 11 projets mis en production, 4 engagés et plus de 80 incidents traités. Chez Rent A Car et Stago, elle s’est aussi traduite par du recrutement, du mentorat, de la planification et la montée en autonomie d’équipes techniques.',
+        'J’aide une équipe à livrer mieux en rendant le travail plus clair. Je cherche d’abord à aligner le besoin métier, le modèle, les responsabilités du code et les signaux de production. Ensuite, je transforme cette clarté en pratiques concrètes : découpage réaliste, tests utiles, revues de code, standards communs, CI/CD et observabilité.\n\nChez TF1, cette approche m’a permis d’encadrer trois équipes pendant une modernisation majeure du SI publicitaire, avec 11 projets mis en production, 4 engagés et plus de 80 incidents traités. Chez Rent A Car et Stago, elle s’est aussi traduite par du recrutement, du mentorat, de la planification et la montée en autonomie d’équipes techniques.',
     },
     {
       terms: [
@@ -56,7 +57,7 @@ const ANSWERS = {
         'defauts',
       ],
       answer:
-        'Ce qui me distingue, c’est la combinaison entre profondeur technique et sens du contexte métier. Je peux descendre dans le détail d’un modèle C# / .NET, d’un pipeline, d’un problème de performance ou d’une architecture hexagonale, tout en gardant la question principale : quel risque réduit-on, quelle valeur crée-t-on, et comment l’équipe pourra-t-elle maintenir ça demain ?\n\nMes forces : structurer le complexe, élever les standards de qualité et faire progresser les équipes autour du code. Mes points de vigilance : je suis exigeant, direct dans le feedback et parfois très vite dans le détail. Je les compense en timeboxant l’analyse, en explicitant les compromis et en reliant toujours mes recommandations à des faits.',
+        'Ce qui me distingue, c’est la combinaison entre profondeur technique et sens du contexte métier. Je peux descendre dans le détail d’un modèle C# / .NET, d’un pipeline, d’un problème de performance ou d’une architecture hexagonale, tout en gardant la question principale : quel risque réduit-on, quelle valeur crée-t-on, et comment l’équipe pourra-t-elle maintenir ça demain ?\n\nMes forces : structurer le complexe, élever les standards de qualité et faire progresser les équipes autour du code. Mes points de vigilance : je suis exigeant, direct dans le feedback, et j’ai tendance à descendre très vite dans le détail. Je les compense en timeboxant l’analyse, en explicitant les compromis et en reliant toujours mes recommandations à des faits.',
     },
     {
       terms: [
@@ -75,7 +76,7 @@ const ANSWERS = {
         'loop',
       ],
       answer:
-        'Chez Betclic, je travaille sur une boucle d’ingénierie conçue pour rendre un domaine algorithmique complexe plus rapide à faire évoluer et plus fiable. Un POC GPU évalue l’accélération des calculs intensifs. Le back-office de replay permet de reproduire les événements, suivre les décisions des algorithmes, comprendre un écart et valider un correctif avant remise en production. Le delivery AWS est automatisé avec Dagger et GitHub Actions afin de conserver une pipeline portable et reproductible. Enfin, j’industrialise Claude Code et Cursor avec des skills, commandes, agents, routines, workflows et boucles IA : l’objectif n’est pas de déléguer aveuglément le code, mais de standardiser les tâches répétables, intégrer les contrôles et raccourcir la boucle analyse–implémentation–preuve.',
+        'Chez Betclic, je travaille sur une boucle d’ingénierie conçue pour rendre un domaine algorithmique complexe plus rapide à faire évoluer et plus fiable. Un POC GPU évalue l’accélération des calculs intensifs. Le back-office de replay permet de reproduire les événements, suivre les décisions des algorithmes, comprendre un écart et valider un correctif avant remise en production. Le delivery AWS est automatisé avec Dagger et GitHub Actions afin de conserver un pipeline portable et reproductible. Enfin, j’industrialise Claude Code et Cursor avec des skills, commandes, agents, routines, workflows et boucles IA : l’objectif n’est pas de déléguer aveuglément le code, mais de standardiser les tâches répétables, intégrer les contrôles et raccourcir la boucle analyse–implémentation–preuve.',
     },
     {
       terms: [
@@ -93,7 +94,8 @@ const ANSWERS = {
         'parieur',
       ],
       answer:
-        'Chez Betclic Group, je contribue à produire des probabilités propriétaires et des cotes maîtrisées plutôt que de dépendre exclusivement de providers externes. Des algorithmes et simulations Monte-Carlo modélisent le déroulement de matchs sur de nombreux sports et compétitions. Ces probabilités alimentent ensuite le pricing et des décisions très sensibles, comme suspendre ou rouvrir un marché. L’enjeu métier est direct : réagir plus vite, conserver la maîtrise de la cote et du risque, tout en garantissant la précision, la performance et la résilience de l’écosystème Quant en C# / .NET.',
+        'Chez Betclic Group, je contribue à produire des probabilités propriétaires et des cotes maîtrisées plutôt que de dépendre exclusivement de providers externes. Des algorithmes et simulations Monte-Carlo modélisent le déroulement de matchs sur de nombreux sports et compétitions. Ces probabilités alimentent ensuite le pricing et des décisions très sensibles, comme suspendre ou rouvrir un marché. L’enjeu métier est direct : réagir plus vite, conserver la maîtrise de la cote et du risque, tout en garantissant la précision, la performance et la résilience de l’écosystème Quant en C# / .NET.' +
+        `\n\nÉtude de cas détaillée : ${PORTFOLIO_LINKS.fr.betclicCaseStudy}`,
     },
     {
       terms: [
@@ -112,7 +114,7 @@ const ANSWERS = {
         'frameworks',
       ],
       answer:
-        'Voici ma stack, classée par usage :\n• Back-end — C#, .NET et .NET Core.\n• Front-end — Angular et TypeScript.\n• Données — SQL Server, PostgreSQL, Oracle et MongoDB.\n• Architecture & conception — DDD, architecture hexagonale, CQRS, REST et SOLID.\n• Cloud & delivery — Azure, AWS, Kubernetes, AKS, Docker et CI/CD.\n• Intégration & observabilité — APIGEE, IBM API Connect, Datadog, Application Insights et ELK.\n• Sécurité applicative — Checkmarx, Snyk, SonarQube et pratiques OWASP.\n• Qualité — TDD, NUnit, XUnit, Vitest, TeamCity et software craftsmanship.\nCette organisation traduit ma manière de travailler : clarifier le métier, sécuriser la solution, automatiser sa livraison et la rendre observable en production.',
+        'Voici ma stack, classée par usage :\n• Back-end — C#, .NET, .NET Core, Kafka et gRPC.\n• Front-end — Angular et TypeScript.\n• Données — SQL Server, PostgreSQL, Oracle et MongoDB.\n• Architecture & conception — DDD, architecture hexagonale, CQRS, REST et SOLID.\n• Cloud & delivery — Azure, AWS, Kubernetes, AKS, Helm, Docker, Terraform, GitHub Actions, Azure DevOps et CI/CD.\n• Intégration & observabilité — APIGEE, IBM API Connect, Datadog, Application Insights et ELK.\n• Sécurité applicative — Checkmarx, Snyk, SonarQube et pratiques OWASP.\n• Qualité — TDD, NUnit, XUnit, Vitest, TeamCity et software craftsmanship.\nCette organisation traduit ma manière de travailler : clarifier le métier, sécuriser la solution, automatiser sa livraison et la rendre observable en production.',
     },
     {
       terms: ['ia', 'intelligence artificielle'],
@@ -131,13 +133,13 @@ const ANSWERS = {
     },
     {
       terms: ['recommandation', 'recommandations', 'reco', 'linkedin'],
-      answer:
-        'Mes recommandations professionnelles sont consultables directement sur LinkedIn. Elles apportent une preuve complémentaire à mon portfolio : des retours de collaborateurs et d’équipes rencontrés dans des contextes techniques exigeants. Je préfère renvoyer vers les témoignages attribués plutôt que reformuler leurs propos sans pouvoir les citer précisément.',
+      answer: `Des collègues et des développeurs que j’ai encadrés chez TF1, Stago et Rent A Car ont laissé des recommandations publiques sur LinkedIn : ${PORTFOLIO_CONTACT.linkedinRecommendations}. Je préfère renvoyer vers ces témoignages attribués plutôt que de les reformuler.`,
     },
     {
       terms: ['tf1', 'publicit'],
       answer:
-        'Chez Groupe TF1, j’ai été le référent technique de deux équipes pluridisciplinaires pendant la refonte du SI publicitaire. Le bilan documenté comprend 11 projets en production, 4 en cours et plus de 80 incidents traités. J’ai défini architecture et roadmaps, piloté la modernisation vers .NET 6/8, Angular, Azure et AKS, renforcé la sécurité avec Checkmarx, Snyk et SonarQube, puis réduit le lead time avec les pratiques Accelerate, les tests et l’observabilité.',
+        'Chez Groupe TF1, j’ai été le référent technique de trois équipes pluridisciplinaires pendant la refonte du SI publicitaire. Le bilan documenté comprend 11 projets en production, 4 en cours et plus de 80 incidents traités. J’ai défini architecture et roadmaps, piloté la modernisation vers .NET 6/8, Angular, Azure et AKS, renforcé la sécurité avec Checkmarx, Snyk et SonarQube, puis réduit le lead time avec les pratiques Accelerate, les tests et l’observabilité.' +
+        `\n\nÉtude de cas détaillée : ${PORTFOLIO_LINKS.fr.tf1CaseStudy}`,
     },
     {
       terms: ['rent', 'location'],
@@ -152,14 +154,14 @@ const ANSWERS = {
     {
       terms: ['software craftsmanship'],
       answer:
-        'J’apporte une vision de bout en bout : métier lisible dans le code, qualité de conception, Cloud, livraison continue et accompagnement des équipes. Mon objectif est de laisser un système plus compréhensible et un collectif plus autonome que je ne l’ai trouvé.',
+        'J’apporte une vision de bout en bout : métier lisible dans le code, qualité de conception, Cloud, livraison continue et accompagnement des équipes. Mon objectif est de laisser un système plus compréhensible et un collectif plus autonome que je ne les ai trouvés.',
     },
   ],
   en: [
     {
       terms: ['im friendly', 'friendly', 'nice', 'how are you'],
       answer:
-        'Yes, you sound friendly. If you want, I can mainly answer about Vivien, his background, projects, or way of working.',
+        'I’m here to answer questions about Vivien’s background, stack, projects, way of working, or freelance availability.',
     },
     {
       terms: [
@@ -172,7 +174,7 @@ const ANSWERS = {
         'background',
       ],
       answer:
-        'I am a Senior Software Engineer, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with two multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
+        'I am a Senior Software Engineer, with one common thread across my career: making complex domains easier to read, more reliable, and faster to evolve.\n\nI built that approach in demanding contexts: regulated medical software at Stago, the digital transformation of a 500+ branch network at Rent A Car, the redesign of TF1’s advertising systems with three multidisciplinary teams, and today proprietary sports pricing at Betclic, where internal probabilities, Monte Carlo simulations, and market decisions directly impact risk and ROI.\n\nWhat characterises me is the ability to connect business, architecture, quality, delivery, and team growth. I am not only shipping features: I want to leave a clearer system and a more autonomous team.',
     },
     {
       terms: [
@@ -190,7 +192,7 @@ const ANSWERS = {
     {
       terms: ['help a team', 'deliver better', 'leadership', 'management', 'coaching'],
       answer:
-        'I help a team deliver better by making the work clearer. I first align the business need, the model, code responsibilities, and production signals. Then I turn that clarity into concrete practices: realistic slicing, useful tests, code reviews, shared standards, CI/CD, and observability.\n\nAt TF1, this helped me lead two teams through a major advertising-system modernisation, with 11 projects brought to production, 4 underway, and over 80 incidents resolved. At Rent A Car and Stago, the same approach included hiring, mentoring, planning, and growing technical autonomy.',
+        'I help a team deliver better by making the work clearer. I first align the business need, the model, code responsibilities, and production signals. Then I turn that clarity into concrete practices: realistic slicing, useful tests, code reviews, shared standards, CI/CD, and observability.\n\nAt TF1, this helped me lead three teams through a major advertising-system modernization, with 11 projects brought to production, 4 underway, and over 80 incidents resolved. At Rent A Car and Stago, the same approach included hiring, mentoring, planning, and growing technical autonomy.',
     },
     {
       terms: [
@@ -227,7 +229,7 @@ const ANSWERS = {
         'loop',
       ],
       answer:
-        'At Betclic, I work on an engineering loop designed to make a complex algorithmic domain faster and safer to evolve. A GPU proof of concept assesses acceleration for compute-intensive workloads. The replay back office reproduces events, traces algorithmic decisions, explains discrepancies, and validates a fix before it returns to production. AWS delivery is automated with Dagger and GitHub Actions to keep the pipeline portable and reproducible. I also industrialise Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops: the goal is not to delegate code blindly, but to standardise repeatable tasks, embed controls, and shorten the analysis–implementation–evidence loop.',
+        'At Betclic, I work on an engineering loop designed to make a complex algorithmic domain faster and safer to evolve. A GPU proof of concept assesses acceleration for compute-intensive workloads. The replay back office reproduces events, traces algorithmic decisions, explains discrepancies, and validates a fix before it returns to production. AWS delivery is automated with Dagger and GitHub Actions to keep the pipeline portable and reproducible. I also industrialize Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops: the goal is not to delegate code blindly, but to standardize repeatable tasks, embed controls, and shorten the analysis–implementation–evidence loop.',
     },
     {
       terms: [
@@ -247,7 +249,8 @@ const ANSWERS = {
         'pricing',
       ],
       answer:
-        'At Betclic Group, I help produce proprietary probabilities and controlled odds instead of relying exclusively on external providers. Algorithms and Monte Carlo simulations model matches across numerous sports and competitions. Those probabilities then power pricing and sensitive decisions such as suspending or reopening a market. The business value is direct: react faster, retain control over odds and risk, while ensuring accuracy, performance, and resilience across the C# / .NET Quant ecosystem.',
+        'At Betclic Group, I help produce proprietary probabilities and controlled odds instead of relying exclusively on external providers. Algorithms and Monte Carlo simulations model matches across numerous sports and competitions. Those probabilities then power pricing and sensitive decisions such as suspending or reopening a market. The business value is direct: react faster, retain control over odds and risk, while ensuring accuracy, performance, and resilience across the C# / .NET Quant ecosystem.' +
+        `\n\nFull case study: ${PORTFOLIO_LINKS.en.betclicCaseStudy}`,
     },
     {
       terms: [
@@ -265,12 +268,12 @@ const ANSWERS = {
         'frameworks',
       ],
       answer:
-        'Here is my stack, organised by use:\n• Back end — C#, .NET, and .NET Core.\n• Front end — Angular and TypeScript.\n• Data — SQL Server, PostgreSQL, Oracle, and MongoDB.\n• Architecture & design — DDD, hexagonal architecture, CQRS, REST, and SOLID.\n• Cloud & delivery — Azure, AWS, AKS, Docker, Helm, Azure DevOps, and CI/CD.\n• Integration & observability — APIGEE, IBM API Connect, Datadog, Application Insights, and ELK.\n• Application security — Checkmarx, Snyk, SonarQube, and OWASP practices.\n• Quality — TDD, NUnit, XUnit, Vitest, TeamCity, and software craftsmanship.\nThis reflects how I work: make the business clear, secure the solution, automate delivery, and keep it observable in production.',
+        'Here is my stack, organized by use:\n• Back end — C#, .NET, .NET Core, Kafka, and gRPC.\n• Front end — Angular and TypeScript.\n• Data — SQL Server, PostgreSQL, Oracle, and MongoDB.\n• Architecture & design — DDD, hexagonal architecture, CQRS, REST, and SOLID.\n• Cloud & delivery — Azure, AWS, Kubernetes, AKS, Helm, Docker, Terraform, GitHub Actions, Azure DevOps, and CI/CD.\n• Integration & observability — APIGEE, IBM API Connect, Datadog, Application Insights, and ELK.\n• Application security — Checkmarx, Snyk, SonarQube, and OWASP practices.\n• Quality — TDD, NUnit, XUnit, Vitest, TeamCity, and software craftsmanship.\nThis reflects how I work: make the business clear, secure the solution, automate delivery, and keep it observable in production.',
     },
     {
       terms: ['ai', 'artificial intelligence'],
       answer:
-        'I use AI as a reproducible engineering lever. At Betclic, I industrialise Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops to accelerate development without losing traceability or reliability. I also built a replay and analysis back office, ran a GPU compute proof of concept, and worked on AWS delivery with Dagger and GitHub Actions. At TF1, I had already explored Copilot-assisted development and automated editorial validation of videos. Every use remains tied to a precise need, controls, and evidence.',
+        'I use AI as a reproducible engineering lever. At Betclic, I industrialize Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops to accelerate development without losing traceability or reliability. I also built a replay and analysis back office, ran a GPU compute proof of concept, and worked on AWS delivery with Dagger and GitHub Actions. At TF1, I had already explored Copilot-assisted development and automated editorial validation of videos. Every use remains tied to a precise need, controls, and evidence.',
     },
     {
       terms: ['tdd', 'test', 'tictactoe', 'vending'],
@@ -284,23 +287,23 @@ const ANSWERS = {
     },
     {
       terms: ['recommendation', 'recommendations', 'testimonial', 'testimonials', 'linkedin'],
-      answer:
-        'My professional recommendations are available directly on LinkedIn. They add complementary evidence to this portfolio: feedback from colleagues and teams encountered in demanding technical contexts. I prefer linking to attributed testimonials rather than rewriting their words without being able to quote them precisely.',
+      answer: `Colleagues and developers I led at TF1, Stago, and Rent A Car have left public recommendations on LinkedIn: ${PORTFOLIO_CONTACT.linkedinRecommendations}. I prefer pointing to those attributed testimonials rather than paraphrasing them.`,
     },
     {
       terms: ['tf1', 'advertis'],
       answer:
-        'At TF1 Group, I was the technical reference for two multidisciplinary teams during the advertising-system redesign. The documented results include 11 projects in production, 4 underway, and over 80 incidents resolved. I defined architecture and roadmaps, led modernisation towards .NET 6/8, Angular, Azure, and AKS, strengthened security with Checkmarx, Snyk, and SonarQube, and reduced lead time through Accelerate practices, testing, and observability.',
+        'At TF1 Group, I was the technical lead for three multidisciplinary teams during the advertising-system redesign. The documented results include 11 projects in production, 4 underway, and over 80 incidents resolved. I defined architecture and roadmaps, led the modernization to .NET 6/8, Angular, Azure, and AKS, strengthened security with Checkmarx, Snyk, and SonarQube, and reduced lead time through Accelerate practices, testing, and observability.' +
+        `\n\nFull case study: ${PORTFOLIO_LINKS.en.tf1CaseStudy}`,
     },
     {
       terms: ['rent', 'rental'],
       answer:
-        'At Rent A Car, I progressed from senior developer to technical manager of a nine-person team, supporting the transformation of over 500 branches. Deliveries included Easy Péage — presented as a European first for rental vehicles — digital check-in, Yousign, WeProov, dynamic pricing, the ANTAI interface, a GDPR-compliant customer master, and high-traffic e-commerce redesign.',
+        'At Rent A Car, I progressed from senior developer to technical manager of a nine-person team, supporting the transformation of over 500 branches. Deliveries included Easy Péage — presented as a European first for rental vehicles — digital check-in, Yousign, WeProov, dynamic pricing, the ANTAI interface, a single GDPR-compliant customer repository, and a high-traffic e-commerce redesign.',
     },
     {
       terms: ['stago', 'medical'],
       answer:
-        'At Stago, I progressed from R&D study lead to manager of an eight-person team working on in-vitro diagnostic instruments. I designed a C# patient-results calculation framework, refactored critical modules with TDD, SOLID, and MVVM, structured TeamCity continuous integration, and ensured regulatory traceability through IBM Rational DOORS.',
+        'At Stago, I progressed from R&D project lead to manager of an eight-person team working on in-vitro diagnostic instruments. I designed a C# patient-results calculation framework, refactored critical modules with TDD, SOLID, and MVVM, structured TeamCity continuous integration, and ensured regulatory traceability through IBM Rational DOORS.',
     },
     {
       terms: ['software craftsmanship'],
@@ -312,7 +315,7 @@ const ANSWERS = {
 
 const DEFAULT_ANSWERS: Record<PortfolioLocale, string> = {
   fr: 'Je suis Senior Software Engineer. Chez Betclic, je contribue à un pricing sportif propriétaire fondé sur des probabilités internes, des algorithmes et des simulations Monte-Carlo multi-sports. Mon parcours combine aussi architecture .NET / Angular, modernisation de SI et leadership d’équipes chez Groupe TF1, Rent A Car et Stago.',
-  en: 'I am a Senior Software Engineer. At Betclic, I contribute to proprietary sports pricing powered by internally generated probabilities, algorithms, and multi-sport Monte Carlo simulations. My background also combines .NET / Angular architecture, information-system modernisation, and team leadership at TF1 Group, Rent A Car, and Stago.',
+  en: 'I am a Senior Software Engineer. At Betclic, I contribute to proprietary sports pricing powered by internally generated probabilities, algorithms, and multi-sport Monte Carlo simulations. My background also combines .NET / Angular architecture, information-system modernization, and team leadership at TF1 Group, Rent A Car, and Stago.',
 };
 
 export class ProfileFallbackGateway implements AssistantGateway {
@@ -321,11 +324,16 @@ export class ProfileFallbackGateway implements AssistantGateway {
   answer(request: AssistantGatewayRequest): Promise<string> {
     const question = normalize(request.messages.at(-1)?.content ?? '');
     const answer = ANSWERS[this.locale].find(({ terms }) =>
-      terms.some((term) => question.includes(term)),
+      terms.some((term) => mentions(question, term)),
     )?.answer;
 
     return Promise.resolve(answer ?? DEFAULT_ANSWERS[this.locale]);
   }
+}
+
+/** Short terms such as "ai" or "ia" must be whole words: "domain" is not a question about AI. */
+function mentions(question: string, term: string): boolean {
+  return term.length <= 3 ? ` ${question} `.includes(` ${term} `) : question.includes(term);
 }
 
 function normalize(value: string): string {

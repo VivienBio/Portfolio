@@ -1,5 +1,7 @@
+import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { SITE_URL } from '../../core/infrastructure/site';
 import { CASE_STUDIES } from './case-studies.copy';
 import { CaseStudyComponent } from './case-study.component';
 
@@ -8,7 +10,7 @@ describe('CaseStudyComponent', () => {
     localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [CaseStudyComponent],
-      providers: [provideRouter([])],
+      providers: [provideHttpClient(), provideRouter([])],
     }).compileComponents();
   });
 
@@ -85,6 +87,24 @@ describe('CaseStudyComponent', () => {
       element.querySelector<HTMLAnchorElement>('.case-cta-primary')?.href.startsWith('mailto:'),
     ).toBe(true);
     expect(element.querySelector('.case-language')?.getAttribute('href')).toBe('/fr/work/betclic');
+  });
+
+  it('offers the assistant and an explicit email action to visitors landing on a case study', () => {
+    const element = render();
+
+    expect(element.querySelector('app-portfolio-assistant .assistant-launcher')).not.toBeNull();
+    expect(element.querySelector('.case-cta-primary')?.textContent?.trim()).toBe('Email me');
+  });
+
+  it('shares a social preview image specific to the case study', () => {
+    render();
+    const ogImage = document.head.querySelector('meta[property="og:image"]');
+    const twitterImage = document.head.querySelector('meta[name="twitter:image"]');
+
+    expect(ogImage?.getAttribute('content')).toMatch(
+      new RegExp(`^${SITE_URL}/og-case-betclic-en\\.jpg\\?v=[\\w-]+$`),
+    );
+    expect(twitterImage?.getAttribute('content')).toBe(ogImage?.getAttribute('content'));
   });
 
   it('provides complete, mirrored copy for every locale and slug', () => {

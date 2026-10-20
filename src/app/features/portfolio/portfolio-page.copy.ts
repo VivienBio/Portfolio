@@ -111,6 +111,7 @@ interface PageCopy {
     readonly emailAction: string;
     readonly cvAction: string;
     readonly phoneAction: string;
+    readonly phoneDisplay: string;
     readonly linkedinAction: string;
   };
   readonly footer: {
@@ -149,14 +150,14 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       label: 'Resume PDF',
       href: '/assets/CV-Vivien-Billot-EN.pdf',
       fileName: 'CV-Vivien-Billot-EN.pdf',
-      ariaLabel: 'Download Vivien Billot English resume as a PDF',
+      ariaLabel: 'Resume PDF (CV): download Vivien Billot’s English resume',
     },
     theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     hero: {
-      eyebrow: 'Senior Software Engineer · C# / .NET · Distributed systems',
+      eyebrow: 'Freelance Senior Software Engineer & Tech Lead · C# / .NET',
       title: 'Systems where wrong answers',
       accent: 'are expensive.',
-      lead: 'For 15+ years, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
+      lead: 'Since 2012, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
       primaryAction: 'Read the case studies',
       secondaryAction: 'Let’s talk',
       proof: [
@@ -176,15 +177,15 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       ],
       profileFooter: ['Architecture', 'Delivery', 'Leadership'],
     },
-    metricsLabel: 'Selected impact',
+    metricsLabel: 'Key results',
     metrics: [
       {
-        value: '15+',
+        value: '14+',
         label: 'years of engineering, from regulated medical software to real-time pricing',
       },
-      { value: '11', label: 'projects shipped to production while leading two teams at TF1' },
+      { value: '11', label: 'projects shipped to production while leading three teams at TF1' },
       { value: '500+', label: 'rental branches served by platforms my team built at Rent A Car' },
-      { value: '4', label: 'teams led across TF1, Rent A Car, and Stago' },
+      { value: '5', label: 'teams led across TF1, Rent A Car, and Stago' },
     ],
     manifesto: ['ARCHITECT', 'HARDEN', 'SHIP', 'TRANSFER'],
     work: {
@@ -203,17 +204,17 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           path: '/work/betclic',
         },
         {
-          kicker: 'TF1 Group · Mar 2022–Oct 2025 · Tech Lead of two teams',
+          kicker: 'TF1 Group · Feb 2022–Oct 2025 · Tech Lead of three teams',
           title: 'Modernizing a broadcaster’s ad platform without stopping it',
           summary:
-            'Leading the redesign of TF1’s advertising platform from March 2022 to October 2025: 11 projects shipped to production, a VB6-era stack retired step by step, and two teams that got stronger along the way.',
+            'Led the redesign of TF1’s advertising platform: 11 projects shipped to production, a VB6-era stack retired step by step, and three teams that got stronger along the way.',
           path: '/work/tf1',
         },
       ],
       compact: [
         {
           company: 'Rent A Car',
-          period: '2017–2022',
+          period: '2017–2021',
           role: 'Senior Developer → Tech Lead / Technical Manager',
           summary:
             'Built the digital rental journey for a 500+ branch network: microservices, dynamic pricing, high-traffic e-commerce, and Easy Péage — announced as Europe’s first in-vehicle toll payment for rental cars. Grew from senior developer to technical manager of a nine-person team.',
@@ -224,7 +225,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           period: '2012–2017',
           role: 'R&D Project Lead → R&D Team Lead',
           summary:
-            'Designed the C# framework that computes patient results on in-vitro diagnostic instruments — a regulated environment where an approximation is a defect. Led an eight-person R&D team; refactored critical modules with TDD and structured continuous integration and requirements traceability.',
+            'Designed the C# framework that computes patient results on in-vitro diagnostic instruments — a regulated environment where an approximation is a defect. Led an eight-person R&D team; refactored critical modules with TDD; structured continuous integration and requirements traceability.',
           tags: ['C#', 'WPF', 'TDD', 'NUnit', 'TeamCity', 'IBM Rational DOORS'],
         },
       ],
@@ -233,7 +234,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Engineering principles',
       title: 'Opinions I defend.',
       accent: 'Until proven wrong.',
-      intro: 'What I bring to a design review — and what I drop when the evidence proves it wrong.',
+      intro: 'What I bring to a design review — and what I drop when the evidence goes against it.',
       items: [
         {
           title: 'Simplicity before sophistication',
@@ -280,7 +281,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'What you gain.',
       accent: 'What I keep in check.',
       intro:
-        'Strengths come with failure modes. These are mine — and the instincts I keep in check to stay useful to the team.',
+        'Strengths come with failure modes. These are mine — and the instincts I rein in to stay useful to the team.',
       strength: 'Strength',
       vigilance: 'What I watch',
       safeguard: 'My safeguard',
@@ -290,7 +291,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Small on purpose,',
       accent: 'easy to inspect.',
       intro:
-        'Each project isolates one practice — domain modeling, TDD, algorithmic optimization — so the reasoning is easy to inspect.',
+        'Each project isolates one practice — domain modeling, TDD, algorithmic optimization — so the reasoning is easy to follow.',
     },
     quote: {
       label: 'Professional recommendations',
@@ -321,6 +322,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       emailAction: 'Email Vivien',
       cvAction: 'Download resume',
       phoneAction: 'Call Vivien Billot at +33 6 23 85 77 32',
+      phoneDisplay: '+33 6 23 85 77 32',
       linkedinAction: 'View LinkedIn profile',
     },
     footer: {
@@ -331,15 +333,15 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       directoryLabel: 'Contact details and useful links',
       cvFr: 'French resume',
       cvEn: 'English resume',
-      cvFrAriaLabel: 'Download Vivien Billot French resume as a PDF',
-      cvEnAriaLabel: 'Download Vivien Billot English resume as a PDF',
+      cvFrAriaLabel: 'Download Vivien Billot’s French resume as a PDF',
+      cvEnAriaLabel: 'Download Vivien Billot’s English resume as a PDF',
       top: 'Back to top',
       rights: 'All rights reserved',
     },
     seo: {
-      title: 'Vivien Billot — Senior Software Engineer · C#/.NET, Distributed Systems',
+      title: 'Vivien Billot — Freelance Senior Software Engineer (.NET)',
       description:
-        'Senior Software Engineer with 15+ years on high-stakes systems: real-time sports pricing at Betclic, advertising platform modernization at TF1, regulated medical software. C#/.NET, AWS, Azure, distributed systems, team leadership.',
+        'Freelance Senior Software Engineer & Tech Lead: real-time sports pricing at Betclic, TF1 ad platform modernization, medical software. C#/.NET, AWS, Azure.',
     },
   },
   fr: {
@@ -359,14 +361,14 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       label: 'CV PDF',
       href: '/assets/CV-Vivien-Billot-FR.pdf',
       fileName: 'CV-Vivien-Billot-FR.pdf',
-      ariaLabel: 'Télécharger le CV français de Vivien Billot au format PDF',
+      ariaLabel: 'CV PDF : télécharger le CV français de Vivien Billot',
     },
     theme: { light: 'Activer le thème clair', dark: 'Activer le thème sombre' },
     hero: {
-      eyebrow: 'Senior Software Engineer · C# / .NET · Systèmes distribués',
+      eyebrow: 'Senior Software Engineer & Tech Lead freelance · C# / .NET',
       title: 'Des systèmes où l’erreur',
       accent: 'coûte cher.',
-      lead: '15+ ans à concevoir et moderniser des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
+      lead: 'Depuis 2012, je conçois et modernise des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
       primaryAction: 'Lire les études de cas',
       secondaryAction: 'Parlons-en',
       proof: [
@@ -386,12 +388,12 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       ],
       profileFooter: ['Architecture', 'Delivery', 'Leadership'],
     },
-    metricsLabel: 'Impact sélectionné',
+    metricsLabel: 'Résultats clés',
     metrics: [
-      { value: '15+', label: 'années d’ingénierie, du médical réglementé au pricing temps réel' },
-      { value: '11', label: 'projets mis en production en encadrant deux équipes chez TF1' },
+      { value: '14+', label: 'années d’ingénierie, du médical réglementé au pricing temps réel' },
+      { value: '11', label: 'projets mis en production en encadrant trois équipes chez TF1' },
       { value: '500+', label: 'agences servies par les plateformes construites chez Rent A Car' },
-      { value: '4', label: 'équipes encadrées chez TF1, Rent A Car et Stago' },
+      { value: '5', label: 'équipes encadrées chez TF1, Rent A Car et Stago' },
     ],
     manifesto: ['ARCHITECTURER', 'FIABILISER', 'LIVRER', 'TRANSMETTRE'],
     work: {
@@ -410,20 +412,20 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
           path: '/fr/work/betclic',
         },
         {
-          kicker: 'Groupe TF1 · Mars 2022–octobre 2025 · Tech Lead de deux équipes',
+          kicker: 'Groupe TF1 · Février 2022–octobre 2025 · Tech Lead de trois équipes',
           title: 'Moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
           summary:
-            'Piloter la refonte du SI publicitaire de TF1 de mars 2022 à octobre 2025 : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et deux équipes qui en sont sorties plus fortes.',
+            'Piloter la refonte de bout en bout : 11 projets mis en production, un legacy VB6 remplacé pas à pas, et trois équipes qui en sont sorties plus fortes.',
           path: '/fr/work/tf1',
         },
       ],
       compact: [
         {
           company: 'Rent A Car',
-          period: '2017–2022',
+          period: '2017–2021',
           role: 'Développeur senior → Tech Lead / Responsable technique',
           summary:
-            'Construire le parcours de location digital d’un réseau de 500+ agences : microservices, pricing dynamique, e-commerce à fort trafic et Easy Péage — annoncé comme le premier paiement de péage embarqué d’Europe pour la location. De développeur senior à responsable technique d’une équipe de neuf personnes.',
+            'Construire le parcours de location digital d’un réseau de plus de 500 agences : microservices, pricing dynamique, e-commerce à fort trafic et Easy Péage — annoncé comme le premier paiement de péage embarqué d’Europe pour la location. De développeur senior à responsable technique d’une équipe de neuf personnes.',
           tags: ['C#', '.NET Core', 'Angular', 'Microservices', 'AWS', 'Docker', 'PostgreSQL'],
         },
         {
@@ -461,7 +463,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           title: 'L’observabilité se conçoit dès le départ',
           description:
-            'Un système que je ne peux pas expliquer en production n’est pas terminé. Traçage, replay et signaux actionnables font partie de l’architecture, pas de l’après-coup.',
+            'Un système que je ne peux pas expliquer en production n’est pas terminé. Traçage, replay et signaux actionnables font partie de l’architecture ; ils ne s’ajoutent pas après coup.',
         },
         {
           title: 'L’évolution plutôt que la perfection',
@@ -498,7 +500,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       title: 'Petits par choix,',
       accent: 'faciles à inspecter.',
       intro:
-        'Chaque projet isole une pratique — modélisation de domaine, TDD, optimisation algorithmique — pour que le raisonnement soit facile à inspecter.',
+        'Chaque projet isole une pratique — modélisation de domaine, TDD, optimisation algorithmique — pour que le raisonnement reste lisible.',
     },
     quote: {
       label: 'Recommandations professionnelles',
@@ -529,6 +531,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       emailAction: 'Envoyer un email',
       cvAction: 'Télécharger le CV',
       phoneAction: 'Appeler Vivien Billot au 06 23 85 77 32',
+      phoneDisplay: '06 23 85 77 32',
       linkedinAction: 'Voir le profil LinkedIn',
     },
     footer: {
@@ -545,9 +548,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       rights: 'Tous droits réservés',
     },
     seo: {
-      title: 'Vivien Billot — Senior Software Engineer · C#/.NET, systèmes distribués',
+      title: 'Vivien Billot — Senior Software Engineer .NET freelance',
       description:
-        'Senior Software Engineer, 15+ ans sur des systèmes à fort enjeu : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1, logiciel médical réglementé. C#/.NET, AWS, Azure, leadership d’équipe.',
+        'Senior Software Engineer & Tech Lead freelance : pricing sportif temps réel chez Betclic, modernisation du SI publicitaire de TF1. C#/.NET, AWS, Azure.',
     },
   },
 };

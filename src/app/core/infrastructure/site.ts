@@ -14,6 +14,8 @@ export interface SeoPage {
   readonly locale: PortfolioLocale;
   readonly alternates: readonly SeoAlternate[];
   readonly ogType: 'website' | 'article' | 'profile';
+  /** Site-relative path of the social preview image. Defaults to the site-wide image. */
+  readonly image?: string;
 }
 
 export function absoluteUrl(path: string): string {

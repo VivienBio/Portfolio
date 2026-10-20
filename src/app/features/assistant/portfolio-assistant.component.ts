@@ -15,116 +15,60 @@ import { RouterLink } from '@angular/router';
 import { AssistantMessage } from '../../core/domain/assistant.models';
 import { PortfolioLocale } from '../../core/domain/portfolio.models';
 import { PortfolioAssistantApiService } from './portfolio-assistant-api.service';
+import { MessagePart, toMessageParts } from './message-parts';
 import { AnalyticsService } from '../../core/services/analytics.service';
 
 const ASSISTANT_COPY = {
   fr: {
     launcherLabel: 'Discuter avec le double numérique de Vivien',
     launcherTitle: 'On discute ?',
-    figureLabel: 'Vivien · Double numérique',
     title: 'Vivien Billot',
     assistantName: 'Vivien Billot',
-    grounded: 'Double numérique · parcours vérifié',
     close: 'Fermer l’assistant',
     hide: 'Masquer Vivien',
-    hideShort: 'Masquer',
     restore: 'Afficher Vivien',
     initialMessage:
-      'Je réponds sur le parcours de Vivien, sa stack, son leadership et ses choix d’architecture.',
+      'Je réponds sur le parcours de Vivien, sa stack, son leadership, ses choix d’architecture et sa disponibilité en freelance.',
     processing:
       'Assistant IA : vos questions peuvent être transmises à OpenAI. Évitez les données sensibles.',
     policy: 'Protection des données',
-    quickQuestions: ['Parcours', 'Priorités', 'Leadership', 'Différence'],
+    quickQuestions: ['Parcours', 'Disponibilité', 'Leadership', 'Différence'],
     suggestedQuestions: 'Questions suggérées',
     conversationLabel: 'Conversation avec le double numérique de Vivien',
     visitor: 'Vous',
     questionLabel: 'Votre question sur Vivien',
     questionPlaceholder: 'Votre question…',
     sendQuestion: 'Envoyer la question',
-    directContact: 'Contact direct',
-    contactTitle: 'Je transmets votre message.',
-    contactDescription:
-      'Vos informations servent uniquement à permettre à Vivien de vous répondre.',
-    name: 'Nom',
-    nameError: 'Indiquez au moins 2 caractères.',
-    email: 'Email professionnel',
-    emailError: 'Saisissez une adresse email valide.',
-    message: 'Message',
-    messageError: 'Votre message doit contenir au moins 20 caractères.',
-    website: 'Site web',
-    back: 'Retour',
-    review: 'Vérifier le message',
-    confirmation: 'Confirmation requise',
-    confirmationTitle: 'Prêt à envoyer ?',
-    from: 'De',
-    replyTo: 'Réponse à',
-    privacy:
-      "En confirmant, vous autorisez la transmission de ces données à Vivien via Formspree (prestataire d'envoi).",
-    edit: 'Modifier',
-    sending: 'Envoi…',
-    confirm: 'Confirmer et envoyer',
-    sent: 'Message transmis',
-    sentTitle: 'Merci, Vivien vous répondra directement.',
-    continue: 'Continuer la conversation',
     unavailable: 'Je ne peux pas répondre pour le moment.',
     offline: 'La connexion a été interrompue. Votre question est conservée.',
     rateLimited: 'Trop de demandes. Réessayez dans une minute.',
     retry: 'Réessayer',
     thinking: 'Vivien prépare sa réponse…',
-    deliveryFailed: 'Le message n’a pas pu être transmis.',
   },
   en: {
     launcherLabel: 'Chat with Vivien’s professional digital twin',
     launcherTitle: 'Let’s talk?',
-    figureLabel: 'Vivien · Digital twin',
     title: 'Vivien Billot',
     assistantName: 'Vivien Billot',
-    grounded: 'Digital twin · verified career facts',
     close: 'Close assistant',
     hide: 'Hide Vivien',
-    hideShort: 'Hide',
     restore: 'Show Vivien',
     initialMessage:
-      'I answer about Vivien’s background, stack, leadership, and architecture choices.',
+      'I answer questions about Vivien’s background, stack, leadership, architecture choices, and freelance availability.',
     processing: 'AI assistant: your questions may be sent to OpenAI. Avoid sensitive information.',
     policy: 'Privacy policy',
-    quickQuestions: ['Career path', 'Priorities', 'Leadership', 'Difference'],
+    quickQuestions: ['Career path', 'Availability', 'Leadership', 'Difference'],
     suggestedQuestions: 'Suggested questions',
     conversationLabel: 'Conversation with Vivien’s professional digital twin',
     visitor: 'You',
     questionLabel: 'Your question about Vivien',
     questionPlaceholder: 'Your question…',
     sendQuestion: 'Send question',
-    directContact: 'Direct contact',
-    contactTitle: 'I will forward your message.',
-    contactDescription: 'Your information is used only to enable Vivien to reply to you.',
-    name: 'Name',
-    nameError: 'Please enter at least 2 characters.',
-    email: 'Work email',
-    emailError: 'Please enter a valid email address.',
-    message: 'Message',
-    messageError: 'Your message must contain at least 20 characters.',
-    website: 'Website',
-    back: 'Back',
-    review: 'Review message',
-    confirmation: 'Confirmation required',
-    confirmationTitle: 'Ready to send?',
-    from: 'From',
-    replyTo: 'Reply to',
-    privacy:
-      'By confirming, you authorise these details to be sent to Vivien via Formspree (delivery provider).',
-    edit: 'Edit',
-    sending: 'Sending…',
-    confirm: 'Confirm and send',
-    sent: 'Message sent',
-    sentTitle: 'Thank you. Vivien will reply to you directly.',
-    continue: 'Continue the conversation',
     unavailable: 'I cannot reply at the moment.',
     offline: 'The connection was interrupted. Your question has been kept.',
     rateLimited: 'Too many requests. Please try again in a minute.',
     retry: 'Try again',
     thinking: 'Vivien is preparing a reply…',
-    deliveryFailed: 'Your message could not be sent.',
   },
 } as const;
 
@@ -138,6 +82,10 @@ interface ConversationState {
 }
 
 const EMPTY_CONVERSATION: ConversationState = { messages: [], sending: false, error: null };
+
+interface DisplayedMessage extends AssistantMessage {
+  readonly parts: readonly MessagePart[];
+}
 
 @Component({
   selector: 'app-portfolio-assistant',
@@ -175,10 +123,18 @@ export class PortfolioAssistantComponent {
   protected readonly isOpen = signal(false);
   protected readonly isHidden = signal(false);
   protected readonly copy = computed(() => ASSISTANT_COPY[this.locale()]);
-  protected readonly messages = computed<readonly AssistantMessage[]>(() => [
-    { role: 'assistant', content: this.copy().initialMessage },
-    ...this.currentConversation().messages,
-  ]);
+  protected readonly messages = computed<readonly DisplayedMessage[]>(() =>
+    [
+      { role: 'assistant' as const, content: this.copy().initialMessage },
+      ...this.currentConversation().messages,
+    ].map((message) => ({
+      ...message,
+      parts:
+        message.role === 'assistant'
+          ? toMessageParts(message.content)
+          : [{ text: message.content }],
+    })),
+  );
   protected readonly isSending = computed(() => this.currentConversation().sending);
   protected readonly error = computed(() => {
     const error = this.currentConversation().error;

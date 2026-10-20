@@ -13,6 +13,17 @@ describe('ProfileFallbackGateway', () => {
     ).resolves.toContain('skills, commandes, agents');
   });
 
+  it('does not mistake words containing "ai" for a question about AI', async () => {
+    const gateway = new ProfileFallbackGateway('en');
+
+    await expect(
+      gateway.answer({
+        instructions: 'ignored by the deterministic fallback',
+        messages: [{ role: 'user', content: 'Explain your domain expertise' }],
+      }),
+    ).resolves.not.toContain('Claude Code');
+  });
+
   it('lists the technology stack in a structured way', async () => {
     const gateway = new ProfileFallbackGateway();
 
@@ -45,7 +56,7 @@ describe('ProfileFallbackGateway', () => {
         instructions: 'ignored by the deterministic fallback',
         messages: [{ role: 'user', content: 'je suis gentil ?' }],
       }),
-    ).resolves.toContain('ça a l’air sympa');
+    ).resolves.toContain('répondre sur le parcours de Vivien');
   });
 
   it('answers broad career-path questions with a recruiter-friendly narrative', async () => {
@@ -116,15 +127,34 @@ describe('ProfileFallbackGateway', () => {
     ).resolves.toContain('back-office de replay');
   });
 
-  it('directs a recommendation question to the attributable LinkedIn source', async () => {
+  it('directs a recommendation question to the LinkedIn recommendations', async () => {
     const gateway = new ProfileFallbackGateway();
 
+    const answer = await gateway.answer({
+      instructions: 'ignored by the deterministic fallback',
+      messages: [{ role: 'user', content: 'Où puis-je lire les recommandations LinkedIn ?' }],
+    });
+
+    expect(answer).toContain('https://www.linkedin.com/in/vivien-billot/details/recommendations/');
+    expect(answer).toContain('TF1, Stago et Rent A Car');
+  });
+
+  it('links Betclic and TF1 answers to their case studies in the visitor language', async () => {
+    const french = new ProfileFallbackGateway('fr');
+    const english = new ProfileFallbackGateway('en');
+
     await expect(
-      gateway.answer({
+      french.answer({
         instructions: 'ignored by the deterministic fallback',
-        messages: [{ role: 'user', content: 'Où puis-je lire les recommandations LinkedIn ?' }],
+        messages: [{ role: 'user', content: 'Que fais-tu chez Betclic ?' }],
       }),
-    ).resolves.toContain('consultables directement sur LinkedIn');
+    ).resolves.toContain('https://vivien-billot.web.app/fr/work/betclic');
+    await expect(
+      english.answer({
+        instructions: 'ignored by the deterministic fallback',
+        messages: [{ role: 'user', content: 'What did you do at TF1?' }],
+      }),
+    ).resolves.toContain('https://vivien-billot.web.app/work/tf1');
   });
 
   it('explains TF1 outcomes with documented scale', async () => {

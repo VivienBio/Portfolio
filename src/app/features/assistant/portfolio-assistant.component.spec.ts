@@ -46,7 +46,7 @@ describe('PortfolioAssistantComponent', () => {
     expect(launcher?.getAttribute('aria-controls')).toBe('portfolio-assistant-panel');
     expect(
       launcher?.querySelector<HTMLImageElement>('.assistant-persona img')?.getAttribute('ngsrc'),
-    ).toBe('/vivien-billot-character-cutout-v2.png');
+    ).toBe('/vivien-billot-character-cutout-v3.webp');
     expect(launcher?.querySelector('.assistant-persona i')).toBeNull();
     expect(element.querySelector('.assistant-hide')).toBeTruthy();
     expect(launcher?.querySelector('.assistant-expand-indicator')).toBeNull();
@@ -80,6 +80,34 @@ describe('PortfolioAssistantComponent', () => {
     expect(api.ask).toHaveBeenCalledOnce();
     expect(api.ask).toHaveBeenLastCalledWith(expect.any(Array), 'en');
     expect(dialog?.textContent).toContain('Je travaille chez Betclic depuis le 6 octobre 2025.');
+  });
+
+  it('renders emails, phone numbers and web links in replies as safe links', async () => {
+    api.ask.mockResolvedValue({
+      answer:
+        'Écrivez-moi à billot.vivien@gmail.com, au 06 23 85 77 32 ou sur https://www.linkedin.com/in/vivien-billot/.',
+    });
+    const element = fixture.nativeElement as HTMLElement;
+    element.querySelector<HTMLButtonElement>('.assistant-launcher')?.click();
+    fixture.detectChanges();
+
+    element.querySelector<HTMLButtonElement>('.quick-questions button')?.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const reply = Array.from(element.querySelectorAll<HTMLElement>('.message')).at(-1);
+    const links = Array.from(reply?.querySelectorAll<HTMLAnchorElement>('a') ?? []);
+    expect(links.map((link) => link.getAttribute('href'))).toEqual([
+      'mailto:billot.vivien@gmail.com',
+      'tel:+33623857732',
+      'https://www.linkedin.com/in/vivien-billot/',
+    ]);
+    expect(links[0]?.getAttribute('target')).toBeNull();
+    expect(links[2]?.getAttribute('target')).toBe('_blank');
+    expect(links[2]?.getAttribute('rel')).toBe('noopener noreferrer');
+    expect(reply?.textContent).toContain(
+      'Écrivez-moi à billot.vivien@gmail.com, au 06 23 85 77 32 ou sur https://www.linkedin.com/in/vivien-billot/.',
+    );
   });
 
   it('exposes a discrete internal close control while dialog is open', () => {
@@ -163,7 +191,7 @@ describe('PortfolioAssistantComponent', () => {
       element
         .querySelector<HTMLImageElement>('.assistant-restore-avatar img')
         ?.getAttribute('ngsrc'),
-    ).toBe('/vivien-billot-character-cutout-v2.png');
+    ).toBe('/vivien-billot-character-cutout-v3.webp');
 
     element.querySelector<HTMLButtonElement>('.assistant-restore')?.click();
     fixture.detectChanges();

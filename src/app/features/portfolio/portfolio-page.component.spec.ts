@@ -68,7 +68,7 @@ describe('PortfolioPageComponent', () => {
 
     expect(element.querySelectorAll('.timeline article')).toHaveLength(6);
     expect(element.textContent).toContain('Betclic Group');
-    expect(element.textContent).toContain('Groupe TF1');
+    expect(element.textContent).toContain('TF1 Group');
     expect(element.textContent).toContain('Total');
     expect(element.textContent).toContain('11');
     expect(element.textContent).toContain('500+');
@@ -94,7 +94,7 @@ describe('PortfolioPageComponent', () => {
     expect(element.textContent).toContain('TicTacToe Solver');
     expect(element.querySelector('app-portfolio-assistant')).toBeTruthy();
     expect(
-      element.querySelector('a[href="https://www.linkedin.com/in/vivien-billot-a86b2557/"]'),
+      element.querySelector('a[href="https://www.linkedin.com/in/vivien-billot/"]'),
     ).toBeTruthy();
     expect(Boolean(projects && contact && projects.compareDocumentPosition(contact) & 4)).toBe(
       true,

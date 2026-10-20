@@ -4,6 +4,9 @@ import { SITE_URL, SeoPage, absoluteUrl, ogLocale } from '../infrastructure/site
 
 const MANAGED_LINK_ATTRIBUTE = 'data-seo';
 const PERSON_SCRIPT_ID = 'person-json-ld';
+const DEFAULT_SOCIAL_IMAGE = '/og-image.jpg';
+/** Bump whenever a social image changes: LinkedIn and others cache previews by image URL. */
+const SOCIAL_IMAGE_VERSION = '2026-10-20';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -12,6 +15,7 @@ export class SeoService {
   private readonly title = inject(Title);
 
   apply(page: SeoPage): void {
+    const image = `${SITE_URL}${page.image ?? DEFAULT_SOCIAL_IMAGE}?v=${SOCIAL_IMAGE_VERSION}`;
     this.meta.removeTag('name="robots"');
     this.title.setTitle(page.title);
     this.meta.updateTag({ name: 'description', content: page.description });
@@ -21,7 +25,8 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:title', content: page.title });
     this.meta.updateTag({ property: 'og:description', content: page.description });
     this.meta.updateTag({ property: 'og:url', content: absoluteUrl(page.path) });
-    this.meta.updateTag({ property: 'og:image', content: `${SITE_URL}/og-image.jpg` });
+    this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ property: 'og:image:alt', content: page.title });
     this.meta.updateTag({ property: 'og:image:width', content: '1200' });
     this.meta.updateTag({ property: 'og:image:height', content: '630' });
     this.meta.updateTag({ property: 'og:locale', content: ogLocale(page.locale) });
@@ -32,7 +37,8 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: page.title });
     this.meta.updateTag({ name: 'twitter:description', content: page.description });
-    this.meta.updateTag({ name: 'twitter:image', content: `${SITE_URL}/og-image.jpg` });
+    this.meta.updateTag({ name: 'twitter:image', content: image });
+    this.meta.updateTag({ name: 'twitter:image:alt', content: page.title });
 
     this.replaceManagedLinks(page);
     this.replacePersonJsonLd(page);
@@ -72,18 +78,19 @@ export class SeoService {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Vivien Billot',
-      jobTitle: 'Senior Software Engineer',
+      jobTitle: 'Freelance Senior Software Engineer & Tech Lead',
       url: absoluteUrl(page.locale === 'fr' ? '/fr' : '/'),
       image: `${SITE_URL}/vivien-billot-linkedin.jpg`,
-      worksFor: { '@type': 'Organization', name: 'Betclic Group' },
       sameAs: [
-        'https://www.linkedin.com/in/vivien-billot-a86b2557/',
+        'https://www.linkedin.com/in/vivien-billot/',
         'https://github.com/VivienBio',
+        'https://www.codingame.com/profile/534d2045d7dc0057e6d53d29336657fe6190191',
       ],
       knowsAbout: [
         'C#',
         '.NET',
         'Distributed systems',
+        'Kafka',
         'Software architecture',
         'Domain-Driven Design',
         'AWS',
