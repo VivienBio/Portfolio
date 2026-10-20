@@ -1,0 +1,659 @@
+{
+  "fr-desktop-light": {
+    "height": 6257,
+    "overflowX": 0,
+    "header": 76,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "73.44px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 967.03125,
+      "right": 1416,
+      "top": 832,
+      "bottom": 888
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": 680,
+      "missions": 797,
+      "work": 1195,
+      "approche": 1165,
+      "recommandations": 706,
+      "projets": 728,
+      "contact": 550
+    },
+    "menuToggleVisible": false,
+    "navVisible": true,
+    "errors": []
+  },
+  "fr-desktop-dark": {
+    "height": 6257,
+    "overflowX": 0,
+    "header": 76,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "73.44px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 967.03125,
+      "right": 1416,
+      "top": 832,
+      "bottom": 888
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": 680,
+      "missions": 797,
+      "work": 1195,
+      "approche": 1165,
+      "recommandations": 706,
+      "projets": 728,
+      "contact": 550
+    },
+    "menuToggleVisible": false,
+    "navVisible": true,
+    "errors": []
+  },
+  "en-desktop-light": {
+    "height": 6167,
+    "overflowX": 0,
+    "header": 76,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "73.44px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 985.03125,
+      "right": 1416,
+      "top": 832,
+      "bottom": 888
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": 710,
+      "missions": 797,
+      "work": 1195,
+      "approche": 1111,
+      "recommandations": 698,
+      "projets": 728,
+      "contact": 491
+    },
+    "menuToggleVisible": false,
+    "navVisible": true,
+    "errors": []
+  },
+  "fr-laptop-light": {
+    "height": 6123,
+    "overflowX": 0,
+    "header": 76,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "65.28px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 807.03125,
+      "right": 1256,
+      "top": 732,
+      "bottom": 788
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": 676,
+      "missions": 785,
+      "work": 1182,
+      "approche": 1152,
+      "recommandations": 690,
+      "projets": 728,
+      "contact": 488
+    },
+    "menuToggleVisible": false,
+    "navVisible": true,
+    "errors": []
+  },
+  "fr-small-laptop": {
+    "height": 6928,
+    "overflowX": 0,
+    "header": 107,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "56.1px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 629.03125,
+      "right": 1078,
+      "top": 692,
+      "bottom": 748
+    },
+    "overlapsWithDock": [
+      ".replay"
+    ],
+    "sections": {
+      "accueil": 1096,
+      "missions": 869,
+      "work": 1147,
+      "approche": 1228,
+      "recommandations": 913,
+      "projets": 747,
+      "contact": 497
+    },
+    "menuToggleVisible": false,
+    "navVisible": true,
+    "errors": []
+  },
+  "fr-tablet-light": {
+    "height": 7849,
+    "overflowX": 0,
+    "header": 107,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "41.6px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 303.671875,
+      "right": 752.640625,
+      "top": 956,
+      "bottom": 1012
+    },
+    "overlapsWithDock": [
+      ".replay",
+      ".replay-log"
+    ],
+    "sections": {
+      "accueil": 1019,
+      "missions": 1151,
+      "work": 1196,
+      "approche": 1560,
+      "recommandations": 837,
+      "projets": 722,
+      "contact": 678
+    },
+    "menuToggleVisible": false,
+    "navVisible": true,
+    "errors": []
+  },
+  "fr-mobile-light": {
+    "height": 10489,
+    "overflowX": 0,
+    "header": 68,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "42.9px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 187.828125,
+      "right": 380.40625,
+      "top": 780,
+      "bottom": 836
+    },
+    "overlapsWithDock": [
+      ".replay"
+    ],
+    "sections": {
+      "accueil": 1145,
+      "missions": 1535,
+      "work": 1699,
+      "approche": 2325,
+      "recommandations": 1095,
+      "projets": 1031,
+      "contact": 880
+    },
+    "menuToggleVisible": true,
+    "navVisible": false,
+    "menuOpen": {
+      "expanded": "true",
+      "focused": "Missions",
+      "links": [
+        {
+          "text": "Missions",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Parcours",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Approche",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Recommandations",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Contact",
+          "height": 52,
+          "width": 352
+        }
+      ]
+    },
+    "menuAfterEscape": "false",
+    "errors": []
+  },
+  "en-mobile-dark": {
+    "height": 10259,
+    "overflowX": 0,
+    "header": 68,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "42.9px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 214.828125,
+      "right": 380.40625,
+      "top": 780,
+      "bottom": 836
+    },
+    "overlapsWithDock": [
+      ".replay"
+    ],
+    "sections": {
+      "accueil": 1145,
+      "missions": 1481,
+      "work": 1697,
+      "approche": 2222,
+      "recommandations": 1033,
+      "projets": 1007,
+      "contact": 843
+    },
+    "menuToggleVisible": true,
+    "navVisible": false,
+    "menuOpen": {
+      "expanded": "true",
+      "focused": "Services",
+      "links": [
+        {
+          "text": "Services",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Career",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Approach",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Recommendations",
+          "height": 52,
+          "width": 352
+        },
+        {
+          "text": "Contact",
+          "height": 52,
+          "width": 352
+        }
+      ]
+    },
+    "menuAfterEscape": "false",
+    "errors": []
+  },
+  "fr-mobile-320": {
+    "height": 11816,
+    "overflowX": 0,
+    "header": 68,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "39.2px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 117.828125,
+      "right": 310.40625,
+      "top": 576,
+      "bottom": 632
+    },
+    "overlapsWithDock": [
+      ".hero-copy",
+      ".actions .secondary"
+    ],
+    "sections": {
+      "accueil": 1207,
+      "missions": 1762,
+      "work": 1977,
+      "approche": 2735,
+      "recommandations": 1229,
+      "projets": 1128,
+      "contact": 947
+    },
+    "menuToggleVisible": true,
+    "navVisible": false,
+    "menuOpen": {
+      "expanded": "true",
+      "focused": "Missions",
+      "links": [
+        {
+          "text": "Missions",
+          "height": 52,
+          "width": 282
+        },
+        {
+          "text": "Parcours",
+          "height": 52,
+          "width": 282
+        },
+        {
+          "text": "Approche",
+          "height": 52,
+          "width": 282
+        },
+        {
+          "text": "Recommandations",
+          "height": 52,
+          "width": 282
+        },
+        {
+          "text": "Contact",
+          "height": 52,
+          "width": 282
+        }
+      ]
+    },
+    "menuAfterEscape": "false",
+    "errors": []
+  },
+  "fr-landscape": {
+    "height": 7607,
+    "overflowX": 0,
+    "header": 68,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "43.044px",
+      "stretch": "110%",
+      "color": "rgb(243, 245, 248)"
+    },
+    "dock": {
+      "left": 634.546875,
+      "right": 827.125,
+      "top": 322,
+      "bottom": 378
+    },
+    "overlapsWithDock": [
+      ".hero-copy"
+    ],
+    "sections": {
+      "accueil": 1031,
+      "missions": 1101,
+      "work": 1122,
+      "approche": 1491,
+      "recommandations": 842,
+      "projets": 722,
+      "contact": 649
+    },
+    "menuToggleVisible": true,
+    "navVisible": false,
+    "menuOpen": {
+      "expanded": "true",
+      "focused": "Missions",
+      "links": [
+        {
+          "text": "Missions",
+          "height": 52,
+          "width": 806
+        },
+        {
+          "text": "Parcours",
+          "height": 52,
+          "width": 806
+        },
+        {
+          "text": "Approche",
+          "height": 52,
+          "width": 806
+        },
+        {
+          "text": "Recommandations",
+          "height": 52,
+          "width": 806
+        },
+        {
+          "text": "Contact",
+          "height": 52,
+          "width": 806
+        }
+      ]
+    },
+    "menuAfterEscape": "false",
+    "errors": []
+  },
+  "case-fr-desktop": {
+    "height": 4091,
+    "overflowX": 0,
+    "header": 68,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "67.2px",
+      "stretch": "108%",
+      "color": "rgb(20, 28, 43)"
+    },
+    "dock": {
+      "left": 967.03125,
+      "right": 1416,
+      "top": 832,
+      "bottom": 888
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": null,
+      "missions": null,
+      "work": null,
+      "approche": null,
+      "recommandations": null,
+      "projets": null,
+      "contact": null
+    },
+    "menuToggleVisible": false,
+    "navVisible": false,
+    "errors": []
+  },
+  "case-en-desktop-dark": {
+    "height": 3705,
+    "overflowX": 0,
+    "header": 68,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "67.2px",
+      "stretch": "108%",
+      "color": "rgb(233, 238, 245)"
+    },
+    "dock": {
+      "left": 985.03125,
+      "right": 1416,
+      "top": 832,
+      "bottom": 888
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": null,
+      "missions": null,
+      "work": null,
+      "approche": null,
+      "recommandations": null,
+      "projets": null,
+      "contact": null
+    },
+    "menuToggleVisible": false,
+    "navVisible": false,
+    "errors": []
+  },
+  "case-fr-mobile": {
+    "height": 6200,
+    "overflowX": 0,
+    "header": 65,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "40px",
+      "stretch": "108%",
+      "color": "rgb(20, 28, 43)"
+    },
+    "dock": {
+      "left": 187.828125,
+      "right": 380.40625,
+      "top": 780,
+      "bottom": 836
+    },
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": null,
+      "missions": null,
+      "work": null,
+      "approche": null,
+      "recommandations": null,
+      "projets": null,
+      "contact": null
+    },
+    "menuToggleVisible": false,
+    "navVisible": false,
+    "errors": []
+  },
+  "privacy-fr-desktop": {
+    "height": 4231,
+    "overflowX": 0,
+    "header": 73,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "73.6px",
+      "stretch": "108%",
+      "color": "rgb(20, 28, 43)"
+    },
+    "dock": null,
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": null,
+      "missions": null,
+      "work": null,
+      "approche": null,
+      "recommandations": null,
+      "projets": null,
+      "contact": 551
+    },
+    "menuToggleVisible": false,
+    "navVisible": false,
+    "errors": []
+  },
+  "privacy-en-mobile-dark": {
+    "height": 6488,
+    "overflowX": 0,
+    "header": 73,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "40px",
+      "stretch": "108%",
+      "color": "rgb(233, 238, 245)"
+    },
+    "dock": null,
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": null,
+      "missions": null,
+      "work": null,
+      "approche": null,
+      "recommandations": null,
+      "projets": null,
+      "contact": 833
+    },
+    "menuToggleVisible": false,
+    "navVisible": false,
+    "errors": []
+  },
+  "notfound-fr": {
+    "height": 800,
+    "overflowX": 0,
+    "header": 0,
+    "fonts": [
+      "Archivo"
+    ],
+    "h1": {
+      "family": "Archivo, system-ui, \"Segoe UI\", Roboto, sans-serif",
+      "size": "64px",
+      "stretch": "108%",
+      "color": "rgb(20, 28, 43)"
+    },
+    "dock": null,
+    "overlapsWithDock": [],
+    "sections": {
+      "accueil": null,
+      "missions": null,
+      "work": null,
+      "approche": null,
+      "recommandations": null,
+      "projets": null,
+      "contact": null
+    },
+    "menuToggleVisible": false,
+    "navVisible": false,
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ]
+  }
+}
