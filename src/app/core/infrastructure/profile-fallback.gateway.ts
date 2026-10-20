@@ -1,4 +1,5 @@
 import { AssistantGateway, AssistantGatewayRequest } from '../application/assistant.gateway';
+import { PORTFOLIO_CONTACT, PORTFOLIO_LINKS } from '../domain/assistant.models';
 import { PortfolioLocale } from '../domain/portfolio.models';
 
 const ANSWERS = {
@@ -93,7 +94,8 @@ const ANSWERS = {
         'parieur',
       ],
       answer:
-        'Chez Betclic Group, je contribue à produire des probabilités propriétaires et des cotes maîtrisées plutôt que de dépendre exclusivement de providers externes. Des algorithmes et simulations Monte-Carlo modélisent le déroulement de matchs sur de nombreux sports et compétitions. Ces probabilités alimentent ensuite le pricing et des décisions très sensibles, comme suspendre ou rouvrir un marché. L’enjeu métier est direct : réagir plus vite, conserver la maîtrise de la cote et du risque, tout en garantissant la précision, la performance et la résilience de l’écosystème Quant en C# / .NET.',
+        'Chez Betclic Group, je contribue à produire des probabilités propriétaires et des cotes maîtrisées plutôt que de dépendre exclusivement de providers externes. Des algorithmes et simulations Monte-Carlo modélisent le déroulement de matchs sur de nombreux sports et compétitions. Ces probabilités alimentent ensuite le pricing et des décisions très sensibles, comme suspendre ou rouvrir un marché. L’enjeu métier est direct : réagir plus vite, conserver la maîtrise de la cote et du risque, tout en garantissant la précision, la performance et la résilience de l’écosystème Quant en C# / .NET.' +
+        `\n\nÉtude de cas détaillée : ${PORTFOLIO_LINKS.fr.betclicCaseStudy}`,
     },
     {
       terms: [
@@ -131,13 +133,13 @@ const ANSWERS = {
     },
     {
       terms: ['recommandation', 'recommandations', 'reco', 'linkedin'],
-      answer:
-        'Mes recommandations professionnelles sont consultables directement sur LinkedIn. Elles apportent une preuve complémentaire à mon portfolio : des retours de collaborateurs et d’équipes rencontrés dans des contextes techniques exigeants. Je préfère renvoyer vers les témoignages attribués plutôt que reformuler leurs propos sans pouvoir les citer précisément.',
+      answer: `Mon profil LinkedIn détaille mon parcours, mes missions et mes compétences : ${PORTFOLIO_CONTACT.linkedin}. Pour aller plus loin sur une mission ou des références, écrivez-moi à ${PORTFOLIO_CONTACT.email}.`,
     },
     {
       terms: ['tf1', 'publicit'],
       answer:
-        'Chez Groupe TF1, j’ai été le référent technique de trois équipes pluridisciplinaires pendant la refonte du SI publicitaire. Le bilan documenté comprend 11 projets en production, 4 en cours et plus de 80 incidents traités. J’ai défini architecture et roadmaps, piloté la modernisation vers .NET 6/8, Angular, Azure et AKS, renforcé la sécurité avec Checkmarx, Snyk et SonarQube, puis réduit le lead time avec les pratiques Accelerate, les tests et l’observabilité.',
+        'Chez Groupe TF1, j’ai été le référent technique de trois équipes pluridisciplinaires pendant la refonte du SI publicitaire. Le bilan documenté comprend 11 projets en production, 4 en cours et plus de 80 incidents traités. J’ai défini architecture et roadmaps, piloté la modernisation vers .NET 6/8, Angular, Azure et AKS, renforcé la sécurité avec Checkmarx, Snyk et SonarQube, puis réduit le lead time avec les pratiques Accelerate, les tests et l’observabilité.' +
+        `\n\nÉtude de cas détaillée : ${PORTFOLIO_LINKS.fr.tf1CaseStudy}`,
     },
     {
       terms: ['rent', 'location'],
@@ -247,7 +249,8 @@ const ANSWERS = {
         'pricing',
       ],
       answer:
-        'At Betclic Group, I help produce proprietary probabilities and controlled odds instead of relying exclusively on external providers. Algorithms and Monte Carlo simulations model matches across numerous sports and competitions. Those probabilities then power pricing and sensitive decisions such as suspending or reopening a market. The business value is direct: react faster, retain control over odds and risk, while ensuring accuracy, performance, and resilience across the C# / .NET Quant ecosystem.',
+        'At Betclic Group, I help produce proprietary probabilities and controlled odds instead of relying exclusively on external providers. Algorithms and Monte Carlo simulations model matches across numerous sports and competitions. Those probabilities then power pricing and sensitive decisions such as suspending or reopening a market. The business value is direct: react faster, retain control over odds and risk, while ensuring accuracy, performance, and resilience across the C# / .NET Quant ecosystem.' +
+        `\n\nFull case study: ${PORTFOLIO_LINKS.en.betclicCaseStudy}`,
     },
     {
       terms: [
@@ -284,13 +287,13 @@ const ANSWERS = {
     },
     {
       terms: ['recommendation', 'recommendations', 'testimonial', 'testimonials', 'linkedin'],
-      answer:
-        'My professional recommendations are available directly on LinkedIn. They add complementary evidence to this portfolio: feedback from colleagues and teams encountered in demanding technical contexts. I prefer linking to attributed testimonials rather than rewriting their words without being able to quote them precisely.',
+      answer: `My LinkedIn profile covers my background, missions, and skills: ${PORTFOLIO_CONTACT.linkedin}. To go further on a mission or references, email me at ${PORTFOLIO_CONTACT.email}.`,
     },
     {
       terms: ['tf1', 'advertis'],
       answer:
-        'At TF1 Group, I was the technical reference for three multidisciplinary teams during the advertising-system redesign. The documented results include 11 projects in production, 4 underway, and over 80 incidents resolved. I defined architecture and roadmaps, led modernisation towards .NET 6/8, Angular, Azure, and AKS, strengthened security with Checkmarx, Snyk, and SonarQube, and reduced lead time through Accelerate practices, testing, and observability.',
+        'At TF1 Group, I was the technical reference for three multidisciplinary teams during the advertising-system redesign. The documented results include 11 projects in production, 4 underway, and over 80 incidents resolved. I defined architecture and roadmaps, led modernisation towards .NET 6/8, Angular, Azure, and AKS, strengthened security with Checkmarx, Snyk, and SonarQube, and reduced lead time through Accelerate practices, testing, and observability.' +
+        `\n\nFull case study: ${PORTFOLIO_LINKS.en.tf1CaseStudy}`,
     },
     {
       terms: ['rent', 'rental'],

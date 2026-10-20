@@ -14,6 +14,7 @@ import { PreferencesService } from '../../core/services/preferences.service';
 import { AnalyticsService } from '../../core/services/analytics.service';
 import { observeHeaderOffset } from '../../core/services/observe-header-offset';
 import { CASE_STUDIES, CaseStudySlug } from './case-studies.copy';
+import { PortfolioAssistantComponent } from '../assistant/portfolio-assistant.component';
 
 const CHROME_COPY = {
   en: {
@@ -42,7 +43,7 @@ const CHROME_COPY = {
 
 @Component({
   selector: 'app-case-study',
-  imports: [NgOptimizedImage, RouterLink],
+  imports: [NgOptimizedImage, PortfolioAssistantComponent, RouterLink],
   templateUrl: './case-study.component.html',
   styleUrl: './case-study.component.scss',
 })

@@ -335,6 +335,20 @@ textarea {
   color: #8de9bd;
 }
 
+.message a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.18em;
+}
+
+.message a:hover,
+.message a:focus-visible {
+  color: var(--accent);
+}
+
 .typing {
   display: flex;
   align-items: center;

@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { SITE_URL } from '../../core/infrastructure/site';
@@ -9,7 +10,7 @@ describe('CaseStudyComponent', () => {
     localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [CaseStudyComponent],
-      providers: [provideRouter([])],
+      providers: [provideHttpClient(), provideRouter([])],
     }).compileComponents();
   });
 
@@ -86,6 +87,13 @@ describe('CaseStudyComponent', () => {
       element.querySelector<HTMLAnchorElement>('.case-cta-primary')?.href.startsWith('mailto:'),
     ).toBe(true);
     expect(element.querySelector('.case-language')?.getAttribute('href')).toBe('/fr/work/betclic');
+  });
+
+  it('offers the assistant and an explicit email action to visitors landing on a case study', () => {
+    const element = render();
+
+    expect(element.querySelector('app-portfolio-assistant .assistant-launcher')).not.toBeNull();
+    expect(element.querySelector('.case-cta-primary')?.textContent?.trim()).toBe('Email me');
   });
 
   it('shares a social preview image specific to the case study', () => {
