@@ -34,7 +34,7 @@ jobs:
               name="$(echo "$url" | sed 's#https://vivien-billot.web.app##; s#/#_#g')-$preset"
               extra=""
               if [ "$preset" = desktop ]; then extra="--preset=desktop"; fi
-              npx --yes lighthouse@12.8.2 "$url" --quiet --output=json --output-path="./$name.json" \
+              npx --yes lighthouse@12 "$url" --quiet --output=json --output-path="./$name.json" \
                 --chrome-flags="--headless=new --no-sandbox" $extra || echo "::error::lighthouse failed for $url $preset"
               [ -f "./$name.json" ] && node report.js "./$name.json" "$url $preset"
             done
