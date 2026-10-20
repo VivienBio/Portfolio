@@ -3,12 +3,7 @@
 }}</a>
 <header class="site-header">
   <div class="scroll-progress" aria-hidden="true" [style.width.%]="scrollProgress()"></div>
-  <a
-    class="brand"
-    [routerLink]="locale === 'fr' ? '/fr' : '/'"
-    fragment="accueil"
-    [attr.aria-label]="copy.homeLabel"
-  >
+  <a class="brand" [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="accueil">
     <span class="brand-photo" aria-hidden="true">
       <img ngSrc="/vivien-billot-avatar.webp" width="160" height="160" alt="" priority />
     </span>
@@ -16,6 +11,7 @@
       <strong>{{ identityName }}</strong>
       <small>{{ identityMeta }}</small>
     </span>
+    <span class="visually-hidden">{{ copy.homeHint }}</span>
   </a>
   <nav [attr.aria-label]="copy.navigationLabel">
     <a [routerLink]="locale === 'fr' ? '/fr' : '/'" fragment="work">{{ copy.navigation[0] }}</a

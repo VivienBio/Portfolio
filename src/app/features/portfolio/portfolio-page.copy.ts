@@ -2,7 +2,8 @@ import { PortfolioLocale } from '../../core/domain/portfolio.models';
 
 interface PageCopy {
   readonly skipToContent: string;
-  readonly homeLabel: string;
+  /** Screen-reader context appended to the visible brand name and title. */
+  readonly homeHint: string;
   readonly navigationLabel: string;
   readonly navigation: readonly string[];
   readonly availability: string;
@@ -139,7 +140,7 @@ interface PageCopy {
 export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
   en: {
     skipToContent: 'Skip to content',
-    homeLabel: 'Vivien Billot, home',
+    homeHint: ', home',
     navigationLabel: 'Primary navigation',
     navigation: ['Work', 'Expertise', 'Experience', 'Projects', 'Contact'],
     availability: 'Open to discussing what’s next',
@@ -351,7 +352,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
   },
   fr: {
     skipToContent: 'Aller au contenu',
-    homeLabel: 'Vivien Billot, accueil',
+    homeHint: ', accueil',
     navigationLabel: 'Navigation principale',
     navigation: ['Réalisations', 'Expertise', 'Parcours', 'Projets', 'Contact'],
     availability: 'Ouvert à la discussion',
