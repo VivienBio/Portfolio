@@ -5,7 +5,7 @@
   <a class="case-back" [routerLink]="chrome.homePath">{{ chrome.back }}</a>
   <a class="case-brand" [routerLink]="chrome.homePath" aria-label="Vivien Billot">
     <span class="case-brand-photo" aria-hidden="true">
-      <img ngSrc="/vivien-billot-linkedin.jpg" width="200" height="200" alt="" priority />
+      <img ngSrc="/vivien-billot-avatar.webp" width="160" height="160" alt="" priority />
     </span>
     <strong>Vivien Billot</strong>
   </a>
@@ -14,11 +14,10 @@
       class="case-language"
       [routerLink]="alternatePath"
       (click)="analytics.track('language_change', { locale: locale === 'fr' ? 'en' : 'fr' })"
-      [attr.aria-label]="chrome.languageLabel"
       [attr.lang]="chrome.languageTarget.toLowerCase()"
       [attr.hreflang]="chrome.languageTarget.toLowerCase()"
     >
-      {{ chrome.languageTarget }}
+      {{ chrome.languageTarget }}<span class="visually-hidden">{{ chrome.languageHint }}</span>
     </a>
     <a
       class="case-cv"

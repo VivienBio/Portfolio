@@ -110,6 +110,37 @@ describe('PortfolioAssistantComponent', () => {
     );
   });
 
+  it('offers follow-up questions after a reply without repeating the one just asked', async () => {
+    fixture.componentRef.setInput('locale', 'fr');
+    const element = openDialog();
+    const availability = Array.from(
+      element.querySelectorAll<HTMLButtonElement>('.quick-questions button'),
+    ).find((button) => button.textContent?.trim() === 'Disponibilité');
+    availability?.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(element.querySelector('.quick-questions')).toBeNull();
+    const followUps = Array.from(
+      element.querySelectorAll<HTMLButtonElement>('.follow-ups button'),
+    ).map((button) => button.textContent?.trim());
+    expect(followUps).toEqual(['CV', 'Contact']);
+    expect(element.querySelector('.follow-ups')?.getAttribute('role')).toBe('group');
+
+    element.querySelector<HTMLButtonElement>('.follow-ups button')?.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(api.ask).toHaveBeenLastCalledWith(
+      [
+        { role: 'user', content: 'Disponibilité' },
+        { role: 'assistant', content: 'Je travaille chez Betclic depuis le 6 octobre 2025.' },
+        { role: 'user', content: 'CV' },
+      ],
+      'fr',
+    );
+  });
+
   it('exposes a discrete internal close control while dialog is open', () => {
     const element = fixture.nativeElement as HTMLElement;
     element.querySelector<HTMLButtonElement>('.assistant-launcher')?.click();

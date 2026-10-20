@@ -20,7 +20,7 @@ import { AnalyticsService } from '../../core/services/analytics.service';
 
 const ASSISTANT_COPY = {
   fr: {
-    launcherLabel: 'Discuter avec le double numérique de Vivien',
+    launcherLabel: 'On discute ? Discuter avec le double numérique de Vivien',
     launcherTitle: 'On discute ?',
     title: 'Vivien Billot',
     assistantName: 'Vivien Billot',
@@ -33,6 +33,7 @@ const ASSISTANT_COPY = {
       'Assistant IA : vos questions peuvent être transmises à OpenAI. Évitez les données sensibles.',
     policy: 'Protection des données',
     quickQuestions: ['Parcours', 'Disponibilité', 'Leadership', 'Différence'],
+    followUps: ['Disponibilité', 'CV', 'Contact'],
     suggestedQuestions: 'Questions suggérées',
     conversationLabel: 'Conversation avec le double numérique de Vivien',
     visitor: 'Vous',
@@ -46,7 +47,7 @@ const ASSISTANT_COPY = {
     thinking: 'Vivien prépare sa réponse…',
   },
   en: {
-    launcherLabel: 'Chat with Vivien’s professional digital twin',
+    launcherLabel: 'Let’s talk? Chat with Vivien’s professional digital twin',
     launcherTitle: 'Let’s talk?',
     title: 'Vivien Billot',
     assistantName: 'Vivien Billot',
@@ -58,6 +59,7 @@ const ASSISTANT_COPY = {
     processing: 'AI assistant: your questions may be sent to OpenAI. Avoid sensitive information.',
     policy: 'Privacy policy',
     quickQuestions: ['Career path', 'Availability', 'Leadership', 'Difference'],
+    followUps: ['Availability', 'Resume', 'Contact'],
     suggestedQuestions: 'Suggested questions',
     conversationLabel: 'Conversation with Vivien’s professional digital twin',
     visitor: 'You',
@@ -143,6 +145,15 @@ export class PortfolioAssistantComponent {
   protected readonly viewportHeight = signal('100dvh');
   protected readonly viewportTop = signal('0px');
   protected readonly quickQuestions = computed(() => this.copy().quickQuestions);
+  /** Next steps offered after a reply, without repeating what the visitor already asked. */
+  protected readonly followUps = computed(() => {
+    const asked = new Set<string>(
+      this.currentConversation()
+        .messages.filter(({ role }) => role === 'user')
+        .map(({ content }) => content),
+    );
+    return this.copy().followUps.filter((label) => !asked.has(label));
+  });
 
   protected readonly question = new FormControl('', {
     nonNullable: true,

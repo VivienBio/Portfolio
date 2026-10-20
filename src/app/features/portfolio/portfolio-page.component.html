@@ -10,7 +10,7 @@
     [attr.aria-label]="copy.homeLabel"
   >
     <span class="brand-photo" aria-hidden="true">
-      <img ngSrc="/vivien-billot-linkedin.jpg" width="200" height="200" alt="" priority />
+      <img ngSrc="/vivien-billot-avatar.webp" width="160" height="160" alt="" priority />
     </span>
     <span class="brand-identity">
       <strong>{{ identityName }}</strong>
@@ -33,20 +33,23 @@
       [routerLink]="copy.language.href"
       (click)="analytics.track('language_change', { locale: locale === 'fr' ? 'en' : 'fr' })"
       [attr.hreflang]="copy.language.target.toLowerCase()"
-      [attr.aria-label]="copy.language.ariaLabel"
     >
-      <span class="language-current">{{ copy.language.current }}</span>
+      <span class="language-current"
+        ><span class="visually-hidden">{{ copy.language.currentHint }}</span
+        >{{ copy.language.current }}</span
+      >
       <span aria-hidden="true">→</span>
       <strong>{{ copy.language.target }}</strong>
+      <span class="visually-hidden">{{ copy.language.switchHint }}</span>
     </a>
     <a
       class="cv-download"
       [href]="copy.cv.href"
       (click)="trackCv(locale, 'header')"
       [attr.download]="copy.cv.fileName"
-      [attr.aria-label]="copy.cv.ariaLabel"
       ><span aria-hidden="true">↓</span><span class="cv-label">{{ copy.cv.label }}</span
-      ><span class="cv-label-compact" aria-hidden="true">CV</span></a
+      ><span class="cv-label-compact">CV</span
+      ><span class="visually-hidden">{{ copy.cv.hint }}</span></a
     >
     <button
       class="theme-button"

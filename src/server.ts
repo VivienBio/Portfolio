@@ -25,6 +25,7 @@ import { AssistantGateway } from './app/core/application/assistant.gateway';
 import { OpenAiResponsesGateway } from './app/core/infrastructure/openai-responses.gateway';
 import { FormspreeContactGateway } from './app/core/infrastructure/formspree-contact.gateway';
 import { ProfileFallbackGateway } from './app/core/infrastructure/profile-fallback.gateway';
+import { staticCacheControl } from './app/core/infrastructure/static-cache';
 import {
   readRuntimeConfiguration,
   RuntimeConfiguration,
@@ -82,20 +83,11 @@ registerPortfolioApi(app, {
 /**
  * Serve static files from /browser
  */
-const HASHED_ASSET_PATTERN = /-[A-Z0-9]{8}\.\w+$/;
-
 app.use(
   express.static(browserDistFolder, {
-    maxAge: '1y',
     index: false,
     redirect: false,
-    setHeaders: (res, filePath) => {
-      if (filePath.includes('/fonts/')) {
-        res.setHeader('Cache-Control', 'public, max-age=2592000');
-      } else if (!HASHED_ASSET_PATTERN.test(filePath)) {
-        res.setHeader('Cache-Control', 'public, max-age=86400');
-      }
-    },
+    setHeaders: (res, filePath) => res.setHeader('Cache-Control', staticCacheControl(filePath)),
   }),
 );
 
