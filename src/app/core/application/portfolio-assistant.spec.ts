@@ -113,6 +113,41 @@ describe('PortfolioAssistant', () => {
     expect(gateway.answer).not.toHaveBeenCalled();
   });
 
+  it('answers freelance availability and rate questions without calling the model', async () => {
+    const { assistant, gateway } = createAssistant();
+
+    const reply = await assistant.reply([
+      { role: 'user', content: 'Es-tu disponible pour une mission freelance ? Quel est ton TJM ?' },
+    ]);
+
+    expect(reply.answer).toContain('freelance');
+    expect(reply.answer).toContain('TJM');
+    expect(reply.answer).toContain('billot.vivien@gmail.com');
+    expect(gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('answers English location and day-rate questions deterministically', async () => {
+    const gateway: AssistantGateway = { answer: vi.fn() };
+    const knowledge = buildPortfolioKnowledge(new LocalPortfolioRepository().getPortfolio('en'));
+    const assistant = new PortfolioAssistant(gateway, knowledge, 'en');
+
+    const reply = await assistant.reply([
+      { role: 'user', content: 'Where are you based, and what is your day rate?' },
+    ]);
+
+    expect(reply.answer).toContain('Paris region');
+    expect(reply.answer).toContain('day rate');
+    expect(gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('keeps questions asking for details about a role with the model', async () => {
+    const { assistant, gateway } = createAssistant();
+
+    await assistant.reply([{ role: 'user', content: 'Give me more details about TF1' }]);
+
+    expect(gateway.answer).toHaveBeenCalledOnce();
+  });
+
   it('answers age questions deterministically from the verified birth date', async () => {
     const { assistant, gateway } = createAssistant();
 

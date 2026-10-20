@@ -111,6 +111,7 @@ interface PageCopy {
     readonly emailAction: string;
     readonly cvAction: string;
     readonly phoneAction: string;
+    readonly phoneDisplay: string;
     readonly linkedinAction: string;
   };
   readonly footer: {
@@ -156,7 +157,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Freelance Senior Software Engineer & Tech Lead · C# / .NET',
       title: 'Systems where wrong answers',
       accent: 'are expensive.',
-      lead: 'For 15+ years, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
+      lead: 'Since 2012, I’ve designed and modernized critical systems: real-time pricing at Betclic, advertising at TF1 — France’s largest private broadcaster — and regulated medical software at Stago. From business rules to production, helping teams own what they build.',
       primaryAction: 'Read the case studies',
       secondaryAction: 'Let’s talk',
       proof: [
@@ -179,7 +180,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     metricsLabel: 'Selected impact',
     metrics: [
       {
-        value: '15+',
+        value: '14+',
         label: 'years of engineering, from regulated medical software to real-time pricing',
       },
       { value: '11', label: 'projects shipped to production while leading three teams at TF1' },
@@ -321,6 +322,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       emailAction: 'Email Vivien',
       cvAction: 'Download resume',
       phoneAction: 'Call Vivien Billot at +33 6 23 85 77 32',
+      phoneDisplay: '+33 6 23 85 77 32',
       linkedinAction: 'View LinkedIn profile',
     },
     footer: {
@@ -366,7 +368,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       eyebrow: 'Senior Software Engineer & Tech Lead freelance · C# / .NET',
       title: 'Des systèmes où l’erreur',
       accent: 'coûte cher.',
-      lead: '15+ ans à concevoir et moderniser des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
+      lead: 'Depuis 2012, je conçois et modernise des systèmes critiques : pricing temps réel chez Betclic, SI publicitaire de TF1 — premier diffuseur privé français — et logiciel médical réglementé chez Stago. Du métier à la production, avec des équipes autonomes.',
       primaryAction: 'Lire les études de cas',
       secondaryAction: 'Parlons-en',
       proof: [
@@ -388,7 +390,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
     },
     metricsLabel: 'Impact sélectionné',
     metrics: [
-      { value: '15+', label: 'années d’ingénierie, du médical réglementé au pricing temps réel' },
+      { value: '14+', label: 'années d’ingénierie, du médical réglementé au pricing temps réel' },
       { value: '11', label: 'projets mis en production en encadrant trois équipes chez TF1' },
       { value: '500+', label: 'agences servies par les plateformes construites chez Rent A Car' },
       { value: '5', label: 'équipes encadrées chez TF1, Rent A Car et Stago' },
@@ -529,6 +531,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       emailAction: 'Envoyer un email',
       cvAction: 'Télécharger le CV',
       phoneAction: 'Appeler Vivien Billot au 06 23 85 77 32',
+      phoneDisplay: '06 23 85 77 32',
       linkedinAction: 'Voir le profil LinkedIn',
     },
     footer: {

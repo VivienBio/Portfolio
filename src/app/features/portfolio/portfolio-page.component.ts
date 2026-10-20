@@ -70,6 +70,7 @@ export class PortfolioPageComponent {
       path,
       locale: this.locale,
       ogType: 'profile',
+      image: this.locale === 'fr' ? '/og-image-fr.jpg' : '/og-image.jpg',
       alternates: [
         { hreflang: 'en', path: '/' },
         { hreflang: 'fr', path: '/fr' },
