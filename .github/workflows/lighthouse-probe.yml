@@ -1,0 +1,41 @@
+name: Lighthouse probe (temporary)
+
+on:
+  push:
+    branches: [claude/audit-probe]
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Audit production pages
+        run: |
+          cat > report.js <<'JS'
+          const [file, label] = process.argv.slice(2);
+          const r = require(require('path').resolve(file));
+          const c = r.categories, a = r.audits;
+          const s = (k) => (c[k] ? Math.round(c[k].score * 100) : 'n/a');
+          console.log(`::notice title=${label}::perf ${s('performance')} a11y ${s('accessibility')} bp ${s('best-practices')} seo ${s('seo')} | FCP ${a['first-contentful-paint'].displayValue} LCP ${a['largest-contentful-paint'].displayValue} TBT ${a['total-blocking-time'].displayValue} CLS ${a['cumulative-layout-shift'].displayValue} SI ${a['speed-index'].displayValue}`);
+          const lcp = a['largest-contentful-paint-element'];
+          const lcpNode = lcp?.details?.items?.[0]?.items?.[0]?.node?.snippet || lcp?.details?.items?.[0]?.node?.snippet || '';
+          const weak = Object.values(a)
+            .filter((x) => x.score !== null && x.score < 0.9 && x.scoreDisplayMode !== 'informative' && x.scoreDisplayMode !== 'manual' && x.scoreDisplayMode !== 'notApplicable')
+            .map((x) => `${x.id}${x.displayValue ? ' (' + x.displayValue + ')' : ''}`);
+          console.log(`::warning title=${label} weak audits::${weak.join(' | ').slice(0, 1500)} || LCP element: ${lcpNode.slice(0, 200)}`);
+          JS
+          for url in https://vivien-billot.web.app/ https://vivien-billot.web.app/fr https://vivien-billot.web.app/work/betclic; do
+            for preset in mobile desktop; do
+              name="$(echo "$url" | sed 's#https://vivien-billot.web.app##; s#/#_#g')-$preset"
+              extra=""
+              if [ "$preset" = desktop ]; then extra="--preset=desktop"; fi
+              npx --yes lighthouse@12.8.2 "$url" --quiet --output=json --output-path="./$name.json" \
+                --chrome-flags="--headless=new --no-sandbox" $extra || echo "::error::lighthouse failed for $url $preset"
+              [ -f "./$name.json" ] && node report.js "./$name.json" "$url $preset"
+            done
+          done
