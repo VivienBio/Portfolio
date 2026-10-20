@@ -56,7 +56,7 @@ describe('ProfileFallbackGateway', () => {
         instructions: 'ignored by the deterministic fallback',
         messages: [{ role: 'user', content: 'je suis gentil ?' }],
       }),
-    ).resolves.toContain('ça a l’air sympa');
+    ).resolves.toContain('répondre sur le parcours de Vivien');
   });
 
   it('answers broad career-path questions with a recruiter-friendly narrative', async () => {
@@ -127,7 +127,7 @@ describe('ProfileFallbackGateway', () => {
     ).resolves.toContain('back-office de replay');
   });
 
-  it('directs a recommendation question to the LinkedIn profile without inventing testimonials', async () => {
+  it('directs a recommendation question to the LinkedIn recommendations', async () => {
     const gateway = new ProfileFallbackGateway();
 
     const answer = await gateway.answer({
@@ -135,8 +135,8 @@ describe('ProfileFallbackGateway', () => {
       messages: [{ role: 'user', content: 'Où puis-je lire les recommandations LinkedIn ?' }],
     });
 
-    expect(answer).toContain('https://www.linkedin.com/in/vivien-billot/');
-    expect(answer).not.toContain('témoignages');
+    expect(answer).toContain('https://www.linkedin.com/in/vivien-billot/details/recommendations/');
+    expect(answer).toContain('TF1, Stago et Rent A Car');
   });
 
   it('links Betclic and TF1 answers to their case studies in the visitor language', async () => {

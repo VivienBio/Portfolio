@@ -106,7 +106,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   },
   decisionsHeading: 'Key decisions',
   decisionsIntro:
-    'Pricing in-house rather than depending exclusively on providers is Betclic’s strategic call — it sets the bar my work has to meet: own the models means own the errors. These are decisions I made within that frame.',
+    'Pricing in-house rather than depending exclusively on providers is Betclic’s strategic call — it sets the bar my work has to meet: owning the models means owning the errors. These are decisions I made within that frame.',
   decisionLabels: {
     problem: 'Problem',
     options: 'Options',
@@ -172,9 +172,9 @@ const EN_TF1: CaseStudyCopy = {
   title: 'Modernizing the ad platform',
   accent: 'without stopping it.',
   roleLine: 'Tech Lead / Software Architect — three cross-functional teams',
-  metaTitle: "Modernizing TF1's advertising platform — Vivien Billot",
+  metaTitle: 'Modernizing TF1’s advertising platform — Vivien Billot',
   metaDescription:
-    "Tech Lead of three teams modernizing TF1's ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped, no business interruption.",
+    'Tech Lead of three teams modernizing TF1’s ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped, no business interruption.',
   context: {
     heading: 'Context',
     paragraphs: [
@@ -353,7 +353,7 @@ const FR_BETCLIC: CaseStudyCopy = {
       decision:
         'J’ai construit le back-office de replay : rejouer les événements passés, tracer chaque décision algorithmique, valider un correctif contre la réalité avant sa mise en production.',
       tradeOff:
-        'Ce type d’outillage ne livre aucune feature visible. Il se rembourse à la première anomalie de marché qu’il faut expliquer avec des preuves plutôt qu’avec des hypothèses.',
+        'Ce type d’outillage ne livre aucune feature visible. Il est rentabilisé dès la première anomalie de marché qu’il faut expliquer avec des preuves plutôt qu’avec des hypothèses.',
     },
     {
       title: 'Qualifier l’accélération GPU avant de s’engager.',
@@ -461,7 +461,7 @@ const FR_TF1: CaseStudyCopy = {
     {
       title: 'Le remplacement incrémental plutôt que la réécriture big-bang.',
       problem:
-        'Un système legacy qui fait tourner le revenu ne peut pas être gelé pour une réécriture pluriannuelle.',
+        'Un système legacy dont dépend le chiffre d’affaires ne peut pas être gelé pour une réécriture pluriannuelle.',
       options: 'Réécriture big-bang, ou remplacement incrémental domaine par domaine.',
       decision:
         'Incrémental. Chaque domaine basculait quand son remplaçant avait fait ses preuves en production.',
@@ -471,7 +471,7 @@ const FR_TF1: CaseStudyCopy = {
     {
       title: 'Faire de la qualité l’accélérateur du delivery, pas sa taxe.',
       problem:
-        'Moderniser tout en livrant, c’est voir les régressions de qualité se composer très vite.',
+        'Moderniser tout en livrant, c’est voir les régressions de qualité s’accumuler très vite.',
       options: 'Inspecter la qualité à la fin, ou la construire dans la boucle.',
       decision:
         'Des pratiques inspirées d’Accelerate : des tests qui verrouillent les règles métier, des standards de code review, de l’observabilité et une boucle de feedback plus courte.',
@@ -482,7 +482,7 @@ const FR_TF1: CaseStudyCopy = {
       problem: 'Trois équipes qui modernisent en parallèle peuvent produire trois systèmes.',
       options: 'Des choix locaux à chaque équipe, ou une gouvernance d’architecture partagée.',
       decision:
-        'Des standards partagés, des décisions d’architecture explicites et une gouvernance d’API — écrites, débattues et portées par les équipes plutôt qu’imposées.',
+        'Des standards partagés, des décisions d’architecture explicites et une gouvernance d’API — écrits, débattus et portés par les équipes plutôt qu’imposés.',
       tradeOff: 'L’alignement coûte des réunions ; la divergence coûte des années.',
     },
   ],

@@ -22,6 +22,7 @@ export const PORTFOLIO_CONTACT = Object.freeze({
   phone: '06 23 85 77 32',
   internationalPhone: '+33 6 23 85 77 32',
   linkedin: 'https://www.linkedin.com/in/vivien-billot/',
+  linkedinRecommendations: 'https://www.linkedin.com/in/vivien-billot/details/recommendations/',
 });
 
 const PORTFOLIO_SITE = 'https://vivien-billot.web.app';

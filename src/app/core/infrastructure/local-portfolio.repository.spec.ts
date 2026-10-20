@@ -82,7 +82,7 @@ describe('LocalPortfolioRepository', () => {
     const betclic = portfolio.experiences.find(({ company }) => company === 'Betclic Group');
     const tf1 = portfolio.experiences.find(({ company }) => company === 'Groupe TF1');
 
-    expect(betclic?.summary).toContain('probabilités propriétaires');
+    expect(betclic?.summary).toContain('propres probabilités');
     expect(betclic?.summary).toContain('cotes maîtrisées');
     expect(betclic?.achievements.join(' ')).toContain('suspendre');
     expect(betclic?.achievements.join(' ')).toContain('GPU');
@@ -94,7 +94,7 @@ describe('LocalPortfolioRepository', () => {
     expect(betclic?.achievements.join(' ')).toContain('XGBoost/ONNX');
     expect(tf1?.summary).toContain('trois équipes');
     expect(tf1?.summary).toContain('11 projets');
-    expect(tf1?.achievements.join(' ')).toContain('80 incidents');
+    expect(tf1?.summary).toContain('80 incidents');
   });
 
   it('preserves the documented scale and career progression', () => {

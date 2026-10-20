@@ -14,7 +14,7 @@ const OUT_OF_SCOPE_REPLY =
   'Je suis le double numérique professionnel de Vivien. Je peux uniquement répondre sur son parcours, ses compétences, ses projets, sa disponibilité et la façon de le contacter. Essayez par exemple : « Quelle est ta stack ? » ou « Es-tu disponible ? »';
 
 const ENGLISH_OUT_OF_SCOPE_REPLY =
-  'I am Vivien’s professional digital twin. I can only answer about his background, skills, projects, availability, and how to contact him. Try for example: “What is your stack?” or “Are you available?”';
+  'I am Vivien’s professional digital twin. I can only answer questions about his background, skills, projects, availability, and how to contact him. Try for example: “What is your stack?” or “Are you available?”';
 
 const CONTACT_REPLY = `Vous pouvez me joindre par email à ${PORTFOLIO_CONTACT.email}, par téléphone au ${PORTFOLIO_CONTACT.phone} ou sur LinkedIn : ${PORTFOLIO_CONTACT.linkedin}. Pour une mission, indiquez le contexte, la durée et la date de démarrage souhaitée.`;
 
@@ -32,6 +32,19 @@ const LINKEDIN_REPLY = `Mon profil LinkedIn : ${PORTFOLIO_CONTACT.linkedin}. Vou
 
 const ENGLISH_LINKEDIN_REPLY = `My LinkedIn profile: ${PORTFOLIO_CONTACT.linkedin}. It covers my background in detail; for a mission, email is the quickest way to reach me: ${PORTFOLIO_CONTACT.email}.`;
 
+const RECOMMENDATIONS_REPLY = `Des collègues et des développeurs que j’ai encadrés chez TF1, Stago et Rent A Car ont laissé des recommandations publiques sur LinkedIn : ${PORTFOLIO_CONTACT.linkedinRecommendations}. Ils y parlent notamment de fiabilité sous pression, de leadership technique et de transmission.`;
+
+const ENGLISH_RECOMMENDATIONS_REPLY = `Colleagues and developers I led at TF1, Stago, and Rent A Car have left public recommendations on LinkedIn: ${PORTFOLIO_CONTACT.linkedinRecommendations}. They highlight reliability under pressure, technical leadership, and knowledge sharing.`;
+
+const RECOMMENDATION_TERMS = [
+  'recommand',
+  'recommend',
+  'reco',
+  'recos',
+  'temoignage',
+  'testimonial',
+];
+
 const THANKS_REPLY = `Avec plaisir ! Pour aller plus loin, écrivez-moi à ${PORTFOLIO_CONTACT.email} ou retrouvez-moi sur LinkedIn : ${PORTFOLIO_CONTACT.linkedin}.`;
 
 const ENGLISH_THANKS_REPLY = `You’re welcome! To go further, email me at ${PORTFOLIO_CONTACT.email} or find me on LinkedIn: ${PORTFOLIO_CONTACT.linkedin}.`;
@@ -40,6 +53,15 @@ const CV_TERMS: Record<PortfolioLocale, readonly string[]> = {
   fr: ['cv', 'curriculum'],
   en: ['cv', 'resume', 'curriculum'],
 };
+
+const GREETING_REPLY =
+  'Bonjour ! Je peux vous répondre sur le parcours de Vivien, sa stack, ses projets, sa façon de travailler ou sa disponibilité en freelance.';
+
+const ENGLISH_GREETING_REPLY =
+  'Hello! I can answer questions about Vivien’s background, stack, projects, way of working, or freelance availability.';
+
+const GREETING_PATTERN =
+  /^(bonjour|bonsoir|salut|coucou|hello|hi|hey|good (morning|afternoon|evening))( vivien)?$/u;
 
 const THANKS_PATTERN =
   /^(merci|thanks|thank you|thx)( (beaucoup|bien|a toi|a vous|so much|a lot|vivien))*$/u;
@@ -62,6 +84,10 @@ const FREELANCE_TERMS = [
   'tjm',
   'taux journalier',
   'tarif',
+  'salaire',
+  'salary',
+  'remuneration',
+  'pretentions',
   'daily rate',
   'day rate',
   'your rate',
@@ -208,6 +234,27 @@ const PORTFOLIO_TERMS = [
   'dette technique',
   'resilience',
   'modernisation',
+  'modernization',
+  'legacy',
+  'kafka',
+  'grpc',
+  'protobuf',
+  'terraform',
+  'xgboost',
+  'onnx',
+  'mongodb',
+  'postgres',
+  'kubernetes',
+  'microservice',
+  'python',
+  'java',
+  'react',
+  'mission',
+  'cdi',
+  'permanent',
+  'full time',
+  'contrat',
+  'contract',
   'complexite',
   'metier',
   'delivery',
@@ -349,6 +396,8 @@ export function buildPortfolioKnowledge(
         'Diplôme d’ingénieur ESILV, option calcul scientifique (2007–2012), avec un échange à l’Université Laval.',
       status: 'Freelance, en mission chez Betclic depuis octobre 2025',
       workPreferences: 'Île-de-France (région parisienne), hybride ou télétravail',
+      linkedinRecommendations:
+        'Recommandations publiques sur LinkedIn de collègues et de développeurs encadrés chez TF1, Stago et Rent A Car (fiabilité sous pression, leadership technique, transmission).',
     },
     contact: PORTFOLIO_CONTACT,
     links: PORTFOLIO_LINKS[locale],
@@ -384,12 +433,26 @@ export class PortfolioAssistant {
       return { answer: this.contactReply() };
     }
 
+    if (
+      RECOMMENDATION_TERMS.some((term) =>
+        term.length <= 4 ? hasWord(normalizedQuestion, term) : startsWord(normalizedQuestion, term),
+      )
+    ) {
+      return {
+        answer: this.locale === 'en' ? ENGLISH_RECOMMENDATIONS_REPLY : RECOMMENDATIONS_REPLY,
+      };
+    }
+
     if (startsWord(normalizedQuestion, 'linkedin')) {
       return { answer: this.locale === 'en' ? ENGLISH_LINKEDIN_REPLY : LINKEDIN_REPLY };
     }
 
     if (isFreelanceQuestion(normalizedQuestion)) {
       return { answer: this.locale === 'en' ? ENGLISH_FREELANCE_REPLY : FREELANCE_REPLY };
+    }
+
+    if (GREETING_PATTERN.test(normalizedQuestion)) {
+      return { answer: this.locale === 'en' ? ENGLISH_GREETING_REPLY : GREETING_REPLY };
     }
 
     if (THANKS_PATTERN.test(normalizedQuestion)) {
@@ -431,7 +494,7 @@ NON-NEGOTIABLE RULES:
 - For a broad question, use 2 to 4 short paragraphs or a concise list, with a maximum of 180 words. Give a recruiter enough context to understand the situation, choices, and value created.
 - Broad questions are allowed when they implicitly concern Vivien professionally: career path, what matters to him, engineering standards, leadership style, strengths, weaknesses, motivation, or differentiation. Keep them human, but never private or intimate; connect the answer to verified profile evidence.
 - For technology questions, present a clear stack by use: back end, front end, data, architecture and design, Cloud and delivery, integration and observability, then quality. Cite only items in VERIFIED_PROFILE and briefly explain how they connect.
-- Do not present AI as the core of the profile unless the question is explicitly about it. The primary positioning is business architecture, software quality, information-system modernisation, and technical team enablement.
+- Do not present AI as the core of the profile unless the question is explicitly about it. The primary positioning is business architecture, software quality, information-system modernization, and technical team enablement.
 - Write plain text without Markdown: no **, no #, no [text](url) links. For a list, start each line with "- ".
 - When it helps the visitor, end with one link copied from VERIFIED_PROFILE.links (Betclic or TF1 case study, resume, LinkedIn), written in full. Never invent or alter a URL.
 
@@ -551,10 +614,6 @@ function isAgeQuestion(question: string): boolean {
 }
 
 function isPortfolioQuestion(question: string): boolean {
-  if (['bonjour', 'bonsoir', 'salut', 'hello', 'hi'].includes(question)) {
-    return true;
-  }
-
   return [...PORTFOLIO_TERMS, ...DIRECT_PROFILE_QUESTIONS].some((term) => question.includes(term));
 }
 

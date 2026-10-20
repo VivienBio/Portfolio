@@ -192,6 +192,19 @@ describe('PortfolioAssistant', () => {
     expect(gateway.answer).not.toHaveBeenCalled();
   });
 
+  it('points recommendation questions to the LinkedIn recommendations page', async () => {
+    const { assistant, gateway } = createAssistant();
+
+    const reply = await assistant.reply([
+      { role: 'user', content: 'As-tu des recommandations LinkedIn ?' },
+    ]);
+
+    expect(reply.answer).toContain(
+      'https://www.linkedin.com/in/vivien-billot/details/recommendations/',
+    );
+    expect(gateway.answer).not.toHaveBeenCalled();
+  });
+
   it('thanks visitors warmly but keeps polite questions with the model', async () => {
     const { assistant, gateway } = createAssistant();
 
@@ -213,6 +226,27 @@ describe('PortfolioAssistant', () => {
     expect(instructions).toContain('without Markdown');
     expect(PORTFOLIO_LINKS.fr.tf1CaseStudy).toBe(`${SITE_URL}/fr/work/tf1`);
     expect(PORTFOLIO_LINKS.en.cv).toBe(`${SITE_URL}/assets/CV-Vivien-Billot-EN.pdf`);
+  });
+
+  it('greets visitors without calling the model', async () => {
+    const french = createAssistant();
+    const english = createEnglishAssistant();
+
+    const frenchReply = await french.assistant.reply([{ role: 'user', content: 'Bonjour !' }]);
+    const englishReply = await english.assistant.reply([{ role: 'user', content: 'Hi Vivien' }]);
+
+    expect(frenchReply.answer).toContain('Bonjour');
+    expect(englishReply.answer).toContain('Hello');
+    expect(french.gateway.answer).not.toHaveBeenCalled();
+    expect(english.gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('keeps technologies listed on LinkedIn in scope for the model', async () => {
+    const { assistant, gateway } = createEnglishAssistant();
+
+    await assistant.reply([{ role: 'user', content: 'Do you know Kafka and gRPC?' }]);
+
+    expect(gateway.answer).toHaveBeenCalledOnce();
   });
 
   it('keeps questions asking for details about a role with the model', async () => {

@@ -207,7 +207,7 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
         paragraphs: [
           'With your consent, Google Analytics 4 measures page views, sessions, engagement time, resume downloads and interactions with projects, contact links and the assistant. It also receives technical information about your browser and device, and an approximate location.',
           'Measurement uses cookie identifiers. It does not provide visitors’ names. The site does not intentionally send entered names, email addresses, phone numbers or chat text to Analytics. Page addresses are limited to public pages, without free-text parameters or fragments.',
-          'No Google Analytics tag loads before your choice or when you reject. Advertising storage, Google Signals and advertising personalisation are disabled in the site integration.',
+          'No Google Analytics tag loads before your choice or when you reject. Advertising storage, Google Signals and advertising personalization are disabled in the site integration.',
           'Accepting and rejecting are equally accessible, and you can change your choice at any time. Withdrawing stops collection, deletes Analytics cookies accessible to the site and reloads the page. It does not automatically erase data already sent to Google.',
           'Your choice and Analytics cookies have a maximum lifetime of 180 days. In the Google Analytics property, event data is kept for 2 months and user data for 14 months; new activity may reset the latter period. These settings do not apply to most aggregated standard reports and are separate from the lifetime of cookies in your browser.',
         ],
