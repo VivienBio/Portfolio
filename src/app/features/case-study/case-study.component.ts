@@ -16,11 +16,14 @@ import { observeHeaderOffset } from '../../core/services/observe-header-offset';
 import { CASE_STUDIES, CaseStudySlug } from './case-studies.copy';
 import { PortfolioAssistantComponent } from '../assistant/portfolio-assistant.component';
 
+const CASE_STUDY_PUBLISHED = '2026-09-21';
+const CASE_STUDY_MODIFIED = '2026-10-20';
+
 const CHROME_COPY = {
   en: {
     back: '← Portfolio',
     homePath: '/',
-    languageLabel: 'Lire en français',
+    languageHint: ' — Lire en français',
     languageTarget: 'FR',
     cvLabel: 'Resume PDF',
     cvHref: '/assets/CV-Vivien-Billot-EN.pdf',
@@ -31,7 +34,7 @@ const CHROME_COPY = {
   fr: {
     back: '← Portfolio',
     homePath: '/fr',
-    languageLabel: 'Read in English',
+    languageHint: ' — Read in English',
     languageTarget: 'EN',
     cvLabel: 'CV PDF',
     cvHref: '/assets/CV-Vivien-Billot-FR.pdf',
@@ -89,6 +92,8 @@ export class CaseStudyComponent {
       locale: this.locale,
       ogType: 'article',
       image: `/og-case-${this.slug}-${this.locale}.jpg`,
+      published: CASE_STUDY_PUBLISHED,
+      modified: CASE_STUDY_MODIFIED,
       alternates: [
         { hreflang: 'en', path: enPath },
         { hreflang: 'fr', path: frPath },

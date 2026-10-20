@@ -122,10 +122,18 @@
     </div>
 
     @if (messages().length === 1) {
-      <div class="quick-questions" [attr.aria-label]="copy().suggestedQuestions">
+      <div class="quick-questions" role="group" [attr.aria-label]="copy().suggestedQuestions">
         @for (quickQuestion of quickQuestions(); track quickQuestion) {
           <button type="button" (click)="sendQuestion(quickQuestion)">
             {{ quickQuestion }}
+          </button>
+        }
+      </div>
+    } @else if (!isSending() && !error() && followUps().length) {
+      <div class="follow-ups" role="group" [attr.aria-label]="copy().suggestedQuestions">
+        @for (followUp of followUps(); track followUp) {
+          <button type="button" (click)="sendQuestion(followUp)">
+            {{ followUp }}
           </button>
         }
       </div>

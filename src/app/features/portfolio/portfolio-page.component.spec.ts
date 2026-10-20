@@ -24,7 +24,7 @@ describe('PortfolioPageComponent', () => {
 
     expect(element.querySelector('.brand-identity')?.textContent).toContain('Vivien Billot');
     expect(element.querySelector<HTMLImageElement>('.brand-photo img')?.getAttribute('ngsrc')).toBe(
-      '/vivien-billot-linkedin.jpg',
+      '/vivien-billot-avatar.webp',
     );
     expect(headings).toHaveLength(1);
     expect(headings[0]?.textContent).toContain('Systems where wrong answers');
@@ -128,7 +128,9 @@ describe('PortfolioPageComponent', () => {
       'tel:+33623857732',
     );
     expect(headerCv?.getAttribute('href')).toBe('/assets/CV-Vivien-Billot-EN.pdf');
-    expect(headerCv?.getAttribute('aria-label')).toContain('English resume');
+    expect(headerCv?.hasAttribute('aria-label')).toBe(false);
+    expect(headerCv?.textContent).toContain('Resume PDF');
+    expect(headerCv?.textContent).toContain('English resume');
     expect(
       element.querySelector('section#contact a[href="/assets/CV-Vivien-Billot-FR.pdf"]'),
     ).toBeTruthy();

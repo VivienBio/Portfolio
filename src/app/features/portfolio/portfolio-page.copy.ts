@@ -2,7 +2,8 @@ import { PortfolioLocale } from '../../core/domain/portfolio.models';
 
 interface PageCopy {
   readonly skipToContent: string;
-  readonly homeLabel: string;
+  /** Screen-reader context appended to the visible brand name and title. */
+  readonly homeHint: string;
   readonly navigationLabel: string;
   readonly navigation: readonly string[];
   readonly availability: string;
@@ -11,13 +12,17 @@ interface PageCopy {
     readonly current: string;
     readonly target: string;
     readonly href: string;
-    readonly ariaLabel: string;
+    /** Screen-reader context placed before the visible current language. */
+    readonly currentHint: string;
+    /** Screen-reader context placed after the visible target language. */
+    readonly switchHint: string;
   };
   readonly cv: {
     readonly label: string;
     readonly href: string;
     readonly fileName: string;
-    readonly ariaLabel: string;
+    /** Screen-reader context placed after the visible label. */
+    readonly hint: string;
   };
   readonly theme: { readonly light: string; readonly dark: string };
   readonly hero: {
@@ -135,7 +140,7 @@ interface PageCopy {
 export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
   en: {
     skipToContent: 'Skip to content',
-    homeLabel: 'Vivien Billot, home',
+    homeHint: ', home',
     navigationLabel: 'Primary navigation',
     navigation: ['Work', 'Expertise', 'Experience', 'Projects', 'Contact'],
     availability: 'Open to discussing what’s next',
@@ -144,13 +149,14 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       current: 'EN',
       target: 'FR',
       href: '/fr',
-      ariaLabel: 'Current language: English. Switch to the French version.',
+      currentHint: 'Current language: ',
+      switchHint: ' — switch to the French version',
     },
     cv: {
       label: 'Resume PDF',
       href: '/assets/CV-Vivien-Billot-EN.pdf',
       fileName: 'CV-Vivien-Billot-EN.pdf',
-      ariaLabel: 'Resume PDF (CV): download Vivien Billot’s English resume',
+      hint: ' — download Vivien Billot’s English resume',
     },
     theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     hero: {
@@ -346,7 +352,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
   },
   fr: {
     skipToContent: 'Aller au contenu',
-    homeLabel: 'Vivien Billot, accueil',
+    homeHint: ', accueil',
     navigationLabel: 'Navigation principale',
     navigation: ['Réalisations', 'Expertise', 'Parcours', 'Projets', 'Contact'],
     availability: 'Ouvert à la discussion',
@@ -355,13 +361,14 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
       current: 'FR',
       target: 'EN',
       href: '/',
-      ariaLabel: 'Version actuelle : français. Passer à la version anglaise.',
+      currentHint: 'Version actuelle : ',
+      switchHint: ' — passer à la version anglaise',
     },
     cv: {
       label: 'CV PDF',
       href: '/assets/CV-Vivien-Billot-FR.pdf',
       fileName: 'CV-Vivien-Billot-FR.pdf',
-      ariaLabel: 'CV PDF : télécharger le CV français de Vivien Billot',
+      hint: ' — télécharger le CV français de Vivien Billot',
     },
     theme: { light: 'Activer le thème clair', dark: 'Activer le thème sombre' },
     hero: {

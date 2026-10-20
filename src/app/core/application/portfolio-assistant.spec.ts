@@ -4,6 +4,7 @@ import { buildPortfolioKnowledge, PortfolioAssistant } from './portfolio-assista
 import { LocalPortfolioRepository } from '../infrastructure/local-portfolio.repository';
 import { SITE_URL } from '../infrastructure/site';
 import { PORTFOLIO_LINKS } from '../domain/assistant.models';
+import { PortfolioLocale } from '../domain/portfolio.models';
 
 function createAssistant(answer = 'Je suis Senior Software Engineer chez Betclic.') {
   const gateway: AssistantGateway = { answer: vi.fn().mockResolvedValue(answer) };
@@ -247,6 +248,49 @@ describe('PortfolioAssistant', () => {
     await assistant.reply([{ role: 'user', content: 'Do you know Kafka and gRPC?' }]);
 
     expect(gateway.answer).toHaveBeenCalledOnce();
+  });
+
+  // Golden questions: how real visitor phrasings are routed (expected text, or null for the model).
+  const GOLDEN_QUESTIONS: ReadonlyArray<readonly [PortfolioLocale, string, string | null]> = [
+    ['fr', 'Disponibilité', 'TJM'],
+    ['fr', 'CV', '/assets/CV-Vivien-Billot-FR.pdf'],
+    ['fr', 'Contact', '06 23 85 77 32'],
+    ['fr', 'Quel est ton TJM ?', 'TJM'],
+    ['fr', 'Où es-tu basé ?', 'Île-de-France'],
+    ['fr', 'Tu acceptes le télétravail ?', 'télétravail'],
+    ['fr', 'Quelles sont tes prétentions salariales ?', 'TJM'],
+    ['fr', 'Quel âge as-tu ?', 'ans'],
+    ['fr', 'Bonjour', 'Bonjour'],
+    ['fr', 'Merci beaucoup', 'Avec plaisir'],
+    ['fr', 'As-tu des recommandations ?', '/details/recommendations/'],
+    ['fr', 'Ton LinkedIn ?', 'https://www.linkedin.com/in/vivien-billot/'],
+    ['fr', 'Quelle météo demain ?', 'uniquement'],
+    ['fr', 'Parcours', null],
+    ['fr', 'Parle-moi de Kafka chez Betclic', null],
+    ['fr', 'Es-tu ouvert à un CDI ?', null],
+    ['en', 'Availability', 'day rate'],
+    ['en', 'Resume', '/assets/CV-Vivien-Billot-EN.pdf'],
+    ['en', 'Contact', '+33 6 23 85 77 32'],
+    ['en', 'Are you open to remote work?', 'remote'],
+    ['en', 'Hello', 'Hello'],
+    ['en', 'Thanks a lot', 'welcome'],
+    ['en', 'Any testimonials?', '/details/recommendations/'],
+    ['en', 'What is the capital of Japan?', 'only answer'],
+    ['en', 'Tell me about TF1', null],
+    ['en', 'How do you approach legacy modernization?', null],
+  ];
+
+  it.each(GOLDEN_QUESTIONS)('[%s] routes "%s"', async (locale, question, expected) => {
+    const { assistant, gateway } = locale === 'en' ? createEnglishAssistant() : createAssistant();
+
+    const reply = await assistant.reply([{ role: 'user', content: question }]);
+
+    if (expected === null) {
+      expect(gateway.answer).toHaveBeenCalledOnce();
+    } else {
+      expect(gateway.answer).not.toHaveBeenCalled();
+      expect(reply.answer).toContain(expected);
+    }
   });
 
   it('keeps questions asking for details about a role with the model', async () => {

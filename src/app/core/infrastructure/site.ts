@@ -16,6 +16,10 @@ export interface SeoPage {
   readonly ogType: 'website' | 'article' | 'profile';
   /** Site-relative path of the social preview image. Defaults to the site-wide image. */
   readonly image?: string;
+  /** ISO date the page was first published (articles). */
+  readonly published?: string;
+  /** ISO date of the last meaningful content update. */
+  readonly modified?: string;
 }
 
 export function absoluteUrl(path: string): string {

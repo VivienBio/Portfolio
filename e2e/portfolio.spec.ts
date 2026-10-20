@@ -66,6 +66,15 @@ test('exposes the SEO contract: canonical, hreflang, OpenGraph, JSON-LD, robots,
   const sitemap = await request.get(`${baseURL}/sitemap.xml`);
   expect(sitemap.status()).toBe(200);
   expect(await sitemap.text()).toContain('https://vivien-billot.web.app/work/betclic');
+  const llms = await request.get(`${baseURL}/llms.txt`);
+  expect(llms.status()).toBe(200);
+  expect(llms.headers()['content-type']).toContain('text/plain');
+  expect(await llms.text()).toContain('# Vivien Billot');
+  const html = await (await request.get(`${baseURL}/`)).text();
+  const bundle = html.match(/src="\/?(main-[\w-]+\.js)"/)?.[1];
+  expect(bundle).toBeTruthy();
+  const bundleResponse = await request.get(`${baseURL}/${bundle}`);
+  expect(bundleResponse.headers()['cache-control']).toContain('immutable');
 });
 
 test('redirects the legacy /en URLs and returns 404 for unknown pages', async ({
@@ -131,6 +140,17 @@ test('tells the full Betclic case study with decisions and trade-offs', async ({
 
   const results = await new AxeBuilder({ page }).analyze();
   assertNoViolations(results.violations, `${testInfo.project.name} case study`);
+});
+
+test('keeps every visible label inside the accessible name (WCAG 2.5.3)', async ({ page }) => {
+  for (const path of ['/', '/fr', '/work/tf1', '/fr/work/betclic']) {
+    await page.goto(path);
+    await expect(page.locator('.assistant-launcher')).toBeVisible();
+    const results = await new AxeBuilder({ page })
+      .withRules(['label-content-name-mismatch'])
+      .analyze();
+    assertNoViolations(results.violations, `label in name on ${path}`);
+  }
 });
 
 test('tells the TF1 modernization story and links between case studies', async ({ page }) => {
