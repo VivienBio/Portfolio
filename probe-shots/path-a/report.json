@@ -96,7 +96,7 @@
     "errors": []
   },
   "fr-tablet-light": {
-    "height": 9971,
+    "height": 10065,
     "overflowX": 0,
     "header": 111,
     "dock": {
@@ -105,11 +105,9 @@
       "top": 788.8125,
       "bottom": 1017.609375
     },
-    "overlapsWithDock": [
-      ".metrics"
-    ],
+    "overlapsWithDock": [],
     "sections": {
-      "accueil": 883,
+      "accueil": 976,
       "missions": 1294,
       "work": 1429,
       "approche": 2288,
@@ -228,7 +226,7 @@
     "errors": []
   },
   "fr-mobile-320": {
-    "height": 14821,
+    "height": 14845,
     "overflowX": 0,
     "header": 68,
     "dock": {
@@ -244,7 +242,7 @@
     "sections": {
       "accueil": 1113,
       "missions": 1663,
-      "work": 2219,
+      "work": 2243,
       "approche": 4502,
       "recommandations": 1404,
       "projets": 2432,
@@ -282,7 +280,7 @@
     "errors": []
   },
   "fr-landscape": {
-    "height": 9749,
+    "height": 9843,
     "overflowX": 0,
     "header": 68,
     "dock": {
@@ -295,7 +293,7 @@
       ".hero-copy"
     ],
     "sections": {
-      "accueil": 811,
+      "accueil": 904,
       "missions": 1297,
       "work": 1383,
       "approche": 2242,
