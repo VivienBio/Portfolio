@@ -10,55 +10,37 @@ permissions:
 jobs:
   shots:
     runs-on: ubuntu-24.04
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          ref: claude/portfolio-path-a
+          path: site
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
-      - name: Capture production pages
+          node-version-file: site/.nvmrc
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Build the branch under review
+        working-directory: site
         run: |
-          mkdir -p /tmp/shots-tool && cd /tmp/shots-tool
-          npm init -y >/dev/null
-          npm i playwright@1 >/dev/null
+          npm ci
+          npm run build
+      - name: Serve it and capture pages
+        working-directory: site
+        run: |
+          PORT=4300 OPENAI_API_KEY= CONTACT_FORM_ENDPOINT= GA4_MEASUREMENT_ID= node dist/Portfolio/server/server.mjs > /tmp/server.log 2>&1 &
+          for i in $(seq 1 40); do curl -sf http://127.0.0.1:4300/healthz >/dev/null && break; sleep 1; done
           npx playwright install --with-deps chromium >/dev/null
-          cat > shots.mjs <<'JS'
-          import { chromium, devices } from 'playwright';
-          const out = process.argv[2];
-          const browser = await chromium.launch();
-          const targets = [
-            { name: 'home-fr-desktop-light', url: 'https://vivien-billot.web.app/fr', viewport: { width: 1440, height: 900 }, scheme: 'light' },
-            { name: 'home-fr-desktop-dark', url: 'https://vivien-billot.web.app/fr', viewport: { width: 1440, height: 900 }, scheme: 'dark' },
-            { name: 'home-fr-mobile-light', url: 'https://vivien-billot.web.app/fr', mobile: true, scheme: 'light' },
-            { name: 'betclic-fr-desktop-light', url: 'https://vivien-billot.web.app/fr/work/betclic', viewport: { width: 1440, height: 900 }, scheme: 'light' },
-          ];
-          for (const t of targets) {
-            const context = await browser.newContext({
-              ...(t.mobile ? { ...devices['Pixel 7'], viewport: { width: 390, height: 844 } } : { viewport: t.viewport }),
-              deviceScaleFactor: 1,
-              locale: 'fr-FR',
-              colorScheme: t.scheme,
-              reducedMotion: 'reduce',
-            });
-            await context.addInitScript((scheme) => {
-              try { localStorage.setItem('portfolio-theme', scheme); } catch {}
-            }, t.scheme);
-            const page = await context.newPage();
-            await page.goto(t.url, { waitUntil: 'networkidle' });
-            await page.addStyleTag({ content: 'app-analytics-consent { display: none !important; }' });
-            await page.waitForTimeout(800);
-            await page.screenshot({ path: `${out}/${t.name}.jpg`, fullPage: true, type: 'jpeg', quality: 72 });
-            await page.screenshot({ path: `${out}/${t.name}-fold.jpg`, type: 'jpeg', quality: 80 });
-            await context.close();
-          }
-          await browser.close();
-          JS
-          mkdir -p "$GITHUB_WORKSPACE/probe-shots"
-          node shots.mjs "$GITHUB_WORKSPACE/probe-shots"
-          ls -la "$GITHUB_WORKSPACE/probe-shots"
+          mkdir -p "$GITHUB_WORKSPACE/probe-shots/path-a"
+          cp "$GITHUB_WORKSPACE/probe/shots.mjs" ./probe-shots.mjs
+          node probe-shots.mjs "$GITHUB_WORKSPACE/probe-shots/path-a"
+          ls -la "$GITHUB_WORKSPACE/probe-shots/path-a"
       - name: Commit screenshots to the probe branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add probe-shots
-          git commit -m "Temporary: production screenshots" || exit 0
+          git commit -m "Temporary: Path A screenshots" || exit 0
           git push origin HEAD:claude/audit-probe
