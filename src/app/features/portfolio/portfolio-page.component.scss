@@ -226,14 +226,14 @@
   display: inline;
 }
 
-/* Hero: what Vivien does, and one replayed market to show it */
+/* Hero: what Vivien does, and the two case studies that show it */
 .hero {
   padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(3.25rem, 6vw, 4.75rem);
 }
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: end;
   gap: clamp(2.5rem, 4.5vw, 4.5rem);
 }
 .hero-layout > * {
@@ -311,118 +311,65 @@ h1 {
   background: var(--night-raised);
   border-color: var(--night-muted);
 }
-.replay {
-  margin: 0;
-  padding: 1.25rem 1.4rem 1.4rem;
+.hero-cases {
+  padding: 1.35rem 1.5rem 0.5rem;
   background: var(--night-raised);
   border: 1px solid var(--night-line);
   border-radius: 14px;
 }
-.replay figcaption {
-  display: grid;
-  gap: 0.3rem;
-}
-.replay-title {
-  font-size: 1.05rem;
-  font-weight: 720;
-  font-stretch: 106%;
-}
-.replay-note {
+.hero-cases-title {
+  margin: 0 0 0.35rem;
   color: var(--night-muted);
-  font-size: 0.86rem;
-  line-height: 1.45;
-}
-.replay-chart {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-top: 0.85rem;
-  font-family: var(--font);
-  overflow: visible;
-}
-.replay-chart-compact {
-  display: none;
-}
-.chart-grid {
-  stroke: var(--night-line);
-  stroke-width: 1;
-}
-.chart-half {
-  stroke: #33466a;
-  stroke-width: 1;
-  stroke-dasharray: 4 6;
-}
-.chart-axis {
-  fill: #8d9ab0;
-  font-size: 13px;
-  font-stretch: 82%;
-}
-.chart-signal {
-  fill: var(--signal-soft);
-  font-size: 13px;
+  font-size: 0.95rem;
   font-weight: 600;
+  line-height: 1.3;
 }
-.chart-label {
-  fill: var(--night-ink);
-  font-size: 14px;
-  font-weight: 600;
-}
-.chart-small {
-  font-size: 11px;
-}
-.chart-band {
-  fill: var(--signal);
-  fill-opacity: 0.16;
-}
-.chart-trace {
-  fill: none;
-  stroke: var(--trace);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.chart-jump {
-  fill: none;
-  stroke: var(--trace);
-  stroke-width: 1.4;
-  stroke-dasharray: 2 5;
-  stroke-opacity: 0.7;
-}
-.chart-pin {
-  fill: var(--night-raised);
-  stroke: var(--night-ink);
-  stroke-width: 2;
-}
-.chart-glow {
-  fill: var(--signal);
-  fill-opacity: 0.22;
-}
-.chart-head {
-  fill: var(--signal);
-}
-.replay-log {
-  display: grid;
-  gap: 0.5rem;
-  margin: 0.85rem 0 0;
+.hero-cases ul {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
-.replay-log li {
+/* The whole row opens the case study; the link itself carries only its title. */
+.hero-case {
+  position: relative;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0.9rem;
-  padding: 0.6rem 0.85rem;
-  background: var(--night);
-  border: 1px solid var(--night-line);
-  border-radius: 8px;
-  font-size: 0.92rem;
-  line-height: 1.45;
+  gap: 0.35rem;
+  padding: 1.05rem 0;
+  border-top: 1px solid var(--night-line);
 }
-.replay-time {
-  color: var(--trace);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+.hero-case-meta {
+  color: var(--night-muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+.hero-case-link {
+  color: var(--night-ink);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  font-stretch: 106%;
+  line-height: 1.25;
+  text-decoration: none;
+  text-wrap: balance;
+}
+.hero-case-link::after {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  content: '';
+}
+.hero-case:hover .hero-case-link,
+.hero-case-link:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3rem;
+}
+.hero-case-link:focus-visible {
+  outline: none;
+}
+.hero-case-link:focus-visible::after {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
 }
 .reveal {
   opacity: 0;
@@ -925,7 +872,7 @@ h2 {
     grid-template-columns: minmax(0, 1fr);
   }
   .hero-copy,
-  .replay {
+  .hero-cases {
     max-width: 46rem;
   }
 }
@@ -1032,8 +979,8 @@ h2 {
     max-width: 28rem;
     margin-top: 1.5rem;
   }
-  .replay {
-    padding: 1rem;
+  .hero-cases {
+    padding: 1.1rem 1.15rem 0.35rem;
   }
   .principles {
     grid-template-columns: minmax(0, 1fr);
@@ -1068,16 +1015,6 @@ h2 {
   }
 }
 @media (max-width: 560px) {
-  .replay-chart-wide {
-    display: none;
-  }
-  .replay-chart-compact {
-    display: block;
-  }
-  .replay-log li {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.15rem;
-  }
   .practical,
   .contact-directory {
     grid-template-columns: minmax(0, 1fr);
