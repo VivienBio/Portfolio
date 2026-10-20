@@ -37,10 +37,10 @@ jobs:
           for (const line of lines) console.log(`::warning title=${label}::${line.slice(0, 1800)}`);
           JS
           for url in https://vivien-billot.web.app/ https://vivien-billot.web.app/fr/work/tf1; do
-            for run in 1; do
+            for run in 1 2 3; do
               name="$(echo "$url" | sed 's#https://vivien-billot.web.app##; s#/#_#g')-mobile-$run"
               npx --yes lighthouse@12 "$url" --quiet --output=json --output-path="./$name.json" \
-                --only-categories=performance,accessibility \
+                --only-categories=performance,accessibility,best-practices,seo \
                 --chrome-flags="--headless=new --no-sandbox" || echo "::error::lighthouse failed for $url run $run"
               if [ -f "./$name.json" ]; then
                 if [ "$run" = 1 ]; then node report.js "./$name.json" "$url mobile #$run"; else node -e 'const r=require(require("path").resolve(process.argv[1]));const a=r.audits;console.log(`::notice title=${process.argv[2]}::perf ${Math.round(r.categories.performance.score*100)} | LCP ${a["largest-contentful-paint"].displayValue} TBT ${a["total-blocking-time"].displayValue}`)' "./$name.json" "$url mobile #$run"; fi
