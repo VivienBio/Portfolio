@@ -24,7 +24,7 @@ jobs:
           console.log(`::notice title=${label}::perf ${s('performance')} | FCP ${a['first-contentful-paint'].displayValue} LCP ${a['largest-contentful-paint'].displayValue} TBT ${a['total-blocking-time'].displayValue} CLS ${a['cumulative-layout-shift'].displayValue}`);
           const pick = (id, f) => (a[id]?.details?.items || []).slice(0, 12).map(f).join(' ; ');
           const lines = [
-            'NAME-MISMATCH: ' + pick('label-content-name-mismatch', (i) => (i.node?.snippet || '').slice(0, 160)),
+            'NAME-MISMATCH: ' + pick('label-content-name-mismatch', (i) => `${(i.node?.snippet || '').slice(0, 90)} => ${(i.node?.explanation || '').replace(/\s+/g, ' ').slice(0, 160)}`),
             'CACHE: ' + pick('uses-long-cache-ttl', (i) => `${i.url} ttl=${i.cacheLifetimeMs}`),
             'RESPONSIVE-IMG: ' + pick('uses-responsive-images', (i) => `${i.url} waste=${i.wastedBytes}`),
             'MODERN-IMG: ' + pick('modern-image-formats', (i) => `${i.url} waste=${i.wastedBytes}`),
@@ -36,8 +36,8 @@ jobs:
           ];
           for (const line of lines) console.log(`::warning title=${label}::${line.slice(0, 1800)}`);
           JS
-          for url in https://vivien-billot.web.app/ https://vivien-billot.web.app/work/betclic; do
-            for run in 1 2 3; do
+          for url in https://vivien-billot.web.app/ https://vivien-billot.web.app/fr/work/tf1; do
+            for run in 1; do
               name="$(echo "$url" | sed 's#https://vivien-billot.web.app##; s#/#_#g')-mobile-$run"
               npx --yes lighthouse@12 "$url" --quiet --output=json --output-path="./$name.json" \
                 --only-categories=performance,accessibility \
