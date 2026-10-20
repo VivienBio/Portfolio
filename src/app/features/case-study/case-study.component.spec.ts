@@ -101,8 +101,10 @@ describe('CaseStudyComponent', () => {
     const ogImage = document.head.querySelector('meta[property="og:image"]');
     const twitterImage = document.head.querySelector('meta[name="twitter:image"]');
 
-    expect(ogImage?.getAttribute('content')).toBe(`${SITE_URL}/og-case-betclic-en.jpg`);
-    expect(twitterImage?.getAttribute('content')).toBe(`${SITE_URL}/og-case-betclic-en.jpg`);
+    expect(ogImage?.getAttribute('content')).toMatch(
+      new RegExp(`^${SITE_URL}/og-case-betclic-en\\.jpg\\?v=[\\w-]+$`),
+    );
+    expect(twitterImage?.getAttribute('content')).toBe(ogImage?.getAttribute('content'));
   });
 
   it('provides complete, mirrored copy for every locale and slug', () => {

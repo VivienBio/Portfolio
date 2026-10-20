@@ -56,7 +56,7 @@ test('exposes the SEO contract: canonical, hreflang, OpenGraph, JSON-LD, robots,
   );
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     'content',
-    /og-image\.jpg$/,
+    /og-image\.jpg\?v=[\w-]+$/,
   );
   await expect(page.locator('script#person-json-ld')).toHaveCount(1);
 
