@@ -6,11 +6,11 @@ The facts below are the same ones published on his portfolio, résumé and Linke
 
 ## Experience
 
-- Betclic Group, since October 2025 (freelance mission, Sports Trading): real-time pricing engine in C# / .NET with Kafka, gRPC and AWS; takes the quants' statistical, XGBoost/ONNX and Monte Carlo models to production; market lifecycle rules (suspend, reopen); deterministic capture & replay framework; CI/CD with GitHub Actions, Terraform and Docker; specialized AI agents and evaluation suites for engineering.
-- TF1 Group, February 2022 to October 2025 (freelance): Tech Lead of three teams on the advertising-system redesign; 11 projects shipped to production and over 80 incidents resolved without pausing the modernization; VB6-era legacy moved to .NET 6/8, Angular, Azure and AKS.
-- Rent A Car, December 2017 to December 2021: senior developer, then technical manager of a nine-person team; digital journey for a network of over 500 branches, including Easy Péage, presented as Europe's first in-vehicle toll payment service for rental cars.
-- Stago, December 2012 to November 2017: C# patient-results calculation framework for in-vitro diagnostic instruments; led an eight-person R&D team.
-- Earlier: Bentley Systems (C++ / C# developer intern, 2012) and Total (VB.NET developer intern, 2011).
+- Betclic Group, since October 2025, Senior Software Engineer (.NET / Kafka / AWS), freelance mission in Sports Trading: real-time pricing engine in C# / .NET with Kafka, gRPC and AWS; takes the quants' statistical, XGBoost/ONNX and Monte Carlo models to production; market lifecycle rules (suspend, reopen); deterministic capture & replay framework; CI/CD with GitHub Actions, Terraform and Docker; specialized AI agents and evaluation suites for engineering.
+- TF1 Group, February 2022 to October 2025, Tech Lead Full Stack (.NET / Angular), freelance: led three teams on the advertising-system redesign; 11 projects shipped to production and over 80 incidents resolved without pausing the modernization; VB6-era legacy moved to .NET 6/8, Angular, Azure and AKS.
+- Rent A Car, December 2017 to December 2021: Senior Developer Full Stack, then Tech Lead Full Stack (.NET / Angular) of a nine-person team; digital journey for a network of over 500 branches, including Easy Péage, presented as Europe's first in-vehicle toll payment service for rental cars.
+- Stago, December 2012 to November 2017: Software Engineer (C# / .NET), then Team Lead & Scrum Master (C# / WPF) of an eight-person team; C# patient-results calculation framework for in-vitro diagnostic instruments.
+- Earlier: Bentley Systems, Software Developer (C++ / C#) internship in 2012; Total, Software Developer (.NET) internship in 2011.
 
 ## Education and recognition
 

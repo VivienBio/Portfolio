@@ -56,7 +56,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
   experiences: [
     {
       company: 'Betclic Group',
-      role: 'Senior Software Engineer',
+      role: 'Senior Software Engineer (.NET / Kafka / AWS) — freelance',
       period: 'Depuis octobre 2025',
       summary:
         'Je contribue à la chaîne de pricing sportif propriétaire de Betclic : produire des probabilités internes pour proposer plus vite des cotes maîtrisées aux parieurs, avec moins de dépendance exclusive aux providers externes.',
@@ -81,10 +81,10 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       company: 'Groupe TF1',
-      role: 'Tech Lead / Architecte (freelance)',
+      role: 'Tech Lead Full Stack (.NET / Angular) — freelance',
       period: 'Février 2022 — octobre 2025',
       summary:
-        'Référent technique de trois équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
+        'Tech Lead de trois équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
       achievements: [
         'Donner un cap commun aux équipes : architecture, roadmap, priorisation, coaching, recrutement et respect des délais',
         'Réduire le lead time grâce aux pratiques Accelerate, aux tests et à l’observabilité',
@@ -95,10 +95,10 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       company: 'Rent A Car',
-      role: 'Développeur senior → Tech Lead / Responsable technique',
+      role: 'Senior Developer Full Stack → Tech Lead Full Stack (.NET / Angular)',
       period: 'Déc. 2017 — déc. 2021',
       summary:
-        'De développeur senior à responsable technique d’une équipe de neuf personnes, j’ai contribué à la transformation numérique d’un réseau de plus de 500 agences.',
+        'Passé de Senior Developer Full Stack à Tech Lead Full Stack d’une équipe de neuf personnes, j’ai contribué à la transformation numérique d’un réseau de plus de 500 agences.',
       achievements: [
         'Lancer Easy Péage, présenté comme le premier service européen de paiement de péage embarqué dans un véhicule de location',
         'Digitaliser le parcours : check-in, signature Yousign, état des lieux WeProov et e-commerce à fort trafic',
@@ -109,10 +109,10 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       company: 'Stago',
-      role: 'Responsable d’étude → Responsable d’équipe R&D',
+      role: 'Software Engineer (C# / .NET) → Team Lead & Scrum Master (C# / WPF)',
       period: 'Déc. 2012 — nov. 2017',
       summary:
-        'J’ai évolué de responsable d’étude à responsable d’une équipe R&D de huit personnes sur une nouvelle gamme d’automates de diagnostic in vitro.',
+        'Passé de Software Engineer à Team Lead & Scrum Master d’une équipe de huit personnes, j’ai travaillé sur une nouvelle gamme d’automates de diagnostic in vitro.',
       achievements: [
         'Concevoir le framework C# de calcul des résultats patients dans un environnement médical réglementé',
         'Refactorer les modules critiques avec TDD, SOLID, MVVM et intégration continue TeamCity',
@@ -123,7 +123,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       company: 'Bentley Systems',
-      role: 'Développeur C++ / C# — stage',
+      role: 'Software Developer (C++ / C#) — stage',
       period: 'Avr. — nov. 2012',
       summary:
         'Première expérience sur des applications de génie civil : finaliser un framework métier et développer des outils qui sécurisent les données de conception.',
@@ -135,7 +135,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       company: 'Total',
-      role: 'Développeur VB.NET — stage',
+      role: 'Software Developer (.NET) — stage',
       period: 'Fév. — juil. 2011',
       summary:
         'J’ai créé des outils de suivi des audits de transport d’hydrocarbures pour la zone Afrique–Moyen-Orient, au croisement de la donnée et de la sécurité opérationnelle.',
@@ -258,13 +258,14 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     'Software Craftsmanship — Azaé',
     'C# — Valtech',
     'C# avancé et design patterns — Learning Tree',
-    'DevOps et Azure DevOps — SILAS',
+    'DevOps, Liquibase et GitHub — SILAS',
+    'Azure, DevOps et Kubernetes',
     'Méthodes agiles — Scrum.org',
     'SAFe Release Train Engineer 6.0 — Scaled Agile',
     'Management IT — EFE',
     'Recrutement tech — Mobiskill',
-    'Sécurité applicative',
-    'Datadog & observabilité',
+    'Sécurité applicative — Partenor Hauts-de-France',
+    'Datadog & observabilité — Partenor Hauts-de-France',
   ],
 });
 
@@ -348,10 +349,10 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     {
       ...FRENCH_PORTFOLIO.experiences[1]!,
       company: 'TF1 Group',
-      role: 'Tech Lead / Software Architect (freelance)',
+      role: 'Tech Lead Full Stack (.NET / Angular) — freelance',
       period: 'Feb 2022 — Oct 2025',
       summary:
-        'As technical lead for three multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
+        'As Tech Lead for three multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
       achievements: [
         'Giving teams a shared direction through architecture, roadmaps, prioritization, coaching, hiring, and delivery discipline',
         'Reducing lead time through Accelerate practices, testing, and observability',
@@ -361,10 +362,10 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       ...FRENCH_PORTFOLIO.experiences[2]!,
-      role: 'Senior Developer → Tech Lead / Technical Manager',
+      role: 'Senior Developer Full Stack → Tech Lead Full Stack (.NET / Angular)',
       period: 'Dec 2017 — Dec 2021',
       summary:
-        'I progressed from senior developer to technical manager of a nine-person team, contributing to the digital transformation of a network of over 500 branches.',
+        'I progressed from Senior Developer Full Stack to Tech Lead Full Stack of a nine-person team, contributing to the digital transformation of a network of over 500 branches.',
       achievements: [
         'Launching Easy Péage, announced as Europe’s first in-vehicle toll-payment service for rental cars',
         'Digitizing the journey through check-in, Yousign e-signature, WeProov inspections, and high-traffic e-commerce',
@@ -374,10 +375,10 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       ...FRENCH_PORTFOLIO.experiences[3]!,
-      role: 'R&D Project Lead → R&D Team Lead',
+      role: 'Software Engineer (C# / .NET) → Team Lead & Scrum Master (C# / WPF)',
       period: 'Dec 2012 — Nov 2017',
       summary:
-        'I progressed from project lead to manager of an eight-person R&D team working on a new range of in-vitro diagnostic instruments.',
+        'I progressed from Software Engineer to Team Lead & Scrum Master of an eight-person team working on a new range of in-vitro diagnostic instruments.',
       achievements: [
         'Designing the C# patient-results calculation framework in a regulated medical environment',
         'Refactoring critical modules with TDD, SOLID, MVVM, and TeamCity continuous integration',
@@ -387,7 +388,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       ...FRENCH_PORTFOLIO.experiences[4]!,
-      role: 'C++ / C# Developer Intern',
+      role: 'Software Developer (C++ / C#) — internship',
       period: 'Apr — Nov 2012',
       summary:
         'My first role in civil-engineering software: completing a business framework and building tools that safeguard design data.',
@@ -398,7 +399,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       ...FRENCH_PORTFOLIO.experiences[5]!,
-      role: 'VB.NET Developer Intern',
+      role: 'Software Developer (.NET) — internship',
       period: 'Feb — Jul 2011',
       summary:
         'I built tools for monitoring hydrocarbon-transport audits across Africa and the Middle East, connecting data with operational safety.',
@@ -503,13 +504,14 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     'Software Craftsmanship — Azaé',
     'C# — Valtech',
     'Advanced C# and Design Patterns — Learning Tree',
-    'DevOps and Azure DevOps — SILAS',
+    'DevOps, Liquibase and GitHub — SILAS',
+    'Azure, DevOps and Kubernetes',
     'Agile methods — Scrum.org',
     'SAFe Release Train Engineer 6.0 — Scaled Agile',
     'IT Management — EFE',
     'Technical Recruitment — Mobiskill',
-    'Application Security',
-    'Datadog & Observability',
+    'Application Security — Partenor Hauts-de-France',
+    'Datadog & Observability — Partenor Hauts-de-France',
   ],
 });
 

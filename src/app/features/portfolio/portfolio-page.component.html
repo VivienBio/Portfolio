@@ -287,7 +287,11 @@
         <h2 id="learning-title">{{ copy.projects.learningTitle }}</h2>
         <p>{{ copy.projects.learningDescription }}</p>
         <h3>{{ copy.projects.certificationsTitle }}</h3>
-        <p class="certifications">{{ certifications }}</p>
+        <ul class="certifications">
+          @for (certification of portfolio.certifications; track certification) {
+            <li>{{ certification }}</li>
+          }
+        </ul>
       </section>
     </div>
   </div>
