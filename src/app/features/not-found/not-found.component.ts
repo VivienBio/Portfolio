@@ -79,7 +79,6 @@ const COPY = {
       margin: 0;
       font-size: clamp(2.2rem, 6vw, 4rem);
       font-weight: 800;
-      font-stretch: 108%;
       line-height: 1.05;
       letter-spacing: -0.02em;
     }
