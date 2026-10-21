@@ -229,7 +229,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2025',
           company: 'Betclic Group',
-          role: 'Senior Software Engineer, freelance, since October 2025',
+          role: 'Senior Software Engineer (.NET / Kafka / AWS), freelance, since October 2025',
           summary:
             'A proprietary sports-pricing chain: taking the quants’ models to production, a real-time C# / .NET engine with Kafka and gRPC, and a deterministic capture and replay framework.',
           caseStudy: {
@@ -241,9 +241,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2022',
           company: 'TF1 Group',
-          role: 'Freelance Tech Lead of three teams, February 2022 to October 2025',
+          role: 'Tech Lead Full Stack (.NET / Angular), freelance, February 2022 to October 2025',
           summary:
-            'Redesigning the advertising platform without stopping it: 11 projects shipped to production, and a VB6-era legacy replaced step by step with .NET 6/8, Angular, Azure, and AKS.',
+            'Three teams redesigning the advertising platform without stopping it: 11 projects shipped to production, and a VB6-era legacy replaced step by step with .NET 6/8, Angular, Azure, and AKS.',
           caseStudy: {
             path: '/work/tf1',
             label: 'Case study: modernizing a broadcaster’s ad platform without stopping it',
@@ -252,21 +252,21 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2017',
           company: 'Rent A Car',
-          role: 'Senior developer, then technical manager of a nine-person team',
+          role: 'Senior Developer Full Stack, then Tech Lead Full Stack (.NET / Angular) of a nine-person team',
           summary:
             'The digital rental journey for a network of 500+ branches: microservices, dynamic pricing, and Easy Péage, announced as Europe’s first in-vehicle toll payment for rental cars.',
         },
         {
           year: '2012',
           company: 'Stago',
-          role: 'R&D project lead, then R&D team lead (eight people)',
+          role: 'Software Engineer (C# / .NET), then Team Lead & Scrum Master (C# / WPF) of an eight-person team',
           summary:
             'The C# framework that computes patient results on in-vitro diagnostic instruments, in a regulated environment, with TDD and requirements traceability.',
         },
         {
           year: '2011',
           company: 'Internships',
-          role: 'C++ / C# developer at Bentley Systems, VB.NET developer at Total',
+          role: 'Software Developer (C++ / C#) at Bentley Systems, Software Developer (.NET) at Total',
         },
       ],
       cvAction: 'Full career in the resume (PDF)',
@@ -466,7 +466,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2025',
           company: 'Betclic Group',
-          role: 'Senior Software Engineer, freelance, depuis octobre 2025',
+          role: 'Senior Software Engineer (.NET / Kafka / AWS), freelance, depuis octobre 2025',
           summary:
             'Chaîne de pricing sportif propriétaire : mise en production des modèles des quants, moteur temps réel C# / .NET avec Kafka et gRPC, framework de capture et de rejeu déterministe.',
           caseStudy: {
@@ -478,9 +478,9 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2022',
           company: 'Groupe TF1',
-          role: 'Tech Lead freelance de trois équipes, février 2022 à octobre 2025',
+          role: 'Tech Lead Full Stack (.NET / Angular), freelance, de février 2022 à octobre 2025',
           summary:
-            'Refonte du SI publicitaire sans l’arrêter : 11 projets mis en production, un legacy VB6 remplacé pas à pas par .NET 6/8, Angular, Azure et AKS.',
+            'Trois équipes pour refondre le SI publicitaire sans l’arrêter : 11 projets mis en production, un legacy VB6 remplacé pas à pas par .NET 6/8, Angular, Azure et AKS.',
           caseStudy: {
             path: '/fr/work/tf1',
             label: 'Étude de cas : moderniser le SI publicitaire d’un diffuseur sans l’arrêter',
@@ -489,21 +489,21 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2017',
           company: 'Rent A Car',
-          role: 'Développeur senior, puis responsable technique d’une équipe de neuf personnes',
+          role: 'Senior Developer Full Stack, puis Tech Lead Full Stack (.NET / Angular) d’une équipe de neuf personnes',
           summary:
             'Le parcours de location digital d’un réseau de plus de 500 agences : microservices, pricing dynamique et Easy Péage, annoncé comme le premier paiement de péage embarqué d’Europe pour la location.',
         },
         {
           year: '2012',
           company: 'Stago',
-          role: 'Responsable d’étude, puis responsable d’équipe R&D (huit personnes)',
+          role: 'Software Engineer (C# / .NET), puis Team Lead & Scrum Master (C# / WPF) d’une équipe de huit personnes',
           summary:
             'Le framework C# qui calcule les résultats patients sur des automates de diagnostic in vitro, en environnement réglementé, avec TDD et traçabilité des exigences.',
         },
         {
           year: '2011',
           company: 'Stages',
-          role: 'Développeur C++ / C# chez Bentley Systems, développeur VB.NET chez Total',
+          role: 'Software Developer (C++ / C#) chez Bentley Systems, Software Developer (.NET) chez Total',
         },
       ],
       cvAction: 'Parcours complet dans le CV (PDF)',

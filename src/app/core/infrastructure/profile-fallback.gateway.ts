@@ -144,12 +144,12 @@ const ANSWERS = {
     {
       terms: ['rent', 'location'],
       answer:
-        'Chez Rent A Car, j’ai évolué de développeur senior à responsable technique d’une équipe de neuf personnes pour accompagner la transformation de plus de 500 agences. Les réalisations couvrent Easy Péage — présenté comme une première européenne dans la location —, le check-in digital, Yousign, WeProov, le pricing dynamique, l’interface ANTAI, le référentiel client RGPD et la refonte e-commerce à fort trafic.',
+        'Chez Rent A Car, je suis passé de Senior Developer Full Stack à Tech Lead Full Stack (.NET / Angular), à la tête d’une équipe de neuf personnes, pour accompagner la transformation de plus de 500 agences. Les réalisations couvrent Easy Péage — présenté comme une première européenne dans la location —, le check-in digital, Yousign, WeProov, le pricing dynamique, l’interface ANTAI, le référentiel client RGPD et la refonte e-commerce à fort trafic.',
     },
     {
       terms: ['stago', 'medical'],
       answer:
-        'Chez Stago, j’ai évolué de responsable d’étude à responsable d’une équipe R&D de huit personnes sur des automates de diagnostic in vitro. J’ai conçu un framework C# de calcul des résultats patients, refactoré des modules critiques avec TDD, SOLID et MVVM, structuré l’intégration continue TeamCity et assuré la traçabilité réglementaire avec IBM Rational DOORS.',
+        'Chez Stago, je suis passé de Software Engineer (C# / .NET) à Team Lead & Scrum Master (C# / WPF), à la tête d’une équipe de huit personnes, sur des automates de diagnostic in vitro. J’ai conçu un framework C# de calcul des résultats patients, refactoré des modules critiques avec TDD, SOLID et MVVM, structuré l’intégration continue TeamCity et assuré la traçabilité réglementaire avec IBM Rational DOORS.',
     },
     {
       terms: ['software craftsmanship'],
@@ -298,12 +298,12 @@ const ANSWERS = {
     {
       terms: ['rent', 'rental'],
       answer:
-        'At Rent A Car, I progressed from senior developer to technical manager of a nine-person team, supporting the transformation of over 500 branches. Deliveries included Easy Péage — presented as a European first for rental vehicles — digital check-in, Yousign, WeProov, dynamic pricing, the ANTAI interface, a single GDPR-compliant customer repository, and a high-traffic e-commerce redesign.',
+        'At Rent A Car, I progressed from Senior Developer Full Stack to Tech Lead Full Stack (.NET / Angular), leading a nine-person team and supporting the transformation of over 500 branches. Deliveries included Easy Péage — presented as a European first for rental vehicles — digital check-in, Yousign, WeProov, dynamic pricing, the ANTAI interface, a single GDPR-compliant customer repository, and a high-traffic e-commerce redesign.',
     },
     {
       terms: ['stago', 'medical'],
       answer:
-        'At Stago, I progressed from R&D project lead to manager of an eight-person team working on in-vitro diagnostic instruments. I designed a C# patient-results calculation framework, refactored critical modules with TDD, SOLID, and MVVM, structured TeamCity continuous integration, and ensured regulatory traceability through IBM Rational DOORS.',
+        'At Stago, I progressed from Software Engineer (C# / .NET) to Team Lead & Scrum Master (C# / WPF), leading an eight-person team working on in-vitro diagnostic instruments. I designed a C# patient-results calculation framework, refactored critical modules with TDD, SOLID, and MVVM, structured TeamCity continuous integration, and ensured regulatory traceability through IBM Rational DOORS.',
     },
     {
       terms: ['software craftsmanship'],

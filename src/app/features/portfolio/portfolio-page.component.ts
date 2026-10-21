@@ -56,7 +56,6 @@ export class PortfolioPageComponent {
     title,
     technologies: technologies.join(', '),
   }));
-  protected readonly certifications = this.portfolio.certifications.join(', ');
   readonly identityName = PORTFOLIO_PUBLIC_IDENTITY.name;
   readonly identityMeta = 'Freelance Senior Software Engineer';
   protected readonly themeLabel = computed(() =>

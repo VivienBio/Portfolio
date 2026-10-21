@@ -59,7 +59,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   kicker: 'Case study: Betclic Group, since October 2025',
   title: 'Real-time sports odds,',
   accent: 'priced in-house.',
-  roleLine: 'Senior Software Engineer in Sports Trading, C# / .NET on AWS',
+  roleLine: 'Senior Software Engineer (.NET / Kafka / AWS), freelance, in Sports Trading',
   metaTitle: 'Real-time sports pricing at Betclic — Vivien Billot',
   metaDescription:
     'A proprietary sports-pricing chain turning Monte Carlo simulations into live odds: market lifecycle, replay tooling and automated delivery on AWS.',
@@ -171,7 +171,7 @@ const EN_TF1: CaseStudyCopy = {
   kicker: 'Case study: TF1 Group, February 2022 to October 2025',
   title: 'Modernizing the ad platform',
   accent: 'without stopping it.',
-  roleLine: 'Tech Lead and software architect for three cross-functional teams',
+  roleLine: 'Tech Lead Full Stack (.NET / Angular), freelance, for three cross-functional teams',
   metaTitle: 'Modernizing TF1’s advertising platform — Vivien Billot',
   metaDescription:
     'Tech Lead of three teams modernizing TF1’s ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped with no business freeze.',
@@ -289,7 +289,7 @@ const FR_BETCLIC: CaseStudyCopy = {
   kicker: 'Étude de cas : Betclic Group, depuis octobre 2025',
   title: 'Des cotes sportives temps réel,',
   accent: 'produites en interne.',
-  roleLine: 'Senior Software Engineer en Sports Trading, C# / .NET sur AWS',
+  roleLine: 'Senior Software Engineer (.NET / Kafka / AWS), freelance, en Sports Trading',
   metaTitle: 'Pricing sportif temps réel chez Betclic — Vivien Billot',
   metaDescription:
     'Une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : marchés, replay, delivery automatisé sur AWS.',
@@ -404,7 +404,8 @@ const FR_TF1: CaseStudyCopy = {
   kicker: 'Étude de cas : Groupe TF1, de février 2022 à octobre 2025',
   title: 'Moderniser le SI publicitaire',
   accent: 'sans l’arrêter.',
-  roleLine: 'Tech Lead et architecte de trois équipes pluridisciplinaires',
+  roleLine:
+    'Tech Lead Full Stack (.NET / Angular), freelance, pour trois équipes pluridisciplinaires',
   metaTitle: 'Moderniser le SI publicitaire de TF1 — Vivien Billot',
   metaDescription:
     'Tech Lead de trois équipes sur le SI publicitaire de TF1 (2022–2025) : du legacy VB6 vers .NET 6/8 et AKS, 11 projets livrés sans geler l’activité.',

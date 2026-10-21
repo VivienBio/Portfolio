@@ -738,8 +738,13 @@ h2 {
   font-size: 1.05rem;
 }
 .learning .certifications {
-  margin-top: 0.5rem;
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
   color: var(--muted);
+  line-height: 1.45;
+  list-style: none;
 }
 
 /* Contact */

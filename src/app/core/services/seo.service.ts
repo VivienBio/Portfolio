@@ -129,7 +129,7 @@ function person(page: SeoPage): Record<string, unknown> {
     name: AUTHOR,
     givenName: 'Vivien',
     familyName: 'Billot',
-    jobTitle: 'Freelance Senior Software Engineer & Tech Lead',
+    jobTitle: 'Senior Software Engineer (.NET / Kafka / AWS)',
     url: homeUrl(page),
     image: `${SITE_URL}/vivien-billot-linkedin.jpg`,
     sameAs: [
