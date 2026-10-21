@@ -49,6 +49,7 @@
   --signal: #f2a93b;
   --signal-soft: #f3c47f;
   --signal-ink: #0e1828;
+  --night-focus: var(--signal);
   --font: Archivo, system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 :root[data-theme='dark'] {
@@ -61,6 +62,20 @@
   --accent-contrast: #0b1320;
   --line: #24334d;
   --deep: #0e1828;
+}
+/*
+ * The header and hero follow the theme: white in light mode, night in dark mode.
+ * The contact band, footer, case-study call to action and chat stay night in both.
+ */
+:root:not([data-theme='dark']) .band {
+  --night: #ffffff;
+  --night-raised: #f3f5f8;
+  --night-line: #dce2ea;
+  --night-border: #7d889a;
+  --night-ink: #141c2b;
+  --night-soft: #3c4658;
+  --night-muted: #566174;
+  --night-focus: #2f5fd0;
 }
 * {
   box-sizing: border-box;

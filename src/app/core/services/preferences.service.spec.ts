@@ -54,6 +54,26 @@ describe('PreferencesService', () => {
     expect(localStorage.getItem('portfolio-theme')).toBe('dark');
   });
 
+  it('matches the browser toolbar colour to the selected theme', () => {
+    const themeColor = document.createElement('meta');
+    themeColor.setAttribute('name', 'theme-color');
+    themeColor.setAttribute('content', '#ffffff');
+    document.head.append(themeColor);
+
+    try {
+      const service = TestBed.inject(PreferencesService);
+      expect(themeColor.getAttribute('content')).toBe('#ffffff');
+
+      service.toggleTheme();
+      expect(themeColor.getAttribute('content')).toBe('#0e1828');
+
+      service.toggleTheme();
+      expect(themeColor.getAttribute('content')).toBe('#ffffff');
+    } finally {
+      themeColor.remove();
+    }
+  });
+
   it('restores a previously selected dark theme', () => {
     localStorage.setItem('portfolio-theme', 'dark');
 

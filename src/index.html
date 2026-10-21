@@ -7,7 +7,18 @@
       name="description"
       content="Freelance Senior Software Engineer & Tech Lead: real-time sports pricing at Betclic, TF1 ad platform modernization, medical software. C#/.NET, AWS, Azure."
     />
-    <meta name="theme-color" content="#0e1828" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>
+      // Apply a saved dark theme before the first paint so the header and hero do not flash.
+      try {
+        if (localStorage.getItem('portfolio-theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0e1828');
+        }
+      } catch {
+        // Blocked storage keeps the default light theme.
+      }
+    </script>
     <meta name="google-site-verification" content="bIxMqejw3qG9YJzQYzm8VMUdSDtyusNVBETrI9reet8" />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
