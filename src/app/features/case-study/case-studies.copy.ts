@@ -56,10 +56,10 @@ export interface CaseStudyCopy {
 
 const EN_BETCLIC: CaseStudyCopy = {
   slug: 'betclic',
-  kicker: 'Case study · Betclic Group · Since Oct 2025',
+  kicker: 'Case study: Betclic Group, since October 2025',
   title: 'Real-time sports odds,',
   accent: 'priced in-house.',
-  roleLine: 'Senior Software Engineer — Quant & sports pricing · C#/.NET · AWS',
+  roleLine: 'Senior Software Engineer, quant and sports pricing, C# / .NET on AWS',
   metaTitle: 'Real-time sports pricing at Betclic — Vivien Billot',
   metaDescription:
     'A proprietary sports-pricing chain turning Monte Carlo simulations into live odds: market lifecycle, replay tooling and automated delivery on AWS.',
@@ -100,9 +100,9 @@ const EN_BETCLIC: CaseStudyCopy = {
       { name: 'Match events', detail: 'live, continuous' },
       { name: 'Monte Carlo simulation', detail: 'outcome probabilities' },
       { name: 'Pricing', detail: 'internally controlled odds' },
-      { name: 'Market lifecycle', detail: 'suspend · reopen · recompute' },
+      { name: 'Market lifecycle', detail: 'suspend, reopen, recompute' },
     ],
-    loop: 'Replay & tracing console — re-run events, explain decisions, validate fixes',
+    loop: 'Replay and tracing console: re-run events, explain decisions, validate fixes',
   },
   decisionsHeading: 'Key decisions',
   decisionsIntro:
@@ -158,7 +158,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   stackHeading: 'Stack & practices',
   stack: ['C# / .NET', 'Monte Carlo', 'AWS', 'Dagger', 'GitHub Actions', 'Claude Code / Cursor'],
   backToHome: 'Back to the portfolio',
-  otherCase: { label: 'Next case study: TF1 →', path: '/work/tf1' },
+  otherCase: { label: 'Next case study: TF1', path: '/work/tf1' },
   contactCta: {
     title: 'Working on a system where wrong answers are expensive?',
     action: 'Email me',
@@ -168,10 +168,10 @@ const EN_BETCLIC: CaseStudyCopy = {
 
 const EN_TF1: CaseStudyCopy = {
   slug: 'tf1',
-  kicker: 'Case study · TF1 Group · Feb 2022–Oct 2025',
+  kicker: 'Case study: TF1 Group, February 2022 to October 2025',
   title: 'Modernizing the ad platform',
   accent: 'without stopping it.',
-  roleLine: 'Tech Lead / Software Architect — three cross-functional teams',
+  roleLine: 'Tech Lead and software architect for three cross-functional teams',
   metaTitle: 'Modernizing TF1’s advertising platform — Vivien Billot',
   metaDescription:
     'Tech Lead of three teams modernizing TF1’s ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped, no business interruption.',
@@ -210,9 +210,9 @@ const EN_TF1: CaseStudyCopy = {
     label: 'Incremental replacement, domain by domain',
     stages: [
       { name: 'VB6-era legacy', detail: 'shrinking, still serving' },
-      { name: 'Governed APIs', detail: 'Apigee · one contract' },
+      { name: 'Governed APIs', detail: 'Apigee, one contract' },
       { name: '.NET 6/8 + Angular', detail: 'new services, domain by domain' },
-      { name: 'Azure · AKS', detail: 'CI/CD · Datadog · security scans' },
+      { name: 'Azure and AKS', detail: 'CI/CD, Datadog, security scans' },
     ],
     loop: 'Each domain moves only when its replacement is proven in production',
   },
@@ -276,7 +276,7 @@ const EN_TF1: CaseStudyCopy = {
     'Accelerate practices',
   ],
   backToHome: 'Back to the portfolio',
-  otherCase: { label: 'Next case study: Betclic →', path: '/work/betclic' },
+  otherCase: { label: 'Next case study: Betclic', path: '/work/betclic' },
   contactCta: {
     title: 'Facing a modernization that cannot stop the business?',
     action: 'Email me',
@@ -286,17 +286,17 @@ const EN_TF1: CaseStudyCopy = {
 
 const FR_BETCLIC: CaseStudyCopy = {
   slug: 'betclic',
-  kicker: 'Étude de cas · Betclic Group · Depuis octobre 2025',
+  kicker: 'Étude de cas : Betclic Group, depuis octobre 2025',
   title: 'Des cotes sportives temps réel,',
   accent: 'produites en interne.',
-  roleLine: 'Senior Software Engineer — Quant & pricing sportif · C#/.NET · AWS',
+  roleLine: 'Senior Software Engineer, quant et pricing sportif, C# / .NET sur AWS',
   metaTitle: 'Pricing sportif temps réel chez Betclic — Vivien Billot',
   metaDescription:
-    'Une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : marchés, replay, delivery automatisé sur AWS.',
+    'Une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : marchés, replay, delivery automatisé sur AWS.',
   context: {
     heading: 'Contexte',
     paragraphs: [
-      'Betclic est l’un des plus grands opérateurs de paris sportifs en Europe. La cote affichée à un parieur est un prix — et un prix faux ou en retard est immédiatement exploitable par le marché. La plupart des opérateurs achètent ces prix à des providers externes. Betclic construit sa propre chaîne de pricing : des modèles de probabilités internes qui alimentent des cotes maîtrisées, sur de nombreux sports et compétitions, pour réagir plus vite et réduire la dépendance exclusive aux providers.',
+      'Betclic est l’un des plus grands opérateurs de paris sportifs en Europe. La cote affichée à un parieur est un prix — et un prix faux ou en retard est immédiatement exploitable par le marché. La plupart des opérateurs achètent ces prix à des providers externes. Betclic construit sa propre chaîne de pricing : des modèles de probabilités internes qui alimentent des cotes maîtrisées, sur de nombreux sports et compétitions, pour réagir plus vite et réduire la dépendance exclusive aux providers.',
     ],
   },
   challenge: {
@@ -313,15 +313,15 @@ const FR_BETCLIC: CaseStudyCopy = {
   },
   constraintsHeading: 'Contraintes',
   constraints: [
-    'Temps réel : les événements de match arrivent, que le système soit prêt ou non.',
-    'Justesse sous concurrence : les marchés sont recalculés et re-décidés en continu, sur plusieurs sports.',
-    'Auditabilité : une décision algorithmique qui ne peut pas être rejouée ne peut être ni vérifiée ni corrigée.',
-    'Confidentialité : cette étude de cas s’en tient à ce que Betclic communique publiquement — aucun détail d’architecture interne.',
+    'Temps réel : les événements de match arrivent, que le système soit prêt ou non.',
+    'Justesse sous concurrence : les marchés sont recalculés et re-décidés en continu, sur plusieurs sports.',
+    'Auditabilité : une décision algorithmique qui ne peut pas être rejouée ne peut être ni vérifiée ni corrigée.',
+    'Confidentialité : cette étude de cas s’en tient à ce que Betclic communique publiquement — aucun détail d’architecture interne.',
   ],
   architecture: {
     heading: 'Comment ça s’articule',
     paragraphs: [
-      'Les événements de match alimentent des simulations Monte-Carlo qui estiment les probabilités d’issue sur de nombreux sports et compétitions. Les probabilités deviennent des cotes maîtrisées en interne selon des règles métier, et la logique de cycle de vie des marchés prend les décisions sensibles — suspendre, rouvrir, recalculer, investiguer. Autour de la chaîne : un back-office de replay et de traçage capable de rejouer les événements passés et de montrer pourquoi les algorithmes ont décidé ce qu’ils ont décidé, et un delivery sur AWS automatisé avec Dagger et GitHub Actions.',
+      'Les événements de match alimentent des simulations Monte-Carlo qui estiment les probabilités d’issue sur de nombreux sports et compétitions. Les probabilités deviennent des cotes maîtrisées en interne selon des règles métier, et la logique de cycle de vie des marchés prend les décisions sensibles — suspendre, rouvrir, recalculer, investiguer. Autour de la chaîne : un back-office de replay et de traçage capable de rejouer les événements passés et de montrer pourquoi les algorithmes ont décidé ce qu’ils ont décidé, et un delivery sur AWS automatisé avec Dagger et GitHub Actions.',
     ],
   },
   diagram: {
@@ -330,13 +330,13 @@ const FR_BETCLIC: CaseStudyCopy = {
       { name: 'Événements de match', detail: 'live, en continu' },
       { name: 'Simulation Monte-Carlo', detail: 'probabilités d’issue' },
       { name: 'Pricing', detail: 'cotes maîtrisées en interne' },
-      { name: 'Cycle de vie des marchés', detail: 'suspendre · rouvrir · recalculer' },
+      { name: 'Cycle de vie des marchés', detail: 'suspendre, rouvrir, recalculer' },
     ],
-    loop: 'Back-office de replay & traçage — rejouer, expliquer, valider les correctifs',
+    loop: 'Back-office de replay et de traçage : rejouer, expliquer, valider les correctifs',
   },
   decisionsHeading: 'Décisions clés',
   decisionsIntro:
-    'Produire le pricing en interne plutôt que dépendre exclusivement de providers est un choix stratégique de Betclic — il fixe l’exigence de mon travail : posséder les modèles, c’est posséder les erreurs. Voici les décisions que j’ai prises dans ce cadre.',
+    'Produire le pricing en interne plutôt que dépendre exclusivement de providers est un choix stratégique de Betclic — il fixe l’exigence de mon travail : posséder les modèles, c’est posséder les erreurs. Voici les décisions que j’ai prises dans ce cadre.',
   decisionLabels: {
     problem: 'Problème',
     options: 'Options',
@@ -347,23 +347,23 @@ const FR_BETCLIC: CaseStudyCopy = {
     {
       title: 'Rendre les décisions algorithmiques rejouables.',
       problem:
-        '« L’algorithme a fait quelque chose d’étrange hier » est une question sans réponse en l’absence de preuves — et une question sans réponse, c’est un système auquel on ne peut pas faire confiance.',
+        '« L’algorithme a fait quelque chose d’étrange hier » est une question sans réponse en l’absence de preuves — et une question sans réponse, c’est un système auquel on ne peut pas faire confiance.',
       options:
         'Se contenter de logs et de dashboards, ou construire un back-office dédié de replay et de traçage.',
       decision:
-        'J’ai construit le back-office de replay : rejouer les événements passés, tracer chaque décision algorithmique, valider un correctif contre la réalité avant sa mise en production.',
+        'J’ai construit le back-office de replay : rejouer les événements passés, tracer chaque décision algorithmique, valider un correctif contre la réalité avant sa mise en production.',
       tradeOff:
         'Ce type d’outillage ne livre aucune feature visible. Il est rentabilisé dès la première anomalie de marché qu’il faut expliquer avec des preuves plutôt qu’avec des hypothèses.',
     },
     {
       title: 'Qualifier l’accélération GPU avant de s’engager.',
       problem:
-        'La simulation Monte-Carlo est gourmande en calcul ; le réflexe est de foncer vers le GPU.',
+        'La simulation Monte-Carlo est gourmande en calcul ; le réflexe est de foncer vers le GPU.',
       options: 'S’engager dans une migration GPU, ou mesurer d’abord sur un POC borné.',
       decision:
-        'J’ai mené le POC pour obtenir des chiffres avant tout engagement d’architecture. Les chiffres restent internes — c’est la méthode qui compte : mesurer, puis s’engager.',
+        'J’ai mené le POC pour obtenir des chiffres avant tout engagement d’architecture. Les chiffres restent internes — c’est la méthode qui compte : mesurer, puis s’engager.',
       tradeOff:
-        'Un POC coûte des semaines ; un pari d’architecture non vérifié coûte des trimestres.',
+        'Un POC coûte des semaines ; un pari d’architecture non vérifié coûte des trimestres.',
     },
     {
       title: 'Faire de l’ingénierie assistée par IA un système, pas une habitude.',
@@ -371,7 +371,7 @@ const FR_BETCLIC: CaseStudyCopy = {
         'Des outils IA utilisés au cas par cas produisent des résultats inconstants et des raccourcis difficiles à relire.',
       options: 'Laisser chacun s’outiller, ou construire des workflows partagés et relisibles.',
       decision:
-        'J’intègre Claude Code et Cursor au workflow de l’équipe : skills, commandes, agents, routines et boucles de revue réutilisables.',
+        'J’intègre Claude Code et Cursor au workflow de l’équipe : skills, commandes, agents, routines et boucles de revue réutilisables.',
       tradeOff:
         'Standardiser coûte du temps de mise en place et de la discipline — en échange, le travail répétable accélère sans déléguer le jugement aux outils.',
     },
@@ -385,15 +385,15 @@ const FR_BETCLIC: CaseStudyCopy = {
   ],
   learnedHeading: 'Ce que j’en retiens',
   learned: [
-    'Dans un système de pricing, l’observabilité n’est pas un sujet de production — c’est une fonctionnalité du produit. Le back-office de replay a changé la façon dont l’équipe parle des anomalies : des opinions aux preuves.',
+    'Dans un système de pricing, l’observabilité n’est pas un sujet de production — c’est une fonctionnalité du produit. Le back-office de replay a changé la façon dont l’équipe parle des anomalies : des opinions aux preuves.',
     'Un POC est l’assurance d’architecture la moins chère qui existe.',
   ],
   stackHeading: 'Stack & pratiques',
   stack: ['C# / .NET', 'Monte-Carlo', 'AWS', 'Dagger', 'GitHub Actions', 'Claude Code / Cursor'],
   backToHome: 'Retour au portfolio',
-  otherCase: { label: 'Étude de cas suivante : TF1 →', path: '/fr/work/tf1' },
+  otherCase: { label: 'Étude de cas suivante : TF1', path: '/fr/work/tf1' },
   contactCta: {
-    title: 'Un système où l’erreur coûte cher ?',
+    title: 'Un système où l’erreur coûte cher ?',
     action: 'M’écrire',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },
@@ -401,51 +401,51 @@ const FR_BETCLIC: CaseStudyCopy = {
 
 const FR_TF1: CaseStudyCopy = {
   slug: 'tf1',
-  kicker: 'Étude de cas · Groupe TF1 · Février 2022–octobre 2025',
+  kicker: 'Étude de cas : Groupe TF1, de février 2022 à octobre 2025',
   title: 'Moderniser le SI publicitaire',
   accent: 'sans l’arrêter.',
-  roleLine: 'Tech Lead / Architecte — trois équipes pluridisciplinaires',
+  roleLine: 'Tech Lead et architecte de trois équipes pluridisciplinaires',
   metaTitle: 'Moderniser le SI publicitaire de TF1 — Vivien Billot',
   metaDescription:
-    'Tech Lead de trois équipes sur le SI publicitaire de TF1 (2022–2025) : du legacy VB6 vers .NET 6/8 et AKS, 11 projets livrés sans interrompre le métier.',
+    'Tech Lead de trois équipes sur le SI publicitaire de TF1 (2022–2025) : du legacy VB6 vers .NET 6/8 et AKS, 11 projets livrés sans interrompre le métier.',
   context: {
     heading: 'Contexte',
     paragraphs: [
-      'TF1 est le premier diffuseur privé français ; la publicité est le moteur de revenus, et le SI publicitaire est l’endroit où les campagnes deviennent de l’argent. À mon arrivée en 2022, ce système portait des années d’histoire — dont du code de l’ère VB6 — pendant que le métier continuait de vendre, planifier et diffuser chaque jour.',
+      'TF1 est le premier diffuseur privé français ; la publicité est le moteur de revenus, et le SI publicitaire est l’endroit où les campagnes deviennent de l’argent. À mon arrivée en 2022, ce système portait des années d’histoire — dont du code de l’ère VB6 — pendant que le métier continuait de vendre, planifier et diffuser chaque jour.',
     ],
   },
   challenge: {
     heading: 'Défi',
     paragraphs: [
-      'Moderniser le système — stack, architecture, pratiques — pendant qu’il faisait tourner le métier. Pas de gel, pas de réécriture big-bang, pas d’engagement rompu. Le piège classique de la modernisation est de choisir entre delivery et transformation ; le travail consistait à faire les deux.',
+      'Moderniser le système — stack, architecture, pratiques — pendant qu’il faisait tourner le métier. Pas de gel, pas de réécriture big-bang, pas d’engagement rompu. Le piège classique de la modernisation est de choisir entre delivery et transformation ; le travail consistait à faire les deux.',
     ],
   },
   role: {
     heading: 'Mon rôle',
     paragraphs: [
-      'J’ai porté la direction technique de trois équipes pluridisciplinaires : architecture, roadmaps, priorisation, coaching, recrutement et engagements de delivery. Les décisions étaient écrites, débattues et portées par les équipes — mon rôle était de garantir qu’elles soient prises, pas de les prendre seul.',
+      'J’ai porté la direction technique de trois équipes pluridisciplinaires : architecture, roadmaps, priorisation, coaching, recrutement et engagements de delivery. Les décisions étaient écrites, débattues et portées par les équipes — mon rôle était de garantir qu’elles soient prises, pas de les prendre seul.',
     ],
   },
   constraintsHeading: 'Contraintes',
   constraints: [
-    'Continuité métier : les opérations publicitaires ne pouvaient pas s’arrêter pour une migration.',
-    'Profondeur du legacy : des systèmes de l’ère VB6 avec des règles implicites qui n’existaient nulle part ailleurs que dans le code et dans les têtes.',
-    'Exposition : un incident dans un SI publicitaire se mesure en argent et en confiance.',
-    'Trois équipes, une direction : une architecture et des standards cohérents sur des chantiers parallèles.',
+    'Continuité métier : les opérations publicitaires ne pouvaient pas s’arrêter pour une migration.',
+    'Profondeur du legacy : des systèmes de l’ère VB6 avec des règles implicites qui n’existaient nulle part ailleurs que dans le code et dans les têtes.',
+    'Exposition : un incident dans un SI publicitaire se mesure en argent et en confiance.',
+    'Trois équipes, une direction : une architecture et des standards cohérents sur des chantiers parallèles.',
   ],
   architecture: {
     heading: 'Comment ça s’articule',
     paragraphs: [
-      'La modernisation a fonctionné en remplacement incrémental, pas en réécriture : de nouveaux services .NET 6/8 et des frontends Angular ont repris les domaines un à un, derrière des API gouvernées (Apigee), déployés sur Azure et AKS, avec l’observabilité Datadog et les scans de sécurité (Checkmarx, Snyk) intégrés à la chaîne de delivery. Le legacy a rétréci à mesure que le nouveau système faisait ses preuves — domaine par domaine, release par release.',
+      'La modernisation a fonctionné en remplacement incrémental, pas en réécriture : de nouveaux services .NET 6/8 et des frontends Angular ont repris les domaines un à un, derrière des API gouvernées (Apigee), déployés sur Azure et AKS, avec l’observabilité Datadog et les scans de sécurité (Checkmarx, Snyk) intégrés à la chaîne de delivery. Le legacy a rétréci à mesure que le nouveau système faisait ses preuves — domaine par domaine, release par release.',
     ],
   },
   diagram: {
     label: 'Remplacement incrémental, domaine par domaine',
     stages: [
       { name: 'Legacy ère VB6', detail: 'rétrécit, sert encore' },
-      { name: 'API gouvernées', detail: 'Apigee · un seul contrat' },
+      { name: 'API gouvernées', detail: 'Apigee, un seul contrat' },
       { name: '.NET 6/8 + Angular', detail: 'nouveaux services, domaine par domaine' },
-      { name: 'Azure · AKS', detail: 'CI/CD · Datadog · scans sécurité' },
+      { name: 'Azure et AKS', detail: 'CI/CD, Datadog, scans sécurité' },
     ],
     loop: 'Un domaine ne bascule que lorsque son remplaçant a fait ses preuves en production',
   },
@@ -474,7 +474,7 @@ const FR_TF1: CaseStudyCopy = {
         'Moderniser tout en livrant, c’est voir les régressions de qualité s’accumuler très vite.',
       options: 'Inspecter la qualité à la fin, ou la construire dans la boucle.',
       decision:
-        'Des pratiques inspirées d’Accelerate : des tests qui verrouillent les règles métier, des standards de code review, de l’observabilité et une boucle de feedback plus courte.',
+        'Des pratiques inspirées d’Accelerate : des tests qui verrouillent les règles métier, des standards de code review, de l’observabilité et une boucle de feedback plus courte.',
       tradeOff: 'Des premiers commits plus lents, tout le reste plus rapide.',
     },
     {
@@ -483,7 +483,7 @@ const FR_TF1: CaseStudyCopy = {
       options: 'Des choix locaux à chaque équipe, ou une gouvernance d’architecture partagée.',
       decision:
         'Des standards partagés, des décisions d’architecture explicites et une gouvernance d’API — écrits, débattus et portés par les équipes plutôt qu’imposés.',
-      tradeOff: 'L’alignement coûte des réunions ; la divergence coûte des années.',
+      tradeOff: 'L’alignement coûte des réunions ; la divergence coûte des années.',
     },
   ],
   outcomesHeading: 'Résultats',
@@ -492,11 +492,11 @@ const FR_TF1: CaseStudyCopy = {
     'Le code de l’ère VB6 progressivement remplacé par .NET 6/8, Angular, Azure et AKS.',
     'Un lead time réduit grâce aux tests, à l’observabilité et aux pratiques Accelerate.',
     'Plus de 80 incidents de production résolus sans mettre la modernisation en pause — chacun suivi d’une boucle post-incident, les classes de défaillance récurrentes étant éliminées par la conception au fil du temps.',
-    'Trois équipes qui ont grandi : cadre clair, décisions partagées, standards durables — recrutement et coaching compris.',
+    'Trois équipes qui ont grandi : cadre clair, décisions partagées, standards durables — recrutement et coaching compris.',
   ],
   learnedHeading: 'Ce que j’en retiens',
   learned: [
-    'La modernisation est une discipline de delivery avant d’être un sujet technique : dès qu’une transformation cesse de livrer de la valeur métier, elle perd son mandat.',
+    'La modernisation est une discipline de delivery avant d’être un sujet technique : dès qu’une transformation cesse de livrer de la valeur métier, elle perd son mandat.',
     'Le vrai legacy, c’est la connaissance implicite — la moitié du travail a consisté à rendre les règles suffisamment explicites pour être testées, challengées et remplacées en sécurité.',
   ],
   stackHeading: 'Stack & pratiques',
@@ -512,9 +512,9 @@ const FR_TF1: CaseStudyCopy = {
     'Pratiques Accelerate',
   ],
   backToHome: 'Retour au portfolio',
-  otherCase: { label: 'Étude de cas suivante : Betclic →', path: '/fr/work/betclic' },
+  otherCase: { label: 'Étude de cas suivante : Betclic', path: '/fr/work/betclic' },
   contactCta: {
-    title: 'Une modernisation qui ne peut pas arrêter le métier ?',
+    title: 'Une modernisation qui ne peut pas arrêter le métier ?',
     action: 'M’écrire',
     href: 'mailto:billot.vivien@gmail.com?subject=Contact%20portfolio%20-%20Vivien%20Billot',
   },

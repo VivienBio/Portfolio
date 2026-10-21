@@ -24,7 +24,7 @@ describe('CaseStudyComponent', () => {
     const element = render();
 
     expect(element.querySelector('h1')?.textContent).toContain('Real-time sports odds');
-    expect(element.textContent).toContain('Case study · Betclic Group');
+    expect(element.textContent).toContain('Case study: Betclic Group, since October 2025');
     expect(element.textContent).toContain('Monte Carlo');
     expect(element.textContent).toContain('replay');
   });

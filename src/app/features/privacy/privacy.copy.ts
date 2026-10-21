@@ -35,7 +35,7 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
     description:
       'Comprendre les données utilisées sur ce portfolio et garder la main sur vos choix.',
     eyebrow: 'Vos données, vos choix',
-    updated: 'Mise à jour : 21 septembre 2026',
+    updated: 'Mise à jour : 21 septembre 2026',
     home: '← Portfolio',
     homePath: '/fr',
     alternate: 'Read in English',
@@ -66,9 +66,9 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
     sections: [
       {
         id: 'responsable',
-        title: 'Qui s’occupe de vos données ?',
+        title: 'Qui s’occupe de vos données ?',
         paragraphs: [
-          'Vivien Billot est responsable des traitements réalisés pour ce portfolio professionnel. Pour toute question ou demande relative à vos données : billot.vivien@gmail.com.',
+          'Vivien Billot est responsable des traitements réalisés pour ce portfolio professionnel. Pour toute question ou demande relative à vos données : billot.vivien@gmail.com.',
           'Le site permet de consulter mon parcours, télécharger mon CV, poser une question à l’assistant ou me contacter. Il ne comporte ni compte visiteur ni publicité ciblée.',
         ],
       },
@@ -80,7 +80,7 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
           'La mesure utilise des identifiants de cookies. Elle ne fournit pas le nom des visiteurs. Aucun nom, adresse email, numéro de téléphone ou texte de conversation saisi n’est envoyé volontairement à Analytics par le site. Les adresses de pages sont limitées aux pages publiques, sans paramètres libres ni fragments.',
           'Aucune balise Google Analytics n’est chargée avant votre choix ou lorsque vous refusez. Le stockage publicitaire, Google Signals et la personnalisation publicitaire sont désactivés dans l’intégration du site.',
           'Vous pouvez accepter ou refuser avec la même facilité, puis modifier votre choix à tout moment. Le retrait arrête la collecte, supprime les cookies Analytics accessibles au site et recharge la page. Il ne supprime pas automatiquement les données déjà transmises à Google.',
-          'Votre choix et les cookies Analytics ont une durée maximale de 180 jours. Dans la propriété Google Analytics, les données d’événement sont conservées 2 mois et les données utilisateur 14 mois ; une nouvelle activité peut réinitialiser cette dernière durée. Ces réglages ne concernent pas la plupart des rapports standard agrégés et sont distincts de la durée des cookies dans votre navigateur.',
+          'Votre choix et les cookies Analytics ont une durée maximale de 180 jours. Dans la propriété Google Analytics, les données d’événement sont conservées 2 mois et les données utilisateur 14 mois ; une nouvelle activité peut réinitialiser cette dernière durée. Ces réglages ne concernent pas la plupart des rapports standard agrégés et sont distincts de la durée des cookies dans votre navigateur.',
         ],
         links: [
           {
@@ -94,8 +94,8 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
         title: 'Questions à l’assistant',
         paragraphs: [
           'Quand vous envoyez une question, son texte et les derniers messages utiles de la conversation passent par le serveur du site et peuvent être transmis à OpenAI pour produire la réponse. Une réponse fondée sur les informations du portfolio peut aussi être fournie sans appel à OpenAI.',
-          'La conversation reste en mémoire dans la page pendant son utilisation ; le site ne l’enregistre pas dans une base de conversations. Recharger ou quitter cette page efface cet historique local. Évitez d’y partager des données sensibles ou des informations confidentielles sur vous ou sur d’autres personnes.',
-          'La conservation des réponses dans l’API OpenAI est désactivée. Cela ne signifie pas une absence totale de conservation : OpenAI indique que des journaux de prévention des abus peuvent contenir des échanges et être conservés jusqu’à 30 jours par défaut, davantage dans certains cas de sécurité ou d’obligation légale.',
+          'La conversation reste en mémoire dans la page pendant son utilisation ; le site ne l’enregistre pas dans une base de conversations. Recharger ou quitter cette page efface cet historique local. Évitez d’y partager des données sensibles ou des informations confidentielles sur vous ou sur d’autres personnes.',
+          'La conservation des réponses dans l’API OpenAI est désactivée. Cela ne signifie pas une absence totale de conservation : OpenAI indique que des journaux de prévention des abus peuvent contenir des échanges et être conservés jusqu’à 30 jours par défaut, davantage dans certains cas de sécurité ou d’obligation légale.',
           'Ce traitement sert à répondre à la question que vous choisissez d’envoyer, sur le fondement de l’intérêt légitime à proposer une présentation interactive du parcours. Il est indépendant de votre choix concernant Analytics.',
         ],
         links: [
@@ -111,7 +111,7 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
         paragraphs: [
           'Les liens de contact ouvrent votre messagerie, votre application téléphonique ou LinkedIn. Le site ne reçoit pas le contenu de ces échanges. Les coordonnées et messages que vous choisissez ensuite de transmettre sont reçus par Vivien via le service utilisé.',
           'Les messages sont traités pour répondre à votre demande professionnelle et en assurer le suivi, sur le fondement de l’intérêt légitime à gérer ces échanges. Ils sont accessibles à Vivien et aux prestataires nécessaires à leur transmission et à leur hébergement.',
-          'Lorsque le service d’envoi de formulaire est utilisé, le nom, l’adresse email et le message sont nécessaires à la transmission par Formspree ; l’envoi exige une confirmation. Ce service est distinct des liens de contact direct actuellement affichés sur le site.',
+          'Lorsque le service d’envoi de formulaire est utilisé, le nom, l’adresse email et le message sont nécessaires à la transmission par Formspree ; l’envoi exige une confirmation. Ce service est distinct des liens de contact direct actuellement affichés sur le site.',
           'La messagerie et, lorsqu’il est utilisé, Formspree peuvent conserver une copie des échanges. La durée dépend du suivi de votre demande, des règles du prestataire et, le cas échéant, des obligations de conservation. Vous pouvez demander la suppression de vos échanges à l’adresse indiquée ci-dessous.',
         ],
         links: [
@@ -142,7 +142,7 @@ export const PRIVACY_COPY: Readonly<Record<PortfolioLocale, PrivacyCopy>> = {
         title: 'Prestataires et transferts',
         paragraphs: [
           'Google fournit l’hébergement et, si vous l’acceptez, les statistiques. OpenAI fournit les réponses générées de l’assistant. Formspree transmet les messages lorsque le service de formulaire est utilisé. Leurs services et sous-traitants peuvent traiter des données hors de l’Espace économique européen, notamment aux États-Unis.',
-          'L’hébergement du serveur en Europe ne signifie donc pas que tous les traitements restent en Europe. Les conditions de transfert et garanties applicables sont décrites dans la documentation de chaque prestataire ; vous pouvez aussi demander des précisions à Vivien.',
+          'L’hébergement du serveur en Europe ne signifie donc pas que tous les traitements restent en Europe. Les conditions de transfert et garanties applicables sont décrites dans la documentation de chaque prestataire ; vous pouvez aussi demander des précisions à Vivien.',
           'Les liens vers LinkedIn, GitHub ou d’autres sites ouvrent des services externes qui appliquent leurs propres règles de confidentialité.',
         ],
       },

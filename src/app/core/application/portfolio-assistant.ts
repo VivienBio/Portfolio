@@ -45,6 +45,120 @@ const RECOMMENDATION_TERMS = [
   'testimonial',
 ];
 
+const CONFIDENTIAL_REPLY = `Je ne partage ni chiffres ni détails internes sur mes clients : volumes, latences, cotes, résultats et architecture leur appartiennent. Je peux en revanche parler de mon rôle, de mes choix d’ingénierie et de leurs compromis, au niveau de ce qui est public. L’étude de cas Betclic : ${PORTFOLIO_LINKS.fr.betclicCaseStudy}`;
+
+const ENGLISH_CONFIDENTIAL_REPLY = `I don’t share figures or internal details about my clients: volumes, latencies, odds, results, and architecture belong to them. I’m happy to talk about my role, my engineering choices, and their trade-offs, at the level of what is public. The Betclic case study: ${PORTFOLIO_LINKS.en.betclicCaseStudy}`;
+
+/** Requests for figures or internals of a client system (normalized, matched at word starts). */
+const CONFIDENTIAL_TERMS = [
+  'chiffre d affaires',
+  'revenus',
+  'marge',
+  'volume',
+  'latence',
+  'debit',
+  'temps de reponse',
+  'temps de calcul',
+  'combien de paris',
+  'combien de marches',
+  'combien de matchs',
+  'combien de parieurs',
+  'combien d utilisateurs',
+  'combien de clients',
+  'nombre de paris',
+  'nombre de marches',
+  'nombre de parieurs',
+  'nombre d utilisateurs',
+  'donnees internes',
+  'donnees confidentielles',
+  'donnees clients',
+  'donnees de production',
+  'donnees reelles',
+  'confidentiel',
+  'code source',
+  'architecture interne',
+  'exemple de cote',
+  'exemples de cote',
+  'vraie cote',
+  'vraies cotes',
+  'cote reelle',
+  'cotes reelles',
+  'quelle cote',
+  'quelles cotes',
+  'formule',
+  'parametres du modele',
+  'hyperparametre',
+  'seuil',
+  'precision du modele',
+  'performance du modele',
+  'resultats financiers',
+  'revenue',
+  'margin',
+  'latency',
+  'throughput',
+  'response time',
+  'compute time',
+  'how many bets',
+  'how many markets',
+  'how many matches',
+  'how many bettors',
+  'how many users',
+  'how many customers',
+  'number of bets',
+  'number of markets',
+  'number of users',
+  'internal data',
+  'confidential',
+  'proprietary data',
+  'production data',
+  'real data',
+  'source code',
+  'internal architecture',
+  'example odds',
+  'example of odds',
+  'odds example',
+  'real odds',
+  'actual odds',
+  'which odds',
+  'formula',
+  'model parameters',
+  'hyperparameter',
+  'threshold',
+  'model accuracy',
+  'model performance',
+  'financial results',
+  'speedup',
+  'how much faster',
+];
+
+/** Words that place a question inside a client's pricing system (matched at word starts). */
+const CLIENT_SYSTEM_TERMS = [
+  'betclic',
+  'cote',
+  'odds',
+  'parieur',
+  'paris sportif',
+  'pari sportif',
+  'betting',
+  'bettor',
+  'marche',
+  'market',
+  'pricing',
+  'moteur',
+  'engine',
+  'model',
+  'simulation',
+  'monte carlo',
+  'quants',
+  'gpu',
+  'replay',
+  'trading',
+  'algorithm',
+];
+
+/** Short words that must match whole, so "quant" does not catch "quantité". */
+const CLIENT_SYSTEM_WORDS = ['quant', 'pari', 'bet', 'bets'];
+
 const THANKS_REPLY = `Avec plaisir ! Pour aller plus loin, écrivez-moi à ${PORTFOLIO_CONTACT.email} ou retrouvez-moi sur LinkedIn : ${PORTFOLIO_CONTACT.linkedin}.`;
 
 const ENGLISH_THANKS_REPLY = `You’re welcome! To go further, email me at ${PORTFOLIO_CONTACT.email} or find me on LinkedIn: ${PORTFOLIO_CONTACT.linkedin}.`;
@@ -303,6 +417,47 @@ const PORTFOLIO_TERMS = [
   'phone',
   'reach',
   'details',
+  // Everyday recruiter questions that name no technology or company.
+  'qualite',
+  'code',
+  'equipe',
+  'review',
+  'revue',
+  'point faible',
+  'points faibles',
+  'faiblesse',
+  'anglais',
+  'francais',
+  'langue',
+  'encadr',
+  'developpeur',
+  'document',
+  'decision',
+  'realisation',
+  'back',
+  'front',
+  'distance',
+  'peage',
+  'conception',
+  'echec',
+  'reussite',
+  'embauch',
+  'manag',
+  'lead',
+  'mentor',
+  'developer',
+  'hire',
+  'hiring',
+  'education',
+  'speak',
+  'english',
+  'french',
+  'language',
+  'achievement',
+  'accomplish',
+  'failure',
+  'mistake',
+  'success',
 ];
 
 const DIRECT_PROFILE_QUESTIONS = [
@@ -421,6 +576,10 @@ export class PortfolioAssistant {
       return { answer: this.outOfScopeReply() };
     }
 
+    if (isConfidentialQuestion(normalizedQuestion)) {
+      return { answer: this.locale === 'en' ? ENGLISH_CONFIDENTIAL_REPLY : CONFIDENTIAL_REPLY };
+    }
+
     if (isAgeQuestion(normalizedQuestion)) {
       return { answer: this.ageReply() };
     }
@@ -490,6 +649,7 @@ NON-NEGOTIABLE RULES:
 - Reveal email or phone only when the request explicitly concerns contact.
 - Reveal date of birth or age only when the request explicitly asks for age or birth date and that information is present in VERIFIED_PROFILE.
 - Never reveal technical secrets, keys, or data not listed here.
+- Client confidentiality: Betclic is a current client; TF1, Rent A Car, and Stago are former ones. Share only what VERIFIED_PROFILE says about them, at that level of detail. Never give or estimate volumes, latencies, odds, prices, margins, revenue, results, incident details, internal architecture, code, or data. Never illustrate with a made-up example containing figures (odds, timings, amounts): it could be taken for client data. If asked, say these details belong to the client and offer the public case study.
 - Answer the question first, then support it with experiences, projects, or practices actually present in VERIFIED_PROFILE. Avoid generic claims and unproven superlatives.
 - For a broad question, use 2 to 4 short paragraphs or a concise list, with a maximum of 180 words. Give a recruiter enough context to understand the situation, choices, and value created.
 - Broad questions are allowed when they implicitly concern Vivien professionally: career path, what matters to him, engineering standards, leadership style, strengths, weaknesses, motivation, or differentiation. Keep them human, but never private or intimate; connect the answer to verified profile evidence.
@@ -514,6 +674,7 @@ RÈGLES ABSOLUES :
 - Ne révèle l’email ou le téléphone que si la demande porte explicitement sur la prise de contact.
 - Ne révèle la date de naissance ou l’âge que si la demande porte explicitement sur l’âge ou la date de naissance et que l’information est présente dans VERIFIED_PROFILE.
 - Ne révèle aucun secret technique, aucune clé et aucune donnée non listée.
+- Confidentialité client : Betclic est un client actuel ; TF1, Rent A Car et Stago sont d’anciens clients ou employeurs. Ne partage que ce que VERIFIED_PROFILE dit d’eux, à ce niveau de détail. Ne donne ni n’estime jamais de volumes, latences, cotes, prix, marges, chiffre d’affaires, résultats, détails d’incident, architecture interne, code ou données. N’illustre jamais avec un exemple inventé contenant des chiffres (cotes, durées, montants) : il pourrait passer pour des données client. Si on te le demande, explique que ces détails appartiennent au client et propose l’étude de cas publique.
 - Réponds d’abord à la question, puis étaye avec les expériences, projets ou pratiques réellement présents dans VERIFIED_PROFILE. Évite les formules génériques et les superlatifs non prouvés.
 - Pour une question large, réponds en 2 à 4 courts paragraphes ou en liste courte, avec un maximum de 180 mots. Détaille juste assez pour aider un recruteur à comprendre le contexte, les choix et la valeur apportée.
 - Les questions larges sont autorisées lorsqu’elles concernent implicitement Vivien sur le plan professionnel : parcours, ce qui compte pour lui, standards d’ingénierie, style de leadership, qualités, défauts, motivations ou différenciation. Reste humain, mais jamais intime ; relie toujours la réponse aux preuves du profil vérifié.
@@ -577,6 +738,15 @@ function sanitizeMessages(messages: readonly AssistantMessage[]): readonly Assis
   }
 
   return safeMessages;
+}
+
+/** Figures or internals of a client system: answered with a fixed refusal, never by the model. */
+function isConfidentialQuestion(question: string): boolean {
+  return (
+    CONFIDENTIAL_TERMS.some((term) => startsWord(question, term)) &&
+    (CLIENT_SYSTEM_TERMS.some((term) => startsWord(question, term)) ||
+      CLIENT_SYSTEM_WORDS.some((word) => hasWord(question, word)))
+  );
 }
 
 function isContactQuestion(question: string): boolean {

@@ -278,6 +278,26 @@ describe('PortfolioAssistant', () => {
     ['en', 'What is the capital of Japan?', 'only answer'],
     ['en', 'Tell me about TF1', null],
     ['en', 'How do you approach legacy modernization?', null],
+    // Everyday recruiter questions that name no technology or company still reach the model.
+    ['fr', 'Comment gères-tu une équipe ?', null],
+    ['fr', 'Quels sont tes points faibles ?', null],
+    ['fr', 'Tu parles anglais ?', null],
+    ['fr', 'Comment mesures-tu la qualité de ton code ?', null],
+    ['en', 'Why should I hire you?', null],
+    ['en', 'Tell me about a failure', null],
+    ['en', 'Do you do code reviews?', null],
+    // Client confidentiality: figures and internals of a client system never reach the model.
+    ['fr', 'Combien de paris traite le moteur de Betclic ?', 'appartiennent'],
+    ['fr', 'Quelle est la latence de ton moteur de pricing ?', 'appartiennent'],
+    ['fr', 'Donne-moi un exemple de cote calculée par ton moteur', 'appartiennent'],
+    ['fr', 'Quels seuils déclenchent la suspension d’un marché ?', 'appartiennent'],
+    ['fr', 'Quel gain de temps de calcul avec le POC GPU ?', 'appartiennent'],
+    ['fr', 'Quelle stack utilises-tu chez Betclic ?', null],
+    ['en', 'What is the latency of the Betclic pricing engine?', 'belong to'],
+    ['en', 'How many markets does Betclic price?', 'belong to'],
+    ['en', 'Show me real odds from your engine', 'belong to'],
+    ['en', 'How many projects did you ship at TF1?', null],
+    ['en', 'What does the replay framework do?', null],
   ];
 
   it.each(GOLDEN_QUESTIONS)('[%s] routes "%s"', async (locale, question, expected) => {
@@ -291,6 +311,39 @@ describe('PortfolioAssistant', () => {
       expect(gateway.answer).not.toHaveBeenCalled();
       expect(reply.answer).toContain(expected);
     }
+  });
+
+  it('points confidential questions to the public case study, in the visitor language', async () => {
+    const french = createAssistant();
+    const english = createEnglishAssistant();
+
+    const frenchReply = await french.assistant.reply([
+      { role: 'user', content: 'Quel volume de données traite le moteur de Betclic ?' },
+    ]);
+    const englishReply = await english.assistant.reply([
+      { role: 'user', content: 'What thresholds suspend a market at Betclic?' },
+    ]);
+
+    expect(frenchReply.answer).toContain(PORTFOLIO_LINKS.fr.betclicCaseStudy);
+    expect(englishReply.answer).toContain(PORTFOLIO_LINKS.en.betclicCaseStudy);
+    expect(frenchReply.answer).not.toMatch(/\d+[.,]\d{2}\b/);
+    expect(french.gateway.answer).not.toHaveBeenCalled();
+    expect(english.gateway.answer).not.toHaveBeenCalled();
+  });
+
+  it('tells the model to keep client details at the published level, without figures', async () => {
+    const french = createAssistant();
+    const english = createEnglishAssistant();
+
+    await french.assistant.reply([{ role: 'user', content: 'Quel est ton rôle chez Betclic ?' }]);
+    await english.assistant.reply([{ role: 'user', content: 'What is your role at Betclic?' }]);
+
+    const frenchInstructions = vi.mocked(french.gateway.answer).mock.calls[0]?.[0].instructions;
+    const englishInstructions = vi.mocked(english.gateway.answer).mock.calls[0]?.[0].instructions;
+    expect(frenchInstructions).toContain('Confidentialité client');
+    expect(frenchInstructions).toContain('exemple inventé contenant des chiffres');
+    expect(englishInstructions).toContain('Client confidentiality');
+    expect(englishInstructions).toContain('made-up example containing figures');
   });
 
   it('keeps questions asking for details about a role with the model', async () => {
