@@ -29,7 +29,7 @@
 .night :focus-visible,
 .site-header :focus-visible,
 .site-footer :focus-visible {
-  outline-color: var(--signal);
+  outline-color: var(--night-focus);
 }
 .live-dot {
   flex: 0 0 auto;
@@ -40,7 +40,7 @@
   box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--signal) 24%, transparent);
 }
 
-/* Header: night, like the hero below it */
+/* Header: same band as the hero, white in the light theme and night in the dark theme */
 .site-header {
   position: sticky;
   top: 0;
@@ -229,6 +229,7 @@
 /* Hero: what Vivien does, and the two case studies that show it */
 .hero {
   padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(3.25rem, 6vw, 4.75rem);
+  border-bottom: 1px solid var(--night-line);
 }
 .hero-layout {
   display: grid;
@@ -368,7 +369,7 @@ h1 {
   outline: none;
 }
 .hero-case-link:focus-visible::after {
-  outline: 3px solid var(--signal);
+  outline: 3px solid var(--night-focus);
   outline-offset: 2px;
 }
 .reveal {

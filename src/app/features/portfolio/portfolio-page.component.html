@@ -1,5 +1,5 @@
 <a class="skip-link" [routerLink]="homePath" fragment="contenu">{{ copy.skipToContent }}</a>
-<header #siteHeader class="site-header" [class.menu-open]="menuOpen()">
+<header #siteHeader class="site-header band" [class.menu-open]="menuOpen()">
   <div class="scroll-progress" aria-hidden="true" [style.width.%]="scrollProgress()"></div>
   <a class="brand" [routerLink]="homePath" fragment="accueil" (click)="menuOpen.set(false)">
     <span class="brand-photo" aria-hidden="true">
@@ -82,7 +82,7 @@
 </header>
 
 <main id="contenu" tabindex="-1">
-  <section class="hero night" id="accueil" tabindex="-1" aria-labelledby="hero-title">
+  <section class="hero night band" id="accueil" tabindex="-1" aria-labelledby="hero-title">
     <div class="wrap hero-layout">
       <div class="hero-copy">
         <p class="hero-status reveal reveal-1">

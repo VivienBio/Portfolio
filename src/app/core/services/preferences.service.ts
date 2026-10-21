@@ -3,6 +3,8 @@ import { Service, inject, signal } from '@angular/core';
 
 export type Theme = 'light' | 'dark';
 const THEME_STORAGE_KEY = 'portfolio-theme';
+/** Browser toolbar colour, matched to the header of each theme. */
+const THEME_COLORS: Record<Theme, string> = { light: '#ffffff', dark: '#0e1828' };
 
 @Service()
 export class PreferencesService {
@@ -35,5 +37,8 @@ export class PreferencesService {
 
   private applyTheme(theme: Theme): void {
     this.document.documentElement.setAttribute('data-theme', theme);
+    this.document
+      .querySelector?.('meta[name="theme-color"]')
+      ?.setAttribute('content', THEME_COLORS[theme]);
   }
 }
