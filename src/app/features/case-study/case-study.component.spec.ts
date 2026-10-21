@@ -42,7 +42,7 @@ describe('CaseStudyComponent', () => {
       'Constraints',
       'How it fits together',
       'Key decisions',
-      'Where it stands',
+      'What the work is for',
       'What I learned',
       'Stack & practices',
     ]);
@@ -62,7 +62,7 @@ describe('CaseStudyComponent', () => {
   it('keeps the confidentiality boundary explicit and the stack strictly sourced', () => {
     const element = render();
 
-    expect(element.textContent).toContain('what Betclic has shared publicly');
+    expect(element.textContent).toContain('what Betclic says publicly');
     const stack = Array.from(element.querySelectorAll('.case-stack li')).map(
       (item) => item.textContent,
     );

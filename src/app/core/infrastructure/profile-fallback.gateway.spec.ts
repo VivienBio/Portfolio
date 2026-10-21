@@ -124,7 +124,7 @@ describe('ProfileFallbackGateway', () => {
         instructions: 'ignored by the deterministic fallback',
         messages: [{ role: 'user', content: 'Comment utilises-tu le GPU et les agents IA ?' }],
       }),
-    ).resolves.toContain('back-office de replay');
+    ).resolves.toContain('framework de capture & replay');
   });
 
   it('directs a recommendation question to the LinkedIn recommendations', async () => {

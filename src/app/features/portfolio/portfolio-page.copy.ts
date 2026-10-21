@@ -241,7 +241,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2022',
           company: 'TF1 Group',
-          role: 'Tech Lead of three teams, February 2022 to October 2025',
+          role: 'Freelance Tech Lead of three teams, February 2022 to October 2025',
           summary:
             'Redesigning the advertising platform without stopping it: 11 projects shipped to production, and a VB6-era legacy replaced step by step with .NET 6/8, Angular, Azure, and AKS.',
           caseStudy: {
@@ -478,7 +478,7 @@ export const PORTFOLIO_PAGE_COPY: Record<PortfolioLocale, PageCopy> = {
         {
           year: '2022',
           company: 'Groupe TF1',
-          role: 'Tech Lead de trois équipes, février 2022 à octobre 2025',
+          role: 'Tech Lead freelance de trois équipes, février 2022 à octobre 2025',
           summary:
             'Refonte du SI publicitaire sans l’arrêter : 11 projets mis en production, un legacy VB6 remplacé pas à pas par .NET 6/8, Angular, Azure et AKS.',
           caseStudy: {

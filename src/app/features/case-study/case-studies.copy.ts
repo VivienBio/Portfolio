@@ -59,14 +59,14 @@ const EN_BETCLIC: CaseStudyCopy = {
   kicker: 'Case study: Betclic Group, since October 2025',
   title: 'Real-time sports odds,',
   accent: 'priced in-house.',
-  roleLine: 'Senior Software Engineer, quant and sports pricing, C# / .NET on AWS',
+  roleLine: 'Senior Software Engineer in Sports Trading, C# / .NET on AWS',
   metaTitle: 'Real-time sports pricing at Betclic — Vivien Billot',
   metaDescription:
     'A proprietary sports-pricing chain turning Monte Carlo simulations into live odds: market lifecycle, replay tooling and automated delivery on AWS.',
   context: {
     heading: 'Context',
     paragraphs: [
-      'Betclic is one of Europe’s largest sports-betting operators. The odds a bettor sees are a price — and a price that is wrong or late is immediately exploitable by the market. Most operators buy those prices from external providers. Betclic is building its own pricing chain: in-house probability models feeding odds it controls, across many sports and competitions, to react faster and depend less on any single provider.',
+      'Betclic is one of Europe’s largest sports-betting operators. The odds a bettor sees are a price — and a price that is wrong or late is immediately exploitable by the market. Most operators buy those prices from external providers. Betclic is building its own pricing chain: in-house probability models feeding odds it controls, across many sports and competitions, to react faster and rely less exclusively on external providers.',
     ],
   },
   challenge: {
@@ -78,7 +78,7 @@ const EN_BETCLIC: CaseStudyCopy = {
   role: {
     heading: 'My role',
     paragraphs: [
-      'Senior Software Engineer on the Quant side, in C#/.NET on AWS. I contribute to the simulation-to-odds chain — including the market-lifecycle rules that decide when a market must be suspended or reopened — and I own the replay and tracing console, delivery automation, and the team’s AI-assisted engineering practice.',
+      'Senior Software Engineer in the Sports Trading teams, in C# / .NET on AWS. I contribute to the simulation-to-odds chain, including the market-lifecycle rules that decide when a market must be suspended or reopened. I built the capture & replay framework, and I also work on delivery automation and the team’s AI-assisted engineering practices.',
     ],
   },
   constraintsHeading: 'Constraints',
@@ -86,23 +86,23 @@ const EN_BETCLIC: CaseStudyCopy = {
     'Real time: match events keep coming whether the system is ready or not.',
     'Correctness under concurrency: markets are recomputed and re-decided continuously across sports.',
     'Auditability: an algorithmic decision that cannot be replayed cannot be trusted or fixed.',
-    'Confidentiality: this case study sticks to what Betclic has shared publicly — no internal architecture detail.',
+    'Confidentiality: no figures and no internal architecture. Only my role, my engineering choices, and what Betclic says publicly about in-house pricing.',
   ],
   architecture: {
     heading: 'How it fits together',
     paragraphs: [
-      'Match events feed Monte Carlo simulations that estimate outcome probabilities across sports and competitions. Probabilities become internally controlled odds under business rules, and market-lifecycle logic makes the sensitive calls — suspend, reopen, recompute, investigate. Wrapped around the chain: a replay and tracing console that can re-run past events and show why the algorithms decided what they decided, and delivery on AWS automated with Dagger and GitHub Actions.',
+      'In broad strokes, this is how in-play pricing works: match events feed Monte Carlo simulations that estimate outcome probabilities across sports and competitions. Probabilities become internally controlled odds under business rules, and market-lifecycle logic makes the sensitive calls — suspend, reopen, recompute, investigate. Wrapped around the chain: a capture & replay framework that can re-run past events and show why the algorithms decided what they decided, and delivery on AWS automated with Dagger and GitHub Actions.',
     ],
   },
   diagram: {
-    label: 'Simulation-to-odds chain (public-level view)',
+    label: 'Generic in-play pricing flow (simplified, not Betclic’s architecture)',
     stages: [
       { name: 'Match events', detail: 'live, continuous' },
       { name: 'Monte Carlo simulation', detail: 'outcome probabilities' },
       { name: 'Pricing', detail: 'internally controlled odds' },
       { name: 'Market lifecycle', detail: 'suspend, reopen, recompute' },
     ],
-    loop: 'Replay and tracing console: re-run events, explain decisions, validate fixes',
+    loop: 'Capture & replay framework: re-run events, explain decisions, validate fixes',
   },
   decisionsHeading: 'Key decisions',
   decisionsIntro:
@@ -118,9 +118,9 @@ const EN_BETCLIC: CaseStudyCopy = {
       title: 'Make algorithmic decisions replayable.',
       problem:
         '“The algorithm did something odd yesterday” is unanswerable without evidence — and a question you cannot answer is a system you cannot trust.',
-      options: 'Logs and dashboards only, or a dedicated replay and tracing console.',
+      options: 'Logs and dashboards only, or a dedicated capture & replay framework.',
       decision:
-        'I built the replay console: reproduce past events, trace each algorithmic decision, validate a fix against reality before it ships.',
+        'I built the capture & replay framework: reproduce past events, trace each algorithmic decision, validate a fix against reality before it ships.',
       tradeOff:
         'Tooling like this ships no visible feature. It pays for itself the first time a market anomaly must be explained with proof instead of guesses.',
     },
@@ -143,16 +143,16 @@ const EN_BETCLIC: CaseStudyCopy = {
         'Standardizing costs setup time and discipline — in exchange, repeatable work gets faster without delegating judgment to the tools.',
     },
   ],
-  outcomesHeading: 'Where it stands',
+  outcomesHeading: 'What the work is for',
   outcomes: [
-    'Proprietary probabilities and odds across many sports and competitions, controlled in-house.',
-    'Faster reaction to in-game events, with the risk controls to back it up — suspend and reopen decisions under explicit, testable rules.',
-    'Market anomalies analyzed with evidence, through replay and decision tracing.',
-    'Reduced exclusive dependence on external providers.',
+    'Odds controlled in-house, built on proprietary probabilities across many sports and competitions.',
+    'Reacting faster to in-game events, with explicit, testable suspend and reopen rules.',
+    'Market anomalies explained with evidence, through replay and decision tracing.',
+    'Less exclusive reliance on external providers.',
   ],
   learnedHeading: 'What I learned',
   learned: [
-    'In a pricing system, observability is not a production concern — it is a product feature. The replay console changed how the team talks about anomalies: from opinions to evidence.',
+    'In a pricing system, observability is not a production concern — it is a product feature. Replay turns a discussion about an anomaly from opinions into evidence.',
     'A proof of concept is the cheapest architecture insurance you will ever buy.',
   ],
   stackHeading: 'Stack & practices',
@@ -174,7 +174,7 @@ const EN_TF1: CaseStudyCopy = {
   roleLine: 'Tech Lead and software architect for three cross-functional teams',
   metaTitle: 'Modernizing TF1’s advertising platform — Vivien Billot',
   metaDescription:
-    'Tech Lead of three teams modernizing TF1’s ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped, no business interruption.',
+    'Tech Lead of three teams modernizing TF1’s ad platform (2022–2025): VB6 legacy to .NET 6/8 and AKS, 11 projects shipped with no business freeze.',
   context: {
     heading: 'Context',
     paragraphs: [
@@ -196,7 +196,7 @@ const EN_TF1: CaseStudyCopy = {
   constraintsHeading: 'Constraints',
   constraints: [
     'Business continuity: advertising operations could not stop for a migration.',
-    'Legacy depth: VB6-era systems with implicit rules that existed nowhere but in the code and in people’s heads.',
+    'Legacy depth: VB6-era systems whose business rules had to be made explicit before they could be replaced.',
     'Exposure: incidents in an ad system are measured in money and in trust.',
     'Three teams, one direction: consistent architecture and standards across parallel streams.',
   ],
@@ -231,7 +231,7 @@ const EN_TF1: CaseStudyCopy = {
       options: 'Big-bang rewrite, or incremental, domain-by-domain replacement.',
       decision: 'Incremental. Each domain moved when its replacement was proven in production.',
       tradeOff:
-        'We accepted running old and new in parallel — double run cost and boundary complexity — in exchange for keeping every business commitment through nearly four years of transformation.',
+        'We accepted running old and new in parallel — double run cost and boundary complexity — in exchange for keeping the business running and delivering throughout the transformation.',
     },
     {
       title: 'Make quality the delivery accelerator, not its tax.',
@@ -289,7 +289,7 @@ const FR_BETCLIC: CaseStudyCopy = {
   kicker: 'Étude de cas : Betclic Group, depuis octobre 2025',
   title: 'Des cotes sportives temps réel,',
   accent: 'produites en interne.',
-  roleLine: 'Senior Software Engineer, quant et pricing sportif, C# / .NET sur AWS',
+  roleLine: 'Senior Software Engineer en Sports Trading, C# / .NET sur AWS',
   metaTitle: 'Pricing sportif temps réel chez Betclic — Vivien Billot',
   metaDescription:
     'Une chaîne de pricing sportif propriétaire qui transforme des simulations Monte-Carlo en cotes live : marchés, replay, delivery automatisé sur AWS.',
@@ -308,7 +308,7 @@ const FR_BETCLIC: CaseStudyCopy = {
   role: {
     heading: 'Mon rôle',
     paragraphs: [
-      'Senior Software Engineer côté Quant, en C#/.NET sur AWS. Je contribue à la chaîne simulation → cotes — y compris les règles de cycle de vie qui décident quand un marché doit être suspendu ou rouvert — et je porte le back-office de replay et de traçage, l’automatisation du delivery et la pratique d’ingénierie assistée par IA de l’équipe.',
+      'Senior Software Engineer dans les équipes Sports Trading, en C# / .NET sur AWS. Je contribue à la chaîne simulation → cotes, y compris aux règles de cycle de vie qui décident quand un marché doit être suspendu ou rouvert. J’ai conçu le framework de capture & replay, et je travaille aussi sur l’automatisation du delivery et les pratiques d’ingénierie assistée par IA de l’équipe.',
     ],
   },
   constraintsHeading: 'Contraintes',
@@ -316,23 +316,23 @@ const FR_BETCLIC: CaseStudyCopy = {
     'Temps réel : les événements de match arrivent, que le système soit prêt ou non.',
     'Justesse sous concurrence : les marchés sont recalculés et re-décidés en continu, sur plusieurs sports.',
     'Auditabilité : une décision algorithmique qui ne peut pas être rejouée ne peut être ni vérifiée ni corrigée.',
-    'Confidentialité : cette étude de cas s’en tient à ce que Betclic communique publiquement — aucun détail d’architecture interne.',
+    'Confidentialité : ni chiffres ni architecture interne. Seulement mon rôle, mes choix d’ingénierie et ce que Betclic dit publiquement de son pricing interne.',
   ],
   architecture: {
     heading: 'Comment ça s’articule',
     paragraphs: [
-      'Les événements de match alimentent des simulations Monte-Carlo qui estiment les probabilités d’issue sur de nombreux sports et compétitions. Les probabilités deviennent des cotes maîtrisées en interne selon des règles métier, et la logique de cycle de vie des marchés prend les décisions sensibles — suspendre, rouvrir, recalculer, investiguer. Autour de la chaîne : un back-office de replay et de traçage capable de rejouer les événements passés et de montrer pourquoi les algorithmes ont décidé ce qu’ils ont décidé, et un delivery sur AWS automatisé avec Dagger et GitHub Actions.',
+      'Dans les grandes lignes, un pricing live fonctionne ainsi : les événements de match alimentent des simulations Monte-Carlo qui estiment les probabilités d’issue sur de nombreux sports et compétitions. Les probabilités deviennent des cotes maîtrisées en interne selon des règles métier, et la logique de cycle de vie des marchés prend les décisions sensibles — suspendre, rouvrir, recalculer, investiguer. Autour de la chaîne : un framework de capture & replay capable de rejouer les événements passés et de montrer pourquoi les algorithmes ont décidé ce qu’ils ont décidé, et un delivery sur AWS automatisé avec Dagger et GitHub Actions.',
     ],
   },
   diagram: {
-    label: 'Chaîne simulation → cotes (vue publique)',
+    label: 'Flux générique de pricing live (simplifié, pas l’architecture de Betclic)',
     stages: [
       { name: 'Événements de match', detail: 'live, en continu' },
       { name: 'Simulation Monte-Carlo', detail: 'probabilités d’issue' },
       { name: 'Pricing', detail: 'cotes maîtrisées en interne' },
       { name: 'Cycle de vie des marchés', detail: 'suspendre, rouvrir, recalculer' },
     ],
-    loop: 'Back-office de replay et de traçage : rejouer, expliquer, valider les correctifs',
+    loop: 'Framework de capture & replay : rejouer, expliquer, valider les correctifs',
   },
   decisionsHeading: 'Décisions clés',
   decisionsIntro:
@@ -349,9 +349,9 @@ const FR_BETCLIC: CaseStudyCopy = {
       problem:
         '« L’algorithme a fait quelque chose d’étrange hier » est une question sans réponse en l’absence de preuves — et une question sans réponse, c’est un système auquel on ne peut pas faire confiance.',
       options:
-        'Se contenter de logs et de dashboards, ou construire un back-office dédié de replay et de traçage.',
+        'Se contenter de logs et de dashboards, ou construire un framework dédié de capture & replay.',
       decision:
-        'J’ai construit le back-office de replay : rejouer les événements passés, tracer chaque décision algorithmique, valider un correctif contre la réalité avant sa mise en production.',
+        'J’ai construit le framework de capture & replay : rejouer les événements passés, tracer chaque décision algorithmique, valider un correctif contre la réalité avant sa mise en production.',
       tradeOff:
         'Ce type d’outillage ne livre aucune feature visible. Il est rentabilisé dès la première anomalie de marché qu’il faut expliquer avec des preuves plutôt qu’avec des hypothèses.',
     },
@@ -376,16 +376,16 @@ const FR_BETCLIC: CaseStudyCopy = {
         'Standardiser coûte du temps de mise en place et de la discipline — en échange, le travail répétable accélère sans déléguer le jugement aux outils.',
     },
   ],
-  outcomesHeading: 'Où ça en est',
+  outcomesHeading: 'Ce que ce travail vise',
   outcomes: [
-    'Des probabilités et des cotes propriétaires sur de nombreux sports et compétitions, maîtrisées en interne.',
-    'Une réaction plus rapide aux événements de jeu, avec les garde-fous de risque correspondants — suspension et réouverture sous règles explicites et testables.',
-    'Des anomalies de marché analysées avec des preuves, grâce au replay et au traçage des décisions.',
-    'Une dépendance exclusive aux providers externes réduite.',
+    'Des cotes maîtrisées en interne, fondées sur des probabilités propriétaires, sur de nombreux sports et compétitions.',
+    'Réagir plus vite aux événements de jeu, avec des règles de suspension et de réouverture explicites et testables.',
+    'Des anomalies de marché expliquées avec des preuves, grâce au replay et au traçage des décisions.',
+    'Moins de dépendance exclusive aux providers externes.',
   ],
   learnedHeading: 'Ce que j’en retiens',
   learned: [
-    'Dans un système de pricing, l’observabilité n’est pas un sujet de production — c’est une fonctionnalité du produit. Le back-office de replay a changé la façon dont l’équipe parle des anomalies : des opinions aux preuves.',
+    'Dans un système de pricing, l’observabilité n’est pas un sujet de production — c’est une fonctionnalité du produit. Le replay fait passer la discussion sur une anomalie des opinions aux preuves.',
     'Un POC est l’assurance d’architecture la moins chère qui existe.',
   ],
   stackHeading: 'Stack & pratiques',
@@ -407,7 +407,7 @@ const FR_TF1: CaseStudyCopy = {
   roleLine: 'Tech Lead et architecte de trois équipes pluridisciplinaires',
   metaTitle: 'Moderniser le SI publicitaire de TF1 — Vivien Billot',
   metaDescription:
-    'Tech Lead de trois équipes sur le SI publicitaire de TF1 (2022–2025) : du legacy VB6 vers .NET 6/8 et AKS, 11 projets livrés sans interrompre le métier.',
+    'Tech Lead de trois équipes sur le SI publicitaire de TF1 (2022–2025) : du legacy VB6 vers .NET 6/8 et AKS, 11 projets livrés sans geler l’activité.',
   context: {
     heading: 'Contexte',
     paragraphs: [
@@ -429,7 +429,7 @@ const FR_TF1: CaseStudyCopy = {
   constraintsHeading: 'Contraintes',
   constraints: [
     'Continuité métier : les opérations publicitaires ne pouvaient pas s’arrêter pour une migration.',
-    'Profondeur du legacy : des systèmes de l’ère VB6 avec des règles implicites qui n’existaient nulle part ailleurs que dans le code et dans les têtes.',
+    'Profondeur du legacy : des systèmes de l’ère VB6 dont les règles métier devaient être explicitées avant d’être remplacées.',
     'Exposition : un incident dans un SI publicitaire se mesure en argent et en confiance.',
     'Trois équipes, une direction : une architecture et des standards cohérents sur des chantiers parallèles.',
   ],
@@ -466,7 +466,7 @@ const FR_TF1: CaseStudyCopy = {
       decision:
         'Incrémental. Chaque domaine basculait quand son remplaçant avait fait ses preuves en production.',
       tradeOff:
-        'Nous avons accepté de faire tourner l’ancien et le nouveau en parallèle — double coût d’exploitation et complexité des frontières — en échange du respect de chaque engagement métier de février 2022 à octobre 2025.',
+        'Nous avons accepté de faire tourner l’ancien et le nouveau en parallèle — double coût d’exploitation et complexité des frontières — en échange d’un métier qui a continué de tourner et de livrer pendant toute la transformation.',
     },
     {
       title: 'Faire de la qualité l’accélérateur du delivery, pas sa taxe.',

@@ -45,9 +45,11 @@ const RECOMMENDATION_TERMS = [
   'testimonial',
 ];
 
-const CONFIDENTIAL_REPLY = `Je ne partage ni chiffres ni détails internes sur mes clients : volumes, latences, cotes, résultats et architecture leur appartiennent. Je peux en revanche parler de mon rôle, de mes choix d’ingénierie et de leurs compromis, au niveau de ce qui est public. L’étude de cas Betclic : ${PORTFOLIO_LINKS.fr.betclicCaseStudy}`;
+const CONFIDENTIAL_REPLY =
+  'Je ne partage ni chiffres ni détails internes sur mes clients et anciens employeurs : volumes, latences, cotes, résultats, équipes et architecture leur appartiennent. Je peux en revanche parler de mon rôle, de mes choix d’ingénierie et de leurs compromis, au niveau de ce qui est public.';
 
-const ENGLISH_CONFIDENTIAL_REPLY = `I don’t share figures or internal details about my clients: volumes, latencies, odds, results, and architecture belong to them. I’m happy to talk about my role, my engineering choices, and their trade-offs, at the level of what is public. The Betclic case study: ${PORTFOLIO_LINKS.en.betclicCaseStudy}`;
+const ENGLISH_CONFIDENTIAL_REPLY =
+  'I don’t share figures or internal details about my clients and former employers: volumes, latencies, odds, results, teams, and architecture belong to them. I’m happy to talk about my role, my engineering choices, and their trade-offs, at the level of what is public.';
 
 /** Requests for figures or internals of a client system (normalized, matched at word starts). */
 const CONFIDENTIAL_TERMS = [
@@ -55,8 +57,40 @@ const CONFIDENTIAL_TERMS = [
   'revenus',
   'marge',
   'volume',
-  'latence',
+  'latenc',
   'debit',
+  'p99',
+  'p95',
+  'milliseconde',
+  'millisecond',
+  'quelle vitesse',
+  'how fast',
+  'what odds',
+  'which provider',
+  'which supplier',
+  'data provider',
+  'quel provider',
+  'quels providers',
+  'quel fournisseur',
+  'quels fournisseurs',
+  'fournisseur de donnees',
+  'pull request',
+  'repositor',
+  'combien de personnes',
+  'how many people',
+  'taille de l equipe',
+  'team size',
+  'quels sports',
+  'which sports',
+  'combien de sports',
+  'how many sports',
+  'exemple chiffre',
+  'example with numbers',
+  'anecdote',
+  'incident',
+  'pay off',
+  'paid off',
+  'rentab',
   'temps de reponse',
   'temps de calcul',
   'combien de paris',
@@ -94,7 +128,6 @@ const CONFIDENTIAL_TERMS = [
   'resultats financiers',
   'revenue',
   'margin',
-  'latency',
   'throughput',
   'response time',
   'compute time',
@@ -129,6 +162,38 @@ const CONFIDENTIAL_TERMS = [
   'financial results',
   'speedup',
   'how much faster',
+];
+
+/** Short words that must match whole, so "cost" does not catch "costume" nor "commit" "commitment". */
+const CONFIDENTIAL_WORDS = [
+  'ms',
+  'cout',
+  'couts',
+  'cost',
+  'costs',
+  'budget',
+  'commit',
+  'commits',
+  'depot',
+  'depots',
+  'repo',
+  'repos',
+];
+
+/** Former clients and employers: their finances stay private too. */
+const FORMER_CLIENT_TERMS = ['tf1', 'rent a car', 'stago', 'bentley'];
+
+const FINANCIAL_TERMS = [
+  'chiffre d affaires',
+  'revenus',
+  'revenue',
+  'marge',
+  'margin',
+  'benefice',
+  'profit',
+  'resultats financiers',
+  'financial results',
+  'budget',
 ];
 
 /** Words that place a question inside a client's pricing system (matched at word starts). */
@@ -576,8 +641,13 @@ export class PortfolioAssistant {
       return { answer: this.outOfScopeReply() };
     }
 
-    if (isConfidentialQuestion(normalizedQuestion)) {
-      return { answer: this.locale === 'en' ? ENGLISH_CONFIDENTIAL_REPLY : CONFIDENTIAL_REPLY };
+    const earlierQuestions = safeMessages
+      .slice(0, -1)
+      .filter((message) => message.role === 'user')
+      .map((message) => normalize(message.content));
+
+    if (isConfidentialQuestion(normalizedQuestion, earlierQuestions)) {
+      return { answer: this.confidentialReply(normalizedQuestion, earlierQuestions) };
     }
 
     if (isAgeQuestion(normalizedQuestion)) {
@@ -625,7 +695,7 @@ export class PortfolioAssistant {
     const answer = (
       await this.gateway.answer({
         instructions: this.instructions(),
-        messages: safeMessages,
+        messages: withoutConfidentialExchanges(safeMessages),
       })
     ).trim();
 
@@ -649,7 +719,7 @@ NON-NEGOTIABLE RULES:
 - Reveal email or phone only when the request explicitly concerns contact.
 - Reveal date of birth or age only when the request explicitly asks for age or birth date and that information is present in VERIFIED_PROFILE.
 - Never reveal technical secrets, keys, or data not listed here.
-- Client confidentiality: Betclic is a current client; TF1, Rent A Car, and Stago are former ones. Share only what VERIFIED_PROFILE says about them, at that level of detail. Never give or estimate volumes, latencies, odds, prices, margins, revenue, results, incident details, internal architecture, code, or data. Never illustrate with a made-up example containing figures (odds, timings, amounts): it could be taken for client data. If asked, say these details belong to the client and offer the public case study.
+- Client confidentiality: Betclic is a current client; TF1 is a former client; Rent A Car and Stago are former employers. Share only what VERIFIED_PROFILE says about them, at that level of detail. Never give or estimate volumes, latencies, odds, prices, margins, revenue, results, incident details, internal architecture, code, or data. Never illustrate with a made-up example containing figures (odds, timings, amounts): it could be taken for client data. Also never name or guess suppliers or data providers, the sports or competitions covered, model inputs or features, team size or colleagues, contribution statistics (commits, pull requests, repositories, shares), plans, costs, or infrastructure sizes. Never invent an anecdote or scenario about a client (a match, a market, an incident, a decision), with or without figures. If asked, say these details belong to the client and offer the public case study.
 - Answer the question first, then support it with experiences, projects, or practices actually present in VERIFIED_PROFILE. Avoid generic claims and unproven superlatives.
 - For a broad question, use 2 to 4 short paragraphs or a concise list, with a maximum of 180 words. Give a recruiter enough context to understand the situation, choices, and value created.
 - Broad questions are allowed when they implicitly concern Vivien professionally: career path, what matters to him, engineering standards, leadership style, strengths, weaknesses, motivation, or differentiation. Keep them human, but never private or intimate; connect the answer to verified profile evidence.
@@ -674,7 +744,7 @@ RÈGLES ABSOLUES :
 - Ne révèle l’email ou le téléphone que si la demande porte explicitement sur la prise de contact.
 - Ne révèle la date de naissance ou l’âge que si la demande porte explicitement sur l’âge ou la date de naissance et que l’information est présente dans VERIFIED_PROFILE.
 - Ne révèle aucun secret technique, aucune clé et aucune donnée non listée.
-- Confidentialité client : Betclic est un client actuel ; TF1, Rent A Car et Stago sont d’anciens clients ou employeurs. Ne partage que ce que VERIFIED_PROFILE dit d’eux, à ce niveau de détail. Ne donne ni n’estime jamais de volumes, latences, cotes, prix, marges, chiffre d’affaires, résultats, détails d’incident, architecture interne, code ou données. N’illustre jamais avec un exemple inventé contenant des chiffres (cotes, durées, montants) : il pourrait passer pour des données client. Si on te le demande, explique que ces détails appartiennent au client et propose l’étude de cas publique.
+- Confidentialité client : Betclic est un client actuel ; TF1 est un ancien client ; Rent A Car et Stago sont d’anciens employeurs. Ne partage que ce que VERIFIED_PROFILE dit d’eux, à ce niveau de détail. Ne donne ni n’estime jamais de volumes, latences, cotes, prix, marges, chiffre d’affaires, résultats, détails d’incident, architecture interne, code ou données. N’illustre jamais avec un exemple inventé contenant des chiffres (cotes, durées, montants) : il pourrait passer pour des données client. Ne nomme ni ne devine jamais les fournisseurs ou providers, les sports ou compétitions couverts, les variables des modèles, la taille de l’équipe ou les collègues, des statistiques de contribution (commits, pull requests, dépôts, parts), des projets futurs, des coûts ou des tailles d’infrastructure. N’invente jamais d’anecdote ou de scénario sur un client (match, marché, incident, décision), avec ou sans chiffres. Si on te le demande, explique que ces détails appartiennent au client et propose l’étude de cas publique.
 - Réponds d’abord à la question, puis étaye avec les expériences, projets ou pratiques réellement présents dans VERIFIED_PROFILE. Évite les formules génériques et les superlatifs non prouvés.
 - Pour une question large, réponds en 2 à 4 courts paragraphes ou en liste courte, avec un maximum de 180 mots. Détaille juste assez pour aider un recruteur à comprendre le contexte, les choix et la valeur apportée.
 - Les questions larges sont autorisées lorsqu’elles concernent implicitement Vivien sur le plan professionnel : parcours, ce qui compte pour lui, standards d’ingénierie, style de leadership, qualités, défauts, motivations ou différenciation. Reste humain, mais jamais intime ; relie toujours la réponse aux preuves du profil vérifié.
@@ -686,6 +756,23 @@ RÈGLES ABSOLUES :
 <VERIFIED_PROFILE>
 ${this.verifiedKnowledge}
 </VERIFIED_PROFILE>`;
+  }
+
+  /** The fixed refusal, with the public page about the client concerned. */
+  private confidentialReply(question: string, earlierQuestions: readonly string[]): string {
+    const links = PORTFOLIO_LINKS[this.locale];
+    const context = [question, ...earlierQuestions].join(' ');
+    const [label, link] = startsWord(context, 'tf1')
+      ? [this.locale === 'en' ? 'The TF1 case study' : 'L’étude de cas TF1', links.tf1CaseStudy]
+      : startsWord(context, 'rent a car') || startsWord(context, 'stago')
+        ? [this.locale === 'en' ? 'My resume' : 'Mon CV', links.cv]
+        : [
+            this.locale === 'en' ? 'The Betclic case study' : 'L’étude de cas Betclic',
+            links.betclicCaseStudy,
+          ];
+    const reply = this.locale === 'en' ? ENGLISH_CONFIDENTIAL_REPLY : CONFIDENTIAL_REPLY;
+
+    return `${reply} ${label}${this.locale === 'en' ? ':' : ' :'} ${link}`;
   }
 
   private outOfScopeReply(): string {
@@ -740,13 +827,65 @@ function sanitizeMessages(messages: readonly AssistantMessage[]): readonly Assis
   return safeMessages;
 }
 
-/** Figures or internals of a client system: answered with a fixed refusal, never by the model. */
-function isConfidentialQuestion(question: string): boolean {
+/**
+ * Figures or internals of a client system, asked directly or as a follow-up to an earlier
+ * question about it, and the finances of former clients: answered with a fixed refusal,
+ * never by the model.
+ */
+function isConfidentialQuestion(
+  question: string,
+  earlierQuestions: readonly string[] = [],
+): boolean {
+  if (
+    FINANCIAL_TERMS.some((term) => startsWord(question, term)) &&
+    FORMER_CLIENT_TERMS.some((term) => startsWord(question, term))
+  ) {
+    return true;
+  }
+
+  return asksForInternals(question) && [question, ...earlierQuestions].some(hasClientSystemContext);
+}
+
+function asksForInternals(question: string): boolean {
   return (
-    CONFIDENTIAL_TERMS.some((term) => startsWord(question, term)) &&
-    (CLIENT_SYSTEM_TERMS.some((term) => startsWord(question, term)) ||
-      CLIENT_SYSTEM_WORDS.some((word) => hasWord(question, word)))
+    CONFIDENTIAL_TERMS.some((term) => startsWord(question, term)) ||
+    CONFIDENTIAL_WORDS.some((word) => hasWord(question, word))
   );
+}
+
+function hasClientSystemContext(question: string): boolean {
+  return (
+    CLIENT_SYSTEM_TERMS.some((term) => startsWord(question, term)) ||
+    CLIENT_SYSTEM_WORDS.some((word) => hasWord(question, word))
+  );
+}
+
+/**
+ * Drops confidential questions and the replies that follow them from what the model sees, so a
+ * conversation (or a history crafted in the browser) cannot steer it back to client internals.
+ */
+function withoutConfidentialExchanges(
+  messages: readonly AssistantMessage[],
+): readonly AssistantMessage[] {
+  const kept: AssistantMessage[] = [];
+  let skipNextReply = false;
+
+  messages.forEach((message, index) => {
+    const isLast = index === messages.length - 1;
+    if (message.role === 'assistant') {
+      if (!skipNextReply) kept.push(message);
+      skipNextReply = false;
+      return;
+    }
+    if (!isLast && isConfidentialQuestion(normalize(message.content))) {
+      skipNextReply = true;
+      return;
+    }
+    skipNextReply = false;
+    kept.push(message);
+  });
+
+  return kept;
 }
 
 function isContactQuestion(question: string): boolean {
