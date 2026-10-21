@@ -105,7 +105,10 @@ describe('LocalPortfolioRepository', () => {
     expect(rentACar?.period).toContain('2017');
     expect(rentACar?.summary).toContain('500 agences');
     expect(rentACar?.achievements.join(' ')).toContain('Easy Péage');
-    expect(stago?.role).toContain('Responsable d’équipe');
+    expect(rentACar?.role).toBe(
+      'Senior Developer Full Stack → Tech Lead Full Stack (.NET / Angular)',
+    );
+    expect(stago?.role).toBe('Software Engineer (C# / .NET) → Team Lead & Scrum Master (C# / WPF)');
     expect(stago?.summary).toContain('huit personnes');
     expect(portfolio.experiences.map(({ company }) => company)).toContain('Total');
   });
