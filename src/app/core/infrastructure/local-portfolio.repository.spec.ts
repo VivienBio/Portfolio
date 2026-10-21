@@ -82,9 +82,9 @@ describe('LocalPortfolioRepository', () => {
     const betclic = portfolio.experiences.find(({ company }) => company === 'Betclic Group');
     const tf1 = portfolio.experiences.find(({ company }) => company === 'Groupe TF1');
 
-    expect(betclic?.summary).toContain('propres probabilités');
+    expect(betclic?.summary).toContain('probabilités internes');
     expect(betclic?.summary).toContain('cotes maîtrisées');
-    expect(betclic?.achievements.join(' ')).toContain('suspendre');
+    expect(betclic?.achievements.join(' ')).toContain('suspension');
     expect(betclic?.achievements.join(' ')).toContain('GPU');
     expect(betclic?.achievements.join(' ')).toContain('replay');
     expect(betclic?.achievements.join(' ')).toContain('skills, commandes, agents');

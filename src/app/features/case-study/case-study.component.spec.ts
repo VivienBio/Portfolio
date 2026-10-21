@@ -24,7 +24,7 @@ describe('CaseStudyComponent', () => {
     const element = render();
 
     expect(element.querySelector('h1')?.textContent).toContain('Real-time sports odds');
-    expect(element.textContent).toContain('Case study · Betclic Group');
+    expect(element.textContent).toContain('Case study: Betclic Group, since October 2025');
     expect(element.textContent).toContain('Monte Carlo');
     expect(element.textContent).toContain('replay');
   });
@@ -42,7 +42,7 @@ describe('CaseStudyComponent', () => {
       'Constraints',
       'How it fits together',
       'Key decisions',
-      'Where it stands',
+      'What the work is for',
       'What I learned',
       'Stack & practices',
     ]);
@@ -62,7 +62,7 @@ describe('CaseStudyComponent', () => {
   it('keeps the confidentiality boundary explicit and the stack strictly sourced', () => {
     const element = render();
 
-    expect(element.textContent).toContain('what Betclic has shared publicly');
+    expect(element.textContent).toContain('what Betclic says publicly');
     const stack = Array.from(element.querySelectorAll('.case-stack li')).map(
       (item) => item.textContent,
     );

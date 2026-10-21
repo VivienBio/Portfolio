@@ -76,7 +76,7 @@ const ANSWERS = {
         'loop',
       ],
       answer:
-        'Chez Betclic, je travaille sur une boucle d’ingénierie conçue pour rendre un domaine algorithmique complexe plus rapide à faire évoluer et plus fiable. Un POC GPU évalue l’accélération des calculs intensifs. Le back-office de replay permet de reproduire les événements, suivre les décisions des algorithmes, comprendre un écart et valider un correctif avant remise en production. Le delivery AWS est automatisé avec Dagger et GitHub Actions afin de conserver un pipeline portable et reproductible. Enfin, j’industrialise Claude Code et Cursor avec des skills, commandes, agents, routines, workflows et boucles IA : l’objectif n’est pas de déléguer aveuglément le code, mais de standardiser les tâches répétables, intégrer les contrôles et raccourcir la boucle analyse–implémentation–preuve.',
+        'Chez Betclic, je travaille sur une boucle d’ingénierie conçue pour rendre un domaine algorithmique complexe plus rapide à faire évoluer et plus fiable. Un POC GPU évalue l’accélération des calculs intensifs. Le framework de capture & replay permet de reproduire les événements, suivre les décisions des algorithmes, comprendre un écart et valider un correctif avant remise en production. Le delivery AWS est automatisé avec Dagger et GitHub Actions afin de conserver un pipeline portable et reproductible. Enfin, j’industrialise Claude Code et Cursor avec des skills, commandes, agents, routines, workflows et boucles IA : l’objectif n’est pas de déléguer aveuglément le code, mais de standardiser les tâches répétables, intégrer les contrôles et raccourcir la boucle analyse–implémentation–preuve.',
     },
     {
       terms: [
@@ -119,7 +119,7 @@ const ANSWERS = {
     {
       terms: ['ia', 'intelligence artificielle'],
       answer:
-        'J’utilise l’IA comme un levier d’ingénierie reproductible. Chez Betclic, j’industrialise Claude Code et Cursor au moyen de skills, commandes, agents, routines, workflows et boucles IA, afin d’accélérer le développement sans perdre la traçabilité ni la fiabilité. J’ai aussi développé un back-office de replay et d’analyse, mené un POC de calcul GPU et travaillé le delivery AWS avec Dagger et GitHub Actions. Chez TF1, j’avais déjà exploré Copilot et la validation éditoriale automatisée de vidéos. Chaque usage reste lié à un besoin précis, des contrôles et des preuves.',
+        'J’utilise l’IA comme un levier d’ingénierie reproductible. Chez Betclic, j’industrialise Claude Code et Cursor au moyen de skills, commandes, agents, routines, workflows et boucles IA, afin d’accélérer le développement sans perdre la traçabilité ni la fiabilité. J’ai aussi conçu un framework de capture & replay, mené un POC de calcul GPU et travaillé le delivery AWS avec Dagger et GitHub Actions. Chez TF1, j’avais déjà exploré Copilot et la validation éditoriale automatisée de vidéos. Chaque usage reste lié à un besoin précis, des contrôles et des preuves.',
     },
     {
       terms: ['tdd', 'test', 'tictactoe', 'vending'],
@@ -229,7 +229,7 @@ const ANSWERS = {
         'loop',
       ],
       answer:
-        'At Betclic, I work on an engineering loop designed to make a complex algorithmic domain faster and safer to evolve. A GPU proof of concept assesses acceleration for compute-intensive workloads. The replay back office reproduces events, traces algorithmic decisions, explains discrepancies, and validates a fix before it returns to production. AWS delivery is automated with Dagger and GitHub Actions to keep the pipeline portable and reproducible. I also industrialize Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops: the goal is not to delegate code blindly, but to standardize repeatable tasks, embed controls, and shorten the analysis–implementation–evidence loop.',
+        'At Betclic, I work on an engineering loop designed to make a complex algorithmic domain faster and safer to evolve. A GPU proof of concept assesses acceleration for compute-intensive workloads. The capture & replay framework reproduces events, traces algorithmic decisions, explains discrepancies, and validates a fix before it returns to production. AWS delivery is automated with Dagger and GitHub Actions to keep the pipeline portable and reproducible. I also industrialize Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops: the goal is not to delegate code blindly, but to standardize repeatable tasks, embed controls, and shorten the analysis–implementation–evidence loop.',
     },
     {
       terms: [
@@ -273,7 +273,7 @@ const ANSWERS = {
     {
       terms: ['ai', 'artificial intelligence'],
       answer:
-        'I use AI as a reproducible engineering lever. At Betclic, I industrialize Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops to accelerate development without losing traceability or reliability. I also built a replay and analysis back office, ran a GPU compute proof of concept, and worked on AWS delivery with Dagger and GitHub Actions. At TF1, I had already explored Copilot-assisted development and automated editorial validation of videos. Every use remains tied to a precise need, controls, and evidence.',
+        'I use AI as a reproducible engineering lever. At Betclic, I industrialize Claude Code and Cursor through skills, commands, agents, routines, workflows, and AI loops to accelerate development without losing traceability or reliability. I also built a capture & replay framework, ran a GPU compute proof of concept, and worked on AWS delivery with Dagger and GitHub Actions. At TF1, I had already explored Copilot-assisted development and automated editorial validation of videos. Every use remains tied to a precise need, controls, and evidence.',
     },
     {
       terms: ['tdd', 'test', 'tictactoe', 'vending'],

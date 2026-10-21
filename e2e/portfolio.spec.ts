@@ -133,7 +133,7 @@ test('tells the full Betclic case study with decisions and trade-offs', async ({
   await expect(page.getByRole('heading', { name: 'Key decisions' })).toBeVisible();
   await expect(page.locator('.decision')).toHaveCount(3);
   await expect(page.locator('.diagram-flow li')).toHaveCount(4);
-  await expect(page.getByText('what Betclic has shared publicly')).toBeVisible();
+  await expect(page.getByText('what Betclic says publicly')).toBeVisible();
 
   const dimensions = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,

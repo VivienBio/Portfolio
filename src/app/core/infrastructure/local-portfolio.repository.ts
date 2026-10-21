@@ -59,11 +59,11 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
       role: 'Senior Software Engineer',
       period: 'Depuis octobre 2025',
       summary:
-        'Je contribue à une chaîne de pricing sportif propriétaire : générer nos propres probabilités afin de proposer rapidement des cotes maîtrisées aux parieurs, avec davantage d’autonomie qu’une dépendance exclusive à des providers externes.',
+        'Je contribue à la chaîne de pricing sportif propriétaire de Betclic : produire des probabilités internes pour proposer plus vite des cotes maîtrisées aux parieurs, avec moins de dépendance exclusive aux providers externes.',
       achievements: [
         'Mettre en production avec les quants, au quotidien et en anglais, des modèles statistiques, XGBoost/ONNX et des simulations Monte-Carlo couvrant de nombreux sports et compétitions',
         'Transformer ces probabilités en cotes pilotées en interne, dans un moteur temps réel C#/.NET, Kafka et gRPC, pour gagner en vitesse, en maîtrise et en indépendance',
-        'Traiter des règles complexes du cycle de vie d’un marché, notamment déterminer quand le suspendre ou le rouvrir',
+        'Contribuer aux règles du cycle de vie des marchés, notamment les décisions de suspension et de réouverture',
         'Évaluer par un POC GPU l’accélération des calculs intensifs et automatiser le delivery sur AWS avec Dagger et GitHub Actions',
         'Concevoir un framework de capture & replay déterministe qui rejoue un match à l’identique pour tracer, comprendre et corriger chaque décision du moteur',
         'Industrialiser l’usage de Claude Code et Cursor avec des skills, commandes, agents, routines, workflows et boucles IA reproductibles',
@@ -81,7 +81,7 @@ const FRENCH_PORTFOLIO: Portfolio = deepFreeze({
     },
     {
       company: 'Groupe TF1',
-      role: 'Tech Lead / Architecte',
+      role: 'Tech Lead / Architecte (freelance)',
       period: 'Février 2022 — octobre 2025',
       summary:
         'Référent technique de trois équipes pluridisciplinaires, j’ai piloté la refonte du SI publicitaire : 11 projets mis en production, 4 autres engagés et plus de 80 incidents traités.',
@@ -323,11 +323,11 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
       ...FRENCH_PORTFOLIO.experiences[0]!,
       period: 'Since Oct 2025',
       summary:
-        'I contribute to a proprietary sports-pricing chain: generating our own probabilities to offer bettors controlled odds faster, with greater autonomy than relying exclusively on external providers.',
+        'I contribute to Betclic’s proprietary sports-pricing chain: producing in-house probabilities so bettors get controlled odds faster, with less exclusive reliance on external providers.',
       achievements: [
         'Working daily with the quant researchers to industrialize statistical, XGBoost/ONNX, and Monte Carlo models across numerous sports and competitions',
         'Turning those probabilities into internally controlled odds in a real-time C#/.NET, Kafka, and gRPC engine, to improve speed, control, and independence',
-        'Handling complex market-lifecycle rules, including deciding when a market must be suspended or reopened',
+        'Contributing to market-lifecycle rules, including the decisions to suspend and reopen a market',
         'Assessing compute acceleration through a GPU proof of concept and automating delivery on AWS with Dagger and GitHub Actions',
         'Designing a deterministic capture & replay framework that re-runs a match exactly as it happened, to trace, understand, and fix every engine decision',
         'Building Claude Code and Cursor into the team’s workflow through reusable skills, commands, agents, routines, and AI loops',
@@ -346,7 +346,7 @@ const ENGLISH_PORTFOLIO: Portfolio = deepFreeze({
     {
       ...FRENCH_PORTFOLIO.experiences[1]!,
       company: 'TF1 Group',
-      role: 'Tech Lead / Software Architect',
+      role: 'Tech Lead / Software Architect (freelance)',
       period: 'Feb 2022 — Oct 2025',
       summary:
         'As technical lead for three multidisciplinary teams, I led the advertising-system redesign: 11 projects brought to production, 4 more underway, and over 80 incidents resolved.',
